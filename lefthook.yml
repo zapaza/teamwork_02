@@ -3,8 +3,14 @@ pre-commit:
   commands:
     lint:
       glob: '*.{ts,tsx}'
-      run: yarn eslint {staged_files}
-    prettier:
-      glob: '*.{ts,tsx,css}'
-      run: yarn prettier -w {staged_files}
-      stage_fixed: true
+      run: yarn eslint --fix {staged_files}
+    stylelint:
+      glob: '*.{pcss,css}'
+      run: yarn stylelint --fix {staged_files}
+    format:
+      glob: '*.{ts,tsx,pcss,css}'
+      run: yarn prettier --write {staged_files}
+  commit-msg:
+    commands:
+      commitlint:
+        run: yarn commitlint --edit "{1}"
