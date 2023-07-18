@@ -8,3 +8,7 @@ pre-commit:
       glob: '*.{ts,tsx,css}'
       run: yarn prettier -w {staged_files}
       stage_fixed: true
+commit-msg:
+  commands:
+    commitlint:
+      run: yarn commitlint --edit "{1}"
