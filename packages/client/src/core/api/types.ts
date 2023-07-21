@@ -12,4 +12,3 @@ export type HttpMethod = <TRequest = unknown, TResponse = unknown>(
   object?: TRequest,
   config?: AxiosRequestConfig<TResponse>
 ) => Promise<AxiosResponse<TResponse>>
-

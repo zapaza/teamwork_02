@@ -43,9 +43,9 @@ export default class ApiClient implements IApiClient {
     config?: AxiosRequestConfig
   ) {
     if (config) {
-      config.params = object
+      config.data = object
     } else {
-      config = { params: object }
+      config = { data: object }
     }
     return await this.instance.delete<TResponse>(url, config)
   }
