@@ -2,10 +2,10 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 import { IApiClient } from './types'
 
 export default class ApiClient implements IApiClient {
-  private client: AxiosInstance
+  private instance: AxiosInstance
 
   constructor(baseUrl: string, timeout = 5000) {
-    this.client = this.createInstance(baseUrl, timeout)
+    this.instance = this.createInstance(baseUrl, timeout)
   }
 
   public async get<TRequest, TResponse>(
@@ -18,7 +18,7 @@ export default class ApiClient implements IApiClient {
     } else {
       config = { params: object }
     }
-    return await this.client.get<TResponse>(url, config)
+    return await this.instance.get<TResponse>(url, config)
   }
 
   public async post<TRequest, TResponse>(
@@ -26,7 +26,7 @@ export default class ApiClient implements IApiClient {
     object: TRequest,
     config?: AxiosRequestConfig
   ) {
-    return await this.client.post<TResponse>(url, object, config)
+    return await this.instance.post<TResponse>(url, object, config)
   }
 
   public async put<TRequest, TResponse>(
@@ -34,15 +34,24 @@ export default class ApiClient implements IApiClient {
     object: TRequest,
     config?: AxiosRequestConfig
   ) {
-    return await this.client.put<TResponse>(url, object, config)
+    return await this.instance.put<TResponse>(url, object, config)
   }
 
-  public async delete<TResponse>(url: string, config?: AxiosRequestConfig) {
-    return await this.client.delete<TResponse>(url, config)
+  public async delete<TRequest, TResponse>(
+    url: string,
+    object: TRequest,
+    config?: AxiosRequestConfig
+  ) {
+    if (config) {
+      config.params = object
+    } else {
+      config = { params: object }
+    }
+    return await this.instance.delete<TResponse>(url, config)
   }
 
   private createInstance(baseUrl: string, timeout: number) {
-    const client = axios.create({
+    const instance = axios.create({
       baseURL: baseUrl,
       timeout: timeout,
       responseType: 'json',
@@ -50,14 +59,14 @@ export default class ApiClient implements IApiClient {
         'Content-Type': 'application/json',
       },
     })
-    client.interceptors.request.use(
+    instance.interceptors.request.use(
       response => response,
       error => {
         console.log(`Request error ${error}`)
         return Promise.reject(error)
       }
     )
-    client.interceptors.response.use(
+    instance.interceptors.response.use(
       response => response,
       error => {
         console.log(`Response error ${error}`)
@@ -65,6 +74,6 @@ export default class ApiClient implements IApiClient {
       }
     )
 
-    return client
+    return instance
   }
 }
