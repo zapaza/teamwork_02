@@ -1,13 +1,21 @@
 import { useEffect } from 'react'
 import './styles/App.css'
+import ApiClient from './core/api/ApiClient'
 
 function App() {
   useEffect(() => {
     const fetchServerData = async () => {
-      const url = `http://localhost:${__SERVER_PORT__}`
-      const response = await fetch(url)
-      const data = await response.json()
-      console.log(data)
+      const url = `https://ya-praktikum.tech/api/v2`
+      const client = new ApiClient(url)
+      try {
+        const response = await client.post(`/auth/signin`, {
+          login: 'Qwerty123',
+          password: 'Qwerty123',
+        })
+        console.log(response)
+      } catch (e) {
+        console.log(e)
+      }
     }
 
     fetchServerData()
