@@ -1,16 +1,16 @@
 .error-page__container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
 }
 
-.error-page__description{
- margin: 32px 0;
+.error-page__description {
+  margin: 32px 0;
 }
 
 button {
-    width: 92px;
-    height: 24px;
+  width: 92px;
+  height: 24px;
 }
