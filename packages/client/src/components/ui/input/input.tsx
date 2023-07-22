@@ -1,5 +1,5 @@
 import React, { LegacyRef, useState } from 'react'
-import './input.css'
+import './input.pcss'
 export type InputsProps = {
   name: string
   type: string
@@ -11,14 +11,14 @@ export type InputsProps = {
 const Input = React.forwardRef((props: InputsProps, ref) => {
   const [value, setValue] = useState('')
   return (
-    <div className={'input__wrapper'}>
+    <div className={'input__wrapper flex flex-column'}>
       <label className={'input__label'} id={props.name}>
         {' '}
         {props.name}
       </label>
       <input
         {...props}
-        className={'input'}
+        className={'input__item'}
         onChange={event => setValue(event.target.value)}
         value={value}
         ref={ref as LegacyRef<HTMLInputElement>}

@@ -4,8 +4,8 @@
   border: 0;
   border-radius: 16px;
   gap: 10px;
-  background: #3b82f6;
-  box-shadow: 0 2px 4px -2px #00000080;
+  background: var(--blue-500);
+  box-shadow: var(--shadow--base);
   cursor: pointer;
   text-decoration: none;
   font-family: Inter, serif;
@@ -14,13 +14,13 @@
   line-height: 24px;
   letter-spacing: 0;
   text-align: left;
-  color: #ffffff;
-}
+  color: var(--white);
 
-.button:hover {
-  opacity: 0.8;
-}
+  &:hover {
+    opacity: 0.8;
+  }
 
-.button:active {
-  opacity: 0.95;
+  &:active {
+    opacity: 0.95;
+  }
 }

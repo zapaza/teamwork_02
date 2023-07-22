@@ -9,6 +9,7 @@
     "annotation-no-unknown": true,
     "function-calc-no-unspaced-operator": true,
     "color-no-invalid-hex": true,
-    "no-empty-source": null
+    "no-empty-source": null,
+    "custom-property-pattern": null
   }
 }

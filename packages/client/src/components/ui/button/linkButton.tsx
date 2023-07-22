@@ -1,4 +1,4 @@
-import './button.css'
+import './button.pcss'
 export type LinkButtonsProps = {
   name: string
   href: string
