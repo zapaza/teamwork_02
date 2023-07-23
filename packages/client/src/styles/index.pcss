@@ -1,0 +1,128 @@
+@import 'https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap';
+@import 'helpers.pcss';
+
+:root {
+  /* Color styles */
+  --white: rgb(255 255 255 / 100%);
+  --gray-50: rgb(249 250 251 / 100%);
+  --gray-100: rgb(243 244 246 / 100%);
+  --gray-200: rgb(229 231 235 / 100%);
+  --gray-300: rgb(210 213 218 / 100%);
+  --gray-400: rgb(156 163 175 / 100%);
+  --gray-500: rgb(109 114 128 / 100%);
+  --gray-600: rgb(75 85 99 / 100%);
+  --gray-700: rgb(55 65 81 / 100%);
+  --gray-800: rgb(31 41 55 / 100%);
+  --gray-900: rgb(17 24 39 / 100%);
+  --red-50: rgb(254 242 242 / 100%);
+  --red-100: rgb(254 226 226 / 100%);
+  --red-200: rgb(254 202 202 / 100%);
+  --red-300: rgb(252 165 165 / 100%);
+  --red-400: rgb(248 113 113 / 100%);
+  --red-500: rgb(239 68 68 / 100%);
+  --red-600: rgb(220 38 38 / 100%);
+  --red-700: rgb(185 28 28 / 100%);
+  --red-800: rgb(153 27 27 / 100%);
+  --red-900: rgb(127 29 29 / 100%);
+  --orange-50: rgb(255 247 237 / 100%);
+  --orange-100: rgb(255 237 213 / 100%);
+  --orange-200: rgb(254 215 170 / 100%);
+  --orange-300: rgb(253 186 116 / 100%);
+  --orange-400: rgb(251 146 60 / 100%);
+  --orange-500: rgb(249 115 22 / 100%);
+  --orange-600: rgb(234 88 12 / 100%);
+  --orange-700: rgb(194 65 12 / 100%);
+  --orange-800: rgb(154 52 18 / 100%);
+  --orange-900: rgb(124 45 18 / 100%);
+  --yellow-50: rgb(254 252 232 / 100%);
+  --yellow-100: rgb(254 249 195 / 100%);
+  --yellow-200: rgb(254 240 138 / 100%);
+  --yellow-300: rgb(253 224 71 / 100%);
+  --yellow-400: rgb(250 204 21 / 100%);
+  --yellow-500: rgb(234 179 8 / 100%);
+  --yellow-600: rgb(202 138 4 / 100%);
+  --yellow-700: rgb(161 98 7 / 100%);
+  --yellow-800: rgb(133 77 14 / 100%);
+  --yellow-900: rgb(113 63 18 / 100%);
+  --green-50: rgb(240 253 244 / 100%);
+  --green-100: rgb(220 252 231 / 100%);
+  --green-200: rgb(187 247 208 / 100%);
+  --green-300: rgb(134 239 172 / 100%);
+  --green-400: rgb(74 222 128 / 100%);
+  --green-500: rgb(34 197 94 / 100%);
+  --green-600: rgb(22 163 74 / 100%);
+  --green-700: rgb(21 128 61 / 100%);
+  --green-800: rgb(22 101 52 / 100%);
+  --green-900: rgb(20 83 45 / 100%);
+  --blue-50: rgb(239 246 255 / 100%);
+  --blue-100: rgb(219 234 254 / 100%);
+  --blue-200: rgb(191 219 254 / 100%);
+  --blue-300: rgb(147 197 253 / 100%);
+  --blue-400: rgb(96 165 250 / 100%);
+  --blue-500: rgb(59 130 246 / 100%);
+  --blue-600: rgb(37 99 235 / 100%);
+  --blue-700: rgb(29 78 216 / 100%);
+  --blue-800: rgb(30 64 175 / 100%);
+  --blue-900: rgb(30 58 138 / 100%);
+  --indigo-50: rgb(238 242 255 / 100%);
+  --indigo-100: rgb(224 231 255 / 100%);
+  --indigo-200: rgb(199 210 254 / 100%);
+  --indigo-300: rgb(165 180 252 / 100%);
+  --indigo-400: rgb(129 140 248 / 100%);
+  --indigo-500: rgb(99 102 241 / 100%);
+  --indigo-600: rgb(79 70 229 / 100%);
+  --indigo-700: rgb(67 56 202 / 100%);
+  --indigo-800: rgb(55 48 163 / 100%);
+  --indigo-900: rgb(49 46 129 / 100%);
+  --purple-50: rgb(250 245 255 / 100%);
+  --purple-100: rgb(243 232 255 / 100%);
+  --purple-200: rgb(233 213 255 / 100%);
+  --purple-300: rgb(216 180 254 / 100%);
+  --purple-400: rgb(192 132 252 / 100%);
+  --purple-500: rgb(168 85 247 / 100%);
+  --purple-600: rgb(147 51 234 / 100%);
+  --purple-700: rgb(126 34 206 / 100%);
+  --purple-800: rgb(107 33 168 / 100%);
+  --purple-900: rgb(88 28 135 / 100%);
+  --pink-50: rgb(253 242 248 / 100%);
+  --pink-100: rgb(252 231 243 / 100%);
+  --pink-200: rgb(251 207 232 / 100%);
+  --pink-300: rgb(249 168 212 / 100%);
+  --pink-400: rgb(244 114 182 / 100%);
+  --pink-500: rgb(236 72 153 / 100%);
+  --pink-600: rgb(219 39 119 / 100%);
+  --pink-700: rgb(179 24 91 / 100%);
+  --pink-800: rgb(157 23 77 / 100%);
+  --pink-900: rgb(131 24 67 / 100%);
+
+  /* Effect styles */
+  --shadow--sm: 0px 1px 2px rgb(0 0 0 / 8%);
+  --shadow--base: 0px 1px 3px rgb(0 0 0 / 10%), 0px 1px 2px rgb(0 0 0 / 10%);
+  --shadow--md: 0px 4px 6px rgb(0 0 0 / 10%), 0px 2px 4px rgb(0 0 0 / 50%);
+  --shadow--lg: 0px 10px 15px rgb(0 0 0 / 10%), 0px 4px 6px rgb(0 0 0 / 5%);
+  --shadow--xl: 0px 20px 25px rgb(0 0 0 / 10%), 0px 10px 10px rgb(0 0 0 / 4%);
+  --shadow--2xl: 0px 25px 50px rgb(0 0 0 / 25%);
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-family: Inter, sans-serif;
+  background-color: var(--gray-100);
+}
+
+#root {
+  min-height: 100vh;
+  width: 100vw;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

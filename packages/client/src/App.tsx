@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import './styles/App.css'
 import ApiClient from './core/api/ApiClient'
 
 function App() {
