@@ -3,19 +3,21 @@ import '../../styles/helpers.css'
 
 function LeaderBoardPage() {
   return (
-    <div className='leaderboard__container'>
-      <h5 className='leaderboard__header text-xl-font-bold'>Список Лидеров</h5>
+    <div className="leaderboard__container">
+      <h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
       <BaseLeaderboardInput />
-    </div>)
+    </div>
+  )
 }
 
 export function BaseLeaderboardInput() {
   return (
-    <div className='leaderboard-input__container'>
-      <span className='position-number text-base-font-regular'>1.</span>
-      <span className='user-name text-base-font-regular'>Пользователь</span>
-      <span className='user-score text-base-font-regular'>99999</span>
-    </div>)
+    <div className="leaderboard-input__container">
+      <span className="position-number text-base-font-regular">1.</span>
+      <span className="user-name text-base-font-regular">Пользователь</span>
+      <span className="user-score text-base-font-regular">99999</span>
+    </div>
+  )
 }
 
 export default LeaderBoardPage
