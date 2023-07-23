@@ -9,13 +9,13 @@ function LoginPage() {
 
   const inputs: Array<InputsProps> = [
     {
-      name: 'Login',
+      name: 'login',
       placeholder: 'Login',
       error: '',
       type: 'text',
     },
     {
-      name: 'Password',
+      name: 'password',
       placeholder: 'Password',
       error: '',
       type: 'password',
