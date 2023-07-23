@@ -13,9 +13,7 @@ const Input = React.forwardRef((props: InputsProps, ref) => {
   const [value, setValue] = useState('')
   return (
     <div className={'input__wrapper flex flex-column'}>
-      <label className={'input__label'}>
-        {props.label}
-      </label>
+      <label className={'input__label'}>{props.label}</label>
       <input
         {...props}
         className={'input__item'}

@@ -1,14 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom'
-import ErrorPage from '../pages/error-page'
+import ErrorPage from '../pages/error'
 import App from '../App'
-import ForumPage from '../pages/forum-page'
-import ForumTopicPage from '../pages/forum-topic-page'
-import GamePage from '../pages/game-page'
-import LeaderBoardPage from '../pages/leaderboard-page'
-import LoginPage from '../pages/login-page'
-import MainPage from '../pages/main-page'
-import ProfilePage from '../pages/profile-page'
-import RegistrationPage from '../pages/registration-page'
+import ForumPage from '../pages/forum'
+import ForumTopicPage from '../pages/forum-topic'
+import GamePage from '../pages/game'
+import LeaderBoardPage from '../pages/leaderboard'
+import LoginPage from '../pages/login'
+import MainPage from '../pages/main'
+import ProfilePage from '../pages/profile'
+import RegistrationPage from '../pages/signup'
 
 const router = createBrowserRouter([
   {
