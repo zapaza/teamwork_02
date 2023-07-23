@@ -1,12 +1,10 @@
 .leaderboard__container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: rgb(255 255 255 / 100%);
+  background-color: var(--white);
   max-width: 580px;
   min-height: 622px;
   margin: 24px auto;
-  box-shadow: 0 1px 2px -1px rgb(0 0 0 / 10%);
+  /* stylelint-disable-next-line */
+  box-shadow: var(--shadow--base);
   border-radius: 16px;
 }
 
@@ -15,20 +13,16 @@
 }
 
 .leaderboard-input__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-width: 532px;
-  border-bottom: 1px dashed rgb(109 114 128 / 100%);
+  border-bottom: 1px dashed var(--gray-500);
   padding: 4px 8px;
 }
 
 .user-name {
   padding-left: 12px;
-  color: rgb(109 114 128 / 100%);
+  color: var(--gray-500);
 }
 
 .user-score {
-  color: rgb(17 24 39 / 100%);
   margin-left: auto;
 }
