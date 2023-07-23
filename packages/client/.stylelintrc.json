@@ -3,7 +3,6 @@
   "rules": {
     "color-hex-length": "long",
     "import-notation": "string",
-    "selector-class-pattern": "^[a-z__-]+$",
     "declaration-property-value-no-unknown": true,
     "at-rule-no-unknown": true,
     "annotation-no-unknown": true,
