@@ -3,7 +3,10 @@ import Form from '../../components/ui/form/form'
 import React from 'react'
 import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
+import { useNavigate } from 'react-router-dom'
 function LoginPage() {
+  const navigate = useNavigate()
+
   const inputs: Array<InputsProps> = [
     {
       name: 'Login',
@@ -18,6 +21,11 @@ function LoginPage() {
       type: 'password',
     },
   ]
+
+  const goSingUpPage = () => {
+    navigate('/signup')
+  }
+
   const buttons: Array<ButtonsProps> = [
     {
       name: 'signin',
@@ -26,7 +34,7 @@ function LoginPage() {
     {
       name: 'signup',
       children: 'Sign up',
-      href: '/signup',
+      onClick: goSingUpPage,
     },
   ]
   return (
