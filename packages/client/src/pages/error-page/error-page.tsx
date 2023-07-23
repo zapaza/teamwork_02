@@ -1,4 +1,4 @@
-import { useRouteError } from 'react-router-dom'
+import { Link, useRouteError } from 'react-router-dom'
 import './error-page.css'
 import '../../styles/helpers.css'
 
@@ -18,7 +18,11 @@ export default function ErrorPage() {
           ? 'То, что вы ищете, не создано или куда-то пропало'
           : 'Ой, что-то не так :('}
       </p>
-      <button>На главную</button>
+      <Link
+        to="/"
+        className="navigation-link text-base-font-bold flex flex-ai-center flex-jc-center">
+        На главную
+      </Link>
     </div>
   )
 }

@@ -6,7 +6,12 @@
   margin: 32px 0;
 }
 
-button {
-  width: 92px;
-  height: 24px;
+.navigation-link {
+  width: 140px;
+  height: 40px;
+  color: var(--white);
+  background-color: var(--blue-500);
+  border-radius: 16px;
+  /* stylelint-disable-next-line */
+  box-shadow: var(--shadow--md);
 }
