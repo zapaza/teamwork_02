@@ -1,3 +1,3 @@
-import LeaderBoardPage from './leaderboard-page'
+import Leaderboard from './leaderboard'
 
-export default LeaderBoardPage
+export default Leaderboard

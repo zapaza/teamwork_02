@@ -1,61 +1,61 @@
 import { createBrowserRouter } from 'react-router-dom'
-import ErrorPage from '../pages/error'
+import Error from '../pages/error'
 import App from '../App'
-import ForumPage from '../pages/forum'
-import ForumTopicPage from '../pages/forum-topic'
-import GamePage from '../pages/game'
-import LeaderBoardPage from '../pages/leaderboard'
-import LoginPage from '../pages/login'
-import MainPage from '../pages/main'
-import ProfilePage from '../pages/profile'
-import RegistrationPage from '../pages/signup'
+import Forum from '../pages/forum'
+import ForumTopic from '../pages/forum-topic'
+import Game from '../pages/game'
+import Leaderboard from '../pages/leaderboard'
+import Login from '../pages/login'
+import Main from '../pages/main'
+import Profile from '../pages/profile'
+import Signup from '../pages/signup'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
     // вот тут задаем страницу с ошибками вроде 404
-    errorElement: <ErrorPage />,
+    errorElement: <Error />,
   },
   {
     path: '/forum',
-    element: <ForumPage />,
-    errorElement: <ErrorPage />,
+    element: <Forum />,
+    errorElement: <Error />,
   },
   {
     path: '/forum-topic',
-    element: <ForumTopicPage />,
-    errorElement: <ErrorPage />,
+    element: <ForumTopic />,
+    errorElement: <Error />,
   },
   {
     path: '/game',
-    element: <GamePage />,
-    errorElement: <ErrorPage />,
+    element: <Game />,
+    errorElement: <Error />,
   },
   {
     path: '/leaderboard',
-    element: <LeaderBoardPage />,
-    errorElement: <ErrorPage />,
+    element: <Leaderboard />,
+    errorElement: <Error />,
   },
   {
     path: '/login',
-    element: <LoginPage />,
-    errorElement: <ErrorPage />,
+    element: <Login />,
+    errorElement: <Error />,
   },
   {
     path: '/main',
-    element: <MainPage />,
-    errorElement: <ErrorPage />,
+    element: <Main />,
+    errorElement: <Error />,
   },
   {
     path: '/profile',
-    element: <ProfilePage />,
-    errorElement: <ErrorPage />,
+    element: <Profile />,
+    errorElement: <Error />,
   },
   {
     path: '/signup',
-    element: <RegistrationPage />,
-    errorElement: <ErrorPage />,
+    element: <Signup />,
+    errorElement: <Error />,
   },
 ])
 

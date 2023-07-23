@@ -1,3 +1,3 @@
-import ForumTopicPage from './forum-topic-page'
+import ForumTopic from './forum-topic'
 
-export default ForumTopicPage
+export default ForumTopic

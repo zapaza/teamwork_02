@@ -1,3 +1,3 @@
-import ProfilePage from './profile-page'
+import Profile from './profile'
 
-export default ProfilePage
+export default Profile

@@ -1,3 +1,3 @@
-import ForumPage from './forum-page'
+import Forum from './forum'
 
-export default ForumPage
+export default Forum

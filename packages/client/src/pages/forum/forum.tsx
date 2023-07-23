@@ -1,5 +1,5 @@
-function ForumPage() {
+function Forum() {
   return <div>Вот тут будет жить ForumPage :)</div>
 }
 
-export default ForumPage
+export default Forum

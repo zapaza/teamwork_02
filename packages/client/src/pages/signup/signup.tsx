@@ -1,10 +1,10 @@
-import './login-page.css'
-import Form from '../../components/ui/form/form'
-import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
-import { useNavigate } from 'react-router-dom'
-function LoginPage() {
+import Form from '../../components/ui/form/form'
+import React from 'react'
+
+function Signup() {
   const navigate = useNavigate()
 
   const inputs: Array<InputsProps> = [
@@ -24,24 +24,25 @@ function LoginPage() {
     },
   ]
 
-  const goSingUpPage = () => {
-    navigate('/signup')
+  const goLoginPage = () => {
+    navigate('/login')
   }
 
   const buttons: Array<ButtonsProps> = [
     {
-      name: 'signin',
-      children: 'Sign in',
-    },
-    {
       name: 'signup',
       children: 'Sign up',
-      onClick: goSingUpPage,
+    },
+    {
+      name: 'signin',
+      children: 'Sign in',
+      onClick: goLoginPage,
     },
   ]
   return (
-    <Form name={'login'} title={'Sign in'} inputs={inputs} buttons={buttons} />
+    <Form name={'signup'} title={'Sign up'} inputs={inputs} buttons={buttons} />
   )
 }
 
-export default LoginPage
+
+export default Signup
