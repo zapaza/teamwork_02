@@ -1,12 +1,9 @@
-import { useNavigate } from 'react-router-dom'
 import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
 import React from 'react'
 
 function Signup() {
-  const navigate = useNavigate()
-
   const inputs: Array<InputsProps> = [
     {
       name: 'login',
@@ -22,27 +19,52 @@ function Signup() {
       error: '',
       type: 'password',
     },
+    {
+      name: 'repeat-password',
+      label: 'Repeat password',
+      placeholder: 'Repeat password',
+      error: '',
+      type: 'password',
+    },
+    {
+      name: 'first-name',
+      label: 'First name',
+      placeholder: 'First name',
+      error: '',
+      type: 'text',
+    },
+    {
+      name: 'second-name',
+      label: 'Second name',
+      placeholder: 'Second name',
+      error: '',
+      type: 'text',
+    },
+    {
+      name: 'email',
+      label: 'E-mail',
+      placeholder: 'E-mail',
+      error: '',
+      type: 'text',
+    },
+    {
+      name: 'phone',
+      label: 'Phone',
+      placeholder: '+7(999)999-99-99',
+      error: '',
+      type: 'text',
+    }
   ]
-
-  const goLoginPage = () => {
-    navigate('/login')
-  }
 
   const buttons: Array<ButtonsProps> = [
     {
       name: 'signup',
       children: 'Sign up',
-    },
-    {
-      name: 'signin',
-      children: 'Sign in',
-      onClick: goLoginPage,
-    },
+    }
   ]
   return (
     <Form name={'signup'} title={'Sign up'} inputs={inputs} buttons={buttons} />
   )
 }
-
 
 export default Signup
