@@ -7,12 +7,12 @@ export default function ErrorPage() {
   console.error(error)
 
   return (
-    <div id="error-page" className="error-page__container">
+    <div id="error-page" className="error-page__container flex flex-column flex-ai-center flex-jc-center">
       <h1 className="text-9-xl-font-bold">
-        {error.status == '404' ? '404' : '500'}
+        {error.status === 404 ? '404' : '500'}
       </h1>
       <p className="text-xl-font-regular error-page__description">
-        {error.status == '404'
+        {error.status == 404
           ? 'То, что вы ищете, не создано или куда-то пропало'
           : 'Ой, что-то не так :('}
       </p>
