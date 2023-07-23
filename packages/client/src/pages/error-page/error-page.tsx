@@ -7,7 +7,9 @@ export default function ErrorPage() {
   console.error(error)
 
   return (
-    <div id="error-page" className="error-page__container flex flex-column flex-ai-center flex-jc-center">
+    <div
+      id="error-page"
+      className="error-page__container flex flex-column flex-ai-center flex-jc-center">
       <h1 className="text-9-xl-font-bold">
         {error.status === 404 ? '404' : '500'}
       </h1>
