@@ -8,7 +8,7 @@ import LeaderBoardPage from '../pages/leaderboard'
 import LoginPage from '../pages/login'
 import MainPage from '../pages/main'
 import ProfilePage from '../pages/profile'
-import RegistrationPage from '../pages/signup'
+import SignupPage from '../pages/signup'
 
 const router = createBrowserRouter([
   {
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: '/signup',
-    element: <RegistrationPage />,
+    element: <SignupPage />,
     errorElement: <ErrorPage />,
   },
 ])
