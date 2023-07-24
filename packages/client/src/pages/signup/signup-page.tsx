@@ -53,14 +53,14 @@ function Signup() {
       placeholder: '+7(999)999-99-99',
       error: '',
       type: 'text',
-    }
+    },
   ]
 
   const buttons: Array<ButtonsProps> = [
     {
       name: 'signup',
       children: 'Sign up',
-    }
+    },
   ]
   return (
     <Form name={'signup'} title={'Sign up'} inputs={inputs} buttons={buttons} />
