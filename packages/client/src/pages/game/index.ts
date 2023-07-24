@@ -1,3 +1,3 @@
-import Game from './game'
+import GamePage from './game-page'
 
-export default Game
+export default GamePage

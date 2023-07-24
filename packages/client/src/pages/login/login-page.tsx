@@ -1,10 +1,10 @@
-import './login.css'
+import './login-page.css'
 import Form from '../../components/ui/form/form'
 import React from 'react'
 import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import { useNavigate } from 'react-router-dom'
-function Login() {
+function LoginPage() {
   const navigate = useNavigate()
 
   const inputs: Array<InputsProps> = [
@@ -44,4 +44,4 @@ function Login() {
   )
 }
 
-export default Login
+export default LoginPage

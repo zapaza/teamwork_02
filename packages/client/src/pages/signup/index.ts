@@ -1,3 +1,3 @@
-import Signup from './signup'
+import RegistrationPage from './registration-page'
 
-export default Signup
+export default RegistrationPage

@@ -1,5 +1,5 @@
-function Game() {
+function GamePage() {
   return <div>Вот тут будет жить GamePage :)</div>
 }
 
-export default Game
+export default GamePage

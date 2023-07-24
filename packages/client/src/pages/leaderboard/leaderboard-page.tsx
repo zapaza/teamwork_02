@@ -1,5 +1,5 @@
-function Leaderboard() {
+function LeaderBoardPage() {
   return <div>Вот тут будет жить LeaderBoardPage :)</div>
 }
 
-export default Leaderboard
+export default LeaderBoardPage
