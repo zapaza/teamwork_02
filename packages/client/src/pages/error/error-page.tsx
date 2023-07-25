@@ -5,16 +5,17 @@ import '../../styles/helpers.pcss'
 export default function ErrorPage() {
   const error = useRouteError()
   console.error(error)
-
+  const is404 = error.status === 404;
+    
   return (
     <div
       id="error-page"
       className="error-page__container flex flex-column flex-ai-center flex-jc-center">
       <h1 className="text-9-xl-font-bold">
-        {error.status === 404 ? '404' : '500'}
+        {is404 ? '404' : '500'}
       </h1>
       <p className="text-xl-font-regular error-page__description">
-        {error.status === 404
+        {is404
           ? 'То, что вы ищете, не создано или куда-то пропало'
           : 'Ой, что-то не так :('}
       </p>
