@@ -1,8 +1,10 @@
 import Input, { InputsProps } from '../input/input'
-import { useForm } from "react-hook-form"
+import { useForm, Controller } from 'react-hook-form'
 import React from 'react'
 import './form.pcss'
 import Button, { ButtonsProps } from '../button/button'
+import { yupResolver } from "@hookform/resolvers/yup"
+import { AuthSchema } from '../../../core/validator'
 
 export type FormProps = {
   name: string
@@ -10,15 +12,22 @@ export type FormProps = {
   inputs: Array<InputsProps>
   buttons?: Array<ButtonsProps>
 }
+
 const Form = (props: FormProps) => {
   const {
-    register,
     handleSubmit,
     getValues,
+    control,
     formState: { errors },
   } = useForm({
-  })
-  const onSubmit = () => console.log(getValues())
+    resolver: yupResolver(AuthSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
+    resetOptions: {
+      keepDirtyValues: true,
+      keepErrors: true,
+    }})
+  const onSubmit = () => console.log(getValues(), errors)
 
   return (
     <div
@@ -31,7 +40,13 @@ const Form = (props: FormProps) => {
         onSubmit={handleSubmit(onSubmit)}
       >
         {props.inputs.map((input, index) => (
-          <Input {...input} {...register(input.name)} key={index.toString()} />
+          <Controller
+            name={input.name}
+            control={control}
+            defaultValue=""
+            render={({ field }) => <Input {...input} error={errors[input.name]?.message} key={index.toString()} {...field} />}
+            key={index.toString()}
+          />
         ))}
         <div className={'form__button-wrapper'}>
           {props.buttons?.map((button, index) => (

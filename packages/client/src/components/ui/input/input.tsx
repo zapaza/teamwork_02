@@ -18,8 +18,8 @@ const Input = React.forwardRef((props: InputsProps, ref) => {
       <input
         {...props}
         className={'input__item'}
-        onChange={event => setValue(event.target.value)}
-        value={value}
+        // onChange={event => setValue(event.target.value)}
+        // value={value}
         id={props.name}
         ref={ref as LegacyRef<HTMLInputElement>}
       />
