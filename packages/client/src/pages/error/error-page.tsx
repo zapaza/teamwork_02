@@ -14,7 +14,7 @@ export default function ErrorPage() {
         {error.status === 404 ? '404' : '500'}
       </h1>
       <p className="text-xl-font-regular error-page__description">
-        {error.status == 404
+        {error.status === 404
           ? 'То, что вы ищете, не создано или куда-то пропало'
           : 'Ой, что-то не так :('}
       </p>
