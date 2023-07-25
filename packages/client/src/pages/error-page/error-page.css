@@ -1,17 +1,17 @@
 .error-page__container {
-  min-height: 100vh;
-}
-
-.error-page__description {
-  margin: 32px 0;
-}
-
-.navigation-link {
-  width: 140px;
-  height: 40px;
-  color: var(--white);
-  background-color: var(--blue-500);
-  border-radius: 16px;
-  /* stylelint-disable-next-line */
-  box-shadow: var(--shadow--md);
-}
+    min-height: 100vh;
+  }
+  
+  .error-page__description {
+    margin: 32px 0;
+  }
+  
+  .navigation-link {
+    width: 140px;
+    height: 40px;
+    color: var(--white);
+    background-color: var(--blue-500);
+    border-radius: 16px;
+    /* stylelint-disable-next-line */
+    box-shadow: var(--shadow--md);
+  }
