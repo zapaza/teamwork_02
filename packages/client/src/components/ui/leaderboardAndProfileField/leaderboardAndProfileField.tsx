@@ -1,11 +1,30 @@
 import './leaderboardAndProfileField.pcss'
 
-function LeaderboardAndProfileField() {
+export type FieldPropsType = {
+  positionNumber: number | string
+  userName: string
+  userScore: number | string
+  isCurrentUser?: boolean
+}
+
+function LeaderboardAndProfileField({
+  positionNumber,
+  userName,
+  userScore,
+  isCurrentUser,
+}: FieldPropsType) {
   return (
     <div className="leaderboard-input__container flex flex-ai-center flex-jc-center">
-      <span className="position-number text-base-font-regular">1.</span>
-      <span className="user-name text-base-font-regular">Пользователь</span>
-      <span className="user-score text-base-font-regular">99999</span>
+      <span className="position-number text-base-font-regular">{`${positionNumber}.`}</span>
+      <span
+        className={
+          isCurrentUser
+            ? 'user-name user-name_accent text-base-font-regular'
+            : 'user-name text-base-font-regular'
+        }>
+        {isCurrentUser ? 'Ты' : userName}
+      </span>
+      <span className="user-score text-base-font-regular">{userScore}</span>
     </div>
   )
 }
