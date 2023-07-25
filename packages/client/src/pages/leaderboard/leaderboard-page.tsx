@@ -6,7 +6,7 @@ function LeaderBoardPage() {
   return (
     <div className="leaderboard__container flex flex-column flex-ai-center">
       <h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
-          <LeaderboardAndProfileField />
+      <LeaderboardAndProfileField />
     </div>
   )
 }
