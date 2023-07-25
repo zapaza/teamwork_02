@@ -11,14 +11,15 @@ export type InputsProps = {
 }
 const Input = React.forwardRef((props: InputsProps, ref) => {
   const [value, setValue] = useState('')
+
   return (
     <div className={'input__wrapper flex flex-column'}>
       <label className={'input__label'}>{props.label}</label>
       <input
         {...props}
         className={'input__item'}
-        onChange={event => setValue(event.target.value)}
-        value={value}
+        // onChange={event => setValue(event.target.value)}
+        // value={value}
         id={props.name}
         ref={ref as LegacyRef<HTMLInputElement>}
       />
