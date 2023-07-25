@@ -3,7 +3,7 @@ import { useForm, Controller } from 'react-hook-form'
 import React from 'react'
 import './form.pcss'
 import Button, { ButtonsProps } from '../button/button'
-import { yupResolver } from "@hookform/resolvers/yup"
+import { yupResolver } from '@hookform/resolvers/yup'
 import { AuthSchema } from '../../../core/validator'
 
 export type FormProps = {
@@ -26,7 +26,8 @@ const Form = (props: FormProps) => {
     resetOptions: {
       keepDirtyValues: true,
       keepErrors: true,
-    }})
+    },
+  })
   const onSubmit = () => console.log(getValues(), errors)
 
   return (
@@ -37,14 +38,20 @@ const Form = (props: FormProps) => {
       {props.title && <h1 className={'form__header'}>{props.title}</h1>}
       <form
         className={'form__item flex flex-column flex-jc-center flex-ai-center'}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+        onSubmit={handleSubmit(onSubmit)}>
         {props.inputs.map((input, index) => (
           <Controller
             name={input.name}
             control={control}
             defaultValue=""
-            render={({ field }) => <Input {...input} error={errors[input.name]?.message} key={index.toString()} {...field} />}
+            render={({ field }) => (
+              <Input
+                {...input}
+                error={errors[input.name]?.message}
+                key={index.toString()}
+                {...field}
+              />
+            )}
             key={index.toString()}
           />
         ))}
