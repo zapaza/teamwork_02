@@ -28,7 +28,7 @@ const Form = (props: FormProps) => {
       keepErrors: true,
     },
   })
-  const onSubmit = () => console.log(getValues(), errors)
+  const onSubmit = () => console.log(getValues())
 
   return (
     <div
@@ -41,19 +41,20 @@ const Form = (props: FormProps) => {
         onSubmit={handleSubmit(onSubmit)}>
         {props.inputs.map((input, index) => (
           <Controller
+            //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
             name={input.name}
             control={control}
             defaultValue=""
             render={({ field }) => (
               <Input
                 {...input}
+                //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
                 error={errors[input.name]?.message}
                 key={index.toString()}
                 {...field}
               />
             )}
-            key={index.toString()}
-          />
+            key={index.toString()}></Controller>
         ))}
         <div className={'form__button-wrapper'}>
           {props.buttons?.map((button, index) => (
