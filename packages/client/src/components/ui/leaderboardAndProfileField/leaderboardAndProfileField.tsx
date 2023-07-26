@@ -1,3 +1,4 @@
+import React from 'react'
 import './leaderboardAndProfileField.pcss'
 
 export type FieldPropsType = {
@@ -14,7 +15,9 @@ function LeaderboardAndProfileField({
   isCurrentUser,
 }: FieldPropsType) {
   return (
-    <div className="leaderboard-input__container flex flex-ai-center flex-jc-center">
+    <div
+      className="leaderboard-input__container flex flex-ai-center flex-jc-center"
+      key={positionNumber}>
       <span className="position-number text-base-font-regular">{`${positionNumber}.`}</span>
       <span
         className={
