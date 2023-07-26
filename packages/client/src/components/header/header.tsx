@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../ui/button/button'
 import './header.pcss'
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store'; 
-import { fetchLogout } from '../../store/auth/authSlice'; 
-
+import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { fetchLogout } from '../../store/auth/authSlice'
 
 const links = [
   { path: '/main', label: 'Главная' },
@@ -16,19 +15,18 @@ const links = [
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
-  const auth = useSelector((state: RootState) => state.auth);
-  const dispatch = useDispatch();
-
+  const auth = useSelector((state: RootState) => state.auth)
+  const dispatch = useDispatch()
 
   const handleLogout = () => {
-    dispatch(fetchLogout() as any);
+    dispatch(fetchLogout() as any)
   }
 
   useEffect(() => {
     if (!auth.isLoggedIn) {
-      navigate('/');
+      navigate('/')
     }
-  }, [auth.isLoggedIn, navigate]);
+  }, [auth.isLoggedIn, navigate])
 
   return (
     <header className="header">
@@ -47,11 +45,7 @@ const Header: React.FC = () => {
               children="Профиль"
               onClick={() => navigate('/profile')}
             />
-            <Button
-              name="Выход"
-              children="Выход"
-              onClick={handleLogout}
-            />
+            <Button name="Выход" children="Выход" onClick={handleLogout} />
           </>
         ) : (
           <>

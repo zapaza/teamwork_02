@@ -19,8 +19,7 @@ const Form = (props: FormProps) => {
       {props.title && <h1 className={'form__header'}>{props.title}</h1>}
       <form
         className={'form__item flex flex-column flex-jc-center flex-ai-center'}
-        onSubmit={props.onSubmit}
-        >
+        onSubmit={props.onSubmit}>
         {props.inputs.map((input, index) => (
           <Input {...input} key={index.toString()} />
         ))}
