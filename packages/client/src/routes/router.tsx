@@ -14,48 +14,17 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // вот тут задаем страницу с ошибками вроде 404
     errorElement: <ErrorPage />,
-  },
-  {
-    path: '/forum',
-    element: <ForumPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/forum-topic',
-    element: <ForumTopicPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/game',
-    element: <GamePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/leaderboard',
-    element: <LeaderBoardPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/main',
-    element: <MainPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/signup',
-    element: <SignupPage />,
-    errorElement: <ErrorPage />,
+    children: [
+      { path: '/main', element: <MainPage /> },
+      { path: '/forum', element: <ForumPage /> },
+      { path: '/forum-topic', element: <ForumTopicPage /> },
+      { path: '/game', element: <GamePage /> },
+      { path: '/leaderboard', element: <LeaderBoardPage /> },
+      { path: '/login', element: <LoginPage /> },
+      { path: '/profile', element: <ProfilePage /> },
+      { path: '/signup', element: <SignupPage /> },
+    ],
   },
 ])
 

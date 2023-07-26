@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 import ApiClient from './core/api/ApiClient'
+import Header from './components/header/header'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   useEffect(() => {
@@ -19,7 +21,12 @@ function App() {
 
     fetchServerData()
   }, [])
-  return <div className="App">Вот тут будет жить ваше приложение :)</div>
+  return (
+    <>
+      <Header />
+      <Outlet />
+    </>
+  )
 }
 
 export default App
