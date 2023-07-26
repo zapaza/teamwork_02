@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../ui/button/button'
 import './header.pcss'
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store'; 
+import { fetchLogout } from '../../store/auth/authSlice'; 
+
 
 const links = [
   { path: '/main', label: 'Главная' },
@@ -12,6 +16,19 @@ const links = [
 
 const Header: React.FC = () => {
   const navigate = useNavigate()
+  const auth = useSelector((state: RootState) => state.auth);
+  const dispatch = useDispatch();
+
+
+  const handleLogout = () => {
+    dispatch(fetchLogout() as any);
+  }
+
+  useEffect(() => {
+    if (!auth.isLoggedIn) {
+      navigate('/');
+    }
+  }, [auth.isLoggedIn, navigate]);
 
   return (
     <header className="header">
@@ -22,18 +39,34 @@ const Header: React.FC = () => {
           </Link>
         ))}
       </nav>
-      {/* TODO: отображать кнопки иначе, если пользователь залогинился */}
       <nav className="header__nav">
-        <Button
-          name="Вход"
-          children="Вход"
-          onClick={() => navigate('/login')}
-        />
-        <Button
-          name="Регистрация"
-          children="Регистрация"
-          onClick={() => navigate('/signup')}
-        />
+        {auth.isLoggedIn ? (
+          <>
+            <Button
+              name="Профиль"
+              children="Профиль"
+              onClick={() => navigate('/profile')}
+            />
+            <Button
+              name="Выход"
+              children="Выход"
+              onClick={handleLogout}
+            />
+          </>
+        ) : (
+          <>
+            <Button
+              name="Вход"
+              children="Вход"
+              onClick={() => navigate('/login')}
+            />
+            <Button
+              name="Регистрация"
+              children="Регистрация"
+              onClick={() => navigate('/signup')}
+            />
+          </>
+        )}
       </nav>
     </header>
   )

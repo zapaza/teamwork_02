@@ -1,26 +1,16 @@
 import { useEffect } from 'react'
-import ApiClient from './core/api/ApiClient'
 import Header from './components/header/header'
 import { Outlet } from 'react-router-dom'
+import { checkAuth } from './store/auth/authSlice'; 
+import { useAppDispatch } from './store';
 
 function App() {
-  useEffect(() => {
-    const fetchServerData = async () => {
-      const url = `https://ya-praktikum.tech/api/v2`
-      const client = new ApiClient(url)
-      try {
-        const response = await client.post(`/auth/signin`, {
-          login: 'Qwerty123',
-          password: 'Qwerty123',
-        })
-        console.log(response)
-      } catch (e) {
-        console.log(e)
-      }
-    }
+  const dispatch = useAppDispatch();
 
-    fetchServerData()
-  }, [])
+  useEffect(() => {
+    // не знаю что он от меня хочет с этими типами
+    dispatch(checkAuth() as any); 
+  }, [dispatch]);
   return (
     <>
       <Header />
