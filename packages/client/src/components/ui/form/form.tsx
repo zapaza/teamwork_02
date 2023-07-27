@@ -1,33 +1,36 @@
 import Input, { InputsProps } from '../input/input'
-import { useForm, Controller } from 'react-hook-form'
+import { useForm, Controller, UseFormProps } from 'react-hook-form'
 import React from 'react'
 import './form.pcss'
 import Button, { ButtonsProps } from '../button/button'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { AuthSchema } from '../../../core/validator'
+import { LoginData } from '../../../types/auth'
 
 export type FormProps = {
   name: string
   title?: string
   inputs: Array<InputsProps>
   buttons?: Array<ButtonsProps>
+  validationSchema?: any
+  callback: (data: LoginData) => Promise<void >
 }
 const Form = (props: FormProps) => {
-  const {
-    handleSubmit,
-    getValues,
-    control,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(AuthSchema),
+  const validatorSettings: UseFormProps = {
+    resolver: yupResolver(props.validationSchema),
     mode: 'onBlur',
     reValidateMode: 'onBlur',
     resetOptions: {
       keepDirtyValues: true,
       keepErrors: true,
     },
-  })
-  const onSubmit = () => console.log(getValues())
+  }
+  const {
+    handleSubmit,
+    getValues,
+    control,
+    formState: { errors },
+  } = props.validationSchema ? useForm(validatorSettings) : useForm({})
+  const onSubmit = () => props.callback(getValues() as LoginData)
 
   return (
     <div

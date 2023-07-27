@@ -1,6 +1,6 @@
 import * as yup from 'yup'
 
-export const AuthSchema = yup.object({
+export const signUpSchema = yup.object({
   login: yup
     .string()
     .required()
@@ -23,7 +23,12 @@ export const AuthSchema = yup.object({
     .test(
       'containNumberAndUpperCaseSymbol',
       'Must contain number and upper case symbol',
-      value => !!value.match(/[0-9]/) && !!value.match(/[A-Z]/)
+      value => {
+        if (!value) {
+          return;
+        }
+        return !!value.match(/[0-9]/) && !!value.match(/[A-Z]/)
+      }
     ),
   repeat_password: yup
     .string()
@@ -38,7 +43,12 @@ export const AuthSchema = yup.object({
     .test(
       'firstSymbolUpperCase',
       'First symbol must be to upper case',
-      value => !!value[0].match(/^[A-ZА-Я]*$/)
+      value => {
+        if (!value) {
+          return;
+        }
+        return !!value[0].match(/^[A-ZА-Я]*$/)
+      }
     ),
   second_name: yup
     .string()
@@ -49,7 +59,13 @@ export const AuthSchema = yup.object({
     .test(
       'firstSymbolUpperCase',
       'First symbol must be to upper case',
-      value => !!value[0].match(/^[A-ZА-Я]*$/)
+      value => {
+        if (!value) {
+          return;
+        }
+        console.log(value)
+        return !!value[0].match(/^[A-ZА-Я]*$/)
+      }
     ),
   email: yup
     .string()
