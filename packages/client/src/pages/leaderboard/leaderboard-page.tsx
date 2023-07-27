@@ -29,10 +29,8 @@ function LeaderBoardPage() {
       {leaderboardMock.map(item => (
         <LeaderboardAndProfileField
           key={item.positionNumber}
-          positionNumber={item.positionNumber}
-          userName={item.userName}
-          userScore={item.userScore}
           isCurrentUser={item.isCurrentUser || false}
+          {...item}
         />
       ))}
     </div>
