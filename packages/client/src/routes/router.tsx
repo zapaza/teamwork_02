@@ -9,53 +9,65 @@ import LoginPage from '../pages/login'
 import MainPage from '../pages/main'
 import ProfilePage from '../pages/profile'
 import SignupPage from '../pages/signup'
+import ProtectedRoute from './protected-route'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    // вот тут задаем страницу с ошибками вроде 404
     errorElement: <ErrorPage />,
-  },
-  {
-    path: '/forum',
-    element: <ForumPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/forum-topic',
-    element: <ForumTopicPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/game',
-    element: <GamePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/leaderboard',
-    element: <LeaderBoardPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/login',
-    element: <LoginPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/main',
-    element: <MainPage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/profile',
-    element: <ProfilePage />,
-    errorElement: <ErrorPage />,
-  },
-  {
-    path: '/signup',
-    element: <SignupPage />,
-    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: '/main',
+        element: (
+          <ProtectedRoute>
+            <MainPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/forum',
+        element: (
+          <ProtectedRoute>
+            <ForumPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/forum-topic',
+        element: (
+          <ProtectedRoute>
+            <ForumTopicPage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/game',
+        element: (
+          <ProtectedRoute>
+            <GamePage />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: '/leaderboard',
+        element: (
+          <ProtectedRoute>
+            <LeaderBoardPage />
+          </ProtectedRoute>
+        ),
+      },
+      { path: '/login', element: <LoginPage /> },
+      {
+        path: '/profile',
+        element: (
+          <ProtectedRoute>
+            <ProfilePage />
+          </ProtectedRoute>
+        ),
+      },
+      { path: '/signup', element: <SignupPage /> },
+    ],
   },
 ])
 

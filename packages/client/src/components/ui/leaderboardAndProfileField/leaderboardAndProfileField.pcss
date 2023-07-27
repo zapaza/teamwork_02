@@ -1,0 +1,32 @@
+.leaderboard-input {
+  &__container {
+    min-width: 532px;
+    min-height: 32px;
+    border-bottom: 1px dashed var(--gray-500);
+    padding: 4px 8px;
+    margin: 0 24px 16px;
+  }
+}
+
+.user-name {
+  padding-left: 12px;
+  color: var(--gray-500);
+
+  &_accent {
+    color: var(--blue-500);
+  }
+}
+
+.user-score {
+  margin-left: auto;
+}
+
+@media (width <= 640px) {
+  .leaderboard-input {
+    &__container {
+      min-width: 358px;
+      padding: 2px 6px;
+      margin: 0 10px 10px;
+    }
+  }
+}

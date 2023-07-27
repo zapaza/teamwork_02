@@ -12,7 +12,6 @@ export type FormProps = {
   inputs: Array<InputsProps>
   buttons?: Array<ButtonsProps>
 }
-
 const Form = (props: FormProps) => {
   const {
     handleSubmit,
