@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import { AuthState, LoginData } from '../../types/auth';
-import apiAuth from '../../core/api/ApiAuth';
+import { AuthState, LoginData } from '../../types/auth'
+import apiAuth from '../../core/api/ApiAuth'
 
 const initialState: AuthState = {
   id: null,
@@ -18,7 +18,7 @@ export const fetchLogin = createAsyncThunk(
   'auth/login',
   async (loginData: LoginData, thunkAPI) => {
     try {
-      return await apiAuth.login(loginData);
+      return await apiAuth.login(loginData)
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
@@ -29,7 +29,7 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuthStatus',
   async (_, thunkAPI) => {
     try {
-      return await apiAuth.checkAuth();
+      return await apiAuth.checkAuth()
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
@@ -40,7 +40,7 @@ export const fetchLogout = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      return await apiAuth.logout();
+      return await apiAuth.logout()
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
