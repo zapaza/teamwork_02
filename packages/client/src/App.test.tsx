@@ -4,5 +4,5 @@ global.fetch = jest.fn(() =>
 )
 
 test('Example test', async () => {
-  expect(true).toBe(true);
+  expect(true).toBe(true)
 })
