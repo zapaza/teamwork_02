@@ -58,6 +58,7 @@ export default class ApiClient implements IApiClient {
       headers: {
         'Content-Type': 'application/json',
       },
+      withCredentials: true,
     })
     instance.interceptors.request.use(
       response => response,
