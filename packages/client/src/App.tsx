@@ -8,8 +8,7 @@ function App() {
   const dispatch = useAppDispatch()
 
   useEffect(() => {
-    // не знаю что он от меня хочет с этими типами
-    dispatch(checkAuth() as any)
+    dispatch(checkAuth())
   }, [dispatch])
   return (
     <>

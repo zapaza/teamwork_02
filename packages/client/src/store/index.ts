@@ -1,13 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
 import authReducer from './auth/authSlice'
-import thunk from 'redux-thunk'
 import { useDispatch } from 'react-redux'
 
 const store = configureStore({
   reducer: {
     auth: authReducer,
   },
-  middleware: [thunk],
 })
 
 export type RootState = ReturnType<typeof store.getState>

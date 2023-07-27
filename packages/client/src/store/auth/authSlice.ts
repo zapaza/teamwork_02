@@ -1,17 +1,6 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-import ApiClient from '../../core/api/ApiClient'
-
-interface AuthState {
-  id: number | null
-  firstName: string
-  secondName: string
-  displayName: string
-  login: string
-  email: string
-  phone: string
-  avatar: string
-  isLoggedIn: boolean
-}
+import { AuthState, LoginData } from '../../types/auth';
+import apiAuth from '../../core/api/ApiAuth';
 
 const initialState: AuthState = {
   id: null,
@@ -25,22 +14,13 @@ const initialState: AuthState = {
   isLoggedIn: false,
 }
 
-interface LoginData {
-  login: string
-  password: string
-}
-// TODO: вынести в env, либо на сервер
-const url = `https://ya-praktikum.tech/api/v2`
-const client = new ApiClient(url)
-
 export const fetchLogin = createAsyncThunk(
   'auth/login',
   async (loginData: LoginData, thunkAPI) => {
     try {
-      const response = await client.post('/auth/signin', loginData)
-      return response.data as AuthState
+      return await apiAuth.login(loginData);
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any).message })
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
   }
 )
@@ -49,10 +29,9 @@ export const checkAuth = createAsyncThunk(
   'auth/checkAuthStatus',
   async (_, thunkAPI) => {
     try {
-      const response = await client.get('/auth/user')
-      return response.data as AuthState
+      return await apiAuth.checkAuth();
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any).message })
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
   }
 )
@@ -61,10 +40,9 @@ export const fetchLogout = createAsyncThunk(
   'auth/logout',
   async (_, thunkAPI) => {
     try {
-      const response = await client.post('/auth/logout', {})
-      return response.data
+      return await apiAuth.logout();
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any).message })
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
     }
   }
 )
