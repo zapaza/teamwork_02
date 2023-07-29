@@ -5,7 +5,8 @@
 }
 
 .comments-header {
-  margin-top: 24px;
+  margin-top: 12px;
+  margin-bottom: 12px;
   margin-right: auto;
 }
 
@@ -28,5 +29,26 @@
 .new-comment-form {
   min-width: 499px;
   min-height: 206px;
+  margin-top: 12px;
   gap: 16px;
+}
+
+@media (width <= 640px) {
+  .forum-topic {
+    &__container {
+      max-width: 370px;
+      margin-top: 86px;
+      padding-bottom: 10px;
+    }
+  }
+
+  .new-comment-form {
+    min-width: 370px;
+    padding: 14px;
+  }
+
+  .comments-header {
+    margin-top: 14px;
+    padding-left: 10px;
+  }
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import './topic.pcss'
+import { useNavigate } from 'react-router-dom'
+
 
 export type TopicType = {
   id: string
@@ -8,8 +10,9 @@ export type TopicType = {
 }
 
 function Topic(props: TopicType) {
+  const navigate = useNavigate()
   return (
-    <div className="topic__container flex flex-column">
+    <div className="topic__container flex flex-column" onClick={() => navigate('/forum-topic')}>
       <h3 className="topic__header">{props.topicTitle}</h3>
       <p>{props.topicText}</p>
     </div>

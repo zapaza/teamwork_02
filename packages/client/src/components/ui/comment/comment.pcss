@@ -6,7 +6,7 @@
     border-radius: 16px;
     background-color: var(--white);
     margin-bottom: 12px;
-    margin-top: 24px;
+    margin-top: 12px;
     box-shadow: var(--shadow--base);
   }
 
@@ -20,5 +20,14 @@
 
   &__date {
     color: var(--gray-500);
+  }
+}
+
+@media (width <= 640px) {
+  .comment {
+    &__container {
+      min-width: 370px;
+      padding: 14px;
+    }
   }
 }
