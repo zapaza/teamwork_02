@@ -1,6 +1,8 @@
 import Button from '../../components/ui/button/button'
 import Topic from '../../components/ui/topic/topic'
+import CreateTopicModal from '../../components/ui/createTopicModal/createTopicModal'
 import './forum-page.pcss'
+import { useState } from 'react'
 
 const forumMock = [
   {
@@ -30,19 +32,29 @@ const forumMock = [
 ]
 
 function ForumPage() {
+  const [activeModal, setActiveModal] = useState(false)
+
+  function changeActive() {
+    setActiveModal(!activeModal)
+  }
+
   return (
-    <div className="forum__container flex">
-      <div className="all-topic-container flex flex-column">
-        {forumMock.map(item => (
-          <Topic key={item.id} {...item} />
-        ))}
+    <>
+      <div className="forum__container flex">
+        <div className="all-topic-container flex flex-column">
+          {forumMock.map(item => (
+            <Topic key={item.id} {...item} />
+          ))}
+        </div>
+        <Button
+          name="createTopicBtn"
+          children="Создать топик"
+          className="button text-base-font-regular create-topic-btn"
+          onClick={changeActive}
+        />
       </div>
-      <Button
-        name="createTopicBtn"
-        children="Создать топик"
-        className="button text-base-font-regular create-topic-btn"
-      />
-    </div>
+      <CreateTopicModal active={activeModal} handleClose={changeActive} />
+    </>
   )
 }
 
