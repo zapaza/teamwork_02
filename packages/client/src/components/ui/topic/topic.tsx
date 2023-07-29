@@ -15,7 +15,7 @@ function Topic(props: TopicType) {
       className="topic__container flex flex-column"
       onClick={() => navigate('/forum-topic')}>
       <h3 className="topic__header">{props.topicTitle}</h3>
-      <p>{props.topicText}</p>
+      <p className="topic__text text-base-font-regular">{props.topicText}</p>
     </div>
   )
 }
