@@ -39,13 +39,12 @@ function LoginPage() {
   ]
 
   const handleSubmit = async (data: LoginData) => {
-    console.log(data)
 
     try {
       await dispatch(
-        fetchLogin(data) as any
+        fetchLogin(data)
       ).unwrap()
-      await dispatch(checkAuth() as any).unwrap()
+      await dispatch(checkAuth()).unwrap()
     } catch (error) {
       console.error('Failed to login:', error)
     }
