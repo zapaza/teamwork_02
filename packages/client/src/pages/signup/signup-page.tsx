@@ -2,6 +2,8 @@ import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
 import React from 'react'
+import { signUpSchema } from '../../core/validator'
+import { LoginData } from '../../types/auth'
 
 function Signup() {
   const inputs: Array<InputsProps> = [
@@ -20,21 +22,21 @@ function Signup() {
       type: 'password',
     },
     {
-      name: 'repeat-password',
+      name: 'repeat_password',
       label: 'Repeat password',
       placeholder: 'Repeat password',
       error: '',
       type: 'password',
     },
     {
-      name: 'first-name',
+      name: 'first_name',
       label: 'First name',
       placeholder: 'First name',
       error: '',
       type: 'text',
     },
     {
-      name: 'second-name',
+      name: 'second_name',
       label: 'Second name',
       placeholder: 'Second name',
       error: '',
@@ -62,8 +64,21 @@ function Signup() {
       children: 'Sign up',
     },
   ]
+  const handleSubmit = async (data: LoginData) => {
+    console.log(data)
+
+   // registration here
+  }
+
   return (
-    <Form name={'signup'} title={'Sign up'} inputs={inputs} buttons={buttons} />
+    <Form
+      name={'signup'}
+      title={'Sign up'}
+      inputs={inputs}
+      buttons={buttons}
+      validationSchema={signUpSchema}
+      callback={handleSubmit}
+    />
   )
 }
 
