@@ -1,5 +1,5 @@
 import { AuthState, LoginData } from '../../types/auth'
-import ApiClient from './ApiClient'
+import ApiClient from './apiClient'
 
 // TODO: вынести в env, либо на сервер
 const url = `https://ya-praktikum.tech/api/v2`

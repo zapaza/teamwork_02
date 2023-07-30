@@ -1,10 +1,13 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { IApiClient } from './types'
+import { IApiClient } from '../../types/apiClient'
+
+export const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2'
+export const RESOURCES_URL = API_ENDPOINT + '/resources'
 
 export default class ApiClient implements IApiClient {
   private instance: AxiosInstance
 
-  constructor(baseUrl: string, timeout = 5000) {
+  constructor(baseUrl = API_ENDPOINT, timeout = 5000) {
     this.instance = this.createInstance(baseUrl, timeout)
   }
 

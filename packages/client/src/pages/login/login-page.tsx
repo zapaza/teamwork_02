@@ -14,7 +14,6 @@ function LoginPage() {
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
 
-
   useEffect(() => {
     if (auth.isLoggedIn) {
       navigate('/main')
@@ -38,12 +37,9 @@ function LoginPage() {
     },
   ]
 
-  const handleSubmit = async (data: LoginData) => {
-
+  const handleSubmit = async (data: unknown) => {
     try {
-      await dispatch(
-        fetchLogin(data)
-      ).unwrap()
+      await dispatch(fetchLogin(data as LoginData)).unwrap()
       await dispatch(checkAuth()).unwrap()
     } catch (error) {
       console.error('Failed to login:', error)
@@ -74,6 +70,7 @@ function LoginPage() {
       inputs={inputs}
       buttons={buttons}
       callback={handleSubmit}
+      type="json"
     />
   )
 }

@@ -4,7 +4,6 @@ import React from 'react'
 import './form.pcss'
 import Button, { ButtonsProps } from '../button/button'
 import { yupResolver } from '@hookform/resolvers/yup'
-import { LoginData } from '../../../types/auth'
 
 export type FormProps = {
   name: string
@@ -12,7 +11,8 @@ export type FormProps = {
   inputs: Array<InputsProps>
   buttons?: Array<ButtonsProps>
   validationSchema?: any
-  callback: (data: LoginData) => Promise<void >
+  type: 'json' | 'formData'
+  callback: (data: unknown) => Promise<void>
 }
 const Form = (props: FormProps) => {
   const validatorSettings: UseFormProps = {
@@ -30,7 +30,14 @@ const Form = (props: FormProps) => {
     control,
     formState: { errors },
   } = props.validationSchema ? useForm(validatorSettings) : useForm({})
-  const onSubmit = () => props.callback(getValues() as LoginData)
+  const getCallbackProps = (event: Event) => {
+    return props.type == 'json'
+      ? (getValues() as unknown)
+      : new FormData(event.target as HTMLFormElement)
+  }
+  const onSubmit = (data: unknown, event: Event) => {
+    props.callback(getCallbackProps(event))
+  }
 
   return (
     <div
@@ -40,18 +47,19 @@ const Form = (props: FormProps) => {
       {props.title && <h1 className={'form__header'}>{props.title}</h1>}
       <form
         className={'form__item flex flex-column flex-jc-center flex-ai-center'}
+        //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
         onSubmit={handleSubmit(onSubmit)}>
         {props.inputs.map((input, index) => (
           <Controller
             //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
             name={input.name}
             control={control}
-            defaultValue=""
+            defaultValue={input.value || ''}
             render={({ field }) => (
               <Input
                 {...input}
                 //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
-                error={errors[input.name]?.message}
+                error={errors[input.name]?.message as string}
                 key={index.toString()}
                 {...field}
               />

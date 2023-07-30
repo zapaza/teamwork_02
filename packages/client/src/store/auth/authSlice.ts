@@ -1,12 +1,16 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { AuthState, LoginData } from '../../types/auth'
 import apiAuth from '../../core/api/ApiAuth'
+import ApiProfile, {
+  UpdatePasswordReq,
+  UpdateProfileReq,
+} from '../../core/api/apiProfile'
 
 const initialState: AuthState = {
   id: null,
-  firstName: '',
-  secondName: '',
-  displayName: '',
+  first_name: '',
+  second_name: '',
+  display_name: '',
   login: '',
   email: '',
   phone: '',
@@ -47,6 +51,37 @@ export const fetchLogout = createAsyncThunk(
   }
 )
 
+export const updatePassword = createAsyncThunk(
+  'auth/updatePassword',
+  async (data: UpdatePasswordReq, thunkAPI) => {
+    try {
+      return await ApiProfile.updatePassword(data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+    }
+  }
+)
+export const updateProfile = createAsyncThunk(
+  'auth/updateProfile',
+  async (data: UpdateProfileReq, thunkAPI) => {
+    try {
+      return await ApiProfile.updateProfile(data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+    }
+  }
+)
+export const updateAvatar = createAsyncThunk(
+  'auth/updateAvatar',
+  async (data: FormData, thunkAPI) => {
+    try {
+      return await ApiProfile.updateAvatar(data)
+    } catch (error) {
+      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+    }
+  }
+)
+
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -57,9 +92,9 @@ export const authSlice = createSlice({
         fetchLogin.fulfilled,
         (state, action: PayloadAction<AuthState>) => {
           state.id = action.payload.id
-          state.firstName = action.payload.firstName
-          state.secondName = action.payload.secondName
-          state.displayName = action.payload.displayName
+          state.first_name = action.payload.first_name
+          state.second_name = action.payload.second_name
+          state.display_name = action.payload.display_name
           state.login = action.payload.login
           state.email = action.payload.email
           state.phone = action.payload.phone
@@ -72,9 +107,9 @@ export const authSlice = createSlice({
         (state, action: PayloadAction<AuthState>) => {
           if (action.payload) {
             state.id = action.payload.id
-            state.firstName = action.payload.firstName
-            state.secondName = action.payload.secondName
-            state.displayName = action.payload.displayName
+            state.first_name = action.payload.first_name
+            state.second_name = action.payload.second_name
+            state.display_name = action.payload.display_name
             state.login = action.payload.login
             state.email = action.payload.email
             state.phone = action.payload.phone
@@ -87,15 +122,41 @@ export const authSlice = createSlice({
       )
       .addCase(fetchLogout.fulfilled, state => {
         state.id = null
-        state.firstName = ''
-        state.secondName = ''
-        state.displayName = ''
+        state.first_name = ''
+        state.second_name = ''
+        state.display_name = ''
         state.login = ''
         state.email = ''
         state.phone = ''
         state.avatar = ''
         state.isLoggedIn = false
       })
+      .addCase(
+        updateProfile.fulfilled,
+        (state, action: PayloadAction<AuthState>) => {
+          state.id = action.payload.id
+          state.first_name = action.payload.first_name
+          state.second_name = action.payload.second_name
+          state.display_name = action.payload.display_name
+          state.login = action.payload.login
+          state.email = action.payload.email
+          state.phone = action.payload.phone
+          state.avatar = action.payload.avatar
+        }
+      )
+      .addCase(
+        updateAvatar.fulfilled,
+        (state, action: PayloadAction<AuthState>) => {
+          state.id = action.payload.id
+          state.first_name = action.payload.first_name
+          state.second_name = action.payload.second_name
+          state.display_name = action.payload.display_name
+          state.login = action.payload.login
+          state.email = action.payload.email
+          state.phone = action.payload.phone
+          state.avatar = action.payload.avatar
+        }
+      )
       .addCase(fetchLogout.rejected, state => {
         console.error('Logout failed')
       })
@@ -104,6 +165,15 @@ export const authSlice = createSlice({
       })
       .addCase(checkAuth.rejected, state => {
         state.isLoggedIn = false
+      })
+      .addCase(updateProfile.rejected, state => {
+        console.error('Update profile failed')
+      })
+      .addCase(updatePassword.rejected, state => {
+        console.error('Update password failed')
+      })
+      .addCase(updateAvatar.rejected, state => {
+        console.error('Update avatar failed')
       })
   },
 })

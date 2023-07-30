@@ -64,8 +64,8 @@ function Signup() {
       children: 'Sign up',
     },
   ]
-  const handleSubmit = async (data: LoginData) => {
-    console.log(data)
+  const handleSubmit = async (data: unknown) => {
+    console.log(data as LoginData)
 
    // registration here
   }
@@ -78,6 +78,7 @@ function Signup() {
       buttons={buttons}
       validationSchema={signUpSchema}
       callback={handleSubmit}
+      type='json'
     />
   )
 }

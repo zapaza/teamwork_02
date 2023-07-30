@@ -6,7 +6,7 @@ export type InputsProps = {
   type: string
   placeholder: string
   value?: string
-  error: string | undefined
+  error?: string
   key?: string
 }
 const Input = React.forwardRef((props: InputsProps, ref) => {
