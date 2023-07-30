@@ -1,0 +1,33 @@
+.forum {
+  &__container {
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 24px;
+    text-overflow: ellipsis;
+
+    .topic {
+      &__text {
+        height: 48px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}
+
+.create-topic-btn {
+  background-color: var(--white);
+  color: var(--blue-500);
+  padding: 24px;
+  max-width: 163px;
+  min-height: 72px;
+  margin-bottom: 24px;
+}
+
+@media (width <= 640px) {
+  .forum {
+    &__container {
+      margin-top: 86px;
+    }
+  }
+}
