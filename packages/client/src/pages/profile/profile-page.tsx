@@ -14,6 +14,7 @@ import {
   updatePassword,
   updateProfile,
 } from '../../store/auth/authSlice'
+import { updatePasswordSchema, updateProfileSchema, updateAvatarSchema } from '../../core/validator'
 import { UpdatePasswordReq, UpdateProfileReq } from '../../core/api/apiProfile'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store'
@@ -171,6 +172,7 @@ function ProfilePage() {
             name={'updateProfile'}
             title={'Update profile'}
             inputs={profileInputs}
+            validationSchema={updateProfileSchema}
             buttons={submitButton}
             callback={onSubmit}
             type="json"
@@ -182,6 +184,7 @@ function ProfilePage() {
             name={'updatePassword'}
             title={'Update password'}
             inputs={passwordsInputs}
+            validationSchema={updatePasswordSchema}
             buttons={submitButton}
             callback={onSubmit}
             type="json"
@@ -193,6 +196,7 @@ function ProfilePage() {
             name={'updateAvatar'}
             title={'Update Avatar'}
             inputs={avatarInputs}
+            validationSchema={updateAvatarSchema}
             buttons={submitButton}
             callback={onSubmit}
             type="formData"

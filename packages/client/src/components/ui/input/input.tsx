@@ -10,7 +10,6 @@ export type InputsProps = {
   key?: string
 }
 const Input = React.forwardRef((props: InputsProps, ref) => {
-
   return (
     <div className={'input__wrapper flex flex-column'}>
       <label className={'input__label'}>{props.label}</label>

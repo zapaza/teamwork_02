@@ -7,7 +7,9 @@ type SubButtonProps = {
 
 function SubButton(props: SubButtonProps) {
   return (
-    <button className="sub-button text-base-font-regular" onClick={props.onClick}>
+    <button
+      className="sub-button text-base-font-regular"
+      onClick={props.onClick}>
       {props.label}
     </button>
   )
