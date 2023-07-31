@@ -9,7 +9,7 @@ export const signUpSchema = yup.object({
     .matches(/^[a-zA-Z0-9-_]*$/, {
       message: 'Can contain only latin symbol or numbers',
     })
-    .test('notNumbers', "Can't contain only numbers", value => {
+    .test('notNumbers', 'Can\'t contain only numbers', value => {
       if (!value) {
         return false
       }
@@ -38,7 +38,7 @@ export const signUpSchema = yup.object({
     .string()
     .required()
     .matches(/^[a-zA-Zа-яА-Я-]*$/, {
-      message: "Can't contain space and special symbols",
+      message: 'Can\'t contain space and special symbols',
     })
     .test(
       'firstSymbolUpperCase',
@@ -54,7 +54,7 @@ export const signUpSchema = yup.object({
     .string()
     .required()
     .matches(/^[a-zA-Zа-яА-Я-]*$/, {
-      message: "Can't contain space and special symbols",
+      message: 'Can\'t contain space and special symbols',
     })
     .test(
       'firstSymbolUpperCase',
@@ -90,7 +90,7 @@ export const updateProfileSchema = yup.object({
     .matches(/^[a-zA-Z0-9-_]*$/, {
       message: 'Can contain only latin symbol or numbers',
     })
-    .test('notNumbers', "Can't contain only numbers", value => {
+    .test('notNumbers', 'Can\'t contain only numbers', value => {
       if (!value) {
         return false
       }
@@ -100,7 +100,7 @@ export const updateProfileSchema = yup.object({
     .string()
     .required()
     .matches(/^[a-zA-Zа-яА-Я-]*$/, {
-      message: "Can't contain space and special symbols",
+      message: 'Can\'t contain space and special symbols',
     })
     .test(
       'firstSymbolUpperCase',
@@ -116,7 +116,7 @@ export const updateProfileSchema = yup.object({
     .string()
     .required()
     .matches(/^[a-zA-Zа-яА-Я-]*$/, {
-      message: "Can't contain space and special symbols",
+      message: 'Can\'t contain space and special symbols',
     })
     .test(
       'firstSymbolUpperCase',

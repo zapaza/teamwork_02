@@ -14,7 +14,11 @@ import {
   updatePassword,
   updateProfile,
 } from '../../store/auth/authSlice'
-import { updatePasswordSchema, updateProfileSchema, updateAvatarSchema } from '../../core/validator'
+import {
+  updatePasswordSchema,
+  updateProfileSchema,
+  updateAvatarSchema,
+} from '../../core/validator'
 import { UpdatePasswordReq, UpdateProfileReq } from '../../core/api/apiProfile'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store'
