@@ -1,6 +1,6 @@
 import Button from '../../components/ui/button/button'
 import Topic from '../../components/ui/topic/topic'
-import CreateTopicModal from '../../components/ui/createTopicModal/createTopicModal'
+import CreateTopicModal from '../../components/ui/create-topic-modal/create-topic-modal'
 import './forum-page.pcss'
 import { useState } from 'react'
 

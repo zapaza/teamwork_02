@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import Header from './components/header/header'
 import { Outlet } from 'react-router-dom'
-import { checkAuth } from './store/auth/authSlice'
+import { checkAuth } from './store/auth/auth-slice'
 import { useAppDispatch } from './store'
 
 function App() {

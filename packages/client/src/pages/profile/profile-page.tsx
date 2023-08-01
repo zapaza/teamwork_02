@@ -8,21 +8,21 @@ import { ButtonsProps } from '../../components/ui/button/button'
 import ProfileField from '../../components/ui/profile-field/profile-field'
 import SubButton from '../../components/ui/sub-button/sub-button'
 import Modal from '../../components/modal/modal'
-import useModal from '../../hooks/useModal'
+import useModal from '../../hooks/use-modal'
 import {
   updateAvatar,
   updatePassword,
   updateProfile,
-} from '../../store/auth/authSlice'
+} from '../../store/auth/auth-slice'
 import {
   updatePasswordSchema,
   updateProfileSchema,
   updateAvatarSchema,
 } from '../../core/validator'
-import { UpdatePasswordReq, UpdateProfileReq } from '../../core/api/apiProfile'
+import { UpdatePasswordReq, UpdateProfileReq } from '../../core/api/api-profile'
 import { useDispatch, useSelector } from 'react-redux'
 import { AppDispatch, RootState } from '../../store'
-import { RESOURCES_URL } from '../../core/api/apiClient'
+import { RESOURCES_URL } from '../../core/api/api-client'
 import { AuthState } from '../../types/auth'
 
 type ModalType = 'profile' | 'avatar' | 'password'
@@ -136,7 +136,6 @@ function ProfilePage() {
   )
 
   useEffect(() => {
-    console.log(profileData)
     setProfileFields(culcProfileFieldsProps(profileData))
   }, [profileData])
 

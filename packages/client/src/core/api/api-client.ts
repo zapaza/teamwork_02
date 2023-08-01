@@ -1,5 +1,5 @@
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { IApiClient } from '../../types/apiClient'
+import { IApiClient } from '../../types/api-client'
 
 export const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2'
 export const RESOURCES_URL = API_ENDPOINT + '/resources'
@@ -66,14 +66,14 @@ export default class ApiClient implements IApiClient {
     instance.interceptors.request.use(
       response => response,
       error => {
-        console.log(`Request error ${error}`)
+        console.error(`Request error: ${error}`)
         return Promise.reject(error)
       }
     )
     instance.interceptors.response.use(
       response => response,
       error => {
-        console.log(`Response error ${error}`)
+        console.error(`Response error: ${error}`)
         return Promise.reject(error)
       }
     )

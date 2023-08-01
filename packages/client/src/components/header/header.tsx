@@ -4,7 +4,7 @@ import Button from '../ui/button/button'
 import './header.pcss'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../store'
-import { fetchLogout } from '../../store/auth/authSlice'
+import { fetchLogout } from '../../store/auth/auth-slice'
 
 const links = [
   { path: '/main', label: 'Главная' },

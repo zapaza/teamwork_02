@@ -1,5 +1,5 @@
 import { AuthState } from '../../types/auth'
-import ApiClient from './apiClient'
+import ApiClient, { API_ENDPOINT } from './api-client'
 
 const UpdateProfileType = [
   'first_name',
@@ -12,15 +12,13 @@ const UpdateProfileType = [
 const UpdatePasswordType = ['oldPassword', 'newPassword'] as const
 
 export type UpdateProfileReq = Record<typeof UpdateProfileType[number], string>
-export type UpdateProfileResp = UpdateProfileReq
 export type UpdatePasswordReq = Record<
   typeof UpdatePasswordType[number],
   string
 >
 export type UpdatePasswordResp = UpdateProfileReq
 
-const uri = 'https://ya-praktikum.tech/api/v2'
-const client = new ApiClient(uri)
+const client = new ApiClient(API_ENDPOINT)
 
 const ApiProfile = {
   async updatePassword(data: UpdatePasswordReq) {

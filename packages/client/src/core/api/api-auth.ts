@@ -1,9 +1,7 @@
 import { AuthState, LoginData } from '../../types/auth'
-import ApiClient from './apiClient'
+import ApiClient, { API_ENDPOINT } from './api-client'
 
-// TODO: вынести в env, либо на сервер
-const url = `https://ya-praktikum.tech/api/v2`
-const client = new ApiClient(url)
+const client = new ApiClient(API_ENDPOINT)
 
 const apiAuth = {
   login: async (data: LoginData): Promise<AuthState> => {

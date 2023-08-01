@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 import { AuthState, LoginData } from '../../types/auth'
-import apiAuth from '../../core/api/ApiAuth'
+import apiAuth from '../../core/api/api-auth'
 import ApiProfile, {
   UpdatePasswordReq,
   UpdateProfileReq,
-} from '../../core/api/apiProfile'
+} from '../../core/api/api-profile'
 
 const initialState: AuthState = {
   id: null,
@@ -24,7 +24,7 @@ export const fetchLogin = createAsyncThunk(
     try {
       return await apiAuth.login(loginData)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
@@ -35,7 +35,7 @@ export const checkAuth = createAsyncThunk(
     try {
       return await apiAuth.checkAuth()
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
@@ -46,7 +46,7 @@ export const fetchLogout = createAsyncThunk(
     try {
       return await apiAuth.logout()
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
@@ -57,7 +57,7 @@ export const updatePassword = createAsyncThunk(
     try {
       return await ApiProfile.updatePassword(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
@@ -67,7 +67,7 @@ export const updateProfile = createAsyncThunk(
     try {
       return await ApiProfile.updateProfile(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
@@ -77,7 +77,7 @@ export const updateAvatar = createAsyncThunk(
     try {
       return await ApiProfile.updateAvatar(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as any)?.message })
+      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
     }
   }
 )
