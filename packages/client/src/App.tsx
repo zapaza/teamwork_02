@@ -7,7 +7,6 @@ import { useAppDispatch } from './store'
 function App() {
   const [isDataLoaded, setDataLoaded] = useState(false)
   const dispatch = useAppDispatch()
-
   useEffect(() => {
     const fetchAuth = async () => {
       try {
