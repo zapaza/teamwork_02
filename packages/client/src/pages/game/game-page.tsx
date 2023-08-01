@@ -1,7 +1,7 @@
-import Game from "../../components/game/game"
+import Game from '../../components/game/game'
 
 function GamePage() {
-  return <Game/>
+  return <Game />
 }
 
 export default GamePage
