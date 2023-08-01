@@ -1,5 +1,7 @@
+import Game from "../../components/game/game"
+
 function GamePage() {
-  return <div>Вот тут будет жить GamePage :)</div>
+  return <Game/>
 }
 
 export default GamePage
