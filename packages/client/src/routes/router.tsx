@@ -10,6 +10,7 @@ import MainPage from '../pages/main'
 import ProfilePage from '../pages/profile'
 import SignupPage from '../pages/signup'
 import ProtectedRoute from './protected-route'
+import ErrorBoundary from '../utils/ErrorBoundary'
 
 const router = createBrowserRouter([
   {
@@ -29,7 +30,9 @@ const router = createBrowserRouter([
         path: '/forum',
         element: (
           <ProtectedRoute>
-            <ForumPage />
+            <ErrorBoundary>
+              <ForumPage />
+            </ErrorBoundary>
           </ProtectedRoute>
         ),
       },
@@ -37,7 +40,9 @@ const router = createBrowserRouter([
         path: '/forum-topic',
         element: (
           <ProtectedRoute>
-            <ForumTopicPage />
+            <ErrorBoundary>
+              <ForumTopicPage />
+            </ErrorBoundary>
           </ProtectedRoute>
         ),
       },
@@ -53,7 +58,9 @@ const router = createBrowserRouter([
         path: '/leaderboard',
         element: (
           <ProtectedRoute>
-            <LeaderBoardPage />
+            <ErrorBoundary>
+              <LeaderBoardPage />
+            </ErrorBoundary>
           </ProtectedRoute>
         ),
       },
