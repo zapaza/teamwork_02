@@ -1,21 +1,18 @@
 import { AuthState } from '../../types/auth'
 import ApiClient, { API_ENDPOINT } from './api-client'
 
-const UpdateProfileType = [
-  'first_name',
-  'second_name',
-  'display_name',
-  'login',
-  'email',
-  'phone',
-] as const
-const UpdatePasswordType = ['oldPassword', 'newPassword'] as const
-
-export type UpdateProfileReq = Record<typeof UpdateProfileType[number], string>
-export type UpdatePasswordReq = Record<
-  typeof UpdatePasswordType[number],
-  string
->
+export type UpdateProfileReq = {
+  first_name: string
+  second_name: string
+  display_name: string
+  login: string
+  email: string
+  phone: string
+}
+export type UpdatePasswordReq = {
+  oldPassword: string
+  newPassword: string
+}
 export type UpdatePasswordResp = UpdateProfileReq
 
 const client = new ApiClient(API_ENDPOINT)

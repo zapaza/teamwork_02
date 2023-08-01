@@ -24,7 +24,9 @@ export const fetchLogin = createAsyncThunk(
     try {
       return await apiAuth.login(loginData)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )
@@ -35,7 +37,9 @@ export const checkAuth = createAsyncThunk(
     try {
       return await apiAuth.checkAuth()
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )
@@ -46,7 +50,9 @@ export const fetchLogout = createAsyncThunk(
     try {
       return await apiAuth.logout()
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )
@@ -57,7 +63,9 @@ export const updatePassword = createAsyncThunk(
     try {
       return await ApiProfile.updatePassword(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )
@@ -67,7 +75,9 @@ export const updateProfile = createAsyncThunk(
     try {
       return await ApiProfile.updateProfile(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )
@@ -77,7 +87,9 @@ export const updateAvatar = createAsyncThunk(
     try {
       return await ApiProfile.updateAvatar(data)
     } catch (error) {
-      return thunkAPI.rejectWithValue({ error: (error as Error | null)?.message })
+      return thunkAPI.rejectWithValue({
+        error: (error as Error | null)?.message,
+      })
     }
   }
 )

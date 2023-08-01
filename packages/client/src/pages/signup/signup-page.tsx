@@ -64,7 +64,6 @@ function Signup() {
     },
   ]
   const handleSubmit = async (data: unknown) => {
-
     // registration here
   }
 
