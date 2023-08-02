@@ -5,7 +5,7 @@ import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkAuth, fetchLogin } from '../../store/auth/authSlice'
+import { checkAuth, fetchLogin } from '../../store/auth/auth-slice'
 import { RootState, AppDispatch } from '../../store'
 import { LoginData } from '../../types/auth'
 
@@ -13,7 +13,6 @@ function LoginPage() {
   const auth = useSelector((state: RootState) => state.auth)
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
-
 
   useEffect(() => {
     if (auth.isLoggedIn) {
@@ -38,12 +37,9 @@ function LoginPage() {
     },
   ]
 
-  const handleSubmit = async (data: LoginData) => {
-
+  const handleSubmit = async (data: unknown) => {
     try {
-      await dispatch(
-        fetchLogin(data)
-      ).unwrap()
+      await dispatch(fetchLogin(data as LoginData)).unwrap()
       await dispatch(checkAuth()).unwrap()
     } catch (error) {
       console.error('Failed to login:', error)
@@ -74,6 +70,7 @@ function LoginPage() {
       inputs={inputs}
       buttons={buttons}
       callback={handleSubmit}
+      type="json"
     />
   )
 }

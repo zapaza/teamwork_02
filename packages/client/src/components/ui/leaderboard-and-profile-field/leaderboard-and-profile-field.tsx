@@ -1,5 +1,5 @@
 import React from 'react'
-import './leaderboardAndProfileField.pcss'
+import './leaderboard-and-profile-field.pcss'
 
 export type FieldPropsType = {
   positionNumber: number | string
