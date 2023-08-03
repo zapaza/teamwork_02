@@ -13,9 +13,9 @@ export default class Graphics {
    * @param variables Объект с переменными и состояниями игры.
    */
   static displayScore(ctx: CanvasRenderingContext2D, variables: IVariables) {
-    ctx.fillStyle = "white";
-    ctx.textAlign = "left";
-    ctx.fillText(`Score: ${variables.score}`, 10, 15);
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'left'
+    ctx.fillText(`Score: ${variables.score}`, 10, 15)
   }
 
   /**
@@ -24,9 +24,9 @@ export default class Graphics {
    * @param variables Объект с переменными и состояниями игры.
    */
   static displayLevel(ctx: CanvasRenderingContext2D, variables: IVariables) {
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.fillText(`Level ${variables.level}`, 300, 15);
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'center'
+    ctx.fillText(`Level ${variables.level}`, 300, 15)
   }
 
   /**
@@ -35,17 +35,21 @@ export default class Graphics {
    * @param pacman Объект класса Pacman с информацией о текущем количестве жизней.
    * @param drawPacmanIcon Функция для отрисовки иконки Pacman (по умолчанию `Graphics.drawPacmanIcon`).
    */
-  static displayLives(ctx: CanvasRenderingContext2D, pacman: IPacman, drawPacmanIcon = Graphics.drawPacmanIcon) {
+  static displayLives(
+    ctx: CanvasRenderingContext2D,
+    pacman: IPacman,
+    drawPacmanIcon = Graphics.drawPacmanIcon
+  ) {
     if (pacman.lives >= 1)
       drawPacmanIcon(ctx, {
         x: 580,
         y: 15,
-      });
+      })
     if (pacman.lives >= 2)
       drawPacmanIcon(ctx, {
         x: 540,
         y: 15,
-      });
+      })
   }
 
   /**
@@ -54,12 +58,12 @@ export default class Graphics {
    * @param position Позиция для размещения иконки Pacman (объект с координатами x и y).
    */
   static drawPacmanIcon(ctx: CanvasRenderingContext2D, position: ICoordinates) {
-    ctx.beginPath();
-    ctx.arc(position.x, position.y, 15, Math.PI / 4, (Math.PI * 7) / 4);
-    ctx.lineTo(position.x - 5, position.y);
-    ctx.fillStyle = "yellow";
-    ctx.fill();
-    ctx.closePath();
+    ctx.beginPath()
+    ctx.arc(position.x, position.y, 15, Math.PI / 4, (Math.PI * 7) / 4)
+    ctx.lineTo(position.x - 5, position.y)
+    ctx.fillStyle = 'yellow'
+    ctx.fill()
+    ctx.closePath()
   }
 
   /**
@@ -77,19 +81,19 @@ export default class Graphics {
   ) {
     variables.animationId = requestAnimationFrame(() =>
       runLevelUpAnimation(variables, assets, ctx)
-    );
+    )
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
-      Animator.drawLevelUpBoard(ctx, assets["props"]["boundaries"]);
+      Animator.drawLevelUpBoard(ctx, assets['props']['boundaries'])
       if (variables.levelUpCount % 10 === 0 && variables.levelUpCount !== 0)
-        assets["props"]["boundaries"].forEach((boundary) => boundary.flash());
-      variables.levelUpCount++;
+        assets['props']['boundaries'].forEach(boundary => boundary.flash())
+      variables.levelUpCount++
       if (variables.levelUpCount >= 350) {
-        assets["characters"]["pacman"].isLevellingUp = false;
-        cancelAnimationFrame(variables.animationId);
-        variables.level++;
-        PelletManager.resetAfterLevelUp(assets, variables);
+        assets['characters']['pacman'].isLevellingUp = false
+        cancelAnimationFrame(variables.animationId)
+        variables.level++
+        PelletManager.resetAfterLevelUp(assets, variables)
       }
-      variables.startTime = performance.now();
+      variables.startTime = performance.now()
     }
   }
 
@@ -108,18 +112,18 @@ export default class Graphics {
   ) {
     variables.animationId = requestAnimationFrame(() =>
       runDeathAnimation(variables, ctx, assets)
-    );
+    )
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
-      Animator.drawBoard(ctx, assets);
-      const pacman = assets["characters"]["pacman"];
+      Animator.drawBoard(ctx, assets)
+      const pacman = assets['characters']['pacman']
       if (pacman.radians < Math.PI) {
-        pacman.shrink(ctx);
+        pacman.shrink(ctx)
       } else {
-        pacman.isShrinking = false;
-        cancelAnimationFrame(variables.animationId);
-        GhostCollision.checkPacmanLives(assets, variables, ctx);
+        pacman.isShrinking = false
+        cancelAnimationFrame(variables.animationId)
+        GhostCollision.checkPacmanLives(assets, variables, ctx)
       }
-      variables.startTime = performance.now();
+      variables.startTime = performance.now()
     }
   }
 }

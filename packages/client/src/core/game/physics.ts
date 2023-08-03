@@ -11,14 +11,17 @@ export default class Physics {
    * @param assets - Игровые ресурсы, содержащие препятствия и персонажа Pacman.
    * @param ctx - Контекст рендеринга холста.
    */
-  static implementBoundaries(assets: IGameAssets, ctx: CanvasRenderingContext2D) {
-    assets["props"]["boundaries"].forEach((boundary) => {
-      boundary.draw(ctx);
+  static implementBoundaries(
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D
+  ) {
+    assets['props']['boundaries'].forEach(boundary => {
+      boundary.draw(ctx)
       BoundaryManager.stopPacmanCollision(
         boundary,
-        assets["characters"]["pacman"]
-      );
-    });
+        assets['characters']['pacman']
+      )
+    })
   }
 
   /**
@@ -27,18 +30,22 @@ export default class Physics {
    * @param ctx - Контекст рендеринга холста.
    * @param variables - Игровые переменные.
    */
-  static implementPellets(assets: IGameAssets, ctx: CanvasRenderingContext2D, variables: IVariables) {
-    assets["props"]["pellets"].forEach((pellet) => {
+  static implementPellets(
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D,
+    variables: IVariables
+  ) {
+    assets['props']['pellets'].forEach(pellet => {
       if (!pellet.hasBeenEaten) {
-        pellet.draw(ctx);
+        pellet.draw(ctx)
         PelletManager.eatPellet(
           pellet,
-          assets["characters"]["pacman"],
+          assets['characters']['pacman'],
           variables
-        );
+        )
       }
-    });
-    PelletManager.checkLevelUpCondition(assets, variables, ctx);
+    })
+    PelletManager.checkLevelUpCondition(assets, variables, ctx)
   }
 
   /**
@@ -47,13 +54,17 @@ export default class Physics {
    * @param ctx - Контекст рендеринга холста.
    * @param variables - Игровые переменные.
    */
-  static implementPowerUps(assets: IGameAssets, ctx: CanvasRenderingContext2D, variables: IVariables) {
-    assets["props"]["powerUps"].forEach((powerUp) => {
+  static implementPowerUps(
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D,
+    variables: IVariables
+  ) {
+    assets['props']['powerUps'].forEach(powerUp => {
       if (!powerUp.hasBeenEaten) {
-        powerUp.update(ctx);
-        PowerUpManager.eatPowerUp(powerUp, assets, variables);
+        powerUp.update(ctx)
+        PowerUpManager.eatPowerUp(powerUp, assets, variables)
       }
-    });
+    })
   }
 
   /**
@@ -62,22 +73,26 @@ export default class Physics {
    * @param ctx - Контекст рендеринга холста.
    * @param variables - Игровые переменные.
    */
-  static implementGhosts(assets: IGameAssets, ctx: CanvasRenderingContext2D, variables: IVariables) {
-    Object.values(assets["characters"]["ghosts"]).forEach((ghost) => {
-      GhostManager.checkSpeedMatchesState(ghost, variables);
-      const collisions:string[] = [];
-      ghost.update(ctx);
-      BoundaryManager.implementTunnel(ghost, variables);
+  static implementGhosts(
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D,
+    variables: IVariables
+  ) {
+    Object.values(assets['characters']['ghosts']).forEach(ghost => {
+      GhostManager.checkSpeedMatchesState(ghost, variables)
+      const collisions: string[] = []
+      ghost.update(ctx)
+      BoundaryManager.implementTunnel(ghost, variables)
       GhostManager.updateCollisions(
-        assets["props"]["boundaries"],
+        assets['props']['boundaries'],
         collisions,
         ghost
-      );
+      )
       if (JSON.stringify(collisions) !== JSON.stringify(ghost.prevCollisions)) {
-        GhostManager.chooseMovement(ghost, assets, collisions, variables);
+        GhostManager.chooseMovement(ghost, assets, collisions, variables)
       }
-      GhostManager.checkPacmanGhostCollision(ghost, assets, variables, ctx);
-    });
+      GhostManager.checkPacmanGhostCollision(ghost, assets, variables, ctx)
+    })
   }
 
   /**
@@ -86,10 +101,14 @@ export default class Physics {
    * @param ctx - Контекст рендеринга холста.
    * @param variables - Игровые переменные.
    */
-  static implementPacman(variables: IVariables, assets: IGameAssets, ctx: CanvasRenderingContext2D) {
-    PacmanManager.changeDirection(variables, assets);
-    PacmanManager.checkIfPacmanIsEating(assets);
-    assets["characters"]["pacman"].update(ctx);
-    BoundaryManager.implementTunnel(assets["characters"]["pacman"], variables);
+  static implementPacman(
+    variables: IVariables,
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D
+  ) {
+    PacmanManager.changeDirection(variables, assets)
+    PacmanManager.checkIfPacmanIsEating(assets)
+    assets['characters']['pacman'].update(ctx)
+    BoundaryManager.implementTunnel(assets['characters']['pacman'], variables)
   }
 }

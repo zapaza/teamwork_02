@@ -17,10 +17,7 @@ export default class PacMan implements IPacman {
   isShrinking: boolean
   isLevellingUp: boolean
 
-  constructor(
-    { position, velocity }: IPacmanParams,
-    tileLength: number
-  ) {
+  constructor({ position, velocity }: IPacmanParams, tileLength: number) {
     this.originalPosition = position
     this.position = { ...this.originalPosition }
     this.originalVelocity = velocity

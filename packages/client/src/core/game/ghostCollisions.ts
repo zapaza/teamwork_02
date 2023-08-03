@@ -15,11 +15,12 @@ export default class GhostCollision {
    * @returns `true`, если происходит столкновение, и `false` в противном случае.
    */
   static collisionConditional(ghost: IGhost, pacman: IPacman) {
-    return ghost.position.y - ghost.radius <= pacman.position.y + pacman.radius &&
+    return (
+      ghost.position.y - ghost.radius <= pacman.position.y + pacman.radius &&
       ghost.position.y + ghost.radius >= pacman.position.y - pacman.radius &&
       ghost.position.x + ghost.radius >= pacman.position.x - pacman.radius &&
       ghost.position.x - ghost.radius <= pacman.position.x + pacman.radius
-
+    )
   }
 
   /**
@@ -98,7 +99,7 @@ export default class GhostCollision {
       // todo после запроса добавить переход на страницу лидборда
     }
     // resetAfterGameOver(assets, variables)
-    Animator.displayGameOver(ctx);
+    Animator.displayGameOver(ctx)
   }
 
   /**
@@ -107,13 +108,9 @@ export default class GhostCollision {
    * @param getBackendUrl Функция для получения URL бэкенда (по умолчанию `GhostCollision.getBackendUrl`).
    * @returns Промис с результатом сохранения результатов игры (успешно или с ошибкой).
    */
-  static async saveScore(
-    variables: IVariables,
-    getBackendUrl: string
-  ) {
+  static async saveScore(variables: IVariables, getBackendUrl: string) {
     // TODO сделать роут для отправки инфы на бек? что бы выводить потом его в лидерборд
   }
-
 
   /**
    * Сбрасывает состояние игры после завершения игры (когда у Pacman заканчиваются жизни).
@@ -122,12 +119,12 @@ export default class GhostCollision {
    * @param variables Объект с переменными и состояниями игры.
    */
   static resetAfterGameOver(assets: IGameAssets, variables: IVariables) {
-    assets['props']['pellets'].forEach((pellet) => {
+    assets['props']['pellets'].forEach(pellet => {
       if (pellet.hasBeenEaten) {
         pellet.changeEatenState()
       }
     })
-    assets['props']['powerUps'].forEach((powerUp) => {
+    assets['props']['powerUps'].forEach(powerUp => {
       if (powerUp.hasBeenEaten) {
         powerUp.changeEatenState()
       }
@@ -135,7 +132,7 @@ export default class GhostCollision {
     assets['timers']['cycleTimer'].reset()
     assets['timers']['scaredTimer'].reset()
     assets['timers']['scaredTimer'].duration = 7000
-    Object.values(assets['characters']['ghosts']).forEach((ghost) => {
+    Object.values(assets['characters']['ghosts']).forEach(ghost => {
       ghost.reset()
     })
     assets['characters']['pacman'].reset()
@@ -143,9 +140,18 @@ export default class GhostCollision {
     variables.lastKeyPressed = ''
     variables.level = 1
 
-    window.removeEventListener('keydown', variables.directionEventListener as (event: Event) => void);
-    window.removeEventListener('visibilitychange', variables.visibilityEventListener as (event: Event) => void);
-    window.removeEventListener('keydown', variables.pauseEventListener as (event: Event) => void);
+    window.removeEventListener(
+      'keydown',
+      variables.directionEventListener as (event: Event) => void
+    )
+    window.removeEventListener(
+      'visibilitychange',
+      variables.visibilityEventListener as (event: Event) => void
+    )
+    window.removeEventListener(
+      'keydown',
+      variables.pauseEventListener as (event: Event) => void
+    )
   }
 
   /**
@@ -158,12 +164,13 @@ export default class GhostCollision {
   static resetAfterDeath(
     assets: IGameAssets,
     variables: IVariables,
-    callbackOne = playGame) {
+    callbackOne = playGame
+  ) {
     assets['characters']['pacman'].reset()
     variables.lastKeyPressed = ''
     assets['timers']['cycleTimer'].reset()
     assets['timers']['scaredTimer'].reset()
-    Object.values(assets['characters']['ghosts']).forEach((ghost) => {
+    Object.values(assets['characters']['ghosts']).forEach(ghost => {
       ghost.reset()
     })
     assets['timers']['cycleTimer'].start()

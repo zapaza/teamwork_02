@@ -53,33 +53,37 @@ export default class GhostManager {
    * @param collisions Массив со списком направлений, которые призрак не может выбрать из-за препятствий.
    * @param ghost Объект призрака
    */
-  static updateCollisions(boundaries: IBoundary[], collisions: string[], ghost: IGhost) {
-    boundaries.forEach((boundary) => {
+  static updateCollisions(
+    boundaries: IBoundary[],
+    collisions: string[],
+    ghost: IGhost
+  ) {
+    boundaries.forEach(boundary => {
       if (
         !collisions.includes('down') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: 0, y: ghost.speed }
+          velocity: { x: 0, y: ghost.speed },
         })
       ) {
         collisions.push('down')
       } else if (
         !collisions.includes('right') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: ghost.speed, y: 0 }
+          velocity: { x: ghost.speed, y: 0 },
         })
       ) {
         collisions.push('right')
       } else if (
         !collisions.includes('left') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: -ghost.speed, y: 0 }
+          velocity: { x: -ghost.speed, y: 0 },
         })
       ) {
         collisions.push('left')
       } else if (
         !collisions.includes('up') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: 0, y: -ghost.speed }
+          velocity: { x: 0, y: -ghost.speed },
         })
       ) {
         collisions.push('up')
@@ -89,7 +93,6 @@ export default class GhostManager {
       ghost.prevCollisions = collisions
     }
   }
-
 
   /**
    * Этот метод выбирает направление движения призрака на основе его текущего состояния
@@ -106,7 +109,8 @@ export default class GhostManager {
     ghost: IGhost,
     assets: IGameAssets,
     collisions: string[],
-    variables: IVariables) {
+    variables: IVariables
+  ) {
     if (!ghost.isScared && !ghost.isRetreating) {
       GhostMovement.chaseAndScatter(ghost, assets, collisions, variables)
     } else {

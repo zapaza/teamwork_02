@@ -3,7 +3,7 @@ import { ICoordinates, IGameTimer, IGhost, IGhostParams } from '../types'
 /**
  * Класс `Ghost` представляет объект привидения в игре.
  */
-export default class Ghost implements IGhost{
+export default class Ghost implements IGhost {
   position: ICoordinates
   originalPosition: ICoordinates
   velocity: ICoordinates
@@ -12,7 +12,7 @@ export default class Ghost implements IGhost{
   tileLength: number
   radius: number
   prevCollisions: []
-  retreatingTimer: IGameTimer | null;
+  retreatingTimer: IGameTimer | null
   speed: number
   isScared: boolean
   isChasing: boolean

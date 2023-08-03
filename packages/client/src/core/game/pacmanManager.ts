@@ -1,5 +1,11 @@
 import BoundaryManager from './boundaryManager'
-import { IBoundary, ICoordinates, IGameAssets, IPacman, IVariables } from './types'
+import {
+  IBoundary,
+  ICoordinates,
+  IGameAssets,
+  IPacman,
+  IVariables,
+} from './types'
 
 /**
  * Класс PacmanManager управляет движением персонажа Pacman и взаимодействием
@@ -18,24 +24,24 @@ export default class PacmanManager {
     assets: IGameAssets,
     checkDirectionChange = PacmanManager.checkDirectionChange
   ) {
-    const pacman = assets["characters"]["pacman"];
-    const boundaries = assets["props"]["boundaries"];
-    if (variables.lastKeyPressed === "up") {
+    const pacman = assets['characters']['pacman']
+    const boundaries = assets['props']['boundaries']
+    if (variables.lastKeyPressed === 'up') {
       checkDirectionChange(pacman, boundaries, {
         velocity: { x: 0, y: -pacman.speed },
-      });
-    } else if (variables.lastKeyPressed === "down") {
+      })
+    } else if (variables.lastKeyPressed === 'down') {
       checkDirectionChange(pacman, boundaries, {
         velocity: { x: 0, y: pacman.speed },
-      });
-    } else if (variables.lastKeyPressed === "right") {
+      })
+    } else if (variables.lastKeyPressed === 'right') {
       checkDirectionChange(pacman, boundaries, {
         velocity: { x: pacman.speed, y: 0 },
-      });
-    } else if (variables.lastKeyPressed === "left") {
+      })
+    } else if (variables.lastKeyPressed === 'left') {
       checkDirectionChange(pacman, boundaries, {
         velocity: { x: -pacman.speed, y: 0 },
-      });
+      })
     }
   }
 
@@ -46,19 +52,23 @@ export default class PacmanManager {
    * @param boundaries - Массив границ игрового поля.
    * @param options - Объект с информацией о скорости движения Pacman.
    */
-  static checkDirectionChange(pacman: IPacman, boundaries: IBoundary[], { velocity }:  {velocity: ICoordinates}) {
-    let count = 0;
+  static checkDirectionChange(
+    pacman: IPacman,
+    boundaries: IBoundary[],
+    { velocity }: { velocity: ICoordinates }
+  ) {
+    let count = 0
     for (let i = 0; i < boundaries.length; i++) {
       if (
         BoundaryManager.hitBoundaryConditional(pacman, boundaries[i], {
           velocity,
         })
       )
-        count++;
+        count++
     }
     if (count === 0) {
-      pacman.velocity.x = velocity.x;
-      pacman.velocity.y = velocity.y;
+      pacman.velocity.x = velocity.x
+      pacman.velocity.y = velocity.y
     }
   }
 
@@ -69,23 +79,23 @@ export default class PacmanManager {
    * @param assets - Объект, содержащий различные игровые ресурсы.
    */
   static checkIfPacmanIsEating(assets: IGameAssets) {
-    let count = 0;
-    const pacman = assets["characters"]["pacman"];
-    assets["props"]["pellets"].forEach((pellet) => {
+    let count = 0
+    const pacman = assets['characters']['pacman']
+    assets['props']['pellets'].forEach(pellet => {
       if (
         pellet.position.y - pellet.radius <=
-        pacman.position.y + pacman.radius * 2 + pacman.velocity.y * 2 &&
+          pacman.position.y + pacman.radius * 2 + pacman.velocity.y * 2 &&
         pellet.position.y + pellet.radius >=
-        pacman.position.y - pacman.radius * 2 + pacman.velocity.y * 2 &&
+          pacman.position.y - pacman.radius * 2 + pacman.velocity.y * 2 &&
         pellet.position.x + pellet.radius >=
-        pacman.position.x - pacman.radius * 2 + pacman.velocity.x * 2 &&
+          pacman.position.x - pacman.radius * 2 + pacman.velocity.x * 2 &&
         pellet.position.x - pellet.radius <=
-        pacman.position.x + pacman.radius * 2 + pacman.velocity.x * 2 &&
+          pacman.position.x + pacman.radius * 2 + pacman.velocity.x * 2 &&
         !pellet.hasBeenEaten
       ) {
-        count++;
+        count++
       }
-    });
-    pacman.isEating = count > 0;
+    })
+    pacman.isEating = count > 0
   }
 }

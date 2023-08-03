@@ -18,7 +18,7 @@ export default class RetreatingTimer implements IGameTimer {
     this.isRunning = false
   }
 
-// @ts-ignore
+  // @ts-ignore
   start(dateNow = Date.now()) {
     this.startTime = dateNow
     // @ts-ignore

@@ -1,4 +1,13 @@
-import { IBoundary, IGameAssets, IGameTimer, IGameTimers, IGhost, IPellet, IPowerUp, IVariables } from './types'
+import {
+  IBoundary,
+  IGameAssets,
+  IGameTimer,
+  IGameTimers,
+  IGhost,
+  IPellet,
+  IPowerUp,
+  IVariables,
+} from './types'
 import Boundary from './models/boundary'
 import Pellet from './models/pallet'
 import PowerUp from './models/powerUp'
@@ -18,37 +27,37 @@ export class GameFactory {
     1: 'corner-one',
     2: 'corner-two',
     3: 'corner-three',
-    4: 'corner-four'
+    4: 'corner-four',
   }
 
   static TUNNEL_DATA = [
     { position: { x: -1, y: 13 } },
     { position: { x: -1, y: 15 } },
     { position: { x: 28, y: 13 } },
-    { position: { x: 28, y: 15 } }
+    { position: { x: 28, y: 15 } },
   ]
 
   static GHOST_DATA = [
     {
       color: 'red',
       position: { x: 31, y: 23 },
-      velocity: { x: 0, y: -1 / 8 }
+      velocity: { x: 0, y: -1 / 8 },
     },
     {
       color: 'pink',
       position: { x: 25, y: 23 },
-      velocity: { x: 0, y: -1 / 8 }
+      velocity: { x: 0, y: -1 / 8 },
     },
     {
       color: 'cyan',
       position: { x: 37, y: 29 },
-      velocity: { x: 1 / 8, y: 0 }
+      velocity: { x: 1 / 8, y: 0 },
     },
     {
       color: 'orange',
       position: { x: 19, y: 29 },
-      velocity: { x: -1 / 8, y: 0 }
-    }
+      velocity: { x: -1 / 8, y: 0 },
+    },
   ]
 
   // @ts-ignore
@@ -71,19 +80,33 @@ export class GameFactory {
   static makeAssets(
     map: string[][],
     variables: IVariables,
-    makeGhosts: (variables: IVariables) => Record<string, IGhost> = GameFactory.makeGhosts,
+    makeGhosts: (
+      variables: IVariables
+    ) => Record<string, IGhost> = GameFactory.makeGhosts,
     makePacman: (variables: IVariables) => PacMan = GameFactory.makePacman,
     // @ts-ignore
-    makeCycleTimer: (ghosts: Record<string, IGhost>) => IGameTimer = GameFactory.makeCycleTimer,
+    makeCycleTimer: (
+      ghosts: Record<string, IGhost>
+    ) => IGameTimer = GameFactory.makeCycleTimer,
     // @ts-ignore
-    makeScaredTimer: (ghosts: Record<string, IGhost>) => IGameTimer = GameFactory.makeScaredTimer,
-    makeRetreatingTimers: (ghosts: Record<string, IGhost>) => IGameTimer[] = GameFactory.makeRetreatingTimers,
+    makeScaredTimer: (
+      ghosts: Record<string, IGhost>
+    ) => IGameTimer = GameFactory.makeScaredTimer,
+    makeRetreatingTimers: (
+      ghosts: Record<string, IGhost>
+    ) => IGameTimer[] = GameFactory.makeRetreatingTimers,
     makeBoundaries: (
       map: string[][],
       variables: IVariables
     ) => IBoundary[] = GameFactory.makeBoundaries,
-    makePellets: (map: string[][], variables: IVariables) => IPellet[] = GameFactory.makePellets,
-    makePowerUps: (map: string[][], variables: IVariables) => IPowerUp[] = GameFactory.makePowerUps,
+    makePellets: (
+      map: string[][],
+      variables: IVariables
+    ) => IPellet[] = GameFactory.makePellets,
+    makePowerUps: (
+      map: string[][],
+      variables: IVariables
+    ) => IPowerUp[] = GameFactory.makePowerUps,
     makePauseTextImage: () => HTMLImageElement = GameFactory.makePauseTextImage
   ): IGameAssets {
     const ghosts = makeGhosts(variables)
@@ -91,18 +114,18 @@ export class GameFactory {
       props: {
         boundaries: makeBoundaries(map, variables),
         pellets: makePellets(map, variables),
-        powerUps: makePowerUps(map, variables)
+        powerUps: makePowerUps(map, variables),
       },
       characters: {
         ghosts: ghosts,
-        pacman: makePacman(variables)
+        pacman: makePacman(variables),
       },
       timers: {
         cycleTimer: makeCycleTimer(ghosts),
         scaredTimer: makeScaredTimer(ghosts),
-        retreatingTimers: makeRetreatingTimers(ghosts)
+        retreatingTimers: makeRetreatingTimers(ghosts),
       },
-      pauseTextImage: makePauseTextImage()
+      pauseTextImage: makePauseTextImage(),
     }
   }
 
@@ -116,7 +139,10 @@ export class GameFactory {
   static makeBoundaries(
     map: string[][],
     variables: IVariables,
-    makeTunnelBoundaries: (boundaries: IBoundary[], variables: IVariables) => void = GameFactory.makeTunnelBoundaries
+    makeTunnelBoundaries: (
+      boundaries: IBoundary[],
+      variables: IVariables
+    ) => void = GameFactory.makeTunnelBoundaries
   ) {
     const boundaries: IBoundary[] = []
     map.forEach((row, i) => {
@@ -132,10 +158,10 @@ export class GameFactory {
             {
               position: {
                 x: variables.tileLength * j,
-                y: variables.tileLength * i
+                y: variables.tileLength * i,
               },
               regularImage: regularImage,
-              whiteImage: whiteImage
+              whiteImage: whiteImage,
             },
             variables.tileLength
           )
@@ -157,15 +183,15 @@ export class GameFactory {
     regularImage.src = './images/pipe-horizontal.png'
     const whiteImage = new Image()
     whiteImage.src = './images/pipe-horizontal-white.png'
-    GameFactory.TUNNEL_DATA.forEach((data) => {
+    GameFactory.TUNNEL_DATA.forEach(data => {
       const tunnelBoundary = new Boundary(
         {
           position: {
             x: variables.tileLength * data.position.x,
-            y: variables.tileLength * data.position.y
+            y: variables.tileLength * data.position.y,
           },
           regularImage: regularImage,
-          whiteImage: whiteImage
+          whiteImage: whiteImage,
         },
         variables.tileLength
       )
@@ -188,8 +214,8 @@ export class GameFactory {
             {
               position: {
                 x: (variables.tileLength * (2 * j + 1)) / 2,
-                y: (variables.tileLength * (2 * i + 1)) / 2
-              }
+                y: (variables.tileLength * (2 * i + 1)) / 2,
+              },
             },
             variables.tileLength
           )
@@ -215,8 +241,8 @@ export class GameFactory {
             {
               position: {
                 x: (variables.tileLength * (2 * j + 1)) / 2,
-                y: (variables.tileLength * (2 * i + 1)) / 2
-              }
+                y: (variables.tileLength * (2 * i + 1)) / 2,
+              },
             },
             variables.tileLength
           )
@@ -234,18 +260,18 @@ export class GameFactory {
    */
   static makeGhosts(variables: IVariables) {
     const ghosts: Record<string, IGhost> = {}
-    GameFactory.GHOST_DATA.forEach((data) => {
+    GameFactory.GHOST_DATA.forEach(data => {
       ghosts[data.color] = new Ghost(
         {
           position: {
             x: (variables.tileLength * data.position.x) / 2,
-            y: (variables.tileLength * data.position.y) / 2
+            y: (variables.tileLength * data.position.y) / 2,
           },
           velocity: {
             x: variables.tileLength * data.velocity.x,
-            y: variables.tileLength * data.velocity.y
+            y: variables.tileLength * data.velocity.y,
           },
-          color: data.color
+          color: data.color,
         },
         variables.tileLength
       )
@@ -263,12 +289,12 @@ export class GameFactory {
       {
         position: {
           x: (variables.tileLength * 29) / 2,
-          y: (variables.tileLength * 47) / 2
+          y: (variables.tileLength * 47) / 2,
         },
         velocity: {
           x: 0,
-          y: 0
-        }
+          y: 0,
+        },
       },
       variables.tileLength
     )
@@ -299,7 +325,7 @@ export class GameFactory {
    */
   static makeRetreatingTimers(ghosts: Record<string, IGhost>) {
     const retreatingTimers: IGameTimer[] = []
-    Object.values(ghosts).forEach((ghost) => {
+    Object.values(ghosts).forEach(ghost => {
       const retreatingTimer = new RetreatingTimer(ghost)
       ghost.retreatingTimer = retreatingTimer as IGameTimer
       retreatingTimers.push(retreatingTimer as IGameTimer)
