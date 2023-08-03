@@ -36,10 +36,11 @@ export default class BoundaryManager {
    * @param variables Объект с переменными и состояниями игры.
    */
   static implementTunnel(character: IPacman | IGhost, variables: IVariables) {
-    if (character.position.x === (variables.tileLength * 57) / 2)
+    if (character.position.x === (variables.tileLength * 57) / 2) {
       character.position.x = -variables.tileLength / 2
-    else if (character.position.x === -variables.tileLength / 2)
+    } else if (character.position.x === -variables.tileLength / 2) {
       character.position.x = (variables.tileLength * 57) / 2
+    }
   }
 
   /**

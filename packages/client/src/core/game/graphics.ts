@@ -40,16 +40,19 @@ export default class Graphics {
     pacman: IPacman,
     drawPacmanIcon = Graphics.drawPacmanIcon
   ) {
-    if (pacman.lives >= 1)
+    if (pacman.lives >= 1) {
       drawPacmanIcon(ctx, {
         x: 580,
         y: 15,
       })
-    if (pacman.lives >= 2)
+    }
+
+    if (pacman.lives >= 2) {
       drawPacmanIcon(ctx, {
         x: 540,
         y: 15,
       })
+    }
   }
 
   /**
@@ -84,9 +87,12 @@ export default class Graphics {
     )
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
       Animator.drawLevelUpBoard(ctx, assets['props']['boundaries'])
-      if (variables.levelUpCount % 10 === 0 && variables.levelUpCount !== 0)
+
+      if (variables.levelUpCount % 10 === 0 && variables.levelUpCount !== 0) {
         assets['props']['boundaries'].forEach(boundary => boundary.flash())
+      }
       variables.levelUpCount++
+
       if (variables.levelUpCount >= 350) {
         assets['characters']['pacman'].isLevellingUp = false
         cancelAnimationFrame(variables.animationId)

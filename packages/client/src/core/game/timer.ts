@@ -6,10 +6,15 @@ export default class Timer {
    * @param timers - Объект с игровыми таймерами.
    */
   static pauseTimers(timers: IGameTimers) {
-    if (timers['scaredTimer'].isRunning) timers['scaredTimer'].pause()
-    else timers['cycleTimer'].pause()
+    if (timers['scaredTimer'].isRunning) {
+      timers['scaredTimer'].pause()
+    } else {
+      timers['cycleTimer'].pause()
+    }
     timers['retreatingTimers'].forEach(timer => {
-      if (timer.isRunning) timer.pause()
+      if (timer.isRunning) {
+        timer.pause()
+      }
     })
   }
 
@@ -23,7 +28,9 @@ export default class Timer {
       timers['scaredTimer'].resume(timers['cycleTimer'])
     } else timers['cycleTimer'].resume()
     timers['retreatingTimers'].forEach(timer => {
-      if (timer.isRunning) timer.resume()
+      if (timer.isRunning) {
+        timer.resume()
+      }
     })
   }
 }

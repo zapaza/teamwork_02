@@ -2,7 +2,6 @@ import {
   IBoundary,
   IGameAssets,
   IGameTimer,
-  IGameTimers,
   IGhost,
   IPellet,
   IPowerUp,
@@ -59,9 +58,6 @@ export class GameFactory {
       velocity: { x: -1 / 8, y: 0 },
     },
   ]
-
-  // @ts-ignore
-  // @ts-ignore
   /**
    * Создает все необходимые ресурсы для игры на основе предоставленных данных карты и переменных.
    * @param map Массив, представляющий игровую карту.

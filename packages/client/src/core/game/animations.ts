@@ -95,10 +95,14 @@ export default class Animator {
     ctx.clearRect(0, 0, 896, 992)
     assets['props']['boundaries'].forEach(boundary => boundary.draw(ctx))
     assets['props']['pellets'].forEach(pellet => {
-      if (!pellet.hasBeenEaten) pellet.draw(ctx)
+      if (!pellet.hasBeenEaten) {
+        pellet.draw(ctx)
+      }
     })
     assets['props']['powerUps'].forEach(powerUp => {
-      if (!powerUp.hasBeenEaten) powerUp.update(ctx)
+      if (!powerUp.hasBeenEaten) {
+        powerUp.update(ctx)
+      }
     })
   }
 

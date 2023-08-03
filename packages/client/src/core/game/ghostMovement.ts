@@ -62,8 +62,12 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftRegular(ghost: IGhost) {
-    if (ghost.position.x % 4 !== 0) ghost.position.x += 2
-    if (ghost.position.y % 4 !== 0) ghost.position.y += 2
+    if (ghost.position.x % 4 !== 0) {
+      ghost.position.x += 2
+    }
+    if (ghost.position.y % 4 !== 0) {
+      ghost.position.y += 2
+    }
   }
 
   /**
@@ -71,9 +75,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftLeft(ghost: IGhost) {
-    if (ghost.position.x % 8 === 2) ghost.position.x -= 2
-    else if (ghost.position.x % 8 === 4) ghost.position.x -= 4
-    else if (ghost.position.x % 8 === 6) ghost.position.x -= 6
+    if (ghost.position.x % 8 === 2) {
+      ghost.position.x -= 2
+    } else if (ghost.position.x % 8 === 4) {
+      ghost.position.x -= 4
+    } else if (ghost.position.x % 8 === 6) {
+      ghost.position.x -= 6
+    }
   }
 
   /**
@@ -81,9 +89,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftRight(ghost: IGhost) {
-    if (ghost.position.x % 8 === 2) ghost.position.x += 6
-    else if (ghost.position.x % 8 === 4) ghost.position.x += 4
-    else if (ghost.position.x % 8 === 6) ghost.position.x += 2
+    if (ghost.position.x % 8 === 2) {
+      ghost.position.x += 6
+    } else if (ghost.position.x % 8 === 4) {
+      ghost.position.x += 4
+    } else if (ghost.position.x % 8 === 6) {
+      ghost.position.x += 2
+    }
   }
 
   /**
@@ -91,9 +103,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftUp(ghost: IGhost) {
-    if (ghost.position.y % 8 === 2) ghost.position.y -= 2
-    else if (ghost.position.y % 8 === 4) ghost.position.y -= 4
-    else if (ghost.position.y % 8 === 6) ghost.position.y -= 6
+    if (ghost.position.y % 8 === 2) {
+      ghost.position.y -= 2
+    } else if (ghost.position.y % 8 === 4) {
+      ghost.position.y -= 4
+    } else if (ghost.position.y % 8 === 6) {
+      ghost.position.y -= 6
+    }
   }
 
   /**
@@ -391,6 +407,7 @@ export default class GhostMovement {
       y: -pathway.position!.y,
     }
   }
+
   /**
    * Вычисляет вектор направления разбегания для синего призрака.
    * @param pathway Объект пути движения призрака.

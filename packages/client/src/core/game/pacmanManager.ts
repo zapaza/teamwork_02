@@ -63,8 +63,9 @@ export default class PacmanManager {
         BoundaryManager.hitBoundaryConditional(pacman, boundaries[i], {
           velocity,
         })
-      )
+      ) {
         count++
+      }
     }
     if (count === 0) {
       pacman.velocity.x = velocity.x

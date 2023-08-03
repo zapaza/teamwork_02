@@ -41,7 +41,9 @@ export default class PowerUpManager {
     }
     assets['timers']['scaredTimer'].reset()
     Object.values(assets['characters']['ghosts']).forEach(ghost => {
-      if (!ghost.isScared && !ghost.isRetreating) ghost.changeScaredState()
+      if (!ghost.isScared && !ghost.isRetreating) {
+        ghost.changeScaredState()
+      }
     })
     assets['timers']['scaredTimer'].start(assets['timers']['cycleTimer'])
   }

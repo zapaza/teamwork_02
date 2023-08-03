@@ -25,7 +25,9 @@ export default class ScaredTimer implements IGameTimer {
     // @ts-ignore
     this.timeout = setTimeout(() => {
       this.ghosts.forEach(ghost => {
-        if (ghost.isScared) ghost.changeScaredState()
+        if (ghost.isScared) {
+          ghost.changeScaredState()
+        }
       })
       cycleTimer.resume()
       this.isRunning = false
@@ -46,7 +48,9 @@ export default class ScaredTimer implements IGameTimer {
     // @ts-ignore
     this.timeout = setTimeout(() => {
       this.ghosts.forEach(ghost => {
-        if (ghost.isScared) ghost.changeScaredState()
+        if (ghost.isScared) {
+          ghost.changeScaredState()
+        }
       })
       cycleTimer.resume()
       this.isRunning = false
