@@ -1,0 +1,32 @@
+.mobile-controls {
+    display: none;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--gray-900);
+
+    &__info {
+        width: 100%;
+        flex: 0 0 60px;
+    }
+
+    &__board {
+        width: 60%;
+    }
+}
+
+@media only screen and (max-device-width: 1024px) {
+    .mobile-controls {
+        display: inline;
+    }
+
+    .up,
+    .left,
+    .right,
+    .down {
+        cursor: pointer;
+    }
+}
