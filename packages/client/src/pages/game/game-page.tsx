@@ -1,5 +1,11 @@
+import GameCanvas from '../../components/game/game'
+import './game-page.pcss'
 function GamePage() {
-  return <div>Вот тут будет жить GamePage :)</div>
+  return (
+    <div className='game-page'>
+      <GameCanvas/>
+    </div>
+  )
 }
 
 export default GamePage
