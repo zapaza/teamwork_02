@@ -9,6 +9,7 @@
     "function-calc-no-unspaced-operator": true,
     "color-no-invalid-hex": true,
     "no-empty-source": null,
-    "custom-property-pattern": null
+    "custom-property-pattern": null,
+    "selector-no-vendor-prefix": null
   }
 }
