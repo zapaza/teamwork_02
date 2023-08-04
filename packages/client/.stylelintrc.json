@@ -10,6 +10,6 @@
     "color-no-invalid-hex": true,
     "no-empty-source": null,
     "custom-property-pattern": null,
-    "selector-pseudo-class-no-unknown": null
+    "selector-no-vendor-prefix": null
   }
 }
