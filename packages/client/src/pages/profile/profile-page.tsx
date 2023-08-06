@@ -1,43 +1,105 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { RootState } from '../../store/'
+import { InputsProps } from '../../components/ui/input/input'
+import Wrapper from '../../components/ui/wrapper/wrapper'
 import './profile-page.pcss'
+import profileLogo from '../../assets/profile_logo.svg'
+import { useEffect, useMemo, useState } from 'react'
+import ProfileField from '../../components/ui/profile-field/profile-field'
+import SubButton from '../../components/ui/sub-button/sub-button'
+import useModal from '../../hooks/use-modal'
+import { useSelector } from 'react-redux'
+import { RootState } from '../../store'
+import { RESOURCES_URL } from '../../core/api/api-client'
+import getProfileFieldsProps from '../../utils/get-profile-fields-props'
+import UpdateProfileModal from '../../components/modal/update-profile-modal/update-profile-modal'
+import UpdatePasswordModal from '../../components/modal/update-password-modal/update-password-modal'
+import UpdateAvatarModal from '../../components/modal/update-avatar-modal/update-avatar-modal'
 
-const ProfileDetail: React.FC<{
-  label: string
-  value: string | number | null
-}> = ({ label, value }) => (
-  <p className="profile__detail">
-    <strong>{label}:</strong> {value}
-  </p>
-)
+type ModalType = 'profile' | 'avatar' | 'password'
 
-const ProfilePage: React.FC = () => {
-  const {
-    id,
-    firstName,
-    secondName,
-    displayName,
-    login,
-    email,
-    phone,
-    avatar,
-  } = useSelector((state: RootState) => state.auth)
+//TODO после добавление API на получения результата игры, будет убрано отсюда
+const otherFields: InputsProps[] = [
+  {
+    name: 'high_score',
+    type: 'text',
+    label: 'High score',
+    placeholder: 'High score',
+    value: '56',
+  },
+]
+
+function ProfilePage() {
+  const { isOpen, toggle } = useModal()
+  const [modalType, setModalType] = useState<ModalType>()
+  const profileData = useSelector((state: RootState) => state.auth)
+  const [profileFields, setProfileFields] = useState(
+    getProfileFieldsProps(profileData)
+  )
+
+  useEffect(() => {
+    setProfileFields(getProfileFieldsProps(profileData))
+  }, [profileData])
+
+  const onClick = (currentModalType: ModalType) => {
+    setModalType(currentModalType)
+    toggle()
+  }
+
+  const renderedProfileFields = useMemo(() => {
+    return (
+      <>
+        {profileFields.concat(otherFields).map((field, index) => (
+          <ProfileField key={index} label={field.label} value={field.value} />
+        ))}
+      </>
+    )
+  }, [profileFields])
+
+  const renderedViewSettings = useMemo(() => {
+    return (
+      <>
+        <SubButton label="Edit profile" onClick={() => onClick('profile')} />
+        <SubButton
+          label="Change password"
+          onClick={() => onClick('password')}
+        />
+        <SubButton label="Change avatar" onClick={() => onClick('avatar')} />
+      </>
+    )
+  }, [])
 
   return (
-    <div className="profile">
-      <h1 className="profile__name">Profile</h1>
-      {avatar && (
-        <img className="profile__avatar" src={avatar} alt="User Avatar" />
-      )}
-      <ProfileDetail label="ID" value={id} />
-      <ProfileDetail label="First Name" value={firstName} />
-      <ProfileDetail label="Second Name" value={secondName} />
-      <ProfileDetail label="Display Name" value={displayName} />
-      <ProfileDetail label="Login" value={login} />
-      <ProfileDetail label="Email" value={email} />
-      <ProfileDetail label="Phone" value={phone} />
-    </div>
+    <main className="profile flex flex-jc-center">
+      <div className="profile__container flex gap-32">
+        <Wrapper>
+          <section className="profile__info flex gap-32">
+            <div className="profile__logo-container flex flex-ai-center flex-jc-center">
+              <img
+                className="profile__logo"
+                src={
+                  profileData.avatar
+                    ? `${RESOURCES_URL}${profileData.avatar}`
+                    : profileLogo
+                }
+                alt="Profile Logo"
+              />
+            </div>
+            <div className="profile__form-container flex flex-column gap-16">
+              {renderedProfileFields}
+            </div>
+          </section>
+        </Wrapper>
+        <section className="profile__settings">
+          <Wrapper>{renderedViewSettings}</Wrapper>
+        </section>
+      </div>
+      {modalType == 'profile' ? (
+        <UpdateProfileModal isOpen={isOpen} toggle={toggle} />
+      ) : modalType == 'password' ? (
+        <UpdatePasswordModal isOpen={isOpen} toggle={toggle} />
+      ) : modalType == 'avatar' ? (
+        <UpdateAvatarModal isOpen={isOpen} toggle={toggle} />
+      ) : null}
+    </main>
   )
 }
 

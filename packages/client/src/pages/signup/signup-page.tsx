@@ -3,7 +3,6 @@ import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
 import React from 'react'
 import { signUpSchema } from '../../core/validator'
-import { LoginData } from '../../types/auth'
 
 function Signup() {
   const inputs: Array<InputsProps> = [
@@ -64,10 +63,8 @@ function Signup() {
       children: 'Sign up',
     },
   ]
-  const handleSubmit = async (data: LoginData) => {
-    console.log(data)
-
-   // registration here
+  const handleSubmit = async (data: unknown) => {
+    // registration here
   }
 
   return (
@@ -78,6 +75,7 @@ function Signup() {
       buttons={buttons}
       validationSchema={signUpSchema}
       callback={handleSubmit}
+      type="json"
     />
   )
 }
