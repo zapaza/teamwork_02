@@ -1,10 +1,10 @@
-import React, { useEffect } from 'react'
+import React, { LegacyRef, useEffect } from 'react'
 import './game.pcss'
 import playCame from '../../core/game/game'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 
-const GameCanvas: React.FC = () => {
+const GameCanvas: React.FC = React.forwardRef((props, ref) => {
   const { id, login } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const GameCanvas: React.FC = () => {
   }
 
   return (
-    <div className="wrapper">
+    <div ref={ref as LegacyRef<HTMLDivElement>} className="wrapper">
       <div className="game">
         <canvas
           id="info"
@@ -74,6 +74,6 @@ const GameCanvas: React.FC = () => {
       </div>
     </div>
   )
-}
+});
 
 export default GameCanvas

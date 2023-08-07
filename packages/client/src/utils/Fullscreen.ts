@@ -9,22 +9,25 @@ interface FSHTMLElement extends HTMLElement {
   msRequestFullscreen?: () => Promise<void>
   webkitRequestFullscreen?: () => Promise<void>
 }
+
 export const useToggleFullscreen = (
   type: keyof HTMLElementEventMap,
   element: HTMLElement | null
 ) => {
   if (element) {
-    element.addEventListener(type, () => toggleFullscreen(element))
+    element.addEventListener(type, () => {
+      toggleFullscreen(element)
+    })
   }
 }
-export const toggleFullscreen = (element: Element) => {
+const toggleFullscreen = (element: Element) => {
   if (!document.fullscreenElement) {
     activateFullscreen(element as FSHTMLElement)
   } else {
     deactivateFullscreen()
   }
 }
-export const activateFullscreen = (element: FSHTMLElement) => {
+const activateFullscreen = (element: FSHTMLElement) => {
   if (element.requestFullscreen) {
     element.requestFullscreen().then(
       () => true,
@@ -42,8 +45,7 @@ export const activateFullscreen = (element: FSHTMLElement) => {
     )
   }
 }
-
-export const deactivateFullscreen = () => {
+const deactivateFullscreen = () => {
   const document: FSDocument = window.document
   if (document.exitFullscreen) {
     document.exitFullscreen().then(
