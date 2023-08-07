@@ -8,7 +8,7 @@ import {
   IVariables,
 } from './types'
 import Boundary from './models/boundary'
-import Pellet from './models/pallet'
+import Pellet from './models/pellet'
 import PowerUp from './models/powerUp'
 import Ghost from './models/ghost'
 import PacMan from './models/pacman'
@@ -20,7 +20,7 @@ import RetreatingTimer from './models/retreatingTimer'
  * Фабрика для создания различных объектов игры, таких как границы, точки, привидения, PacMan и таймеры.
  */
 export class GameFactory {
-  static PIPE_NAMES = {
+  static PIPE_NAMES:Record<string, string> = {
     '-': 'horizontal',
     '|': 'vertical',
     1: 'corner-one',
@@ -58,70 +58,34 @@ export class GameFactory {
       velocity: { x: -1 / 8, y: 0 },
     },
   ]
+
   /**
    * Создает все необходимые ресурсы для игры на основе предоставленных данных карты и переменных.
    * @param map Массив, представляющий игровую карту.
    * @param variables Объект с переменными игры.
-   * @param makeGhosts Функция для создания привидений (по умолчанию используется внутренняя реализация).
-   * @param makePacman Функция для создания PacMan'а (по умолчанию используется внутренняя реализация).
-   * @param makeCycleTimer Функция для создания таймера цикла (по умолчанию используется внутренняя реализация).
-   * @param makeScaredTimer Функция для создания таймера испуга (по умолчанию используется внутренняя реализация).
-   * @param makeRetreatingTimers Функция для создания таймеров ухода привидений (по умолчанию используется внутренняя реализация).
-   * @param makeBoundaries Функция для создания границ (по умолчанию используется внутренняя реализация).
-   * @param makePellets Функция для создания точек (по умолчанию используется внутренняя реализация).
-   * @param makePowerUps Функция для создания усилителей (по умолчанию используется внутренняя реализация).
-   * @param makePauseTextImage Функция для создания изображения с текстом паузы (по умолчанию используется внутренняя реализация).
    * @returns Объект, содержащий все необходимые ресурсы для игры.
    */
   static makeAssets(
-    map: string[][],
+    map: string[],
     variables: IVariables,
-    makeGhosts: (
-      variables: IVariables
-    ) => Record<string, IGhost> = GameFactory.makeGhosts,
-    makePacman: (variables: IVariables) => PacMan = GameFactory.makePacman,
-    // @ts-ignore
-    makeCycleTimer: (
-      ghosts: Record<string, IGhost>
-    ) => IGameTimer = GameFactory.makeCycleTimer,
-    // @ts-ignore
-    makeScaredTimer: (
-      ghosts: Record<string, IGhost>
-    ) => IGameTimer = GameFactory.makeScaredTimer,
-    makeRetreatingTimers: (
-      ghosts: Record<string, IGhost>
-    ) => IGameTimer[] = GameFactory.makeRetreatingTimers,
-    makeBoundaries: (
-      map: string[][],
-      variables: IVariables
-    ) => IBoundary[] = GameFactory.makeBoundaries,
-    makePellets: (
-      map: string[][],
-      variables: IVariables
-    ) => IPellet[] = GameFactory.makePellets,
-    makePowerUps: (
-      map: string[][],
-      variables: IVariables
-    ) => IPowerUp[] = GameFactory.makePowerUps,
-    makePauseTextImage: () => HTMLImageElement = GameFactory.makePauseTextImage
   ): IGameAssets {
-    const ghosts = makeGhosts(variables)
+    const ghosts = this.makeGhosts(variables)
     return {
       props: {
-        boundaries: makeBoundaries(map, variables),
-        pellets: makePellets(map, variables),
-        powerUps: makePowerUps(map, variables),
+        boundaries: this.makeBoundaries(map, variables),
+        pellets: this.makePellets(map, variables),
+        powerUps: this.makePowerUps(map, variables),
       },
       characters: {
         ghosts: ghosts,
-        pacman: makePacman(variables),
+        pacman: this.makePacman(variables),
       },
       timers: {
-        cycleTimer: makeCycleTimer(ghosts),
-        scaredTimer: makeScaredTimer(ghosts),
-        retreatingTimers: makeRetreatingTimers(ghosts),
+        cycleTimer: this.makeCycleTimer(ghosts) as IGameTimer,
+        scaredTimer: this.makeScaredTimer(ghosts) as unknown as IGameTimer,
+        retreatingTimers: this.makeRetreatingTimers(ghosts) as IGameTimer[],
       },
-      pauseTextImage: makePauseTextImage(),
+      pauseTextImage: this.makePauseTextImage(),
     }
   }
 
@@ -129,27 +93,20 @@ export class GameFactory {
    * Создает границы для игровой карты на основе предоставленных данных карты и переменных.
    * @param map Массив, представляющий игровую карту.
    * @param variables Объект с переменными игры.
-   * @param makeTunnelBoundaries Функция для создания туннельных границ (по умолчанию используется внутренняя реализация).
    * @returns Массив объектов границ.
    */
   static makeBoundaries(
-    map: string[][],
+    map: string[],
     variables: IVariables,
-    makeTunnelBoundaries: (
-      boundaries: IBoundary[],
-      variables: IVariables
-    ) => void = GameFactory.makeTunnelBoundaries
   ) {
     const boundaries: IBoundary[] = []
     map.forEach((row, i) => {
-      row.forEach((element, j) => {
+      row.split('').forEach((element, j) => {
         if (element !== ' ' && element !== '.' && element !== 'o') {
           const regularImage = new Image()
-          // @ts-ignore
-          regularImage.src = `./images/pipe-${GameFactory.PIPE_NAMES[element]}.png`
+          regularImage.src = `./images/pipe-${this.PIPE_NAMES[element]}.png`
           const whiteImage = new Image()
-          // @ts-ignore
-          whiteImage.src = `./images/pipe-${GameFactory.PIPE_NAMES[element]}-white.png`
+          whiteImage.src = `./images/pipe-${this.PIPE_NAMES[element]}-white.png`
           const boundary = new Boundary(
             {
               position: {
@@ -165,7 +122,7 @@ export class GameFactory {
         }
       })
     })
-    makeTunnelBoundaries(boundaries, variables)
+    this.makeTunnelBoundaries(boundaries, variables)
     return boundaries
   }
 
@@ -179,7 +136,7 @@ export class GameFactory {
     regularImage.src = './images/pipe-horizontal.png'
     const whiteImage = new Image()
     whiteImage.src = './images/pipe-horizontal-white.png'
-    GameFactory.TUNNEL_DATA.forEach(data => {
+    this.TUNNEL_DATA.forEach(data => {
       const tunnelBoundary = new Boundary(
         {
           position: {
@@ -201,17 +158,14 @@ export class GameFactory {
    * @param variables Объект с переменными игры.
    * @returns Массив объектов точек.
    */
-  static makePellets(map: string[][], variables: IVariables) {
+  static makePellets(map: string[], variables: IVariables) {
     const pellets: IPellet[] = []
     map.forEach((row, i) => {
-      row.forEach((element, j) => {
+      row.split('').forEach((element, j) => {
         if (element === '.') {
           const pellet = new Pellet(
             {
-              position: {
-                x: (variables.tileLength * (2 * j + 1)) / 2,
-                y: (variables.tileLength * (2 * i + 1)) / 2,
-              },
+              position: this.calculatePositionEatingElements(variables.tileLength, j, i),
             },
             variables.tileLength
           )
@@ -228,17 +182,14 @@ export class GameFactory {
    * @param variables Объект с переменными игры.
    * @returns Массив объектов усилителей.
    */
-  static makePowerUps(map: string[][], variables: IVariables) {
+  static makePowerUps(map: string[], variables: IVariables) {
     const powerUps: IPowerUp[] = []
     map.forEach((row, i) => {
-      row.forEach((element, j) => {
+      row.split('').forEach((element, j) => {
         if (element === 'o') {
           const powerUp = new PowerUp(
             {
-              position: {
-                x: (variables.tileLength * (2 * j + 1)) / 2,
-                y: (variables.tileLength * (2 * i + 1)) / 2,
-              },
+              position: this.calculatePositionEatingElements(variables.tileLength, j, i),
             },
             variables.tileLength
           )
@@ -256,7 +207,7 @@ export class GameFactory {
    */
   static makeGhosts(variables: IVariables) {
     const ghosts: Record<string, IGhost> = {}
-    GameFactory.GHOST_DATA.forEach(data => {
+    this.GHOST_DATA.forEach(data => {
       ghosts[data.color] = new Ghost(
         {
           position: {
@@ -284,8 +235,8 @@ export class GameFactory {
     return new PacMan(
       {
         position: {
-          x: (variables.tileLength * 29) / 2,
-          y: (variables.tileLength * 47) / 2,
+          x: (variables.tileLength * 28) / 2, // общее кол-во столбцов - 2 клетки по краям (30-2) чтобы более точно расположить пакмана по центру
+          y: (variables.tileLength * 47) / 2, // 24*2 - 1, 24 нужная строка на карте, умножаем на 2 и вычитаем 1 для более точного расположения посередине строки
         },
         velocity: {
           x: 0,
@@ -337,5 +288,15 @@ export class GameFactory {
     const image = new Image()
     image.src = './images/pause-text.png'
     return image
+  }
+
+  /**
+   * метод расчета поциций для палетов и поверапов
+   */
+  private static calculatePositionEatingElements(tileLength: number, j: number, i:number) {
+    return {
+      x: (tileLength * (2 * j + 1)) / 2,
+      y: (tileLength * (2 * i + 1)) / 2,
+    }
   }
 }

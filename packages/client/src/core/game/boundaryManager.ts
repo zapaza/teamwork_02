@@ -1,4 +1,4 @@
-import { IBoundary, ICoordinates, IGhost, IPacman, IVariables } from './types'
+import { IBoundary, ICoordinates, IPacman, IVariables, IWithPosition } from './types'
 
 /**
  * Класс `BoundaryManager` предоставляет функции для управления границами
@@ -13,7 +13,7 @@ export default class BoundaryManager {
    * @returns `true`, если происходит столкновение, и `false` в противном случае.
    */
   static hitBoundaryConditional(
-    character: IPacman | IGhost,
+    character: IWithPosition,
     boundary: IBoundary,
     { velocity }: { velocity: ICoordinates }
   ) {
@@ -35,7 +35,7 @@ export default class BoundaryManager {
    * @param character Объект персонажа (например, Pacman или призрак).
    * @param variables Объект с переменными и состояниями игры.
    */
-  static implementTunnel(character: IPacman | IGhost, variables: IVariables) {
+  static implementTunnel(character: IWithPosition, variables: IVariables) {
     if (character.position.x === (variables.tileLength * 57) / 2) {
       character.position.x = -variables.tileLength / 2
     } else if (character.position.x === -variables.tileLength / 2) {
@@ -47,15 +47,13 @@ export default class BoundaryManager {
    * Останавливает движение персонажа при столкновении с границей.
    * @param boundary Объект границы, с которой проверяется столкновение.
    * @param pacman Объект класса Pacman, персонаж, чье движение проверяется на столкновение.
-   * @param hitBoundaryConditional Функция для проверки столкновения с границей (по умолчанию `BoundaryManager.hitBoundaryConditional`).
    */
   static stopPacmanCollision(
     boundary: IBoundary,
     pacman: IPacman,
-    hitBoundaryConditional = BoundaryManager.hitBoundaryConditional
   ) {
     if (
-      hitBoundaryConditional(pacman, boundary, {
+      this.hitBoundaryConditional(pacman, boundary, {
         velocity: {
           x: pacman.velocity.x,
           y: pacman.velocity.y,

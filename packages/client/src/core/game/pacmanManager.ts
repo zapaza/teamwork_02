@@ -17,29 +17,27 @@ export default class PacmanManager {
    *
    * @param variables - Объект с переменными игрового состояния.
    * @param assets - Объект, содержащий различные игровые ресурсы.
-   * @param checkDirectionChange - Функция для проверки возможности изменения направления.
    */
   static changeDirection(
     variables: IVariables,
     assets: IGameAssets,
-    checkDirectionChange = PacmanManager.checkDirectionChange
   ) {
-    const pacman = assets['characters']['pacman']
-    const boundaries = assets['props']['boundaries']
+    const pacman = assets.characters.pacman
+    const boundaries = assets.props.boundaries
     if (variables.lastKeyPressed === 'up') {
-      checkDirectionChange(pacman, boundaries, {
+      this.checkDirectionChange(pacman, boundaries, {
         velocity: { x: 0, y: -pacman.speed },
       })
     } else if (variables.lastKeyPressed === 'down') {
-      checkDirectionChange(pacman, boundaries, {
+      this.checkDirectionChange(pacman, boundaries, {
         velocity: { x: 0, y: pacman.speed },
       })
     } else if (variables.lastKeyPressed === 'right') {
-      checkDirectionChange(pacman, boundaries, {
+      this.checkDirectionChange(pacman, boundaries, {
         velocity: { x: pacman.speed, y: 0 },
       })
     } else if (variables.lastKeyPressed === 'left') {
-      checkDirectionChange(pacman, boundaries, {
+      this.checkDirectionChange(pacman, boundaries, {
         velocity: { x: -pacman.speed, y: 0 },
       })
     }
@@ -81,8 +79,8 @@ export default class PacmanManager {
    */
   static checkIfPacmanIsEating(assets: IGameAssets) {
     let count = 0
-    const pacman = assets['characters']['pacman']
-    assets['props']['pellets'].forEach(pellet => {
+    const pacman = assets.characters.pacman
+    assets.props.pellets.forEach(pellet => {
       if (
         pellet.position.y - pellet.radius <=
           pacman.position.y + pacman.radius * 2 + pacman.velocity.y * 2 &&

@@ -9,9 +9,9 @@ export interface IVariables {
   killCount: number
   start: boolean
   animationId: null | number
-  directionEventListener: ((event: Event) => void) | null
-  visibilityEventListener: ((event: Event) => void) | null
-  pauseEventListener: ((event: Event) => void) | null
+  directionEventListener: ((event: KeyboardEvent) => void) | null
+  visibilityEventListener: ((event: KeyboardEvent) => void) | null
+  pauseEventListener: ((event: KeyboardEvent) => void) | null
   levelUpCount: number
   frameLifetime: number
   startTime: number
@@ -20,6 +20,11 @@ export interface IVariables {
 export interface ICoordinates {
   x: number
   y: number
+}
+
+export interface IWithPosition {
+  position: ICoordinates
+  radius: number
 }
 
 export interface IGameAssets {
@@ -37,6 +42,7 @@ export interface IGameAssets {
   pauseTextImage: any
 }
 
+
 export interface IGameTimers {
   scaredTimer: IGameTimer
   cycleTimer: IGameTimer
@@ -52,10 +58,8 @@ export interface IGameTimer {
   resume(): void
 }
 
-export interface IPacman {
-  position: ICoordinates
+export interface IPacman extends IWithPosition {
   rotation: number
-  radius: number
   speed: number
   isEating: boolean
   isLevellingUp: boolean
@@ -76,26 +80,23 @@ export interface IBoundary {
   draw(ctx: CanvasRenderingContext2D): void
 }
 
-export interface IPellet {
+export interface IEatingElements {
   position: ICoordinates
   radius: number
   hasBeenEaten: boolean
+  changeEatenState(): void
+}
+
+export interface IPellet extends IEatingElements {
   draw(ctx: CanvasRenderingContext2D): void
-  changeEatenState(): void
 }
 
-export interface IPowerUp {
-  position: ICoordinates
-  radius: number
-  hasBeenEaten: boolean
+export interface IPowerUp extends IEatingElements {
   update(ctx: CanvasRenderingContext2D): void
-  changeEatenState(): void
 }
 
-export interface IGhost {
-  position: ICoordinates
+export interface IGhost extends IWithPosition{
   color: string
-  radius: number
   isScared: boolean
   isRetreating: boolean
   speed: number

@@ -37,13 +37,13 @@ export default class PelletManager {
     ctx: CanvasRenderingContext2D
   ) {
     let eatenPellets = 0
-    assets['props']['pellets'].forEach(pellet => {
+    assets.props.pellets.forEach(pellet => {
       if (pellet.hasBeenEaten) {
         eatenPellets++
       }
-      if (eatenPellets === assets['props']['pellets'].length) {
+      if (eatenPellets === assets.props.pellets.length) {
         cancelAnimationFrame(variables.animationId as number)
-        assets['characters']['pacman'].isLevellingUp = true
+        assets.characters.pacman.isLevellingUp = true
         Graphics.runLevelUpAnimation(variables, assets, ctx)
       }
     })
@@ -53,34 +53,32 @@ export default class PelletManager {
    * Сбрасывает состояние игры после перехода на следующий уровень
    * @param assets Объект, содержащий все игровые ресурсы и персонажей.
    * @param variables Объект с переменными и состояниями игры.
-   * @param callback Функция обратного вызова для продолжения игры после сброса.
    */
   static resetAfterLevelUp(
     assets: IGameAssets,
     variables: IVariables,
-    callback = playGame
   ) {
-    assets['characters']['pacman'].reset()
+    assets.characters.pacman.reset()
     variables.lastKeyPressed = ''
     variables.levelUpCount = 0
-    assets['timers']['cycleTimer'].reset()
-    assets['timers']['scaredTimer'].reset()
-    if ((assets['timers']['scaredTimer'].duration as number) > 0) {
-      ;(assets['timers']['scaredTimer'].duration as number) -= 500
+    assets.timers.cycleTimer.reset()
+    assets.timers.scaredTimer.reset()
+    if ((assets.timers.scaredTimer.duration as number) > 0) {
+      ;(assets.timers.scaredTimer.duration as number) -= 500
     }
 
-    Object.values(assets['characters']['ghosts']).forEach(ghost => {
+    Object.values(assets.characters.ghosts).forEach(ghost => {
       ghost.reset()
     })
-    assets['props']['pellets'].forEach(pellet => {
+    assets.props.pellets.forEach(pellet => {
       pellet.changeEatenState()
     })
-    assets['props']['powerUps'].forEach(powerUp => {
+    assets.props.powerUps.forEach(powerUp => {
       if (powerUp.hasBeenEaten) {
         powerUp.changeEatenState()
       }
     })
-    assets['timers']['cycleTimer'].start()
-    callback(variables.player)
+    assets.timers.cycleTimer.start()
+    playGame(variables.player)
   }
 }

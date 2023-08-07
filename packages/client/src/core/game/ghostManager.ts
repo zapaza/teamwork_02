@@ -116,6 +116,7 @@ export default class GhostManager {
     } else {
       GhostMovement.moveRandomly(ghost, collisions)
     }
+
     GhostMovement.emptyPrevCollisions(ghost)
   }
 
@@ -127,19 +128,15 @@ export default class GhostManager {
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
    * @param variables Объект с переменными и состояниями игры.
    * @param ctx Контекст канваса для отрисовки столкновения.
-   * @param collisionConditional Метод проверки, происходит ли столкновение между призраком и Pacman.
-   * @param dealWithCollision Метод обрабатки столкновение призрака с Pacman
    */
   static checkPacmanGhostCollision(
     ghost: IGhost,
     assets: IGameAssets,
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    collisionConditional = GhostCollision.collisionConditional,
-    dealWithCollision = GhostCollision.dealWithCollision
   ) {
-    if (collisionConditional(ghost, assets['characters']['pacman'])) {
-      dealWithCollision(ghost, assets, variables, ctx)
+    if (GhostCollision.collisionConditional(ghost, assets.characters.pacman)) {
+      GhostCollision.dealWithCollision(ghost, assets, variables, ctx)
     }
   }
 }

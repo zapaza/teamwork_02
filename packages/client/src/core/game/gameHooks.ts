@@ -2,6 +2,8 @@ import EventListener from './eventListeners'
 import Physics from './physics'
 import Graphics from './graphics'
 import { IGameAssets, IPacman, IVariables } from './types'
+import playGame from './game'
+import Animator from './animations'
 
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
@@ -21,7 +23,7 @@ export default class GameHooks {
     ctx: CanvasRenderingContext2D
   ) {
     variables.player = player
-    assets['timers']['cycleTimer'].start()
+    assets.timers.cycleTimer.start()
     EventListener.addDirectionDetection(variables)
     EventListener.addVisibilityDetection(variables, assets)
     EventListener.addPauseDetection(variables, assets, ctx)
@@ -40,11 +42,11 @@ export default class GameHooks {
     ctx: CanvasRenderingContext2D,
     variables: IVariables
   ) {
-    Physics.implementBoundaries(assets, ctx)
-    Physics.implementPellets(assets, ctx, variables)
-    Physics.implementPowerUps(assets, ctx, variables)
-    Physics.implementGhosts(assets, ctx, variables)
-    Physics.implementPacman(variables, assets, ctx)
+    Physics.handleBoundariesAndCollisionsWithPacman(assets, ctx)
+    Physics.handlePelletsAndLevelUpCondition(assets, ctx, variables)
+    Physics.handlePowerUpsAndEating(assets, ctx, variables)
+    Physics.handleGhostsAndCollisionsWithPacman(assets, ctx, variables)
+    Physics.handlePacmanMovementAndEating(variables, assets, ctx)
   }
 
   /**
@@ -64,5 +66,110 @@ export default class GameHooks {
       Graphics.displayLevel(ctx, variables)
       Graphics.displayLives(ctx, pacman)
     }
+  }
+
+  /**
+   * Проверяет количество жизней Pacman после столкновения с призраком.
+   * Если у Pacman остались жизни, происходит сброс после смерти.
+   * В противном случае игра завершается.
+   * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
+   * @param variables Объект с переменными и состояниями игры.
+   * @param ctx Контекст холста для отрисовки игровых объектов.
+   */
+  static checkPacmanLives(
+    assets: IGameAssets,
+    variables: IVariables,
+    ctx: CanvasRenderingContext2D,
+  ) {
+    if (assets.characters.pacman.lives < 1) {
+      this.endGame(variables, assets, ctx)
+    } else {
+      assets.characters.pacman.lives--
+      this.resetAfterDeath(assets, variables)
+    }
+  }
+
+  /**
+   * Завершает игру после смерти Pacman (когда у Pacman заканчиваются жизни).
+   * Сохраняет результаты игры в лидерборд (если игра была совершена зарегистрированным пользователем)
+   * и сбрасывает состояние игры для начала новой игры.
+   * @param variables Объект с переменными и состояниями игры.
+   * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
+   * @param ctx Контекст холста для отрисовки игровых объектов.
+   * завершения игры (по умолчанию `GhostCollision.resetAfterGameOver`).
+   */
+  static async endGame(
+    variables: IVariables,
+    assets: IGameAssets,
+    ctx: CanvasRenderingContext2D,
+  ) {
+    cancelAnimationFrame(variables.animationId as number)
+    if (variables.player) {
+      await this.saveScore(variables, '')
+      // todo после запроса добавить переход на страницу лидборда
+    }
+    // this.resetAfterGameOver(assets, variables)
+    EventListener.removeAllGameEventsListeners(variables);
+    Animator.displayGameOver(ctx)
+  }
+
+  /**
+   * Сохраняет результаты игры в лидерборд.
+   * @param variables Объект с переменными и состояниями игры.
+   * @param getBackendUrl Функция для получения URL бэкенда (по умолчанию `GhostCollision.getBackendUrl`).
+   * @returns Промис с результатом сохранения результатов игры (успешно или с ошибкой).
+   */
+  static async saveScore(variables: IVariables, getBackendUrl: string) {
+    // TODO сделать роут для отправки инфы на бек? что бы выводить потом его в лидерборд
+  }
+
+  /**
+   * Сбрасывает состояние игры после завершения игры (когда у Pacman заканчиваются жизни).
+   * Подготавливает игру для начала новой игры.
+   * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
+   * @param variables Объект с переменными и состояниями игры.
+   */
+  static resetAfterGameOver(assets: IGameAssets, variables: IVariables) {
+    assets.props.pellets.forEach(pellet => {
+      if (pellet.hasBeenEaten) {
+        pellet.changeEatenState()
+      }
+    })
+    assets.props.powerUps.forEach(powerUp => {
+      if (powerUp.hasBeenEaten) {
+        powerUp.changeEatenState()
+      }
+    })
+    assets.timers.cycleTimer.reset()
+    assets.timers.scaredTimer.reset()
+    assets.timers.scaredTimer.duration = 7000
+    Object.values(assets.characters.ghosts).forEach(ghost => {
+      ghost.reset()
+    })
+    assets.characters.pacman.reset()
+    assets.characters.pacman.lives = 2
+    variables.lastKeyPressed = ''
+    variables.level = 1
+  }
+
+  /**
+   * Сбрасывает состояние игры после смерти Pacman (когда Pacman сталкивается с призраком).
+   * Подготавливает игру для продолжения после смерти Pacman.
+   * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
+   * @param variables Объект с переменными и состояниями игры.
+   */
+  static resetAfterDeath(
+    assets: IGameAssets,
+    variables: IVariables,
+  ) {
+    assets.characters.pacman.reset()
+    variables.lastKeyPressed = ''
+    assets.timers.cycleTimer.reset()
+    assets.timers.scaredTimer.reset()
+    Object.values(assets.characters.ghosts).forEach(ghost => {
+      ghost.reset()
+    })
+    assets.timers.cycleTimer.start()
+    playGame(variables.player)
   }
 }
