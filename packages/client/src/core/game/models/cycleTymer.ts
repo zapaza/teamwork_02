@@ -24,19 +24,18 @@ export default class CycleTimer extends BaseTimer {
     }
   }
 
-
   resume() {
     super.resumeTimer(() => this.switchChaseScatterState(), Date.now())
   }
 
   private switchChaseScatterState() {
     this.ghosts.forEach(ghost => {
-      ghost.changeChasingState();
-    });
-    this.carryOnCycle();
+      ghost.changeChasingState()
+    })
+    this.carryOnCycle()
   }
 
   private carryOnCycle() {
-    this.start();
+    this.start()
   }
 }
