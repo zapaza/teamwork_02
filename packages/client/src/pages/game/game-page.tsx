@@ -2,7 +2,7 @@ import { useToggleFullscreen } from '../../utils/Fullscreen'
 import { useEffect, useRef } from 'react'
 
 function GamePage() {
-  const gameElement = useRef(null);
+  const gameElement = useRef(null)
 
   useEffect(() => {
     useToggleFullscreen('dblclick', gameElement.current)
