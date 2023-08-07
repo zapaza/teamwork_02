@@ -1,16 +1,18 @@
 import GameCanvas from '../../components/game/game'
 import './game-page.pcss'
 import { useToggleFullscreen } from '../../utils/Fullscreen'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 function GamePage() {
+  const gameElement = useRef(null)
+
   useEffect(() => {
-    useToggleFullscreen('dblclick', '.game')
+    useToggleFullscreen('dblclick', gameElement.current)
   })
 
   return (
     <div className='game-page'>
-      <GameCanvas/>
+      <GameCanvas ref={gameElement}/>
     </div>
   )
 }
