@@ -10,8 +10,8 @@ jest.mock('react-router-dom', () => ({
 
 describe('Topic component', () => {
   test('component render', () => {
-    const login = render(<ForumTopicPage />)
+    const topic = render(<ForumTopicPage />)
 
-    expect(login).toMatchSnapshot()
+    expect(topic).toMatchSnapshot()
   })
 })
