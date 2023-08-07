@@ -1,4 +1,10 @@
-import { IBoundary, ICoordinates, IPacman, IVariables, IWithPosition } from './types'
+import {
+  IBoundary,
+  ICoordinates,
+  IPacman,
+  IVariables,
+  IWithPosition,
+} from './types'
 
 /**
  * Класс `BoundaryManager` предоставляет функции для управления границами
@@ -48,10 +54,7 @@ export default class BoundaryManager {
    * @param boundary Объект границы, с которой проверяется столкновение.
    * @param pacman Объект класса Pacman, персонаж, чье движение проверяется на столкновение.
    */
-  static stopPacmanCollision(
-    boundary: IBoundary,
-    pacman: IPacman,
-  ) {
+  static stopPacmanCollision(boundary: IBoundary, pacman: IPacman) {
     if (
       this.hitBoundaryConditional(pacman, boundary, {
         velocity: {

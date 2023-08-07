@@ -79,7 +79,7 @@ export default class GameHooks {
   static checkPacmanLives(
     assets: IGameAssets,
     variables: IVariables,
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D
   ) {
     if (assets.characters.pacman.lives < 1) {
       this.endGame(variables, assets, ctx)
@@ -101,7 +101,7 @@ export default class GameHooks {
   static async endGame(
     variables: IVariables,
     assets: IGameAssets,
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D
   ) {
     cancelAnimationFrame(variables.animationId as number)
     if (variables.player) {
@@ -109,7 +109,7 @@ export default class GameHooks {
       // todo после запроса добавить переход на страницу лидборда
     }
     // this.resetAfterGameOver(assets, variables)
-    EventListener.removeAllGameEventsListeners(variables);
+    EventListener.removeAllGameEventsListeners(variables)
     Animator.displayGameOver(ctx)
   }
 
@@ -158,10 +158,7 @@ export default class GameHooks {
    * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
    * @param variables Объект с переменными и состояниями игры.
    */
-  static resetAfterDeath(
-    assets: IGameAssets,
-    variables: IVariables,
-  ) {
+  static resetAfterDeath(assets: IGameAssets, variables: IVariables) {
     assets.characters.pacman.reset()
     variables.lastKeyPressed = ''
     assets.timers.cycleTimer.reset()

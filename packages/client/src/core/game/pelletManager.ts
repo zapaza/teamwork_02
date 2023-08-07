@@ -54,10 +54,7 @@ export default class PelletManager {
    * @param assets Объект, содержащий все игровые ресурсы и персонажей.
    * @param variables Объект с переменными и состояниями игры.
    */
-  static resetAfterLevelUp(
-    assets: IGameAssets,
-    variables: IVariables,
-  ) {
+  static resetAfterLevelUp(assets: IGameAssets, variables: IVariables) {
     assets.characters.pacman.reset()
     variables.lastKeyPressed = ''
     variables.levelUpCount = 0

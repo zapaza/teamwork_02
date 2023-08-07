@@ -13,14 +13,14 @@ export default class RetreatingTimer extends BaseTimer {
     super.startTimer(
       3000,
       () => {
-        this.ghost.changeRetreatingState();
-        this.isRunning = false;
+        this.ghost.changeRetreatingState()
+        this.isRunning = false
       },
       dateNow
-    );
+    )
   }
   pause() {
-    this.pauseTimer( Date.now())
+    this.pauseTimer(Date.now())
   }
 
   resume() {
@@ -28,6 +28,6 @@ export default class RetreatingTimer extends BaseTimer {
   }
 
   reset() {
-    this.resetTimer();
+    this.resetTimer()
   }
 }

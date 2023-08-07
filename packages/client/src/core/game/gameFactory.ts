@@ -20,7 +20,7 @@ import RetreatingTimer from './models/retreatingTimer'
  * Фабрика для создания различных объектов игры, таких как границы, точки, привидения, PacMan и таймеры.
  */
 export class GameFactory {
-  static PIPE_NAMES:Record<string, string> = {
+  static PIPE_NAMES: Record<string, string> = {
     '-': 'horizontal',
     '|': 'vertical',
     1: 'corner-one',
@@ -65,10 +65,7 @@ export class GameFactory {
    * @param variables Объект с переменными игры.
    * @returns Объект, содержащий все необходимые ресурсы для игры.
    */
-  static makeAssets(
-    map: string[],
-    variables: IVariables,
-  ): IGameAssets {
+  static makeAssets(map: string[], variables: IVariables): IGameAssets {
     const ghosts = this.makeGhosts(variables)
     return {
       props: {
@@ -95,10 +92,7 @@ export class GameFactory {
    * @param variables Объект с переменными игры.
    * @returns Массив объектов границ.
    */
-  static makeBoundaries(
-    map: string[],
-    variables: IVariables,
-  ) {
+  static makeBoundaries(map: string[], variables: IVariables) {
     const boundaries: IBoundary[] = []
     map.forEach((row, i) => {
       row.split('').forEach((element, j) => {
@@ -165,7 +159,11 @@ export class GameFactory {
         if (element === '.') {
           const pellet = new Pellet(
             {
-              position: this.calculatePositionEatingElements(variables.tileLength, j, i),
+              position: this.calculatePositionEatingElements(
+                variables.tileLength,
+                j,
+                i
+              ),
             },
             variables.tileLength
           )
@@ -189,7 +187,11 @@ export class GameFactory {
         if (element === 'o') {
           const powerUp = new PowerUp(
             {
-              position: this.calculatePositionEatingElements(variables.tileLength, j, i),
+              position: this.calculatePositionEatingElements(
+                variables.tileLength,
+                j,
+                i
+              ),
             },
             variables.tileLength
           )
@@ -293,7 +295,11 @@ export class GameFactory {
   /**
    * метод расчета поциций для палетов и поверапов
    */
-  private static calculatePositionEatingElements(tileLength: number, j: number, i:number) {
+  private static calculatePositionEatingElements(
+    tileLength: number,
+    j: number,
+    i: number
+  ) {
     return {
       x: (tileLength * (2 * j + 1)) / 2,
       y: (tileLength * (2 * i + 1)) / 2,

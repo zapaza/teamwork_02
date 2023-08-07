@@ -4,24 +4,22 @@ import {
   IGhost,
   IPacman,
   IPathway,
-  IVariables
+  IVariables,
 } from './types'
 
 /**
  * Класс `GhostMovement` предоставляет функции для управления движением призраков в игре.
  */
 export default class GhostMovement {
-  private static canvasWidth= 896;
-  private static canvasHeight= 992;
+  private static canvasWidth = 896
+  private static canvasHeight = 992
 
   /**
    * Корректирует позицию призрака в зависимости от его
    * текущего состояния (отступление или обычное движение).
    * @param ghost Объект призрака.
    */
-  static adjustPosition(
-    ghost: IGhost
-  ) {
+  static adjustPosition(ghost: IGhost) {
     if (ghost.isRetreating) {
       this.shiftBeforeRetreating(ghost)
     } else {
@@ -33,9 +31,7 @@ export default class GhostMovement {
    * Корректирует позицию призрака перед отступлением.
    * @param ghost Объект призрака.
    */
-  static shiftBeforeRetreating(
-    ghost: IGhost
-  ) {
+  static shiftBeforeRetreating(ghost: IGhost) {
     if (ghost.velocity.x > 0) {
       this.shiftLeft(ghost)
     } else if (ghost.velocity.x < 0) {
@@ -189,22 +185,22 @@ export default class GhostMovement {
     if (pathway.direction === 'up') {
       pathway.position = {
         x: ghost.position.x,
-        y: ghost.position.y - variables.tileLength / 8
+        y: ghost.position.y - variables.tileLength / 8,
       }
     } else if (pathway.direction === 'left') {
       pathway.position = {
         x: ghost.position.x - variables.tileLength / 8,
-        y: ghost.position.y
+        y: ghost.position.y,
       }
     } else if (pathway.direction === 'right') {
       pathway.position = {
         x: ghost.position.x + variables.tileLength / 8,
-        y: ghost.position.y
+        y: ghost.position.y,
       }
     } else if (pathway.direction === 'down') {
       pathway.position = {
         x: ghost.position.x,
-        y: ghost.position.y + variables.tileLength / 8
+        y: ghost.position.y + variables.tileLength / 8,
       }
     }
   }
@@ -267,7 +263,7 @@ export default class GhostMovement {
   ): ICoordinates {
     return {
       x: pacman.position.x - pathway.position!.x,
-      y: pacman.position.y - pathway.position!.y
+      y: pacman.position.y - pathway.position!.y,
     }
   }
 
@@ -298,7 +294,7 @@ export default class GhostMovement {
 
     return {
       x: x,
-      y: y
+      y: y,
     }
   }
 
@@ -331,7 +327,7 @@ export default class GhostMovement {
     }
     return {
       x: x - pathway.position!.x,
-      y: y - pathway.position!.y
+      y: y - pathway.position!.y,
     }
   }
 
@@ -341,10 +337,7 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    * @param pathway Объект пути движения призрака.
    */
-  static scatter(
-    ghost: IGhost,
-    pathway: IPathway
-  ) {
+  static scatter(ghost: IGhost, pathway: IPathway) {
     if (ghost.color === 'red') {
       return this.findRedScatterPath(pathway)
     } else if (ghost.color === 'pink') {
@@ -364,7 +357,7 @@ export default class GhostMovement {
   static findRedScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: this.canvasWidth - pathway.position!.x,
-      y: -pathway.position!.y
+      y: -pathway.position!.y,
     }
   }
 
@@ -376,7 +369,7 @@ export default class GhostMovement {
   static findPinkScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: -pathway.position!.x,
-      y: -pathway.position!.y
+      y: -pathway.position!.y,
     }
   }
 
@@ -389,7 +382,7 @@ export default class GhostMovement {
   static findCyanScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: this.canvasWidth - pathway.position!.x,
-      y: this.canvasHeight - pathway.position!.y
+      y: this.canvasHeight - pathway.position!.y,
     }
   }
 
@@ -401,7 +394,7 @@ export default class GhostMovement {
   static findOrangeScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: -pathway.position!.x,
-      y: this.canvasHeight - pathway.position!.y
+      y: this.canvasHeight - pathway.position!.y,
     }
   }
 
@@ -456,10 +449,7 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    * @param collisions Массив со списком направлений, которые призрак не может выбрать из-за препятствий.
    */
-  static moveRandomly(
-    ghost: IGhost,
-    collisions: string[]
-  ) {
+  static moveRandomly(ghost: IGhost, collisions: string[]) {
     if (ghost.velocity.x > 0) ghost.prevCollisions.push('right')
     else if (ghost.velocity.x < 0) ghost.prevCollisions.push('left')
     else if (ghost.velocity.y > 0) ghost.prevCollisions.push('down')

@@ -78,7 +78,7 @@ export default class EventListener {
     )
   }
 
-   static removeAllGameEventsListeners(variables: IVariables){
+  static removeAllGameEventsListeners(variables: IVariables) {
     window.removeEventListener(
       'keydown',
       variables.directionEventListener as (event: Event) => void

@@ -112,7 +112,7 @@ export default class Graphics {
   static runDeathAnimation(
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    assets: IGameAssets,
+    assets: IGameAssets
   ) {
     variables.animationId = requestAnimationFrame(() =>
       this.runDeathAnimation(variables, ctx, assets)

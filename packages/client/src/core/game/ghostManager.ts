@@ -133,7 +133,7 @@ export default class GhostManager {
     ghost: IGhost,
     assets: IGameAssets,
     variables: IVariables,
-    ctx: CanvasRenderingContext2D,
+    ctx: CanvasRenderingContext2D
   ) {
     if (GhostCollision.collisionConditional(ghost, assets.characters.pacman)) {
       GhostCollision.dealWithCollision(ghost, assets, variables, ctx)

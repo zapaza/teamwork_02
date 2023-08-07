@@ -13,7 +13,7 @@ export default class Animator {
    */
   static loadPauseOverlay(
     ctx: CanvasRenderingContext2D,
-    pauseTextImage: HTMLImageElement,
+    pauseTextImage: HTMLImageElement
   ) {
     this.loadTint(ctx)
     this.loadPauseText(ctx, pauseTextImage)
@@ -51,7 +51,7 @@ export default class Animator {
   static resumeAnimation(
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    assets: IGameAssets,
+    assets: IGameAssets
   ) {
     if (assets.characters.pacman.isShrinking) {
       Graphics.runDeathAnimation(variables, ctx, assets)
@@ -106,9 +106,7 @@ export default class Animator {
    * или при отправки результатов в лидборд
    * @param ctx Контекст канваса для отрисовки сообщения.
    */
-  static displayPleaseWait(
-    ctx: CanvasRenderingContext2D,
-  ) {
+  static displayPleaseWait(ctx: CanvasRenderingContext2D) {
     this.loadTint(ctx)
     ctx.globalAlpha = 1
     ctx.font = '100px Inter'
@@ -122,9 +120,7 @@ export default class Animator {
    * Отображает сообщение "GAME OVER".
    * @param ctx Контекст канваса для отрисовки сообщения.
    */
-  static displayGameOver(
-    ctx: CanvasRenderingContext2D,
-  ) {
+  static displayGameOver(ctx: CanvasRenderingContext2D) {
     this.loadTint(ctx)
     ctx.globalAlpha = 1
     ctx.font = '100px Inter'

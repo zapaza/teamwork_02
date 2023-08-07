@@ -42,7 +42,6 @@ export interface IGameAssets {
   pauseTextImage: any
 }
 
-
 export interface IGameTimers {
   scaredTimer: IGameTimer
   cycleTimer: IGameTimer
@@ -95,7 +94,7 @@ export interface IPowerUp extends IEatingElements {
   update(ctx: CanvasRenderingContext2D): void
 }
 
-export interface IGhost extends IWithPosition{
+export interface IGhost extends IWithPosition {
   color: string
   isScared: boolean
   isRetreating: boolean

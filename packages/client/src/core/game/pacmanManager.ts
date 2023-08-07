@@ -18,10 +18,7 @@ export default class PacmanManager {
    * @param variables - Объект с переменными игрового состояния.
    * @param assets - Объект, содержащий различные игровые ресурсы.
    */
-  static changeDirection(
-    variables: IVariables,
-    assets: IGameAssets,
-  ) {
+  static changeDirection(variables: IVariables, assets: IGameAssets) {
     const pacman = assets.characters.pacman
     const boundaries = assets.props.boundaries
     if (variables.lastKeyPressed === 'up') {

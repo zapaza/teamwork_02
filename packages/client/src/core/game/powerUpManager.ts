@@ -13,7 +13,7 @@ export default class PowerUpManager {
   static eatPowerUp(
     powerUp: IPowerUp,
     assets: IGameAssets,
-    variables: IVariables,
+    variables: IVariables
   ) {
     if (
       powerUp.position.x === assets.characters.pacman.position.x &&

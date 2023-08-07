@@ -17,14 +17,14 @@ export default class ScaredTimer extends BaseTimer {
       () => {
         this.ghosts.forEach(ghost => {
           if (ghost.isScared) {
-            ghost.changeScaredState();
+            ghost.changeScaredState()
           }
-        });
-        cycleTimer.resume();
-        this.isRunning = false;
+        })
+        cycleTimer.resume()
+        this.isRunning = false
       },
       dateNow
-    );
+    )
   }
 
   pause() {
@@ -33,15 +33,15 @@ export default class ScaredTimer extends BaseTimer {
 
   resume(cycleTimer: IGameTimer) {
     const callback = () => {
-      this.ghosts.forEach((ghost) => {
-        if (ghost.isScared) ghost.changeScaredState();
-      });
-      cycleTimer.resume();
+      this.ghosts.forEach(ghost => {
+        if (ghost.isScared) ghost.changeScaredState()
+      })
+      cycleTimer.resume()
     }
-    this.resumeTimer(callback,  Date.now())
+    this.resumeTimer(callback, Date.now())
   }
 
   reset() {
-    this.resetTimer();
+    this.resetTimer()
   }
 }
