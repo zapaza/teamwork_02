@@ -11,7 +11,7 @@ function GamePage() {
   })
 
   return (
-    <div className='game-page'>
+    <div className="game-page">
       <GameCanvas ref={gameElement}/>
     </div>
   )

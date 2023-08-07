@@ -53,33 +53,37 @@ export default class GhostManager {
    * @param collisions Массив со списком направлений, которые призрак не может выбрать из-за препятствий.
    * @param ghost Объект призрака
    */
-  static updateCollisions(boundaries: IBoundary[], collisions: string[], ghost: IGhost) {
-    boundaries.forEach((boundary) => {
+  static updateCollisions(
+    boundaries: IBoundary[],
+    collisions: string[],
+    ghost: IGhost
+  ) {
+    boundaries.forEach(boundary => {
       if (
         !collisions.includes('down') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: 0, y: ghost.speed }
+          velocity: { x: 0, y: ghost.speed },
         })
       ) {
         collisions.push('down')
       } else if (
         !collisions.includes('right') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: ghost.speed, y: 0 }
+          velocity: { x: ghost.speed, y: 0 },
         })
       ) {
         collisions.push('right')
       } else if (
         !collisions.includes('left') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: -ghost.speed, y: 0 }
+          velocity: { x: -ghost.speed, y: 0 },
         })
       ) {
         collisions.push('left')
       } else if (
         !collisions.includes('up') &&
         BoundaryManager.hitBoundaryConditional(ghost, boundary, {
-          velocity: { x: 0, y: -ghost.speed }
+          velocity: { x: 0, y: -ghost.speed },
         })
       ) {
         collisions.push('up')
@@ -89,7 +93,6 @@ export default class GhostManager {
       ghost.prevCollisions = collisions
     }
   }
-
 
   /**
    * Этот метод выбирает направление движения призрака на основе его текущего состояния
@@ -106,12 +109,14 @@ export default class GhostManager {
     ghost: IGhost,
     assets: IGameAssets,
     collisions: string[],
-    variables: IVariables) {
+    variables: IVariables
+  ) {
     if (!ghost.isScared && !ghost.isRetreating) {
       GhostMovement.chaseAndScatter(ghost, assets, collisions, variables)
     } else {
       GhostMovement.moveRandomly(ghost, collisions)
     }
+
     GhostMovement.emptyPrevCollisions(ghost)
   }
 
@@ -123,19 +128,15 @@ export default class GhostManager {
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
    * @param variables Объект с переменными и состояниями игры.
    * @param ctx Контекст канваса для отрисовки столкновения.
-   * @param collisionConditional Метод проверки, происходит ли столкновение между призраком и Pacman.
-   * @param dealWithCollision Метод обрабатки столкновение призрака с Pacman
    */
   static checkPacmanGhostCollision(
     ghost: IGhost,
     assets: IGameAssets,
     variables: IVariables,
-    ctx: CanvasRenderingContext2D,
-    collisionConditional = GhostCollision.collisionConditional,
-    dealWithCollision = GhostCollision.dealWithCollision
+    ctx: CanvasRenderingContext2D
   ) {
-    if (collisionConditional(ghost, assets['characters']['pacman'])) {
-      dealWithCollision(ghost, assets, variables, ctx)
+    if (GhostCollision.collisionConditional(ghost, assets.characters.pacman)) {
+      GhostCollision.dealWithCollision(ghost, assets, variables, ctx)
     }
   }
 }

@@ -1,52 +1,46 @@
-import { ICoordinates, IGameAssets, IGhost, IPacman, IPathway, IVariables } from './types'
+import {
+  ICoordinates,
+  IGameAssets,
+  IGhost,
+  IPacman,
+  IPathway,
+  IVariables,
+} from './types'
 
 /**
  * Класс `GhostMovement` предоставляет функции для управления движением призраков в игре.
  */
 export default class GhostMovement {
+  private static canvasWidth = 896
+  private static canvasHeight = 992
+
   /**
    * Корректирует позицию призрака в зависимости от его
    * текущего состояния (отступление или обычное движение).
    * @param ghost Объект призрака.
-   * @param shiftBeforeRetreating Функция для корректировки позиции призрака перед отступлением (по умолчанию `GhostMovement.shiftBeforeRetreating`).
-   * @param shiftRegular Функция для корректировки позиции призрака при обычном движении (по умолчанию `GhostMovement.shiftRegular`).
    */
-  static adjustPosition(
-    ghost: IGhost,
-    shiftBeforeRetreating = GhostMovement.shiftBeforeRetreating,
-    shiftRegular = GhostMovement.shiftRegular
-  ) {
+  static adjustPosition(ghost: IGhost) {
     if (ghost.isRetreating) {
-      shiftBeforeRetreating(ghost)
+      this.shiftBeforeRetreating(ghost)
     } else {
-      shiftRegular(ghost)
+      this.shiftRegular(ghost)
     }
   }
 
   /**
    * Корректирует позицию призрака перед отступлением.
    * @param ghost Объект призрака.
-   * @param shiftLeft Функция для корректировки позиции призрака влево (по умолчанию `GhostMovement.shiftLeft`).
-   * @param shiftRight Функция для корректировки позиции призрака вправо (по умолчанию `GhostMovement.shiftRight`).
-   * @param shiftUp Функция для корректировки позиции призрака вверх (по умолчанию `GhostMovement.shiftUp`).
-   * @param shiftDown Функция для корректировки позиции призрака вниз (по умолчанию `GhostMovement.shiftDown`).
    */
-  static shiftBeforeRetreating(
-    ghost: IGhost,
-    shiftLeft = GhostMovement.shiftLeft,
-    shiftRight = GhostMovement.shiftRight,
-    shiftUp = GhostMovement.shiftUp,
-    shiftDown = GhostMovement.shiftDown
-  ) {
+  static shiftBeforeRetreating(ghost: IGhost) {
     if (ghost.velocity.x > 0) {
-      shiftLeft(ghost)
+      this.shiftLeft(ghost)
     } else if (ghost.velocity.x < 0) {
-      shiftRight(ghost)
+      this.shiftRight(ghost)
     }
     if (ghost.velocity.y > 0) {
-      shiftUp(ghost)
+      this.shiftUp(ghost)
     } else if (ghost.velocity.y < 0) {
-      shiftDown(ghost)
+      this.shiftDown(ghost)
     }
   }
 
@@ -55,8 +49,12 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftRegular(ghost: IGhost) {
-    if (ghost.position.x % 4 !== 0) ghost.position.x += 2
-    if (ghost.position.y % 4 !== 0) ghost.position.y += 2
+    if (ghost.position.x % 4 !== 0) {
+      ghost.position.x += 2
+    }
+    if (ghost.position.y % 4 !== 0) {
+      ghost.position.y += 2
+    }
   }
 
   /**
@@ -64,9 +62,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftLeft(ghost: IGhost) {
-    if (ghost.position.x % 8 === 2) ghost.position.x -= 2
-    else if (ghost.position.x % 8 === 4) ghost.position.x -= 4
-    else if (ghost.position.x % 8 === 6) ghost.position.x -= 6
+    if (ghost.position.x % 8 === 2) {
+      ghost.position.x -= 2
+    } else if (ghost.position.x % 8 === 4) {
+      ghost.position.x -= 4
+    } else if (ghost.position.x % 8 === 6) {
+      ghost.position.x -= 6
+    }
   }
 
   /**
@@ -74,9 +76,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftRight(ghost: IGhost) {
-    if (ghost.position.x % 8 === 2) ghost.position.x += 6
-    else if (ghost.position.x % 8 === 4) ghost.position.x += 4
-    else if (ghost.position.x % 8 === 6) ghost.position.x += 2
+    if (ghost.position.x % 8 === 2) {
+      ghost.position.x += 6
+    } else if (ghost.position.x % 8 === 4) {
+      ghost.position.x += 4
+    } else if (ghost.position.x % 8 === 6) {
+      ghost.position.x += 2
+    }
   }
 
   /**
@@ -84,9 +90,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftUp(ghost: IGhost) {
-    if (ghost.position.y % 8 === 2) ghost.position.y -= 2
-    else if (ghost.position.y % 8 === 4) ghost.position.y -= 4
-    else if (ghost.position.y % 8 === 6) ghost.position.y -= 6
+    if (ghost.position.y % 8 === 2) {
+      ghost.position.y -= 2
+    } else if (ghost.position.y % 8 === 4) {
+      ghost.position.y -= 4
+    } else if (ghost.position.y % 8 === 6) {
+      ghost.position.y -= 6
+    }
   }
 
   /**
@@ -94,9 +104,13 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    */
   static shiftDown(ghost: IGhost) {
-    if (ghost.position.y % 8 === 2) ghost.position.y += 6
-    else if (ghost.position.y % 8 === 4) ghost.position.y += 4
-    else if (ghost.position.y % 8 === 6) ghost.position.y += 2
+    if (ghost.position.y % 8 === 2) {
+      ghost.position.y += 6
+    } else if (ghost.position.y % 8 === 4) {
+      ghost.position.y += 4
+    } else if (ghost.position.y % 8 === 6) {
+      ghost.position.y += 2
+    }
   }
 
   /**
@@ -105,16 +119,12 @@ export default class GhostMovement {
    * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
    * @param collisions Массив со списком направлений, которые призрак не может выбрать из-за препятствий.
    * @param variables Объект с переменными и состояниями игры.
-   * @param calculateDistance Функция для вычисления расстояния между призраком и целевыми направлениями (по умолчанию `GhostMovement.calculateDistance`).
-   * @param pickDirection Функция для выбора направления движения призрака (по умолчанию `GhostMovement.pickDirection`).
    */
   static chaseAndScatter(
     ghost: IGhost,
     assets: IGameAssets,
     collisions: string[],
-    variables: IVariables,
-    calculateDistance = GhostMovement.calculateDistance,
-    pickDirection = GhostMovement.pickDirection
+    variables: IVariables
   ) {
     if (ghost.velocity.x > 0) {
       ghost.prevCollisions.push('right')
@@ -127,13 +137,13 @@ export default class GhostMovement {
     }
 
     const pathways: IPathway[] = []
-    ghost.prevCollisions.forEach((collision) => {
+    ghost.prevCollisions.forEach(collision => {
       if (!collisions.includes(collision)) {
         pathways.push({ direction: collision })
       }
     })
-    calculateDistance(assets, ghost, pathways, variables)
-    pickDirection(pathways, ghost)
+    this.calculateDistance(assets, ghost, pathways, variables)
+    this.pickDirection(pathways, ghost)
   }
 
   /**
@@ -142,30 +152,22 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    * @param pathways Массив с возможными направлениями для движения призрака.
    * @param variables Объект с переменными и состояниями игры.
-   * @param addCoordinates Функция для добавления координат целевых направлений (по умолчанию `GhostMovement.addCoordinates`).
-   * @param chase Функция для вычисления вектора направления преследования (по умолчанию `GhostMovement.chase`).
-   * @param scatter Функция для вычисления вектора направления разбегания (по умолчанию `GhostMovement.scatter`).
-   * @param calculateHypotenuse Функция для вычисления гипотенузы треугольника по двум катетам (по умолчанию `GhostMovement.calculateHypotenuse`).
    */
   static calculateDistance(
     assets: IGameAssets,
     ghost: IGhost,
     pathways: IPathway[],
-    variables: IVariables,
-    addCoordinates = GhostMovement.addCoordinates,
-    chase = GhostMovement.chase,
-    scatter = GhostMovement.scatter,
-    calculateHypotenuse = GhostMovement.calculateHypotenuse
+    variables: IVariables
   ) {
-    pathways.forEach((pathway) => {
-      addCoordinates(pathway, ghost, variables)
+    pathways.forEach(pathway => {
+      this.addCoordinates(pathway, ghost, variables)
       let displacementFromAim
       if (ghost.isChasing) {
-        displacementFromAim = chase(ghost, pathway, assets, variables)
+        displacementFromAim = this.chase(ghost, pathway, assets, variables)
       } else if (!ghost.isChasing) {
-        displacementFromAim = scatter(ghost, pathway)
+        displacementFromAim = this.scatter(ghost, pathway)
       }
-      calculateHypotenuse(displacementFromAim as ICoordinates, pathway)
+      this.calculateHypotenuse(displacementFromAim as ICoordinates, pathway)
     })
   }
 
@@ -175,30 +177,33 @@ export default class GhostMovement {
    * @param ghost Объект призрака.
    * @param variables Объект с переменными и состояниями игры.
    */
-  static addCoordinates(pathway: IPathway, ghost: IGhost, variables: IVariables) {
+  static addCoordinates(
+    pathway: IPathway,
+    ghost: IGhost,
+    variables: IVariables
+  ) {
     if (pathway.direction === 'up') {
       pathway.position = {
         x: ghost.position.x,
-        y: ghost.position.y - variables.tileLength / 8
+        y: ghost.position.y - variables.tileLength / 8,
       }
     } else if (pathway.direction === 'left') {
       pathway.position = {
         x: ghost.position.x - variables.tileLength / 8,
-        y: ghost.position.y
+        y: ghost.position.y,
       }
     } else if (pathway.direction === 'right') {
       pathway.position = {
         x: ghost.position.x + variables.tileLength / 8,
-        y: ghost.position.y
+        y: ghost.position.y,
       }
     } else if (pathway.direction === 'down') {
       pathway.position = {
         x: ghost.position.x,
-        y: ghost.position.y + variables.tileLength / 8
+        y: ghost.position.y + variables.tileLength / 8,
       }
     }
   }
-
 
   /**
    * Вычисляет вектор направления преследования призрака к пакману.
@@ -206,38 +211,26 @@ export default class GhostMovement {
    * @param pathway Объект пути движения призрака.
    * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
    * @param variables Объект с переменными и состояниями игры.
-   * @param isOrangeFarFromPacman Функция для проверки, находится ли оранжевый призрак достаточно далеко от пакмана (по умолчанию `GhostMovement.isOrangeFarFromPacman`).
-   * @param findRedOrangeAimPath Функция для вычисления вектора направления преследования к пакману для красного и оранжевого призрака (по умолчанию `GhostMovement.findRedOrangeAimPath`).
-   * @param findPinkAimPath Функция для вычисления вектора направления преследования к пакману для розового призрака (по умолчанию `GhostMovement.findPinkAimPath`).
-   * @param findCyanAimPath Функция для вычисления вектора направления преследования к пакману для голубого призрака (по умолчанию `GhostMovement.findCyanAimPath`).
-   * @param findOrangeScatterPath Функция для вычисления вектора направления разбегания для оранжевого призрака (по умолчанию `GhostMovement.findOrangeScatterPath`).
    */
   static chase(
     ghost: IGhost,
     pathway: IPathway,
     assets: IGameAssets,
-    variables: IVariables,
-    isOrangeFarFromPacman = GhostMovement.isOrangeFarFromPacman,
-    findRedOrangeAimPath = GhostMovement.findRedOrangeAimPath,
-    findPinkAimPath = GhostMovement.findPinkAimPath,
-    findCyanAimPath = GhostMovement.findCyanAimPath,
-    findOrangeScatterPath = GhostMovement.findOrangeScatterPath
+    variables: IVariables
   ) {
     if (
       ghost.color === 'red' ||
       (ghost.color === 'orange' &&
-        isOrangeFarFromPacman(ghost, assets['characters']['pacman'], variables))
-    )
-      return findRedOrangeAimPath(assets['characters']['pacman'], pathway)
-    else if (ghost.color === 'pink')
-      return findPinkAimPath(
-        assets['characters']['pacman'],
-        pathway,
-        variables
-      )
-    else if (ghost.color === 'cyan')
-      return findCyanAimPath(assets, variables, pathway)
-    else if (ghost.color === 'orange') return findOrangeScatterPath(pathway)
+        this.isOrangeFarFromPacman(ghost, assets.characters.pacman, variables))
+    ) {
+      return this.findRedOrangeAimPath(assets.characters.pacman, pathway)
+    } else if (ghost.color === 'pink') {
+      return this.findPinkAimPath(assets.characters.pacman, pathway, variables)
+    } else if (ghost.color === 'cyan') {
+      return this.findCyanAimPath(assets, variables, pathway)
+    } else if (ghost.color === 'orange') {
+      return this.findOrangeScatterPath(pathway)
+    }
   }
 
   /**
@@ -247,12 +240,15 @@ export default class GhostMovement {
    * @param variables Объект с переменными и состояниями игры.
    * @returns `true`, если оранжевый призрак находится достаточно далеко от пакмана, в противном случае `false`.
    */
-  static isOrangeFarFromPacman(orangeGhost: IGhost, pacman: IPacman, variables: IVariables) {
+  static isOrangeFarFromPacman(
+    orangeGhost: IGhost,
+    pacman: IPacman,
+    variables: IVariables
+  ) {
     const x = pacman.position.x - orangeGhost.position.x
     const y = pacman.position.y - orangeGhost.position.y
     const distance = Math.hypot(x, y)
     return distance > variables.tileLength * 8
-
   }
 
   /**
@@ -261,10 +257,13 @@ export default class GhostMovement {
    * @param pathway Объект пути движения призрака.
    * @returns Объект с вектором направления преследования к пакману.
    */
-  static findRedOrangeAimPath(pacman: IPacman, pathway: IPathway): ICoordinates {
+  static findRedOrangeAimPath(
+    pacman: IPacman,
+    pathway: IPathway
+  ): ICoordinates {
     return {
       x: pacman.position.x - pathway.position!.x,
-      y: pacman.position.y - pathway.position!.y
+      y: pacman.position.y - pathway.position!.y,
     }
   }
 
@@ -275,7 +274,11 @@ export default class GhostMovement {
    * @param variables Объект с переменными и состояниями игры.
    * @returns Объект с вектором направления преследования к пакману.
    */
-  static findPinkAimPath(pacman: IPacman, pathway: IPathway, variables: IVariables): ICoordinates {
+  static findPinkAimPath(
+    pacman: IPacman,
+    pathway: IPathway,
+    variables: IVariables
+  ): ICoordinates {
     let x = pacman.position.x - pathway.position!.x
     let y = pacman.position.y - pathway.position!.y
 
@@ -291,7 +294,7 @@ export default class GhostMovement {
 
     return {
       x: x,
-      y: y
+      y: y,
     }
   }
 
@@ -302,9 +305,13 @@ export default class GhostMovement {
    * @param pathway Объект пути движения призрака.
    * @returns Объект с вектором направления преследования к пакману.
    */
-  static findCyanAimPath(assets: IGameAssets, variables: IVariables, pathway: IPathway): ICoordinates {
-    const pacman = assets['characters']['pacman']
-    const redGhost = assets['characters']['ghosts']['red']
+  static findCyanAimPath(
+    assets: IGameAssets,
+    variables: IVariables,
+    pathway: IPathway
+  ): ICoordinates {
+    const pacman = assets.characters.pacman
+    const redGhost = assets.characters.ghosts.red
 
     let x = pacman.position.x * 2 - redGhost.position.x
     let y = pacman.position.y * 2 - redGhost.position.y
@@ -320,7 +327,7 @@ export default class GhostMovement {
     }
     return {
       x: x - pathway.position!.x,
-      y: y - pathway.position!.y
+      y: y - pathway.position!.y,
     }
   }
 
@@ -329,23 +336,17 @@ export default class GhostMovement {
    * В зависимости от цвета привидения, метод выбирает наилучшее направление движения для рассеивания.
    * @param ghost Объект призрака.
    * @param pathway Объект пути движения призрака.
-   * @param findRedScatterPath
-   * @param findPinkScatterPath
-   * @param findCyanScatterPath
-   * @param findOrangeScatterPath
    */
-  static scatter(
-    ghost: IGhost,
-    pathway: IPathway,
-    findRedScatterPath = GhostMovement.findRedScatterPath,
-    findPinkScatterPath = GhostMovement.findPinkScatterPath,
-    findCyanScatterPath = GhostMovement.findCyanScatterPath,
-    findOrangeScatterPath = GhostMovement.findOrangeScatterPath
-  ) {
-    if (ghost.color === 'red') return findRedScatterPath(pathway)
-    else if (ghost.color === 'pink') return findPinkScatterPath(pathway)
-    else if (ghost.color === 'cyan') return findCyanScatterPath(pathway)
-    else if (ghost.color === 'orange') return findOrangeScatterPath(pathway)
+  static scatter(ghost: IGhost, pathway: IPathway) {
+    if (ghost.color === 'red') {
+      return this.findRedScatterPath(pathway)
+    } else if (ghost.color === 'pink') {
+      return this.findPinkScatterPath(pathway)
+    } else if (ghost.color === 'cyan') {
+      return this.findCyanScatterPath(pathway)
+    } else if (ghost.color === 'orange') {
+      return this.findOrangeScatterPath(pathway)
+    }
   }
 
   /**
@@ -355,8 +356,8 @@ export default class GhostMovement {
    */
   static findRedScatterPath(pathway: IPathway): ICoordinates {
     return {
-      x: 896 - pathway.position!.x,
-      y: -pathway.position!.y
+      x: this.canvasWidth - pathway.position!.x,
+      y: -pathway.position!.y,
     }
   }
 
@@ -368,9 +369,10 @@ export default class GhostMovement {
   static findPinkScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: -pathway.position!.x,
-      y: -pathway.position!.y
+      y: -pathway.position!.y,
     }
   }
+
   /**
    * Вычисляет вектор направления разбегания для синего призрака.
    * @param pathway Объект пути движения призрака.
@@ -379,8 +381,8 @@ export default class GhostMovement {
 
   static findCyanScatterPath(pathway: IPathway): ICoordinates {
     return {
-      x: 896 - pathway.position!.x,
-      y: 992 - pathway.position!.y
+      x: this.canvasWidth - pathway.position!.x,
+      y: this.canvasHeight - pathway.position!.y,
     }
   }
 
@@ -392,7 +394,7 @@ export default class GhostMovement {
   static findOrangeScatterPath(pathway: IPathway): ICoordinates {
     return {
       x: -pathway.position!.x,
-      y: 992 - pathway.position!.y
+      y: this.canvasHeight - pathway.position!.y,
     }
   }
 
@@ -401,7 +403,7 @@ export default class GhostMovement {
    * @param vector Объект с координатами катетов.
    * @param pathway Объект пути движения призрака.
    */
-  static calculateHypotenuse(vector:ICoordinates, pathway:IPathway) {
+  static calculateHypotenuse(vector: ICoordinates, pathway: IPathway) {
     pathway.distance = Math.hypot(vector.x, vector.y)
   }
 
@@ -413,7 +415,10 @@ export default class GhostMovement {
   static pickDirection(pathways: IPathway[], ghost: IGhost) {
     let shortest: undefined | IPathway
     for (let i = 0; i < pathways.length; i++) {
-      if (shortest === undefined || (pathways[i].distance as number) < (shortest.distance as number))
+      if (
+        shortest === undefined ||
+        (pathways[i].distance as number) < (shortest.distance as number)
+      )
         shortest = pathways[i]
     }
     if (shortest?.direction === 'up') {
@@ -443,22 +448,17 @@ export default class GhostMovement {
    * Двигает призрака случайным образом в пределах возможных направлений.
    * @param ghost Объект призрака.
    * @param collisions Массив со списком направлений, которые призрак не может выбрать из-за препятствий.
-   * @param pickRandomDirection Функция для выбора случайного направления движения призрака (по умолчанию `GhostMovement.pickRandomDirection`).
    */
-  static moveRandomly(
-    ghost: IGhost,
-    collisions: string[],
-    pickRandomDirection = GhostMovement.pickRandomDirection
-  ) {
+  static moveRandomly(ghost: IGhost, collisions: string[]) {
     if (ghost.velocity.x > 0) ghost.prevCollisions.push('right')
     else if (ghost.velocity.x < 0) ghost.prevCollisions.push('left')
     else if (ghost.velocity.y > 0) ghost.prevCollisions.push('down')
     else if (ghost.velocity.y < 0) ghost.prevCollisions.push('up')
 
-    const pathways = ghost.prevCollisions.filter((collision) => {
+    const pathways = ghost.prevCollisions.filter(collision => {
       return !collisions.includes(collision)
     })
-    pickRandomDirection(ghost, pathways)
+    this.pickRandomDirection(ghost, pathways)
   }
 
   /**

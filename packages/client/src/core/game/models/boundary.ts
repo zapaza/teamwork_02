@@ -11,7 +11,10 @@ export default class Boundary implements IBoundary {
   whiteImage: HTMLImageElement
   image: HTMLImageElement
 
-  constructor({ position, regularImage, whiteImage }: IBoundaryParams, tileLength: number) {
+  constructor(
+    { position, regularImage, whiteImage }: IBoundaryParams,
+    tileLength: number
+  ) {
     this.position = position
     this.width = tileLength
     this.height = tileLength

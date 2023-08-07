@@ -1,4 +1,4 @@
-import playGame from "./game";
+import playGame from './game'
 import Graphics from './graphics'
 import { IBoundary, IGameAssets, IVariables } from './types'
 
@@ -10,27 +10,23 @@ export default class Animator {
    * Отображает паузу в игре.
    * @param ctx Контекст канваса для отрисовки паузы.
    * @param pauseTextImage Изображение текста паузы.
-   * @param loadTint Функция для загрузки тени паузы (по умолчанию `Animator.loadTint`).
-   * @param loadPauseText Функция для загрузки текста паузы (по умолчанию `Animator.loadPauseText`).
    */
   static loadPauseOverlay(
     ctx: CanvasRenderingContext2D,
-    pauseTextImage: HTMLImageElement,
-    loadTint = Animator.loadTint,
-    loadPauseText = Animator.loadPauseText
+    pauseTextImage: HTMLImageElement
   ) {
-    loadTint(ctx);
-    loadPauseText(ctx, pauseTextImage);
+    this.loadTint(ctx)
+    this.loadPauseText(ctx, pauseTextImage)
   }
 
   /**
    * Загружает тень для паузы.
    * @param ctx Контекст канваса для отрисовки тени.
    */
-  static loadTint(ctx:CanvasRenderingContext2D) {
-    ctx.globalAlpha = 0.7;
-    ctx.fillStyle = "black";
-    ctx.fillRect(0, 0, 896, 992);
+  static loadTint(ctx: CanvasRenderingContext2D) {
+    ctx.globalAlpha = 0.7
+    ctx.fillStyle = 'black'
+    ctx.fillRect(0, 0, 896, 992)
   }
 
   /**
@@ -38,9 +34,12 @@ export default class Animator {
    * @param ctx Контекст канваса для отрисовки текста паузы.
    * @param pauseTextImage Изображение текста паузы.
    */
-  static loadPauseText(ctx: CanvasRenderingContext2D, pauseTextImage: HTMLImageElement) {
-    ctx.globalAlpha = 1;
-    ctx.drawImage(pauseTextImage, 98, 394, 700, 140);
+  static loadPauseText(
+    ctx: CanvasRenderingContext2D,
+    pauseTextImage: HTMLImageElement
+  ) {
+    ctx.globalAlpha = 1
+    ctx.drawImage(pauseTextImage, 98, 394, 700, 140)
   }
 
   /**
@@ -48,19 +47,18 @@ export default class Animator {
    * @param variables Объект с переменными и состояниями игры.
    * @param ctx Контекст канваса для отрисовки игровых элементов.
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
-   * @param callback Функция обратного вызова для продолжения игры (по умолчанию `playGame`).
    */
   static resumeAnimation(
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    assets: IGameAssets,
-    callback = playGame) {
-    if (assets["characters"]["pacman"].isShrinking) {
-      Graphics.runDeathAnimation(variables, ctx, assets);
-    } else if (assets["characters"]["pacman"].isLevellingUp) {
-      Graphics.runLevelUpAnimation(variables, assets, ctx);
+    assets: IGameAssets
+  ) {
+    if (assets.characters.pacman.isShrinking) {
+      Graphics.runDeathAnimation(variables, ctx, assets)
+    } else if (assets.characters.pacman.isLevellingUp) {
+      Graphics.runLevelUpAnimation(variables, assets, ctx)
     } else {
-      callback(variables.player);
+      playGame(variables.player)
     }
   }
 
@@ -69,14 +67,17 @@ export default class Animator {
    * @param ctx Контекст канваса для отрисовки текста.
    * @param boundaries Массив границ игрового поля.
    */
-  static drawLevelUpBoard(ctx: CanvasRenderingContext2D, boundaries: IBoundary[]) {
-    ctx.clearRect(0, 0, 896, 992);
-    boundaries.forEach((boundary) => boundary.draw(ctx));
-    ctx.font = "40px Inter";
-    ctx.fillStyle = "yellow";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("Level Up!", 448, 560);
+  static drawLevelUpBoard(
+    ctx: CanvasRenderingContext2D,
+    boundaries: IBoundary[]
+  ) {
+    ctx.clearRect(0, 0, 896, 992)
+    boundaries.forEach(boundary => boundary.draw(ctx))
+    ctx.font = '40px Inter'
+    ctx.fillStyle = 'yellow'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('Level Up!', 448, 560)
   }
 
   /**
@@ -85,14 +86,18 @@ export default class Animator {
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
    */
   static drawBoard(ctx: CanvasRenderingContext2D, assets: IGameAssets) {
-    ctx.clearRect(0, 0, 896, 992);
-    assets["props"]["boundaries"].forEach((boundary) => boundary.draw(ctx));
-    assets["props"]["pellets"].forEach((pellet) => {
-      if (!pellet.hasBeenEaten) pellet.draw(ctx);
-    });
-    assets["props"]["powerUps"].forEach((powerUp) => {
-      if (!powerUp.hasBeenEaten) powerUp.update(ctx);
-    });
+    ctx.clearRect(0, 0, 896, 992)
+    assets.props.boundaries.forEach(boundary => boundary.draw(ctx))
+    assets.props.pellets.forEach(pellet => {
+      if (!pellet.hasBeenEaten) {
+        pellet.draw(ctx)
+      }
+    })
+    assets.props.powerUps.forEach(powerUp => {
+      if (!powerUp.hasBeenEaten) {
+        powerUp.update(ctx)
+      }
+    })
   }
 
   /**
@@ -100,30 +105,28 @@ export default class Animator {
    * этот метод пока не используется, его нужно будет использовать при загрузке игры
    * или при отправки результатов в лидборд
    * @param ctx Контекст канваса для отрисовки сообщения.
-   * @param loadTint Функция для загрузки тени (по умолчанию `Animator.loadTint`).
    */
-  static displayPleaseWait(ctx: CanvasRenderingContext2D, loadTint = Animator.loadTint) {
-    loadTint(ctx);
-    ctx.globalAlpha = 1;
-    ctx.font = "100px Inter";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("Please wait...", 448, 496);
+  static displayPleaseWait(ctx: CanvasRenderingContext2D) {
+    this.loadTint(ctx)
+    ctx.globalAlpha = 1
+    ctx.font = '100px Inter'
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('Please wait...', 448, 496)
   }
 
   /**
    * Отображает сообщение "GAME OVER".
    * @param ctx Контекст канваса для отрисовки сообщения.
-   * @param loadTint Функция для загрузки тени (по умолчанию `Animator.loadTint`).
    */
-  static displayGameOver(ctx: CanvasRenderingContext2D, loadTint = Animator.loadTint) {
-    loadTint(ctx);
-    ctx.globalAlpha = 1;
-    ctx.font = "100px Inter";
-    ctx.fillStyle = "white";
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
-    ctx.fillText("GAME OVER", 448, 496);
+  static displayGameOver(ctx: CanvasRenderingContext2D) {
+    this.loadTint(ctx)
+    ctx.globalAlpha = 1
+    ctx.font = '100px Inter'
+    ctx.fillStyle = 'white'
+    ctx.textAlign = 'center'
+    ctx.textBaseline = 'middle'
+    ctx.fillText('GAME OVER', 448, 496)
   }
 }
