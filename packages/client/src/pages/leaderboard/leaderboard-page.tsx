@@ -1,6 +1,6 @@
 import './leaderboard-page.pcss'
 import '../../styles/helpers.pcss'
-import LeaderboardAndProfileField from '../../components/ui/leaderboardAndProfileField'
+import LeaderboardAndProfileField from '../../components/ui/leaderboard-and-profile-field'
 import React from 'react'
 
 const leaderboardMock = [

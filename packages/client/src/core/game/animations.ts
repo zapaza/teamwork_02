@@ -10,17 +10,13 @@ export default class Animator {
    * Отображает паузу в игре.
    * @param ctx Контекст канваса для отрисовки паузы.
    * @param pauseTextImage Изображение текста паузы.
-   * @param loadTint Функция для загрузки тени паузы (по умолчанию `Animator.loadTint`).
-   * @param loadPauseText Функция для загрузки текста паузы (по умолчанию `Animator.loadPauseText`).
    */
   static loadPauseOverlay(
     ctx: CanvasRenderingContext2D,
-    pauseTextImage: HTMLImageElement,
-    loadTint = Animator.loadTint,
-    loadPauseText = Animator.loadPauseText
+    pauseTextImage: HTMLImageElement
   ) {
-    loadTint(ctx)
-    loadPauseText(ctx, pauseTextImage)
+    this.loadTint(ctx)
+    this.loadPauseText(ctx, pauseTextImage)
   }
 
   /**
@@ -51,20 +47,18 @@ export default class Animator {
    * @param variables Объект с переменными и состояниями игры.
    * @param ctx Контекст канваса для отрисовки игровых элементов.
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
-   * @param callback Функция обратного вызова для продолжения игры (по умолчанию `playGame`).
    */
   static resumeAnimation(
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    assets: IGameAssets,
-    callback = playGame
+    assets: IGameAssets
   ) {
-    if (assets['characters']['pacman'].isShrinking) {
+    if (assets.characters.pacman.isShrinking) {
       Graphics.runDeathAnimation(variables, ctx, assets)
-    } else if (assets['characters']['pacman'].isLevellingUp) {
+    } else if (assets.characters.pacman.isLevellingUp) {
       Graphics.runLevelUpAnimation(variables, assets, ctx)
     } else {
-      callback(variables.player)
+      playGame(variables.player)
     }
   }
 
@@ -93,13 +87,13 @@ export default class Animator {
    */
   static drawBoard(ctx: CanvasRenderingContext2D, assets: IGameAssets) {
     ctx.clearRect(0, 0, 896, 992)
-    assets['props']['boundaries'].forEach(boundary => boundary.draw(ctx))
-    assets['props']['pellets'].forEach(pellet => {
+    assets.props.boundaries.forEach(boundary => boundary.draw(ctx))
+    assets.props.pellets.forEach(pellet => {
       if (!pellet.hasBeenEaten) {
         pellet.draw(ctx)
       }
     })
-    assets['props']['powerUps'].forEach(powerUp => {
+    assets.props.powerUps.forEach(powerUp => {
       if (!powerUp.hasBeenEaten) {
         powerUp.update(ctx)
       }
@@ -111,13 +105,9 @@ export default class Animator {
    * этот метод пока не используется, его нужно будет использовать при загрузке игры
    * или при отправки результатов в лидборд
    * @param ctx Контекст канваса для отрисовки сообщения.
-   * @param loadTint Функция для загрузки тени (по умолчанию `Animator.loadTint`).
    */
-  static displayPleaseWait(
-    ctx: CanvasRenderingContext2D,
-    loadTint = Animator.loadTint
-  ) {
-    loadTint(ctx)
+  static displayPleaseWait(ctx: CanvasRenderingContext2D) {
+    this.loadTint(ctx)
     ctx.globalAlpha = 1
     ctx.font = '100px Inter'
     ctx.fillStyle = 'white'
@@ -129,13 +119,9 @@ export default class Animator {
   /**
    * Отображает сообщение "GAME OVER".
    * @param ctx Контекст канваса для отрисовки сообщения.
-   * @param loadTint Функция для загрузки тени (по умолчанию `Animator.loadTint`).
    */
-  static displayGameOver(
-    ctx: CanvasRenderingContext2D,
-    loadTint = Animator.loadTint
-  ) {
-    loadTint(ctx)
+  static displayGameOver(ctx: CanvasRenderingContext2D) {
+    this.loadTint(ctx)
     ctx.globalAlpha = 1
     ctx.font = '100px Inter'
     ctx.fillStyle = 'white'

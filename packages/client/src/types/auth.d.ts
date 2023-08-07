@@ -1,8 +1,8 @@
 export interface AuthState {
   id: number | null
-  firstName: string
-  secondName: string
-  displayName: string
+  first_name: string
+  second_name: string
+  display_name: string
   login: string
   email: string
   phone: string

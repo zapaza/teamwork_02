@@ -1,5 +1,5 @@
 import React from 'react'
-import './createTopicModal.pcss'
+import './create-topic-modal.pcss'
 import Button from '../button/button'
 import Input from '../input/input'
 

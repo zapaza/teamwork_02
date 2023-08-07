@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import './game.pcss'
 import playCame from '../../core/game/game'
 import { useSelector } from 'react-redux'
