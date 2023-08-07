@@ -11,9 +11,8 @@ interface FSHTMLElement extends HTMLElement {
 }
 export const useToggleFullscreen = (
   type: keyof HTMLElementEventMap,
-  selector: string
+  element: HTMLElement | null
 ) => {
-  const element = document.querySelector(selector)
   if (element) {
     element.addEventListener(type, () => toggleFullscreen(element))
   }

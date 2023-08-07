@@ -1,12 +1,14 @@
 import { useToggleFullscreen } from '../../utils/Fullscreen'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 
 function GamePage() {
+  const gameElement = useRef(null);
+
   useEffect(() => {
-    useToggleFullscreen('dblclick', '.game')
+    useToggleFullscreen('dblclick', gameElement.current)
   })
 
-  return <div className={'game'}>Вот тут будет жить GamePage :)</div>
+  return <div ref={gameElement}>Вот тут будет жить GamePage :)</div>
 }
 
 export default GamePage
