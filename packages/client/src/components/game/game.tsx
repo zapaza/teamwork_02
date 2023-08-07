@@ -74,6 +74,6 @@ const GameCanvas: React.FC = React.forwardRef((props, ref) => {
       </div>
     </div>
   )
-});
+})
 
 export default GameCanvas
