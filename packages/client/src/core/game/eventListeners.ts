@@ -14,8 +14,7 @@ export default class EventListener {
   static addDirectionDetection(variables: IVariables) {
     window.addEventListener(
       'keydown',
-      // @ts-ignore todo хз как key затипизировать
-      (variables.directionEventListener = ({ key }) => {
+      (variables.directionEventListener = ({ key }: KeyboardEvent) => {
         if (key === 'ArrowUp') {
           variables.lastKeyPressed = 'up'
         } else if (key === 'ArrowLeft') {
@@ -40,10 +39,10 @@ export default class EventListener {
       (variables.visibilityEventListener = () => {
         if (!variables.isGamePaused && variables.isWindowVisible) {
           variables.isWindowVisible = false
-          Timer.pauseTimers(assets['timers'])
+          Timer.pauseTimers(assets.timers)
         } else if (!variables.isGamePaused && !variables.isWindowVisible) {
           variables.isWindowVisible = true
-          Timer.resumeTimers(assets['timers'])
+          Timer.resumeTimers(assets.timers)
         }
       })
     )
@@ -62,21 +61,35 @@ export default class EventListener {
   ) {
     window.addEventListener(
       'keydown',
-      // @ts-ignore
-      (variables.pauseEventListener = ({ key }) => {
+      (variables.pauseEventListener = ({ key }: KeyboardEvent) => {
         if (key === 'Escape') {
           if (!variables.isGamePaused) {
             variables.isGamePaused = true
             cancelAnimationFrame(variables.animationId as number)
-            Timer.pauseTimers(assets['timers'])
-            Animator.loadPauseOverlay(ctx, assets['pauseTextImage'])
+            Timer.pauseTimers(assets.timers)
+            Animator.loadPauseOverlay(ctx, assets.pauseTextImage)
           } else {
             variables.isGamePaused = false
-            Timer.resumeTimers(assets['timers'])
+            Timer.resumeTimers(assets.timers)
             Animator.resumeAnimation(variables, ctx, assets)
           }
         }
       })
+    )
+  }
+
+  static removeAllGameEventsListeners(variables: IVariables) {
+    window.removeEventListener(
+      'keydown',
+      variables.directionEventListener as (event: Event) => void
+    )
+    window.removeEventListener(
+      'visibilitychange',
+      variables.visibilityEventListener as (event: Event) => void
+    )
+    window.removeEventListener(
+      'keydown',
+      variables.pauseEventListener as (event: Event) => void
     )
   }
 }

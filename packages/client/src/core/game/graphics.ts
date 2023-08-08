@@ -1,7 +1,7 @@
 import Animator from './animations'
 import PelletManager from './pelletManager'
-import GhostCollision from './ghostCollisions'
 import { ICoordinates, IGameAssets, IPacman, IVariables } from './types'
+import GameHooks from './gameHooks'
 
 /**
  * Класс `Graphics` предоставляет функции для отрисовки графики и анимации в игре.
@@ -86,15 +86,15 @@ export default class Graphics {
       runLevelUpAnimation(variables, assets, ctx)
     )
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
-      Animator.drawLevelUpBoard(ctx, assets['props']['boundaries'])
+      Animator.drawLevelUpBoard(ctx, assets.props.boundaries)
 
       if (variables.levelUpCount % 10 === 0 && variables.levelUpCount !== 0) {
-        assets['props']['boundaries'].forEach(boundary => boundary.flash())
+        assets.props.boundaries.forEach(boundary => boundary.flash())
       }
       variables.levelUpCount++
 
       if (variables.levelUpCount >= 350) {
-        assets['characters']['pacman'].isLevellingUp = false
+        assets.characters.pacman.isLevellingUp = false
         cancelAnimationFrame(variables.animationId)
         variables.level++
         PelletManager.resetAfterLevelUp(assets, variables)
@@ -108,26 +108,24 @@ export default class Graphics {
    * @param variables Объект с переменными и состояниями игры.
    * @param ctx Контекст канваса для отрисовки игровых элементов.
    * @param assets Ресурсы игры (карты, персонажи, таймеры, звуки и т. д.).
-   * @param runDeathAnimation Функция для продолжения анимации смерти (по умолчанию `Graphics.runDeathAnimation`).
    */
   static runDeathAnimation(
     variables: IVariables,
     ctx: CanvasRenderingContext2D,
-    assets: IGameAssets,
-    runDeathAnimation = Graphics.runDeathAnimation
+    assets: IGameAssets
   ) {
     variables.animationId = requestAnimationFrame(() =>
-      runDeathAnimation(variables, ctx, assets)
+      this.runDeathAnimation(variables, ctx, assets)
     )
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
       Animator.drawBoard(ctx, assets)
-      const pacman = assets['characters']['pacman']
+      const pacman = assets.characters.pacman
       if (pacman.radians < Math.PI) {
         pacman.shrink(ctx)
       } else {
         pacman.isShrinking = false
         cancelAnimationFrame(variables.animationId)
-        GhostCollision.checkPacmanLives(assets, variables, ctx)
+        GameHooks.checkPacmanLives(assets, variables, ctx)
       }
       variables.startTime = performance.now()
     }
