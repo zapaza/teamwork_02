@@ -1,21 +1,15 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect } from 'react'
 import './gameState.pcss'
 import playCame from '../../../core/game/game'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
-import { createRoot, Root } from 'react-dom/client'
 
 const GameCanvas: React.FC = () => {
   const { id, login } = useSelector((state: RootState) => state.auth)
-  const game = document.getElementById('game')
-  const gameRoot = useRef<Root>()
 
   useEffect(() => {
     playCame({ id: id, login: login })
-    if (game) {
-      gameRoot.current = createRoot(game)
-    }
-  }, [gameRoot])
+  }, [])
 
   const handleDirection = (direction: string) => {
     const arrow = new KeyboardEvent('keydown', { key: direction })
@@ -24,7 +18,7 @@ const GameCanvas: React.FC = () => {
 
   return (
     <div className="wrapper">
-      <div className="game" id="game">
+      <div className="game">
         <canvas
           id="info"
           className="game__info"
