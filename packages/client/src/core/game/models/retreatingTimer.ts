@@ -19,15 +19,8 @@ export default class RetreatingTimer extends BaseTimer {
       dateNow
     )
   }
-  pause() {
-    this.pauseTimer(Date.now())
-  }
 
   resume() {
-    this.resumeTimer(this.ghost.changeRetreatingState, Date.now())
-  }
-
-  reset() {
-    this.resetTimer()
+    this.resumeTimer(() => this.ghost.changeRetreatingState, Date.now())
   }
 }

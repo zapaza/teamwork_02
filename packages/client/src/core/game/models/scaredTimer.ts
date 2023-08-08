@@ -27,10 +27,6 @@ export default class ScaredTimer extends BaseTimer {
     )
   }
 
-  pause() {
-    this.pauseTimer(Date.now())
-  }
-
   resume(cycleTimer: IGameTimer) {
     const callback = () => {
       this.ghosts.forEach(ghost => {
@@ -39,9 +35,5 @@ export default class ScaredTimer extends BaseTimer {
       cycleTimer.resume()
     }
     this.resumeTimer(callback, Date.now())
-  }
-
-  reset() {
-    this.resetTimer()
   }
 }

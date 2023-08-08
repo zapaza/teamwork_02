@@ -24,17 +24,8 @@ export default class CycleTimer extends BaseTimer {
     }
   }
 
-  pause() {
-    this.pauseTimer(Date.now())
-    this.isRunning = false
-  }
-
   resume() {
-    this.resumeTimer(this.switchChaseScatterState, Date.now())
-  }
-
-  reset() {
-    this.resetTimer()
+    super.resumeTimer(() => this.switchChaseScatterState(), Date.now())
   }
 
   private switchChaseScatterState() {

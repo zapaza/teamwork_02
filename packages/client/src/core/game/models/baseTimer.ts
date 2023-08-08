@@ -21,7 +21,7 @@ export class BaseTimer {
     this.isRunning = true
   }
 
-  pauseTimer(dateNow = Date.now()) {
+  pause(dateNow = Date.now()) {
     window.clearTimeout(this.timeout as number)
     const timeElapsed = dateNow - (this.startTime as number)
     this.timeRemaining = (this.timeRemaining as number) - timeElapsed
@@ -35,7 +35,7 @@ export class BaseTimer {
     }, this.timeRemaining as number)
   }
 
-  resetTimer() {
+  reset() {
     window.clearTimeout(this.timeout as number)
     this.isRunning = false
   }
