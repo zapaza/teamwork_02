@@ -4,7 +4,11 @@ import playCame from '../../core/game/game'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../store'
 
-const GameCanvas: React.FC = React.forwardRef((props, ref) => {
+export type gameProps  = {
+  isFullscreen?: boolean;
+
+}
+const GameCanvas: React.FC = React.forwardRef((props:gameProps, ref) => {
   const { id, login } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
@@ -15,19 +19,18 @@ const GameCanvas: React.FC = React.forwardRef((props, ref) => {
     const arrow = new KeyboardEvent('keydown', { key: direction })
     window.dispatchEvent(arrow)
   }
-
   return (
     <div ref={ref as LegacyRef<HTMLDivElement>} className="wrapper">
-      <div className="game">
+      <div className={props.isFullscreen? 'game-fullscreen' : 'game'}>
         <canvas
           id="info"
-          className="game__info"
+          className={props.isFullscreen? 'game__info-fullscreen' : 'game__info'}
           data-testid="info"
           width="600"
           height="30"></canvas>
         <canvas
           id="board"
-          className="game__board"
+          className={props.isFullscreen? 'game__board-fullscreen' : 'game__board'}
           data-testid="board"
           width="896"
           height="992"></canvas>
