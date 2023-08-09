@@ -8062,7 +8062,7 @@ stylelint-selector-bem-pattern@^3.0.0:
     postcss-bem-linter "^4.0.0"
     stylelint ">=15.9.0"
 
-stylelint@^15.10.1:
+stylelint@>=15.9.0, stylelint@^15.10.1:
   version "15.10.2"
   resolved "https://registry.npmjs.org/stylelint/-/stylelint-15.10.2.tgz"
   integrity sha512-UxqSb3hB74g4DTO45QhUHkJMjKKU//lNUAOWyvPBVPZbCknJ5HjOWWZo+UDuhHa9FLeVdHBZXxu43eXkjyIPWg==

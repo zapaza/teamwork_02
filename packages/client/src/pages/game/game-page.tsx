@@ -11,7 +11,7 @@ function GamePage() {
   const isFullscreen = useIsFullscreen()
   return (
     <div className="game-page">
-      <GameCanvas />
+      <GameCanvas ref={gameElement} isFullscreen={isFullscreen} />
     </div>
   )
 }
