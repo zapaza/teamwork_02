@@ -6,6 +6,20 @@ import store from './store'
 import router from './routes'
 import './styles/index.pcss'
 
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function() {
+      navigator.serviceWorker.register("../service-worker.ts").then(
+          (registration) => {
+              console.log("SW registered: ", registration);
+          },
+          (err) => {
+              console.error("SW registration failed: ", err);
+          }
+      );
+  });
+}
+
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>
