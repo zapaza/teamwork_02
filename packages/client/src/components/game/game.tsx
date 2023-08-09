@@ -18,22 +18,21 @@ const GameCanvas: React.FC = React.forwardRef((props: gameProps, ref) => {
     const arrow = new KeyboardEvent('keydown', { key: direction })
     window.dispatchEvent(arrow)
   }
+  const modifyClassFS = (className, isFS) =>
+    `${className}${isFS ? '_fullscreen' : ''}`
+
   return (
     <div ref={ref as LegacyRef<HTMLDivElement>} className="wrapper">
-      <div className={props.isFullscreen ? 'game-fullscreen' : 'game'}>
+      <div className={modifyClassFS('game', props.isFullscreen)}>
         <canvas
           id="info"
-          className={
-            props.isFullscreen ? 'game__info-fullscreen' : 'game__info'
-          }
+          className={modifyClassFS('game__info', props.isFullscreen)}
           data-testid="info"
           width="600"
           height="30"></canvas>
         <canvas
           id="board"
-          className={
-            props.isFullscreen ? 'game__board-fullscreen' : 'game__board'
-          }
+          className={modifyClassFS('game__board', props.isFullscreen)}
           data-testid="board"
           width="896"
           height="992"></canvas>

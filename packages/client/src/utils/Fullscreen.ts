@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+
 interface FSDocument extends Document {
   msExitFullscreen?: () => Promise<void>
   webkitExitFullscreen?: () => Promise<void>
@@ -10,17 +12,17 @@ interface FSHTMLElement extends HTMLElement {
   webkitRequestFullscreen?: () => Promise<void>
 }
 
-export const useToggleFullscreen = (
+export const toggleFullscreen = (
   type: keyof HTMLElementEventMap,
   element: HTMLElement | null
 ) => {
   if (element) {
     element.addEventListener(type, () => {
-      toggleFullscreen(element)
+      _toggleFullscreen(element)
     })
   }
 }
-const toggleFullscreen = (element: Element) => {
+const _toggleFullscreen = (element: Element) => {
   if (!document.fullscreenElement) {
     activateFullscreen(element as FSHTMLElement)
   } else {
@@ -58,4 +60,22 @@ const deactivateFullscreen = () => {
       () => false
     )
   }
+}
+export const useIsFullscreen = () => {
+  const [isFullscreen, setIsFullscreen] = useState(false)
+  useEffect(() => {
+    const handleFullscreen = () => {
+      const fullscreenElement =
+        document.fullscreenElement ||
+        document.mozFullScreenElement ||
+        document.webkitFullscreenElement
+
+      setIsFullscreen(!!fullscreenElement)
+    }
+    document.addEventListener('fullscreenchange', handleFullscreen)
+    return () => {
+      document.removeEventListener('fullscreenchange', handleFullscreen)
+    }
+  }, [])
+  return isFullscreen
 }

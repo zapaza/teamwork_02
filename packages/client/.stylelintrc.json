@@ -1,5 +1,8 @@
 {
   "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-selector-bem-pattern"
+  ],
   "rules": {
     "color-hex-length": "long",
     "import-notation": "string",
@@ -10,6 +13,15 @@
     "color-no-invalid-hex": true,
     "no-empty-source": null,
     "custom-property-pattern": null,
-    "selector-no-vendor-prefix": null
+    "selector-no-vendor-prefix": null,
+    "selector-class-pattern": null,
+    "plugin/selector-bem-pattern": {
+      "componentName": "[A-Z]+",
+      "componentSelectors": {
+        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+        "combined": "^\\.combined-{componentName}-[a-z]+$"
+      },
+      "utilitySelectors": "^\\.util-[a-z]+$"
+    }
   }
 }

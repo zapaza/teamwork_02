@@ -1,31 +1,14 @@
 import GameCanvas from '../../components/game/game'
 import './game-page.pcss'
-import { useEffect, useRef, useState } from 'react'
-import { useToggleFullscreen } from '../../utils/Fullscreen'
+import { useEffect, useRef } from 'react'
+import { useIsFullscreen, toggleFullscreen } from '../../utils/Fullscreen'
 
 function GamePage() {
   const gameElement = useRef(null)
   useEffect(() => {
-    useToggleFullscreen('dblclick', gameElement.current)
+    toggleFullscreen('dblclick', gameElement.current)
   })
-  const [isFullscreen, setIsFullscreen] = useState(false)
-  useEffect(() => {
-    const handleFullscreen = () => {
-      const fullscreenElement =
-        document.fullscreenElement ||
-        // @ts-ignore
-        document.mozFullScreenElement ||
-        // @ts-ignore
-        document.webkitFullscreenElement
-
-      setIsFullscreen(!!fullscreenElement)
-    }
-    document.addEventListener('fullscreenchange', handleFullscreen)
-    return () => {
-      document.removeEventListener('fullscreenchange', handleFullscreen)
-    }
-  }, [])
-
+  const isFullscreen = useIsFullscreen()
   return (
     <div className="game-page">
       <GameCanvas ref={gameElement} isFullscreen={isFullscreen} />
