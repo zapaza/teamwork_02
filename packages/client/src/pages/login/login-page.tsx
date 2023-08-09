@@ -40,7 +40,6 @@ function LoginPage() {
   const handleSubmit = async (data: unknown) => {
     try {
       await dispatch(fetchLogin(data as LoginData)).unwrap()
-      await dispatch(checkAuth()).unwrap()
     } catch (error) {
       console.error('Failed to login:', error)
     }

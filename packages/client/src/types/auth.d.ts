@@ -8,6 +8,7 @@ export interface AuthState {
   phone: string
   avatar: string
   isLoggedIn: boolean
+  isDataLoaded: boolean
 }
 
 export interface LoginData {

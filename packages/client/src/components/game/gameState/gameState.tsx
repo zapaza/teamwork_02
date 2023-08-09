@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
-import './game.pcss'
-import playCame from '../../core/game/game'
+import './gameState.pcss'
+import playCame from '../../../core/game/game'
 import { useSelector } from 'react-redux'
-import { RootState } from '../../store'
+import { RootState } from '../../../store'
 
 const GameCanvas: React.FC = () => {
   const { id, login } = useSelector((state: RootState) => state.auth)

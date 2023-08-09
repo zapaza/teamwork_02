@@ -1,35 +1,22 @@
-import { useState, useEffect } from 'react'
 import Header from './components/header/header'
 import { Outlet } from 'react-router-dom'
-import { checkAuth } from './store/auth/auth-slice'
-import { useAppDispatch } from './store'
+import { RootState } from './store'
+import { useSelector } from 'react-redux'
+import useAuth from './hooks/use-auth'
 
 function App() {
-  const [isDataLoaded, setDataLoaded] = useState(false)
-  const dispatch = useAppDispatch()
-  useEffect(() => {
-    const fetchAuth = async () => {
-      try {
-        await dispatch(checkAuth()).unwrap()
-        setDataLoaded(true)
-      } catch (error) {
-        console.error(error)
-        setDataLoaded(true)
-      }
-    }
-    fetchAuth()
-  }, [dispatch])
+  const isDataLoaded = useSelector(
+    (state: RootState) => state.auth.isDataLoaded
+  )
 
-  if (!isDataLoaded) {
-    return null
-  }
+  useAuth()
 
-  return (
+  return isDataLoaded ? (
     <>
       <Header />
       <Outlet />
     </>
-  )
+  ) : null
 }
 
 export default App
