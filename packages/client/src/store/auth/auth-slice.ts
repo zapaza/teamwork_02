@@ -16,6 +16,7 @@ const initialState: AuthState = {
   phone: '',
   avatar: '',
   isLoggedIn: false,
+  isDataLoaded: false,
 }
 
 export const fetchLogin = createAsyncThunk(
@@ -81,6 +82,7 @@ export const updateProfile = createAsyncThunk(
     }
   }
 )
+
 export const updateAvatar = createAsyncThunk(
   'auth/updateAvatar',
   async (data: FormData, thunkAPI) => {
@@ -97,7 +99,12 @@ export const updateAvatar = createAsyncThunk(
 export const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {},
+  reducers: {
+    loadData: state => {
+      //TODO в зависимости от логики можно будет переместить в extraReducers
+      state.isDataLoaded = true
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(

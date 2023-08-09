@@ -1,4 +1,4 @@
-import GameCanvas from '../../components/game/game'
+import GameCanvas from '../../components/game/gameState/gameState'
 import './game-page.pcss'
 import { useEffect, useRef } from 'react'
 import { useIsFullscreen, toggleFullscreen } from '../../utils/Fullscreen'
@@ -11,7 +11,7 @@ function GamePage() {
   const isFullscreen = useIsFullscreen()
   return (
     <div className="game-page">
-      <GameCanvas ref={gameElement} isFullscreen={isFullscreen} />
+      <GameCanvas />
     </div>
   )
 }
