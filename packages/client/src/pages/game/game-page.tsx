@@ -22,8 +22,9 @@ function GamePage() {
       <div className="game-page__container">
         {!isPlaying && (
           <div className="game-page__overlay flex flex-jc-center flex-ai-center">
-            {isLoading && <div className="game-page__loading-spinner"></div>}
-            {!isLoading && (
+            {isLoading ? (
+              <div className="game-page__loading-spinner"></div>
+            ) : (
               <Button name="play" children="Играть" onClick={onClick} />
             )}
           </div>
