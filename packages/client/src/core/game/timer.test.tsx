@@ -1,7 +1,7 @@
 import Timer from './timer'
 
 const mockOtherfn = jest.fn()
-
+let mockfn: jest.Mock<any, any>
 const pausedTimerObj = {
   isRunning: false,
   pause: mockOtherfn,
@@ -11,119 +11,120 @@ const pausedTimerObj = {
 }
 
 describe('Timer', () => {
-  test('should pause timers retreatingTimers', () => {
-    const mockfn = jest.fn()
-    Timer.pauseTimers({
-      scaredTimer: pausedTimerObj,
-      cycleTimer: pausedTimerObj,
-      retreatingTimers: [
-        pausedTimerObj,
-        {
+  beforeEach(() => {
+    mockfn = jest.fn()
+  })
+  describe('Pause', () => {
+    test('should pause timers retreatingTimers', () => {
+      Timer.pauseTimers({
+        scaredTimer: pausedTimerObj,
+        cycleTimer: pausedTimerObj,
+        retreatingTimers: [
+          pausedTimerObj,
+          {
+            isRunning: true,
+            pause: mockfn,
+            start: mockOtherfn,
+            reset: mockOtherfn,
+            resume: mockOtherfn,
+          },
+          {
+            isRunning: true,
+            pause: mockfn,
+            start: mockOtherfn,
+            reset: mockOtherfn,
+            resume: mockOtherfn,
+          },
+        ],
+      })
+      expect(mockfn).toHaveBeenCalledTimes(2)
+    })
+
+    test('should pause timer scaredTimer', () => {
+      Timer.pauseTimers({
+        scaredTimer: {
           isRunning: true,
           pause: mockfn,
           start: mockOtherfn,
           reset: mockOtherfn,
           resume: mockOtherfn,
         },
-        {
+        cycleTimer: pausedTimerObj,
+        retreatingTimers: [],
+      })
+      expect(mockfn).toHaveBeenCalled()
+    })
+
+    test('should pause timer cycleTimer if scaredTimer.isRunning is false', () => {
+      Timer.pauseTimers({
+        scaredTimer: pausedTimerObj,
+        cycleTimer: {
           isRunning: true,
           pause: mockfn,
           start: mockOtherfn,
           reset: mockOtherfn,
           resume: mockOtherfn,
         },
-      ],
+        retreatingTimers: [],
+      })
+      expect(mockfn).toHaveBeenCalled()
     })
-    expect(mockfn).toHaveBeenCalledTimes(2)
   })
 
-  test('should resume timers retreatingTimers', () => {
-    const mockfn = jest.fn()
-    Timer.resumeTimers({
-      scaredTimer: pausedTimerObj,
-      cycleTimer: pausedTimerObj,
-      retreatingTimers: [
-        pausedTimerObj,
-        {
+  describe('Resume', () => {
+    test('should resume timers retreatingTimers', () => {
+      Timer.resumeTimers({
+        scaredTimer: pausedTimerObj,
+        cycleTimer: pausedTimerObj,
+        retreatingTimers: [
+          pausedTimerObj,
+          {
+            isRunning: true,
+            pause: mockOtherfn,
+            start: mockOtherfn,
+            reset: mockOtherfn,
+            resume: mockfn,
+          },
+          {
+            isRunning: true,
+            pause: mockOtherfn,
+            start: mockOtherfn,
+            reset: mockOtherfn,
+            resume: mockfn,
+          },
+        ],
+      })
+      expect(mockfn).toHaveBeenCalledTimes(2)
+    })
+
+    test('should resume timer scaredTimer', () => {
+      Timer.resumeTimers({
+        scaredTimer: {
           isRunning: true,
           pause: mockOtherfn,
           start: mockOtherfn,
           reset: mockOtherfn,
           resume: mockfn,
         },
-        {
+        cycleTimer: pausedTimerObj,
+        retreatingTimers: [],
+      })
+      expect(mockfn).toHaveBeenCalled()
+    })
+
+    test('should resume timer cycleTimer if scaredTimer.isRunning is false', () => {
+      Timer.resumeTimers({
+        scaredTimer: pausedTimerObj,
+        cycleTimer: {
           isRunning: true,
           pause: mockOtherfn,
           start: mockOtherfn,
           reset: mockOtherfn,
           resume: mockfn,
         },
-      ],
+        retreatingTimers: [],
+      })
+      expect(mockfn).toHaveBeenCalled()
     })
-    expect(mockfn).toHaveBeenCalledTimes(2)
-  })
-
-  test('should pause timer scaredTimer', () => {
-    const mockfn = jest.fn()
-    Timer.pauseTimers({
-      scaredTimer: {
-        isRunning: true,
-        pause: mockfn,
-        start: mockOtherfn,
-        reset: mockOtherfn,
-        resume: mockOtherfn,
-      },
-      cycleTimer: pausedTimerObj,
-      retreatingTimers: [],
-    })
-    expect(mockfn).toHaveBeenCalled()
-  })
-
-  test('should pause timer cycleTimer if scaredTimer.isRunning is false', () => {
-    const mockfn = jest.fn()
-    Timer.pauseTimers({
-      scaredTimer: pausedTimerObj,
-      cycleTimer: {
-        isRunning: true,
-        pause: mockfn,
-        start: mockOtherfn,
-        reset: mockOtherfn,
-        resume: mockOtherfn,
-      },
-      retreatingTimers: [],
-    })
-    expect(mockfn).toHaveBeenCalled()
-  })
-
-  test('should resume timer scaredTimer', () => {
-    const mockfn = jest.fn()
-    Timer.resumeTimers({
-      scaredTimer: {
-        isRunning: true,
-        pause: mockOtherfn,
-        start: mockOtherfn,
-        reset: mockOtherfn,
-        resume: mockfn,
-      },
-      cycleTimer: pausedTimerObj,
-      retreatingTimers: [],
-    })
-    expect(mockfn).toHaveBeenCalled()
-  })
-
-  test('should resume timer cycleTimer if scaredTimer.isRunning is false', () => {
-    const mockfn = jest.fn()
-    Timer.resumeTimers({
-      scaredTimer: pausedTimerObj,
-      cycleTimer: {
-        isRunning: true,
-        pause: mockOtherfn,
-        start: mockOtherfn,
-        reset: mockOtherfn,
-        resume: mockfn,
-      },
-      retreatingTimers: [],
-    })
-    expect(mockfn).toHaveBeenCalled()
   })
 })

@@ -22,7 +22,7 @@ describe('Pellet', () => {
   })
 
   describe('draw', () => {
-    it('call properties to render pallet', () => {
+    test('call properties to render pallet', () => {
       pellet.draw(ctx)
       expect(ctx.beginPath).toHaveBeenCalledTimes(1)
       expect(ctx.arc).toHaveBeenCalledTimes(1)
