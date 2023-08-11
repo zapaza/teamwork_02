@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Button from '../../components/ui/button/button'
 import './game-page.pcss'
 import GameCanvas from '../../components/game/gameState/gameState'
+import LoadingSpinner from '../../components/ui/loader-spinner/loading-spinner'
 
 const GAME_LOADING_TIMER = 3000
 
@@ -23,7 +24,7 @@ function GamePage() {
         {!isPlaying && (
           <div className="game-page__overlay flex flex-jc-center flex-ai-center">
             {isLoading ? (
-              <div className="game-page__loading-spinner"></div>
+              <LoadingSpinner />
             ) : (
               <Button name="play" children="Играть" onClick={onClick} />
             )}
