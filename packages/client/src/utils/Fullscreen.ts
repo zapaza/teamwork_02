@@ -32,11 +32,10 @@ export const toggleFullscreen = (
   } else {
     _toggleFullscreen(element)
   }
-
 }
 export const _toggleFullscreen = (element: HTMLElement | undefined) => {
   if (!element) {
-    return;
+    return
   }
   if (!document.fullscreenElement) {
     activateFullscreen(element as FSHTMLElement)

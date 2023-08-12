@@ -3,12 +3,11 @@ import './game-page.pcss'
 import { useIsFullscreen } from '../../utils/Fullscreen'
 
 function GamePage() {
-
   const isFullscreenA = useIsFullscreen()
 
   return (
-    <div className='game-page'>
-      <GameCanvas isFullscreen={isFullscreenA}/>
+    <div className="game-page">
+      <GameCanvas isFullscreen={isFullscreenA} />
     </div>
   )
 }
