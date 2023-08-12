@@ -59,7 +59,7 @@ export interface IGameTimer {
   start(cycleTimer?: IGameTimer): void
   pause(): void
   reset(): void
-  resume(): void
+  resume(cycleTimer?: IGameTimer): void
 }
 
 export interface IPacman extends IWithPosition {

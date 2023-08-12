@@ -15,12 +15,17 @@ function ForumTopicPage() {
   const currentUserMock = 'Ты'
   const [newCommentState, setNewCommentState] = useState('')
   const [comments, setComments] = useState([
-    { id: '1', userName: 'Иван', commentText: 'Игра топ', date: new Date() },
+    {
+      id: '1',
+      userName: 'Иван',
+      commentText: 'Игра топ',
+      date: new Date('08.06.2023'),
+    },
     {
       id: '2',
       userName: 'Коля',
       commentText: 'Команда красавцы',
-      date: new Date(),
+      date: new Date('08.06.2023'),
     },
   ])
 
@@ -34,7 +39,7 @@ function ForumTopicPage() {
         id: (comments.length + 1).toString(),
         userName: currentUserMock,
         commentText: newCommentState,
-        date: new Date(),
+        date: new Date('08.06.2023'),
       },
     ])
     setNewCommentState('')
