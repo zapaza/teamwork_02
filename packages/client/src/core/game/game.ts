@@ -68,6 +68,7 @@ export default function playGame(player: any) {
         ctx.clearRect(0, 0, board!.width, board!.height)
         GameHooks.implementPhysics(assets, ctx, variables)
         GameHooks.implementGraphics(variables, assets.characters.pacman)
+        GameHooks.manageGhostAudio(assets)
         variables.startTime = performance.now()
       }
     }

@@ -1,3 +1,5 @@
+import AudioPlayer from './models/audioPlayer'
+
 export interface IVariables {
   tileLength: number
   isWindowVisible: boolean
@@ -27,6 +29,8 @@ export interface IWithPosition {
   radius: number
 }
 
+type TAudioPlayer = AudioPlayer & { ghostAudioWantsToPlay: boolean }
+
 export interface IGameAssets {
   characters: {
     pacman: IPacman
@@ -40,6 +44,7 @@ export interface IGameAssets {
   // audioPlayer: IAudioPlayer;
   timers: IGameTimers
   pauseTextImage: any
+  audioPlayer: TAudioPlayer
 }
 
 export interface IGameTimers {
