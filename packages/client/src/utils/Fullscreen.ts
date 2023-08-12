@@ -13,16 +13,31 @@ interface FSHTMLElement extends HTMLElement {
 }
 
 export const toggleFullscreen = (
-  type: keyof HTMLElementEventMap,
-  element: HTMLElement | null
+  element: HTMLElement | undefined,
+  type: keyof HTMLElementEventMap | undefined = undefined,
+  removeFullscreenListener: true | false = false
 ) => {
-  if (element) {
-    element.addEventListener(type, () => {
-      _toggleFullscreen(element)
-    })
+  if (!element) {
+    return
   }
+  if (type) {
+    const handler = () => {
+      _toggleFullscreen(element)
+    }
+    if (!removeFullscreenListener) {
+      element.addEventListener(type, handler)
+    } else {
+      element.removeEventListener(type, handler)
+    }
+  } else {
+    _toggleFullscreen(element)
+  }
+
 }
-const _toggleFullscreen = (element: Element) => {
+export const _toggleFullscreen = (element: HTMLElement | undefined) => {
+  if (!element) {
+    return;
+  }
   if (!document.fullscreenElement) {
     activateFullscreen(element as FSHTMLElement)
   } else {
@@ -31,34 +46,19 @@ const _toggleFullscreen = (element: Element) => {
 }
 const activateFullscreen = (element: FSHTMLElement) => {
   if (element.requestFullscreen) {
-    element.requestFullscreen().then(
-      () => true,
-      () => false
-    )
+    element.requestFullscreen().then()
   } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen().then(
-      () => true,
-      () => false
-    )
+    element.webkitRequestFullscreen().then()
   } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen().then(
-      () => true,
-      () => false
-    )
+    element.msRequestFullscreen().then()
   }
 }
 const deactivateFullscreen = () => {
   const document: FSDocument = window.document
   if (document.exitFullscreen) {
-    document.exitFullscreen().then(
-      () => true,
-      () => false
-    )
+    document.exitFullscreen().then()
   } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen().then(
-      () => true,
-      () => false
-    )
+    document.webkitExitFullscreen().then()
   }
 }
 export const useIsFullscreen = () => {
