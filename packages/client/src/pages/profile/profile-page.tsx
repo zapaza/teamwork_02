@@ -68,7 +68,7 @@ function ProfilePage() {
   }, [])
 
   return (
-    <main className="profile flex flex-jc-center">
+    <main className="profile flex flex-jc-center flex-ai-center">
       <div className="profile__container flex gap-32">
         <Wrapper>
           <section className="profile__info flex gap-32">

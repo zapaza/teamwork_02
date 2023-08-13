@@ -19,7 +19,7 @@ function GamePage() {
   }
 
   return (
-    <main className="game-page flex flex-jc-center">
+    <main className="game-page flex flex-jc-center flex-ai-center">
       <div className="game-page__container">
         {!isPlaying && (
           <div className="game-page__overlay flex flex-jc-center flex-ai-center">
