@@ -12,7 +12,7 @@ interface FSHTMLElement extends HTMLElement {
   webkitRequestFullscreen?: () => Promise<void>
 }
 
-export const toggleFullscreen = (element: HTMLElement ) => {
+export const toggleFullscreen = (element: HTMLElement) => {
   if (!element) {
     return
   }
@@ -24,39 +24,57 @@ export const toggleFullscreen = (element: HTMLElement ) => {
 }
 const activateFullscreen = (element: FSHTMLElement) => {
   if (element.requestFullscreen) {
-    element.requestFullscreen().then().catch(error => {
-      console.error('Failed to activate fullscreen:', error);
-    });
+    element
+      .requestFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to activate fullscreen:', error)
+      })
   } else if (element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen().then().catch(error => {
-      console.error('Failed to activate fullscreen:', error);
-    });
+    element
+      .webkitRequestFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to activate fullscreen:', error)
+      })
   } else if (element.msRequestFullscreen) {
-    element.msRequestFullscreen().then().catch(error => {
-      console.error('Failed to activate fullscreen:', error);
-    });
+    element
+      .msRequestFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to activate fullscreen:', error)
+      })
   } else {
-    console.error('Fullscreen API is not supported in this browser');
+    console.error('Fullscreen API is not supported in this browser')
   }
 }
 const deactivateFullscreen = () => {
-  const document: FSDocument = window.document;
+  const document: FSDocument = window.document
   if (document.exitFullscreen) {
-    document.exitFullscreen().then().catch(error => {
-      console.error('Failed to deactivate fullscreen:', error);
-    });
+    document
+      .exitFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to deactivate fullscreen:', error)
+      })
   } else if (document.webkitExitFullscreen) {
-    document.webkitExitFullscreen().then().catch(error => {
-      console.error('Failed to deactivate fullscreen:', error);
-    });
+    document
+      .webkitExitFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to deactivate fullscreen:', error)
+      })
   } else if (document.msExitFullscreen) {
-    document.msExitFullscreen().then().catch(error => {
-      console.error('Failed to deactivate fullscreen:', error);
-    });
+    document
+      .msExitFullscreen()
+      .then()
+      .catch(error => {
+        console.error('Failed to deactivate fullscreen:', error)
+      })
   } else {
-    console.error('Fullscreen API is not supported in this browser');
+    console.error('Fullscreen API is not supported in this browser')
   }
-};
+}
 export const useIsFullscreen = () => {
   const [isFullscreen, setIsFullscreen] = useState(false)
   useEffect(() => {
