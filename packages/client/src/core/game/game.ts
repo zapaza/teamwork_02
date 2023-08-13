@@ -1,8 +1,6 @@
 import { IVariables } from './types'
 import GameHooks from './gameHooks'
 import { GameFactory } from './gameFactory'
-import store from '../../store'
-import { gameSlice } from '../../store/game/gameSlice'
 
 const map = [
   '1------------21------------2',
@@ -64,14 +62,17 @@ export default function playGame(player: any) {
   if (board) {
     const ctx = board!.getContext('2d')
     if (ctx) {
+      if (variables.isGamePaused) {
+        return
+      }
       if (variables.start) {
         GameHooks.finishSetup(variables, player, assets, ctx)
-        store.dispatch(gameSlice.actions.changeState({ play: true }))
       }
       if (performance.now() - variables.startTime >= variables.frameLifetime) {
         ctx.clearRect(0, 0, board!.width, board!.height)
         GameHooks.implementPhysics(assets, ctx, variables)
         GameHooks.implementGraphics(variables, assets.characters.pacman)
+        GameHooks.manageGhostAudio(assets)
         variables.startTime = performance.now()
       }
     }

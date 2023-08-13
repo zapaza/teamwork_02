@@ -1,7 +1,11 @@
 import Button from '../../ui/button/button'
 import { useNavigate } from 'react-router-dom'
+import React from 'react'
 
-export const EndGameState = () => {
+export type EndGameStateProps = {
+  retryCallback: () => void
+}
+const EndGameState = (props: EndGameStateProps) => {
   const navigate = useNavigate()
 
   function goToLeaderBoard() {
@@ -16,7 +20,10 @@ export const EndGameState = () => {
       </p>
 
       <div className="end-game-state__buttons flex flex-ai-center gap-16">
-        <Button name="retry" children={'Retry'}></Button>
+        <Button
+          onClick={props.retryCallback}
+          name="retry"
+          children={'Retry'}></Button>
         <Button
           name="leadBoard"
           children={'Leader board'}
@@ -25,3 +32,4 @@ export const EndGameState = () => {
     </div>
   )
 }
+export default EndGameState

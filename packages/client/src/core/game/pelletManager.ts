@@ -43,6 +43,8 @@ export default class PelletManager {
       }
       if (eatenPellets === assets.props.pellets.length) {
         cancelAnimationFrame(variables.animationId as number)
+        assets.audioPlayer.stopAllGhostAudio()
+        assets.audioPlayer.playLevelUp()
         assets.characters.pacman.isLevellingUp = true
         Graphics.runLevelUpAnimation(variables, assets, ctx)
       }
@@ -75,6 +77,7 @@ export default class PelletManager {
         powerUp.changeEatenState()
       }
     })
+    assets.audioPlayer.ghostAudioWantsToPlay = true
     assets.timers.cycleTimer.start()
     playGame(variables.player)
   }

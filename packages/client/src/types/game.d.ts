@@ -1,6 +1,7 @@
 export interface GameState {
-  start?: boolean
-  play?: boolean
-  end?: boolean
-  pause?: boolean
+  isStart: boolean
+  isPlay: boolean
+  isEnd: boolean
+  isPause: boolean
+  isLoading: boolean
 }
