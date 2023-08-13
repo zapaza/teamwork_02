@@ -1,3 +1,5 @@
+/* eslint semi: "off" */
+
 const CACHE_NAME = 'version-1'
 // список урлов, которые хотим закэшировать
 const routesToCache = [
