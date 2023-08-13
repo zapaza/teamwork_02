@@ -17,6 +17,7 @@ export default class PacMan implements IPacman {
   isEating: boolean
   isShrinking: boolean
   isLevellingUp: boolean
+  audioPlayer: AudioPlayer
 
   constructor({ position, velocity }: IPacmanParams, tileLength: number) {
     this.originalPosition = position
@@ -34,6 +35,7 @@ export default class PacMan implements IPacman {
     this.isEating = false
     this.isShrinking = false
     this.isLevellingUp = false
+    this.audioPlayer = new AudioPlayer()
   }
 
   /**
@@ -82,7 +84,7 @@ export default class PacMan implements IPacman {
   chomp() {
     if (this.radians < Math.PI / 36 || this.radians > Math.PI / 4) {
       if (this.isEating) {
-        new AudioPlayer().playEating()
+       this.audioPlayer.playEating()
       }
 
       this.openRate = -this.openRate
