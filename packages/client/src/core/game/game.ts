@@ -62,10 +62,12 @@ export default function playGame(player: any) {
   if (board) {
     const ctx = board!.getContext('2d')
     if (ctx) {
+      if (variables.isGamePaused) {
+        return
+      }
       if (variables.start) {
         GameHooks.finishSetup(variables, player, assets, ctx)
       }
-      if (variables.isGamePaused) return
       if (performance.now() - variables.startTime >= variables.frameLifetime) {
         ctx.clearRect(0, 0, board!.width, board!.height)
         GameHooks.implementPhysics(assets, ctx, variables)

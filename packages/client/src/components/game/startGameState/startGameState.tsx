@@ -14,7 +14,7 @@ const StartGameState = (props: EndGameStateProps) => {
         {props.isLoading ? (
           <LoadingSpinner />
         ) : (
-          <Button name="play" children="Играть" onClick={props.callback} />
+          <Button name="play" children="Start Game" onClick={props.callback} />
         )}
       </div>
     </div>
