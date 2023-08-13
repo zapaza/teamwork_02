@@ -19,7 +19,7 @@ export const gameSlice = createSlice({
         start: true,
         end: false,
         pause: false,
-        play: false
+        play: false,
       }
     },
   },
