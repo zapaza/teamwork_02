@@ -1,8 +1,6 @@
 import { IVariables } from './types'
 import GameHooks from './gameHooks'
 import { GameFactory } from './gameFactory'
-import store from '../../store'
-import { gameSlice } from '../../store/game/gameSlice'
 
 const map = [
   '1------------21------------2',
@@ -59,15 +57,17 @@ export const variables: IVariables = {
 
 export const assets = GameFactory.makeAssets(map, variables)
 export default function playGame(player: any) {
+
   variables.animationId = requestAnimationFrame(playGame)
   const board = document.querySelector<HTMLCanvasElement>('#board')
   if (board) {
     const ctx = board!.getContext('2d')
     if (ctx) {
+
       if (variables.start) {
         GameHooks.finishSetup(variables, player, assets, ctx)
-        store.dispatch(gameSlice.actions.changeState({ play: true }))
       }
+      if(variables.isGamePaused) return
       if (performance.now() - variables.startTime >= variables.frameLifetime) {
         ctx.clearRect(0, 0, board!.width, board!.height)
         GameHooks.implementPhysics(assets, ctx, variables)

@@ -1,24 +1,17 @@
-import { useState } from 'react'
-import Button from '../../components/ui/button/button'
 import './game-page.pcss'
-import { RootState } from '../../store'
-import { useEffect } from 'react'
+import store, { RootState } from '../../store'
+import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import GameCanvas from '../../components/game/gameState/gameState'
-import LoadingSpinner from '../../components/ui/loader-spinner/loading-spinner'
+import { gameSlice } from '../../store/game/gameSlice'
+import EndGameState from '../../components/game/endGameState/endGameState'
+import StartGameState from '../../components/game/startGameState/startGameState'
 
-const GAME_LOADING_TIMER = 3000
 
 function GamePage() {
-  const [isLoading, setIsLoading] = useState(false)
-  const [isPlaying, setIsPlaying] = useState(false)
 
   const onClick = () => {
-    setIsLoading(true)
-    setTimeout(() => {
-      setIsLoading(false)
-      setIsPlaying(true)
-    }, GAME_LOADING_TIMER)
+    store.dispatch(gameSlice.actions.loading())
   }
 
   const state = useSelector((state: RootState) => state.game)
@@ -30,16 +23,9 @@ function GamePage() {
   return (
     <main className="game-page flex flex-jc-center">
       <div className="game-page__container">
-        {!isPlaying && (
-          <div className="game-page__overlay flex flex-jc-center flex-ai-center">
-            {isLoading ? (
-              <LoadingSpinner />
-            ) : (
-              <Button name="play" children="Играть" onClick={onClick} />
-            )}
-          </div>
-        )}
-        <GameCanvas />
+        {(state.isStart || state.isLoading) && <StartGameState callback={onClick}  isLoading={state.isLoading}/>}
+        {(state.isLoading || state.isPlay || state.isPause) && <GameCanvas isLoading={state.isLoading}/>}
+        {state.isEnd && <EndGameState  retryCallback={onClick}/>}
       </div>
     </main>
   )

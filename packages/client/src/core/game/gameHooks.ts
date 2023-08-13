@@ -4,6 +4,8 @@ import Graphics from './graphics'
 import { IGameAssets, IPacman, IVariables } from './types'
 import playGame from './game'
 import Animator from './animations'
+import store from '../../store'
+import { gameSlice } from '../../store/game/gameSlice'
 
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
@@ -29,6 +31,7 @@ export default class GameHooks {
     EventListener.addPauseDetection(variables, assets, ctx)
     variables.start = false
     variables.startTime = performance.now()
+    store.dispatch(gameSlice.actions.play())
   }
 
   /**
@@ -106,9 +109,9 @@ export default class GameHooks {
     cancelAnimationFrame(variables.animationId as number)
     if (variables.player) {
       await this.saveScore(variables, '')
-      // todo после запроса добавить переход на страницу лидборда
+      store.dispatch(gameSlice.actions.end())
     }
-    // this.resetAfterGameOver(assets, variables)
+    this.resetAfterGameOver(assets, variables)
     EventListener.removeAllGameEventsListeners(variables)
     Animator.displayGameOver(ctx)
   }
@@ -150,6 +153,8 @@ export default class GameHooks {
     assets.characters.pacman.lives = 2
     variables.lastKeyPressed = ''
     variables.level = 1
+    variables.score = 0
+    variables.start = true
   }
 
   /**
