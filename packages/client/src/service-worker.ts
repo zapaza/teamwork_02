@@ -1,4 +1,4 @@
-/* eslint-disable */
+// prettier-ignore
 
 const CACHE_NAME = 'version-1'
 // список урлов, которые хотим закэшировать
