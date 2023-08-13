@@ -15,7 +15,7 @@ function GamePage() {
   const state = useSelector((state: RootState) => state.game)
 
   return (
-    <main className="game-page flex flex-jc-center">
+    <main className="game-page flex flex-jc-center flex-ai-center">
       <div className="game-page__container">
         {(state.isStart || state.isLoading) && (
           <StartGameState callback={onClick} isLoading={state.isLoading} />
