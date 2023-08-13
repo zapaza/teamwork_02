@@ -6,9 +6,10 @@ import store from './store'
 import router from './routes'
 import './styles/index.pcss'
 
+// работает в production, в dev не работает и не должно работать из-за дополнительных модулей vite
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", function() {
-      navigator.serviceWorker.register("../service-worker.ts").then(
+      navigator.serviceWorker.register("./service-worker.ts" || "./service-worker.js").then(
           (registration) => {
               console.log("SW registered: ", registration);
           },
