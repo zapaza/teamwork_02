@@ -5,6 +5,8 @@ import { RouterProvider } from 'react-router-dom'
 import store from './store'
 import router from './routes'
 import './styles/index.pcss'
+import './i18n.js'
+
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
