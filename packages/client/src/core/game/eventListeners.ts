@@ -2,6 +2,7 @@
 import Timer from './timer'
 import Animator from './animations'
 import { IGameAssets, IVariables } from './types'
+import { AudioManager } from './audioManager'
 
 /**
  * Класс `EventListener` предоставляет функции для добавления различных слушателей событий.
@@ -39,9 +40,11 @@ export default class EventListener {
       (variables.visibilityEventListener = () => {
         if (!variables.isGamePaused && variables.isWindowVisible) {
           variables.isWindowVisible = false
+          AudioManager.pauseAudio(assets.audioPlayer)
           Timer.pauseTimers(assets.timers)
         } else if (!variables.isGamePaused && !variables.isWindowVisible) {
           variables.isWindowVisible = true
+          AudioManager.resumeAudio(assets.audioPlayer)
           Timer.resumeTimers(assets.timers)
         }
       })
@@ -66,10 +69,12 @@ export default class EventListener {
           if (!variables.isGamePaused) {
             variables.isGamePaused = true
             cancelAnimationFrame(variables.animationId as number)
+            AudioManager.pauseAudio(assets.audioPlayer)
             Timer.pauseTimers(assets.timers)
             Animator.loadPauseOverlay(ctx, assets.pauseTextImage)
           } else {
             variables.isGamePaused = false
+            AudioManager.resumeAudio(assets.audioPlayer)
             Timer.resumeTimers(assets.timers)
             Animator.resumeAnimation(variables, ctx, assets)
           }
