@@ -13,7 +13,7 @@ const routesToCache = [
 ]
 
 self.addEventListener('install', event => {
-  ;(event as InstallEvent).waitUntil(
+  (event as InstallEvent).waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll(routesToCache)
     })
@@ -21,7 +21,7 @@ self.addEventListener('install', event => {
 })
 
 self.addEventListener('fetch', event => {
-  ;(event as FetchEvent).respondWith(
+  (event as FetchEvent).respondWith(
     caches.match((event as FetchEvent).request).then(cachedResponse => {
       // Если ресурс в кэше, возвращаем его.
       if (cachedResponse) {
