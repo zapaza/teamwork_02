@@ -38,6 +38,8 @@ export default class GhostCollision {
       assets.characters.pacman.radians = Math.PI / 4
       cancelAnimationFrame(variables.animationId as number)
       assets.characters.pacman.isShrinking = true
+      assets.audioPlayer.stopAllGhostAudio()
+      assets.audioPlayer.playPacmanDeath()
       Graphics.runDeathAnimation(variables, ctx, assets)
     } else if (ghost.isScared) {
       variables.score += 200 * Math.pow(2, variables.killCount)

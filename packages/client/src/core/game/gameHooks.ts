@@ -6,6 +6,7 @@ import playGame from './game'
 import Animator from './animations'
 import store from '../../store'
 import { gameSlice } from '../../store/game/gameSlice'
+import { AudioManager } from './audioManager'
 
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
@@ -30,6 +31,7 @@ export default class GameHooks {
     EventListener.addVisibilityDetection(variables, assets)
     EventListener.addPauseDetection(variables, assets, ctx)
     variables.start = false
+    assets.audioPlayer.ghostAudioWantsToPlay = true
     variables.startTime = performance.now()
     store.dispatch(gameSlice.actions.play())
   }
@@ -84,7 +86,7 @@ export default class GameHooks {
     variables: IVariables,
     ctx: CanvasRenderingContext2D
   ) {
-    if (assets.characters.pacman.lives < 1) {
+    if (assets.characters.pacman.lives <= 0) {
       this.endGame(variables, assets, ctx)
     } else {
       assets.characters.pacman.lives--
@@ -107,13 +109,16 @@ export default class GameHooks {
     ctx: CanvasRenderingContext2D
   ) {
     cancelAnimationFrame(variables.animationId as number)
-    if (variables.player) {
-      await this.saveScore(variables, '')
-      store.dispatch(gameSlice.actions.end())
-    }
+    assets.audioPlayer.pauseAll()
+    assets.audioPlayer.ghostAudioWantsToPlay = false
+    store.dispatch(gameSlice.actions.end())
     this.resetAfterGameOver(assets, variables)
     EventListener.removeAllGameEventsListeners(variables)
     Animator.displayGameOver(ctx)
+    // if (variables.player) {
+    //   await this.saveScore(variables, '')
+    //   // todo после запроса добавить переход на страницу лидборда
+    // }
   }
 
   /**
@@ -172,6 +177,12 @@ export default class GameHooks {
       ghost.reset()
     })
     assets.timers.cycleTimer.start()
+    assets.audioPlayer.ghostAudioWantsToPlay = true
     playGame(variables.player)
+  }
+
+  static manageGhostAudio(assets: IGameAssets) {
+    if (assets.audioPlayer.ghostAudioWantsToPlay)
+      AudioManager.playGhostAudio(assets)
   }
 }

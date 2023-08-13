@@ -2,6 +2,7 @@
 import Timer from './timer'
 import Animator from './animations'
 import { IGameAssets, IVariables } from './types'
+import { AudioManager } from './audioManager'
 import { gameSlice } from '../../store/game/gameSlice'
 import store from '../../store'
 
@@ -68,11 +69,13 @@ export default class EventListener {
           if (!variables.isGamePaused) {
             variables.isGamePaused = true
             cancelAnimationFrame(variables.animationId as number)
+            AudioManager.pauseAudio(assets.audioPlayer)
             Timer.pauseTimers(assets.timers)
             Animator.loadPauseOverlay(ctx, assets.pauseTextImage)
             store.dispatch(gameSlice.actions.pause())
           } else {
             variables.isGamePaused = false
+            AudioManager.resumeAudio(assets.audioPlayer)
             Timer.resumeTimers(assets.timers)
             Animator.resumeAnimation(variables, ctx, assets)
             store.dispatch(gameSlice.actions.play())

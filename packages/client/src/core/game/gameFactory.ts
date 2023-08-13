@@ -15,6 +15,7 @@ import PacMan from './models/pacman'
 import CycleTimer from './models/cycleTymer'
 import ScaredTimer from './models/scaredTimer'
 import RetreatingTimer from './models/retreatingTimer'
+import AudioPlayer from './models/audioPlayer'
 
 /**
  * Фабрика для создания различных объектов игры, таких как границы, точки, привидения, PacMan и таймеры.
@@ -83,6 +84,7 @@ export class GameFactory {
         retreatingTimers: this.makeRetreatingTimers(ghosts) as IGameTimer[],
       },
       pauseTextImage: this.makePauseTextImage(),
+      audioPlayer: this.makeAudioPlayer(),
     }
   }
 
@@ -304,5 +306,12 @@ export class GameFactory {
       x: (tileLength * (2 * j + 1)) / 2,
       y: (tileLength * (2 * i + 1)) / 2,
     }
+  }
+
+  /**
+   * создаем инстанс аудиоплеера
+   */
+  static makeAudioPlayer() {
+    return new AudioPlayer()
   }
 }
