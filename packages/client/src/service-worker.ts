@@ -41,8 +41,8 @@ self.addEventListener('fetch', event => {
 })
 
 self.addEventListener('activate', event => {
-  const cacheWhitelist = [CACHE_NAME]
-  ;(event as ExtendableEvent).waitUntil(
+  const cacheWhitelist = [CACHE_NAME];
+  (event as ExtendableEvent).waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cacheName => {
