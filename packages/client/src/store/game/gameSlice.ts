@@ -5,16 +5,22 @@ const initialState: GameState = {
   end: false,
   pause: false,
   play: false,
-  start: true,
+  start: false,
+  loading: true,
 }
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    changeState: (state, action: PayloadAction<GameState>) => {
-      state = { ...state, ...action.payload }
-      return state
+    start: (state: GameState) => {
+      state = {
+        loading: false,
+        start: true,
+        end: false,
+        pause: false,
+        play: false
+      }
     },
   },
 })
