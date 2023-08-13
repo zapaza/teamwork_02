@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 
 export type GameCanvasProps = {
-  isLoading?: boolean;
+  isLoading?: boolean
 }
 
-const GameCanvas: React.FC<GameCanvasProps> = (props:GameCanvasProps) => {
+const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
   const { id, login } = useSelector((state: RootState) => state.auth)
 
   useEffect(() => {
@@ -21,7 +21,7 @@ const GameCanvas: React.FC<GameCanvasProps> = (props:GameCanvasProps) => {
   }
 
   return (
-    <div className={props.isLoading? 'hide' : 'wrapper'}>
+    <div className={props.isLoading ? 'hide' : 'wrapper'}>
       <div className="game">
         <canvas
           id="info"

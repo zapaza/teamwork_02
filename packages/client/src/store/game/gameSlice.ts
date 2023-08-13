@@ -6,7 +6,7 @@ const initialState: GameState = {
   isPlay: false,
   isEnd: false,
   isPause: false,
-  isLoading: false
+  isLoading: false,
 }
 
 export const gameSlice = createSlice({
@@ -14,51 +14,51 @@ export const gameSlice = createSlice({
   initialState,
   reducers: {
     start: () => {
-      return  {
+      return {
         isStart: true,
         isPlay: false,
         isEnd: false,
         isPause: false,
-        isLoading: false
+        isLoading: false,
       }
     },
     play: () => {
-      return  {
+      return {
         isStart: false,
         isPlay: true,
         isEnd: false,
         isPause: false,
-        isLoading: false
+        isLoading: false,
       }
     },
     end: () => {
-      return  {
+      return {
         isStart: false,
         isPlay: false,
         isEnd: true,
         isPause: false,
-        isLoading: false
+        isLoading: false,
       }
     },
     pause: () => {
-      return  {
+      return {
         isStart: false,
         isPlay: false,
         isEnd: false,
         isPause: true,
-        isLoading: false
+        isLoading: false,
       }
     },
     loading: () => {
-      return  {
+      return {
         isStart: false,
         isPlay: false,
         isEnd: false,
         isPause: false,
-        isLoading: true
+        isLoading: true,
       }
-    }
-  }
+    },
+  },
 })
 
 export default gameSlice.reducer

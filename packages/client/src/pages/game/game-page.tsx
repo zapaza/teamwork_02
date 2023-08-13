@@ -7,9 +7,7 @@ import { gameSlice } from '../../store/game/gameSlice'
 import EndGameState from '../../components/game/endGameState/endGameState'
 import StartGameState from '../../components/game/startGameState/startGameState'
 
-
 function GamePage() {
-
   const onClick = () => {
     store.dispatch(gameSlice.actions.loading())
   }
@@ -23,9 +21,13 @@ function GamePage() {
   return (
     <main className="game-page flex flex-jc-center">
       <div className="game-page__container">
-        {(state.isStart || state.isLoading) && <StartGameState callback={onClick}  isLoading={state.isLoading}/>}
-        {(state.isLoading || state.isPlay || state.isPause) && <GameCanvas isLoading={state.isLoading}/>}
-        {state.isEnd && <EndGameState  retryCallback={onClick}/>}
+        {(state.isStart || state.isLoading) && (
+          <StartGameState callback={onClick} isLoading={state.isLoading} />
+        )}
+        {(state.isLoading || state.isPlay || state.isPause) && (
+          <GameCanvas isLoading={state.isLoading} />
+        )}
+        {state.isEnd && <EndGameState retryCallback={onClick} />}
       </div>
     </main>
   )
