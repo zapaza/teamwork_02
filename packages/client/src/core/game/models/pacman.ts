@@ -84,7 +84,7 @@ export default class PacMan implements IPacman {
   chomp() {
     if (this.radians < Math.PI / 36 || this.radians > Math.PI / 4) {
       if (this.isEating) {
-       this.audioPlayer.playEating()
+        this.audioPlayer.playEating()
       }
 
       this.openRate = -this.openRate
