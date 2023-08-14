@@ -11,9 +11,6 @@ import StartGameState from '../../components/game/startGameState/startGameState'
 function GamePage() {
   const isFullscreenA = useIsFullscreen()
 
-
-
-
   const onClick = () => {
     store.dispatch(gameSlice.actions.loading())
   }
@@ -27,9 +24,11 @@ function GamePage() {
           <StartGameState callback={onClick} isLoading={state.isLoading} />
         )}
         {(state.isLoading || state.isPlay || state.isPause) && (
-          <GameCanvas isLoading={state.isLoading} />
+          <GameCanvas isFullscreen={isFullscreenA} isLoading={state.isLoading} />
         )}
-        {state.isEnd && <EndGameState isFullscreen={isFullscreenA} retryCallback={onClick} />}
+        {state.isEnd && (
+          <EndGameState retryCallback={onClick} />
+        )}
       </div>
     </main>
   )

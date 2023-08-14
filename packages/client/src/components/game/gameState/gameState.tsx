@@ -8,7 +8,6 @@ import { toggleFullscreen } from '../../../utils/Fullscreen'
 export type GameCanvasProps = {
   isLoading?: boolean
   isFullscreen?: boolean
-
 }
 
 const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
@@ -31,7 +30,9 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
   }
 
   return (
-    <div ref={gameElement as LegacyRef<HTMLDivElement>} className={props.isLoading ? 'hide' : 'wrapper'}>
+    <div
+      ref={gameElement as LegacyRef<HTMLDivElement>}
+      className={props.isLoading ? 'hide' : 'wrapper'}>
       <div className={modifyClassFS('game', props.isFullscreen)}>
         <canvas
           id="info"
