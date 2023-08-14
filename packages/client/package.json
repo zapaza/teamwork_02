@@ -49,6 +49,7 @@
     "react-hook-form": "^7.45.2",
     "stylelint": "^15.10.1",
     "stylelint-config-standard": "^34.0.0",
+    "stylelint-selector-bem-pattern": "^3.0.0",
     "ts-jest": "^28.0.8",
     "typescript": "^4.8.2",
     "vite": "^3.0.7",

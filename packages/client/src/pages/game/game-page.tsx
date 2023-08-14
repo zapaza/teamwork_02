@@ -1,12 +1,15 @@
 import { useState } from 'react'
 import Button from '../../components/ui/button/button'
 import './game-page.pcss'
+import { useIsFullscreen } from '../../utils/Fullscreen'
 import GameCanvas from '../../components/game/gameState/gameState'
 import LoadingSpinner from '../../components/ui/loader-spinner/loading-spinner'
 
 const GAME_LOADING_TIMER = 3000
 
 function GamePage() {
+  const isFullscreenA = useIsFullscreen()
+
   const [isLoading, setIsLoading] = useState(false)
   const [isPlaying, setIsPlaying] = useState(false)
 
@@ -30,7 +33,7 @@ function GamePage() {
             )}
           </div>
         )}
-        <GameCanvas />
+        <GameCanvas isFullscreen={isFullscreenA} />
       </div>
     </main>
   )
