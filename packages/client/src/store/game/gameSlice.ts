@@ -1,11 +1,12 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GameStatus } from '../../types/game'
+import { GameStatus } from './gameStatus'
+
 interface GameState {
   status: GameStatus
 }
 
 const initialState: GameState = {
-  status: 'start',
+  status: GameStatus.START,
 }
 
 export const gameSlice = createSlice({

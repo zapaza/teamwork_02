@@ -5,6 +5,7 @@ import { IGameAssets, IVariables } from './types'
 import { AudioManager } from './audioManager'
 import { gameSlice } from '../../store/game/gameSlice'
 import store from '../../store'
+import { GameStatus } from '../../store/game/gameStatus'
 
 /**
  * Класс `EventListener` предоставляет функции для добавления различных слушателей событий.
@@ -72,13 +73,13 @@ export default class EventListener {
             AudioManager.pauseAudio(assets.audioPlayer)
             Timer.pauseTimers(assets.timers)
             Animator.loadPauseOverlay(ctx, assets.pauseTextImage)
-            store.dispatch(gameSlice.actions.setStatus('pause'))
+            store.dispatch(gameSlice.actions.setStatus(GameStatus.PAUSE))
           } else {
             variables.isGamePaused = false
             AudioManager.resumeAudio(assets.audioPlayer)
             Timer.resumeTimers(assets.timers)
             Animator.resumeAnimation(variables, ctx, assets)
-            store.dispatch(gameSlice.actions.setStatus('play'))
+            store.dispatch(gameSlice.actions.setStatus(GameStatus.PLAY))
           }
         }
       })

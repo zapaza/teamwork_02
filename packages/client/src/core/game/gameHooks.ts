@@ -7,6 +7,7 @@ import Animator from './animations'
 import store from '../../store'
 import { gameSlice } from '../../store/game/gameSlice'
 import { AudioManager } from './audioManager'
+import { GameStatus } from '../../store/game/gameStatus'
 
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
@@ -33,7 +34,7 @@ export default class GameHooks {
     variables.start = false
     assets.audioPlayer.ghostAudioWantsToPlay = true
     variables.startTime = performance.now()
-    store.dispatch(gameSlice.actions.setStatus('play'))
+    store.dispatch(gameSlice.actions.setStatus(GameStatus.PLAY))
   }
 
   /**
@@ -111,7 +112,7 @@ export default class GameHooks {
     cancelAnimationFrame(variables.animationId as number)
     assets.audioPlayer.pauseAll()
     assets.audioPlayer.ghostAudioWantsToPlay = false
-    store.dispatch(gameSlice.actions.setStatus('end'))
+    store.dispatch(gameSlice.actions.setStatus(GameStatus.END))
     this.resetAfterGameOver(assets, variables)
     EventListener.removeAllGameEventsListeners(variables)
     Animator.displayGameOver(ctx)
