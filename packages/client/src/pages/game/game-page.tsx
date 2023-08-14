@@ -22,9 +22,14 @@ function GamePage() {
     <main className="game-page flex flex-jc-center flex-ai-center">
       <div className="game-page__container">
         {(state === GameStatus.START || state === GameStatus.LOADING) && (
-          <StartGameState callback={onClick} isLoading={state === GameStatus.LOADING} />
+          <StartGameState
+            callback={onClick}
+            isLoading={state === GameStatus.LOADING}
+          />
         )}
-        {(state === GameStatus.LOADING || state === GameStatus.PLAY || state === GameStatus.PAUSE) && (
+        {(state === GameStatus.LOADING ||
+          state === GameStatus.PLAY ||
+          state === GameStatus.PAUSE) && (
           <GameCanvas
             isFullscreen={isFullscreenA}
             isLoading={state === GameStatus.LOADING}
