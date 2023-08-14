@@ -33,7 +33,7 @@ export default class GameHooks {
     variables.start = false
     assets.audioPlayer.ghostAudioWantsToPlay = true
     variables.startTime = performance.now()
-    store.dispatch(gameSlice.actions.play())
+    store.dispatch(gameSlice.actions.setStatus('play'))
   }
 
   /**
@@ -111,7 +111,7 @@ export default class GameHooks {
     cancelAnimationFrame(variables.animationId as number)
     assets.audioPlayer.pauseAll()
     assets.audioPlayer.ghostAudioWantsToPlay = false
-    store.dispatch(gameSlice.actions.end())
+    store.dispatch(gameSlice.actions.setStatus('end'))
     this.resetAfterGameOver(assets, variables)
     EventListener.removeAllGameEventsListeners(variables)
     Animator.displayGameOver(ctx)

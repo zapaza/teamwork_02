@@ -72,13 +72,13 @@ export default class EventListener {
             AudioManager.pauseAudio(assets.audioPlayer)
             Timer.pauseTimers(assets.timers)
             Animator.loadPauseOverlay(ctx, assets.pauseTextImage)
-            store.dispatch(gameSlice.actions.pause())
+            store.dispatch(gameSlice.actions.setStatus('pause'))
           } else {
             variables.isGamePaused = false
             AudioManager.resumeAudio(assets.audioPlayer)
             Timer.resumeTimers(assets.timers)
             Animator.resumeAnimation(variables, ctx, assets)
-            store.dispatch(gameSlice.actions.play())
+            store.dispatch(gameSlice.actions.setStatus('play'))
           }
         }
       })

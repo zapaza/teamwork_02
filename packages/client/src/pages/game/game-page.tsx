@@ -12,24 +12,24 @@ function GamePage() {
   const isFullscreenA = useIsFullscreen()
 
   const onClick = () => {
-    store.dispatch(gameSlice.actions.loading())
+    store.dispatch(gameSlice.actions.setStatus('loading'))
   }
 
-  const state = useSelector((state: RootState) => state.game)
+  const state = useSelector((state: RootState) => state.game.status)
 
   return (
     <main className="game-page flex flex-jc-center flex-ai-center">
       <div className="game-page__container">
-        {(state.isStart || state.isLoading) && (
-          <StartGameState callback={onClick} isLoading={state.isLoading} />
+        {(state === 'start' || state === 'loading') && (
+          <StartGameState callback={onClick} isLoading={state === 'loading'} />
         )}
-        {(state.isLoading || state.isPlay || state.isPause) && (
+        {(state === 'loading' || state === 'play' || state === 'pause') && (
           <GameCanvas
             isFullscreen={isFullscreenA}
-            isLoading={state.isLoading}
+            isLoading={state === 'loading'}
           />
         )}
-        {state.isEnd && <EndGameState retryCallback={onClick} />}
+        {state === 'end' && <EndGameState retryCallback={onClick} />}
       </div>
     </main>
   )

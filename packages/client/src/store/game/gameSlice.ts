@@ -1,62 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { GameState } from '../../types/game'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import { GameStatus } from '../../types/game'
+interface GameState {
+  status: GameStatus;
+}
 
 const initialState: GameState = {
-  isStart: true,
-  isPlay: false,
-  isEnd: false,
-  isPause: false,
-  isLoading: false,
-}
+  status: 'start'
+};
 
 export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    start: () => {
-      return {
-        isStart: true,
-        isPlay: false,
-        isEnd: false,
-        isPause: false,
-        isLoading: false,
-      }
-    },
-    play: () => {
-      return {
-        isStart: false,
-        isPlay: true,
-        isEnd: false,
-        isPause: false,
-        isLoading: false,
-      }
-    },
-    end: () => {
-      return {
-        isStart: false,
-        isPlay: false,
-        isEnd: true,
-        isPause: false,
-        isLoading: false,
-      }
-    },
-    pause: () => {
-      return {
-        isStart: false,
-        isPlay: false,
-        isEnd: false,
-        isPause: true,
-        isLoading: false,
-      }
-    },
-    loading: () => {
-      return {
-        isStart: false,
-        isPlay: false,
-        isEnd: false,
-        isPause: false,
-        isLoading: true,
-      }
+    setStatus: (state, action: PayloadAction<GameStatus>) => {
+      state.status = action.payload;
     },
   },
 })
