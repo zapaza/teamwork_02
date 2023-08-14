@@ -30,28 +30,26 @@ async function cacheRoutes() {
     const cache = await caches.open(CACHE_NAME)
     return cache.addAll(routesToCache)
   } catch (error) {
-    console.error("Error caching routes:", error)
+    console.error('Error caching routes:', error)
   }
 }
 
 async function fetchOrFallback(event: FetchEvent): Promise<Response> {
   try {
-    const cachedResponse = await caches.match(event.request);
+    const cachedResponse = await caches.match(event.request)
     if (cachedResponse) {
-      return cachedResponse;
+      return cachedResponse
     }
 
-    const response = await fetch(event.request);
-    const cache = await caches.open(CACHE_NAME);
-    await cache.put(event.request, response.clone());
-    return response;
-
+    const response = await fetch(event.request)
+    const cache = await caches.open(CACHE_NAME)
+    await cache.put(event.request, response.clone())
+    return response
   } catch (error) {
-    console.error("Error fetching or falling back:", error);
-    return new Response('Service Worker Fetch Error', { status: 500 });
+    console.error('Error fetching or falling back:', error)
+    return new Response('Service Worker Fetch Error', { status: 500 })
   }
 }
-
 
 async function cleanOldCaches() {
   const cacheNames = await caches.keys()
