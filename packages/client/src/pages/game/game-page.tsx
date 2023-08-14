@@ -24,11 +24,12 @@ function GamePage() {
           <StartGameState callback={onClick} isLoading={state.isLoading} />
         )}
         {(state.isLoading || state.isPlay || state.isPause) && (
-          <GameCanvas isFullscreen={isFullscreenA} isLoading={state.isLoading} />
+          <GameCanvas
+            isFullscreen={isFullscreenA}
+            isLoading={state.isLoading}
+          />
         )}
-        {state.isEnd && (
-          <EndGameState retryCallback={onClick} />
-        )}
+        {state.isEnd && <EndGameState retryCallback={onClick} />}
       </div>
     </main>
   )
