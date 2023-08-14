@@ -1,2 +1,1 @@
-export type GameStatus = 'start' | 'play' | 'end' | 'pause' | 'loading';
-
+export type GameStatus = 'start' | 'play' | 'end' | 'pause' | 'loading'
