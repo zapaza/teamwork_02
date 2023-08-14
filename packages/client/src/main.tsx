@@ -7,7 +7,6 @@ import router from './routes'
 import './styles/index.pcss'
 import './i18n.js'
 
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>

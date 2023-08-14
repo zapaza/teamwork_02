@@ -14,7 +14,7 @@ const Header: React.FC = () => {
     { path: '/main', label: t('main') },
     { path: '/game', label: t('game') },
     { path: '/forum', label: t('forum') },
-    { path: '/leaderboard', label: t('leaderboard')},
+    { path: '/leaderboard', label: t('leaderboard') },
   ]
   const navigate = useNavigate()
   const auth = useSelector((state: RootState) => state.auth)
@@ -47,7 +47,11 @@ const Header: React.FC = () => {
               children={t('profile')}
               onClick={() => navigate('/profile')}
             />
-            <Button name="sign_out" children={t('sign_out')} onClick={handleLogout} />
+            <Button
+              name="sign_out"
+              children={t('sign_out')}
+              onClick={handleLogout}
+            />
           </>
         ) : (
           <>
