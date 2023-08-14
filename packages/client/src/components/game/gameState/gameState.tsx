@@ -1,11 +1,14 @@
-import React, { useEffect } from 'react'
+import React, { LegacyRef, useEffect, useRef } from 'react'
 import './gameState.pcss'
 import playCame from '../../../core/game/game'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
+import { toggleFullscreen } from '../../../utils/Fullscreen'
 
 export type GameCanvasProps = {
   isLoading?: boolean
+  isFullscreen?: boolean
+
 }
 
 const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
@@ -19,19 +22,26 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
     const arrow = new KeyboardEvent('keydown', { key: direction })
     window.dispatchEvent(arrow)
   }
+  const modifyClassFS = (className: string, isFS: boolean | undefined) =>
+    `${className}${isFS ? '_fullscreen' : ''}`
+
+  const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef()
+  const handler = () => {
+    toggleFullscreen(gameElement?.current)
+  }
 
   return (
-    <div className={props.isLoading ? 'hide' : 'wrapper'}>
-      <div className="game">
+    <div ref={gameElement as LegacyRef<HTMLDivElement>} className={props.isLoading ? 'hide' : 'wrapper'}>
+      <div className={modifyClassFS('game', props.isFullscreen)}>
         <canvas
           id="info"
-          className="game__info"
+          className={modifyClassFS('game__info', props.isFullscreen)}
           data-testid="info"
           width="600"
           height="30"></canvas>
         <canvas
           id="board"
-          className="game__board"
+          className={modifyClassFS('game__board', props.isFullscreen)}
           data-testid="board"
           width="896"
           height="992"></canvas>
@@ -76,6 +86,9 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
             onClick={() => handleDirection('ArrowDown')}></area>
         </map>
       </div>
+      <button onClick={handler} className={'fullscreen-button'}>
+        {props.isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+      </button>
     </div>
   )
 }
