@@ -5,9 +5,8 @@ interface FSDocument extends Document {
   webkitExitFullscreen?: () => Promise<void>
   msFullscreenElement?: Element
   webkitFullscreenElement?: Element
-  mozCancelFullScreen?: () => Promise<void>;
-  mozFullScreenElement?: Element;
-
+  mozCancelFullScreen?: () => Promise<void>
+  mozFullScreenElement?: Element
 }
 
 interface FSHTMLElement extends HTMLElement {

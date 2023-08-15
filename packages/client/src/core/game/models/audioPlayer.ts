@@ -29,7 +29,7 @@ export default class AudioPlayer {
     this.eating = new Audio('./audio/pacman_eatfruit.wav')
     this.eating.volume = 0.1
 
-    this.ghostAudioWantsToPlay = false;
+    this.ghostAudioWantsToPlay = false
   }
 
   async playEating() {
