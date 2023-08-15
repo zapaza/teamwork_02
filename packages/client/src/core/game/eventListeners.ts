@@ -44,9 +44,11 @@ export default class EventListener {
         if (!variables.isGamePaused && variables.isWindowVisible) {
           variables.isWindowVisible = false
           Timer.pauseTimers(assets.timers)
+          AudioManager.pauseAudio(assets.audioPlayer)
         } else if (!variables.isGamePaused && !variables.isWindowVisible) {
           variables.isWindowVisible = true
           Timer.resumeTimers(assets.timers)
+          AudioManager.resumeAudio(assets.audioPlayer)
         }
       })
     )
