@@ -12,7 +12,7 @@ interface FSHTMLElement extends HTMLElement {
   webkitRequestFullscreen?: () => Promise<void>
 }
 
-export const toggleFullscreen = (element: HTMLElement) => {
+export const toggleFullscreen = (element: HTMLElement | undefined) => {
   if (!element) {
     return
   }
