@@ -15,3 +15,6 @@ export interface LoginData {
   login: string
   password: string
 }
+
+
+export type SignupData = Omit<AuthState, 'id' | 'display_name' | 'avatar' | 'isLoggedIn' | 'isDataLoaded' | 'password'> & { password: string };
