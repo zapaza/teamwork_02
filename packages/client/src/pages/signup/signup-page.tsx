@@ -72,14 +72,13 @@ function Signup() {
   ]
   const handleSubmit = async (data: unknown) => {
     try {
-      await dispatch(fetchSignup(data as SignupData)).unwrap();
+      await dispatch(fetchSignup(data as SignupData)).unwrap()
       await dispatch(checkAuth()).unwrap()
       navigate('/main')
     } catch (error) {
       console.error('Failed to register:', error)
     }
   }
-  
 
   return (
     <Form

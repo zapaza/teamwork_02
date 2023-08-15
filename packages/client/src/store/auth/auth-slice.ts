@@ -19,20 +19,18 @@ const initialState: AuthState = {
   isDataLoaded: false,
 }
 
-
 export const fetchSignup = createAsyncThunk(
   'auth/signup',
   async (signupData: SignupData, thunkAPI) => {
     try {
-      return await apiAuth.signup(signupData);
+      return await apiAuth.signup(signupData)
     } catch (error) {
       return thunkAPI.rejectWithValue({
         error: (error as Error | null)?.message,
-      });
+      })
     }
   }
 )
-
 
 export const fetchLogin = createAsyncThunk(
   'auth/login',
