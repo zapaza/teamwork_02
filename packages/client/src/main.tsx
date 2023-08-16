@@ -11,7 +11,7 @@ import './i18n.js'
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker
-      .register('serviceWorker.js' || 'service-worker.ts' )
+      .register('serviceWorker.js' || 'service-worker.ts')
       .then(
         registration => {
           console.log('SW registered: ', registration)

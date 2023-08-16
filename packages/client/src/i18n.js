@@ -12,7 +12,7 @@ i18n
     debug: true,
     fallbackLng: 'ru',
     saveMissing: true,
-    lng: 'en',
+    lng: 'ru',
     saveMissingTo: 'all',
     updateMissing: true
   }).then();
