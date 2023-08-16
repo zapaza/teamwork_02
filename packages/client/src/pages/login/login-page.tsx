@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { fetchLogin } from '../../store/auth/auth-slice'
 import { RootState, AppDispatch } from '../../store'
 import { LoginData } from '../../types/auth'
+import { useTranslation } from 'react-i18next'
 
 function LoginPage() {
   const auth = useSelector((state: RootState) => state.auth)
@@ -19,19 +20,21 @@ function LoginPage() {
       navigate('/main')
     }
   }, [auth.isLoggedIn, navigate])
+  const { t } = useTranslation()
+
 
   const inputs: Array<InputsProps> = [
     {
       name: 'login',
-      label: 'Login',
-      placeholder: 'Login',
+      label: t('login'),
+      placeholder: t('login'),
       error: '',
       type: 'text',
     },
     {
       name: 'password',
-      label: 'Password',
-      placeholder: 'Password',
+      label: t('password'),
+      placeholder: t('password'),
       error: '',
       type: 'password',
     },
@@ -53,19 +56,19 @@ function LoginPage() {
   const buttons: Array<ButtonsProps> = [
     {
       name: 'signin',
-      children: 'Sign in',
+      children: t('sign_in'),
       type: 'submit',
     },
     {
       name: 'signup',
-      children: 'Sign up',
+      children: t('signup'),
       onClick: goSingUpPage,
     },
   ]
   return (
     <Form
       name={'login'}
-      title={'Sign in'}
+      title={t('sign_in')}
       inputs={inputs}
       buttons={buttons}
       callback={handleSubmit}

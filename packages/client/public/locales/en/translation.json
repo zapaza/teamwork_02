@@ -6,5 +6,18 @@
   "main": "Main",
   "game": "Game",
   "forum": "Forum",
-  "leaderboard": "Leaderboard"
+  "leaderboard": "Leaderboard",
+  "start_game": "Start game",
+  "game_over": "Game over",
+  "replay_description": "You can replay the game or view the leaderboard",
+  "retry": "Retry",
+  "fullscreen": "Fullscreen",
+  "exit_fullscreen": "Exit fullscreen",
+  "login": "Login",
+  "password": "Password",
+  "repeat_password": "Repeat password",
+  "first_name": "First name",
+  "second_name": "Second name",
+  "email": "E-mail",
+  "phone": "Phone"
 }
