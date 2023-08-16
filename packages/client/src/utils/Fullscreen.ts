@@ -5,6 +5,8 @@ interface FSDocument extends Document {
   webkitExitFullscreen?: () => Promise<void>
   msFullscreenElement?: Element
   webkitFullscreenElement?: Element
+  mozCancelFullScreen?: () => Promise<void>
+  mozFullScreenElement?: Element
 }
 
 interface FSHTMLElement extends HTMLElement {
@@ -80,9 +82,9 @@ export const useIsFullscreen = () => {
   useEffect(() => {
     const handleFullscreen = () => {
       const fullscreenElement =
-        document.fullscreenElement ||
-        document.mozFullScreenElement ||
-        document.webkitFullscreenElement
+        (document as FSDocument).fullscreenElement ||
+        (document as FSDocument).mozFullScreenElement ||
+        (document as FSDocument).webkitFullscreenElement
 
       setIsFullscreen(!!fullscreenElement)
     }

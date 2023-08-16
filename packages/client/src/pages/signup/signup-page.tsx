@@ -1,11 +1,18 @@
 import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
-import React from 'react'
 import { signUpSchema } from '../../core/validator'
+import { checkAuth, fetchSignup } from '../../store/auth/auth-slice'
+import { SignupData } from '../../types/auth'
+import { useDispatch } from 'react-redux'
+import { AppDispatch } from '../../store'
+import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 
 function Signup() {
+  const dispatch: AppDispatch = useDispatch()
+  const navigate = useNavigate()
+
   const { t } = useTranslation()
 
   const inputs: Array<InputsProps> = [
@@ -67,7 +74,13 @@ function Signup() {
     },
   ]
   const handleSubmit = async (data: unknown) => {
-    // registration here
+    try {
+      await dispatch(fetchSignup(data as SignupData)).unwrap()
+      await dispatch(checkAuth()).unwrap()
+      navigate('/')
+    } catch (error) {
+      console.error('Failed to register:', error)
+    }
   }
 
   return (

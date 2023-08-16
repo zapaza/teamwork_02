@@ -17,7 +17,7 @@ function LoginPage() {
 
   useEffect(() => {
     if (auth.isLoggedIn) {
-      navigate('/main')
+      navigate('/')
     }
   }, [auth.isLoggedIn, navigate])
   const { t } = useTranslation()

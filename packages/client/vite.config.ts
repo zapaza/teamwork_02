@@ -18,4 +18,19 @@ export default defineConfig({
       '@/': path.resolve(__dirname, './src'),
     },
   },
+  build: {
+		rollupOptions: {
+			input: {
+				app: './index.html',
+				serviceWorker: './src/service-worker.ts',
+			},
+			output: {
+				entryFileNames: chunkInfo => (
+					chunkInfo.name === 'serviceWorker'
+						? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
+						: 'assets/js/[name]-[hash].js' // остальные файлы по-умолчанию
+				),
+			},
+		},
+	},
 })

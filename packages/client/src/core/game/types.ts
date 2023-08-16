@@ -29,8 +29,6 @@ export interface IWithPosition {
   radius: number
 }
 
-type TAudioPlayer = AudioPlayer & { ghostAudioWantsToPlay: boolean }
-
 export interface IGameAssets {
   characters: {
     pacman: IPacman
@@ -44,7 +42,7 @@ export interface IGameAssets {
   // audioPlayer: IAudioPlayer;
   timers: IGameTimers
   pauseTextImage: any
-  audioPlayer: TAudioPlayer
+  audioPlayer: AudioPlayer
 }
 
 export interface IGameTimers {

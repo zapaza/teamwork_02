@@ -1,4 +1,4 @@
-import React, { useEffect, useTransition } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import Button from '../ui/button/button'
 import './header.pcss'
