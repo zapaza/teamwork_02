@@ -10,7 +10,7 @@ import './styles/index.pcss'
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker
-      .register('./service-worker.ts' || './service-worker.js')
+      .register('serviceWorker.js' || 'service-worker.ts' )
       .then(
         registration => {
           console.log('SW registered: ', registration)
