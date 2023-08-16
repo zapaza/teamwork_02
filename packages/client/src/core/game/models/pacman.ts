@@ -1,4 +1,5 @@
 import { ICoordinates, IPacman, IPacmanParams } from '../types'
+import AudioPlayer from './audioPlayer'
 
 export default class PacMan implements IPacman {
   originalPosition: ICoordinates
@@ -16,6 +17,7 @@ export default class PacMan implements IPacman {
   isEating: boolean
   isShrinking: boolean
   isLevellingUp: boolean
+  audioPlayer: AudioPlayer
 
   constructor({ position, velocity }: IPacmanParams, tileLength: number) {
     this.originalPosition = position
@@ -33,6 +35,7 @@ export default class PacMan implements IPacman {
     this.isEating = false
     this.isShrinking = false
     this.isLevellingUp = false
+    this.audioPlayer = new AudioPlayer()
   }
 
   /**
@@ -80,8 +83,13 @@ export default class PacMan implements IPacman {
    */
   chomp() {
     if (this.radians < Math.PI / 36 || this.radians > Math.PI / 4) {
+      if (this.isEating) {
+        this.audioPlayer.playEating()
+      }
+
       this.openRate = -this.openRate
     }
+
     this.radians += this.openRate
   }
 

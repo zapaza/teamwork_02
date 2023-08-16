@@ -35,6 +35,7 @@ const map = [
   '|..........................|',
   '4--------------------------3',
 ]
+
 export const variables: IVariables = {
   tileLength: 32,
   isWindowVisible: true,
@@ -61,6 +62,9 @@ export default function playGame(player: any) {
   if (board) {
     const ctx = board!.getContext('2d')
     if (ctx) {
+      if (variables.isGamePaused) {
+        return
+      }
       if (variables.start) {
         GameHooks.finishSetup(variables, player, assets, ctx)
       }
@@ -68,6 +72,7 @@ export default function playGame(player: any) {
         ctx.clearRect(0, 0, board!.width, board!.height)
         GameHooks.implementPhysics(assets, ctx, variables)
         GameHooks.implementGraphics(variables, assets.characters.pacman)
+        GameHooks.manageGhostAudio(assets)
         variables.startTime = performance.now()
       }
     }

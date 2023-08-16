@@ -85,6 +85,9 @@ export default class Graphics {
     variables.animationId = requestAnimationFrame(() =>
       runLevelUpAnimation(variables, assets, ctx)
     )
+    if (variables.isGamePaused) {
+      return
+    }
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
       Animator.drawLevelUpBoard(ctx, assets.props.boundaries)
 
@@ -117,6 +120,9 @@ export default class Graphics {
     variables.animationId = requestAnimationFrame(() =>
       this.runDeathAnimation(variables, ctx, assets)
     )
+    if (variables.isGamePaused) {
+      return
+    }
     if (performance.now() - variables.startTime >= variables.frameLifetime) {
       Animator.drawBoard(ctx, assets)
       const pacman = assets.characters.pacman

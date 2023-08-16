@@ -1,3 +1,5 @@
+import AudioPlayer from './models/audioPlayer'
+
 export interface IVariables {
   tileLength: number
   isWindowVisible: boolean
@@ -40,6 +42,7 @@ export interface IGameAssets {
   // audioPlayer: IAudioPlayer;
   timers: IGameTimers
   pauseTextImage: any
+  audioPlayer: AudioPlayer
 }
 
 export interface IGameTimers {

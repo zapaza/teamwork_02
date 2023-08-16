@@ -5,7 +5,7 @@ import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { checkAuth, fetchLogin } from '../../store/auth/auth-slice'
+import { fetchLogin } from '../../store/auth/auth-slice'
 import { RootState, AppDispatch } from '../../store'
 import { LoginData } from '../../types/auth'
 

@@ -48,6 +48,7 @@ const Form = (props: FormProps) => {
       <form
         className={'form__item flex flex-column flex-jc-center flex-ai-center'}
         //ts меня тут решил помучить, есть идеи как красиво это убрать оишбку?
+        //@ts-ignore
         onSubmit={handleSubmit(onSubmit)}>
         {props.inputs.map((input, index) => (
           <Controller

@@ -2,6 +2,11 @@
   display: none;
 }
 
+.wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
 .game {
   display: flex;
   flex-direction: column;
@@ -13,9 +18,34 @@
     flex: 0 0 60px;
   }
 
+  &__info_fullscreen {
+    width: 50vw;
+    flex: 0 0 50px;
+  }
+
   &__board {
     width: 60%;
   }
+
+  &__board_fullscreen {
+    width: 45vw;
+  }
+}
+
+.game_fullscreen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--gray-900);
+  border: 0;
+  box-shadow: var(--shadow--2xl);
+  padding: 20px;
+}
+
+.fullscreen-button {
+  margin: 0 auto;
+  width: 100%;
+  height: 100%;
 }
 
 @media only screen and (device-width <= 1024px) {
