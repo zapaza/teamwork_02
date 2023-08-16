@@ -3,7 +3,6 @@ import { Outlet } from 'react-router-dom'
 import { RootState } from './store'
 import { useSelector } from 'react-redux'
 import useAuth from './hooks/use-auth'
-import MainPage from './pages/main'
 
 function App() {
   const isDataLoaded = useSelector(
