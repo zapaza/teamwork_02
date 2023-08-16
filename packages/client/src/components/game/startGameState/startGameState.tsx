@@ -4,7 +4,6 @@ import LoadingSpinner from '../../ui/loader-spinner/loading-spinner'
 import './startGameState.pcss'
 import { useTranslation } from 'react-i18next'
 
-
 export type EndGameStateProps = {
   callback: () => void
   isLoading: boolean
@@ -18,7 +17,11 @@ const StartGameState = (props: EndGameStateProps) => {
         {props.isLoading ? (
           <LoadingSpinner />
         ) : (
-          <Button name="play" children={t('start_game')} onClick={props.callback} />
+          <Button
+            name="play"
+            children={t('start_game')}
+            onClick={props.callback}
+          />
         )}
       </div>
     </div>

@@ -17,9 +17,7 @@ const EndGameState = (props: EndGameStateProps) => {
   return (
     <div className="end-game-state wrapper flex flex-column flex-ai-center gap-16">
       <h1 className="text-3-xl-font-bold">{t('game_over')}</h1>
-      <p className=".text-base-font-regular">
-        {t('replay_description')}
-      </p>
+      <p className=".text-base-font-regular">{t('replay_description')}</p>
 
       <div className="end-game-state__buttons flex flex-ai-center gap-16">
         <Button

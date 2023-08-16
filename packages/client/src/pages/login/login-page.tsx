@@ -22,7 +22,6 @@ function LoginPage() {
   }, [auth.isLoggedIn, navigate])
   const { t } = useTranslation()
 
-
   const inputs: Array<InputsProps> = [
     {
       name: 'login',

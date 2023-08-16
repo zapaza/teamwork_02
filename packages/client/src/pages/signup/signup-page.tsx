@@ -12,7 +12,7 @@ function Signup() {
     {
       name: 'login',
       label: t('login'),
-      placeholder:t('login'),
+      placeholder: t('login'),
       error: '',
       type: 'text',
     },
