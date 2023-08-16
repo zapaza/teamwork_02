@@ -1,8 +1,8 @@
-import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
-import dotenv from 'dotenv';
-import path from 'path';
-dotenv.config();
+import { defineConfig } from 'vite'
+import react from '@vitejs/plugin-react'
+import dotenv from 'dotenv'
+import path from 'path'
+dotenv.config()
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -19,18 +19,17 @@ export default defineConfig({
     },
   },
   build: {
-		rollupOptions: {
-			input: {
-				app: './index.html',
-				serviceWorker: './src/service-worker.ts',
-			},
-			output: {
-				entryFileNames: chunkInfo => (
-					chunkInfo.name === 'serviceWorker'
-						? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
-						: 'assets/js/[name]-[hash].js' // остальные файлы по-умолчанию
-				),
-			},
-		},
-	},
+    rollupOptions: {
+      input: {
+        app: './index.html',
+        serviceWorker: './src/service-worker.ts',
+      },
+      output: {
+        entryFileNames: chunkInfo =>
+          chunkInfo.name === 'serviceWorker'
+            ? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
+            : 'assets/js/[name]-[hash].js', // остальные файлы по-умолчанию
+      },
+    },
+  },
 })

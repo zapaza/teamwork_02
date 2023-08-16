@@ -4,6 +4,7 @@ import playCame from '../../../core/game/game'
 import { useSelector } from 'react-redux'
 import { RootState } from '../../../store'
 import { toggleFullscreen } from '../../../utils/Fullscreen'
+import { useTranslation } from 'react-i18next'
 
 export type GameCanvasProps = {
   isLoading?: boolean
@@ -28,6 +29,7 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
   const handler = () => {
     toggleFullscreen(gameElement?.current)
   }
+  const { t } = useTranslation()
 
   return (
     <div
@@ -88,7 +90,7 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
         </map>
       </div>
       <button onClick={handler} className={'fullscreen-button'}>
-        {props.isFullscreen ? 'Exit fullscreen' : 'Fullscreen'}
+        {props.isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
       </button>
     </div>
   )
