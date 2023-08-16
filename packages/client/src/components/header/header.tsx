@@ -11,7 +11,7 @@ const Header: React.FC = () => {
   const { t } = useTranslation()
 
   const links = [
-    { path: '/main', label: t('main') },
+    { path: '/', label: t('main') },
     { path: '/game', label: t('game') },
     { path: '/forum', label: t('forum') },
     { path: '/leaderboard', label: t('leaderboard') },

@@ -2,12 +2,12 @@ import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
 import { signUpSchema } from '../../core/validator'
-import { checkAuth, fetchSignup } from '../../store/auth/auth-slice'
-import { SignupData } from '../../types/auth'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../store'
 import { useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
+import { checkAuth, fetchSignup } from '../../store/auth/auth-slice'
+import { SignupData } from '../../types/auth'
 
 function Signup() {
   const dispatch: AppDispatch = useDispatch()
