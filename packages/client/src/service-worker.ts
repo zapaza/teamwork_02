@@ -3,7 +3,6 @@
 const CACHE_NAME = 'version-1'
 const routesToCache = [
   '/',
-  '/main',
   '/forum',
   '/forum-topic',
   '/game',
@@ -14,15 +13,15 @@ const routesToCache = [
 ]
 
 self.addEventListener('install', event => {
-  (event as InstallEvent).waitUntil(cacheRoutes())
+  ;(event as InstallEvent).waitUntil(cacheRoutes())
 })
 
 self.addEventListener('fetch', event => {
-  (event as FetchEvent).respondWith(fetchOrFallback(event as FetchEvent))
+  ;(event as FetchEvent).respondWith(fetchOrFallback(event as FetchEvent))
 })
 
 self.addEventListener('activate', event => {
-  (event as ExtendableEvent).waitUntil(cleanOldCaches())
+  ;(event as ExtendableEvent).waitUntil(cleanOldCaches())
 })
 
 async function cacheRoutes() {

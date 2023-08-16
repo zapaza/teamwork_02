@@ -7,7 +7,7 @@ import { RootState } from '../../store'
 import { fetchLogout } from '../../store/auth/auth-slice'
 
 const links = [
-  { path: '/main', label: 'Главная' },
+  { path: '/', label: 'Главная' },
   { path: '/game', label: 'Игра' },
   { path: '/forum', label: 'Форум' },
   { path: '/leaderboard', label: 'Список лидеров' },

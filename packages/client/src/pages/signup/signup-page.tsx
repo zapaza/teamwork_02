@@ -74,7 +74,7 @@ function Signup() {
     try {
       await dispatch(fetchSignup(data as SignupData)).unwrap()
       await dispatch(checkAuth()).unwrap()
-      navigate('/main')
+      navigate('/')
     } catch (error) {
       console.error('Failed to register:', error)
     }
