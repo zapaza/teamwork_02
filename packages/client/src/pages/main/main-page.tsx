@@ -40,8 +40,8 @@ function MainPage() {
           alt="Картинка по игре"
         />
         <Wrapper>
-          <p className="main-page__content-block text-lg-font-regular">
-            <h2 className="text-lg-font-regular">Правила игры:</h2> <br />
+          <div className="main-page__content-block text-lg-font-regular">
+            <h2 className="text-lg-font-regular">Правила игры:</h2>
             1. Управление и движение: Используйте клавиши со стрелками на
             клавиатуре для перемещения Пакмана вверх, вниз, влево и вправо.{' '}
             <br />
@@ -59,7 +59,7 @@ function MainPage() {
             на экране. Старайтесь набрать как можно больше очков, уклоняясь от
             призраков и собирая все точки на поле. Вы можете установить новый
             рекорд и соревноваться с друзьями. <br />
-          </p>
+          </div>
         </Wrapper>
         <Wrapper className="flex-11a">
           <h3 className="text-lg-font-regular">Создатели игры:</h3>
