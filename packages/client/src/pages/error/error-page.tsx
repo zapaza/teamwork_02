@@ -4,7 +4,7 @@ import '../../styles/helpers.pcss'
 
 export default function ErrorPage() {
   const error = useRouteError()
-  console.error(error)
+  //console.error(error)
   const is404 = (error as any)?.status === 404
 
   return (
