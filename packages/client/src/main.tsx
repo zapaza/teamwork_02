@@ -5,12 +5,13 @@ import { RouterProvider } from 'react-router-dom'
 import store from './store'
 import router from './routes'
 import './styles/index.pcss'
+import './i18n.js'
 
 // работает в production, в dev не работает и не должно работать из-за дополнительных модулей vite
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', function () {
     navigator.serviceWorker
-      .register('./service-worker.ts' || './service-worker.js')
+      .register('serviceWorker.js' || 'service-worker.ts')
       .then(
         registration => {
           console.log('SW registered: ', registration)
