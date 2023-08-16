@@ -1,0 +1,30 @@
+.main-page {
+  width: 100%;
+  flex-grow: 1;
+  padding-top: 80px;
+
+  &__header{
+    padding: 24px;
+  }
+
+  &__container {
+    width: 1020px;
+    height: 100%;
+    flex-wrap: wrap;
+    padding: 24px 0px;
+    align-items: flex-start;
+    align-content: flex-start;
+    gap: 48px 24px;
+  }
+
+  &__content-block {
+    width: 440px;
+    height: fit-content;
+
+    &_colored {
+      width: 488px;
+      min-height: 140px;
+      background-color: var(--gray-300);
+    }
+  }
+}
