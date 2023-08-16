@@ -4,37 +4,44 @@ import './main-page.pcss'
 function MainPage() {
   return (
     <main className="main-page flex  flex-ai-center flex-column">
-      <h2 className="main-page__header text-2-xl-font-light">
+      <h1 className="main-page__header text-2-xl-font-light">
         Добро пожаловать в Pacman
-      </h2>
+      </h1>
       <div className="main-page__container flex flex-10a ">
         <Wrapper>
           <p className="main-page__content-block text-lg-font-regular">
             Погрузитесь в увлекательный мир Пакмана - современной аркадной игры,
             которая вобрала дух классики и привнесла новые элементы в игровой
-            процесс. <br />
-            Цель игры - собирать все точки на поле. Остерегайтесь четырех
-            неуловимых призраков, которые настойчиво преследуют Пакмана.
+            процесс.
+          </p>
+          <p className="main-page__content-block text-lg-font-regular">
+            <b>Цель игры</b> - собирать все точки на поле.
+          </p>
+          <p className="main-page__content-block text-lg-font-regular">
+            Остерегайтесь четырех неуловимых призраков, которые настойчиво
+            преследуют Пакмана.
+          </p>
+          <p className="main-page__content-block text-lg-font-regular">
             Энергетические бонусы, разбросанные по лабиринту, придают Пакману
             временную силу атаки и позволяют ему обратиться против призраков на
             короткое время. В этот момент раздражающие преследователи
             оглушаются, превращаясь в синих призраков, и Пакман может съесть их,
-            зарабатывая дополнительные очки. <br />
+            зарабатывая дополнительные очки.
           </p>
         </Wrapper>
         <img
           className="main-page__content-block main-page__content-block_colored text-lg-font-regular"
-          src=""
+          src="./images/mainPage/pacman-image-1.png"
           alt="Картинка по игре"
         />
         <img
           className="main-page__content-block main-page__content-block_colored text-lg-font-regular"
-          src=""
+          src="./images/mainPage/pacman-image-2.png"
           alt="Картинка по игре"
         />
         <Wrapper>
           <p className="main-page__content-block text-lg-font-regular">
-            Инструкция к игре Пакман: <br />
+            <h2 className="text-lg-font-regular">Правила игры:</h2> <br />
             1. Управление и движение: Используйте клавиши со стрелками на
             клавиатуре для перемещения Пакмана вверх, вниз, влево и вправо.{' '}
             <br />
@@ -54,9 +61,60 @@ function MainPage() {
             рекорд и соревноваться с друзьями. <br />
           </p>
         </Wrapper>
-        <Wrapper>
-          <p className="main-page__content-block text-lg-font-regular">
-            Создатели игры
+        <Wrapper className="flex-11a">
+          <h3 className="text-lg-font-regular">Создатели игры:</h3>
+          <ul className="main-page__list text-sm-font-regular">
+            <li className="main-page__list-item">
+              <a
+                className="text-sm-font-regular main-page__link"
+                href="https://github.com/TolkachevPeter"
+                target="_blank">
+                Толкачев Петр
+              </a>
+            </li>
+            <li className="main-page__list-item">
+              <a
+                className="text-sm-font-regular main-page__link"
+                href="https://github.com/SatanLittleHelper"
+                target="_blank">
+                Фенин Александр
+              </a>
+            </li>
+            <li className="main-page__list-item">
+              <a
+                className="text-sm-font-regular main-page__link"
+                href="https://github.com/Sammily"
+                target="_blank">
+                Усова Даша
+              </a>
+            </li>
+            <li className="main-page__list-item">
+              <a
+                className="text-sm-font-regular main-page__link"
+                href="https://github.com/Kustov-Ilya"
+                target="_blank">
+                Кустов Илья
+              </a>
+            </li>
+            <li className="main-page__list-item">
+              <a
+                className="text-sm-font-regular main-page__link"
+                href="https://github.com/zapaza"
+                target="_blank">
+                Чумаков Станислав
+              </a>
+            </li>
+          </ul>
+
+          <p className="text-xs-font-light">
+            <a
+              className="text-xs-font-light main-page__link"
+              href="https://github.com/zapaza/teamwork_02"
+              target="_blank">
+              Проект{' '}
+            </a>
+            разработа в рамках курса "Мидл фронтенд-разработчик", командой
+            "GOLOVOLOMKA" ©
           </p>
         </Wrapper>
       </div>

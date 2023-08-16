@@ -3,7 +3,7 @@
   flex-grow: 1;
   padding-top: 80px;
 
-  &__header{
+  &__header {
     padding: 24px;
   }
 
@@ -11,7 +11,7 @@
     width: 1020px;
     height: 100%;
     flex-wrap: wrap;
-    padding: 24px 0px;
+    padding: 24px 0;
     align-items: flex-start;
     align-content: flex-start;
     gap: 48px 24px;
@@ -24,7 +24,18 @@
     &_colored {
       width: 488px;
       min-height: 140px;
-      background-color: var(--gray-300);
+    }
+  }
+
+  &__list {
+    padding: 8px 0 0 16px;
+  }
+
+  &__link {
+    color: var(--blue-500);
+
+    &:hover {
+      color: var(--blue-900);
     }
   }
 }
