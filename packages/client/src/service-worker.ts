@@ -3,7 +3,6 @@
 const CACHE_NAME = 'version-1'
 const routesToCache = [
   '/',
-  '/main',
   '/forum',
   '/forum-topic',
   '/game',

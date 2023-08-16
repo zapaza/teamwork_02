@@ -19,12 +19,8 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       {
-        path: '/main',
-        element: (
-          <ProtectedRoute>
-            <MainPage />
-          </ProtectedRoute>
-        ),
+        path: '/',
+        element: <MainPage />,
       },
       {
         path: '/forum',
