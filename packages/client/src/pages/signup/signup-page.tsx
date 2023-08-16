@@ -2,62 +2,65 @@ import { InputsProps } from '../../components/ui/input/input'
 import { ButtonsProps } from '../../components/ui/button/button'
 import Form from '../../components/ui/form/form'
 import { signUpSchema } from '../../core/validator'
-import { checkAuth, fetchSignup } from '../../store/auth/auth-slice'
-import { SignupData } from '../../types/auth'
 import { useDispatch } from 'react-redux'
 import { AppDispatch } from '../../store'
 import { useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
+import { checkAuth, fetchSignup } from '../../store/auth/auth-slice'
+import { SignupData } from '../../types/auth'
 
 function Signup() {
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
 
+  const { t } = useTranslation()
+
   const inputs: Array<InputsProps> = [
     {
       name: 'login',
-      label: 'Login',
-      placeholder: 'Login',
+      label: t('login'),
+      placeholder: t('login'),
       error: '',
       type: 'text',
     },
     {
       name: 'password',
-      label: 'Password',
-      placeholder: 'Password',
+      label: t('password'),
+      placeholder: t('password'),
       error: '',
       type: 'password',
     },
     {
       name: 'repeat_password',
-      label: 'Repeat password',
-      placeholder: 'Repeat password',
+      label: t('repeat_password'),
+      placeholder: t('repeat_password'),
       error: '',
       type: 'password',
     },
     {
       name: 'first_name',
-      label: 'First name',
-      placeholder: 'First name',
+      label: t('first_name'),
+      placeholder: t('first_name'),
       error: '',
       type: 'text',
     },
     {
       name: 'second_name',
-      label: 'Second name',
-      placeholder: 'Second name',
+      label: t('second_name'),
+      placeholder: t('second_name'),
       error: '',
       type: 'text',
     },
     {
       name: 'email',
-      label: 'E-mail',
-      placeholder: 'E-mail',
+      label: t('email'),
+      placeholder: t('email'),
       error: '',
       type: 'text',
     },
     {
       name: 'phone',
-      label: 'Phone',
+      label: t('phone'),
       placeholder: '+7(999)999-99-99',
       error: '',
       type: 'text',
@@ -67,7 +70,7 @@ function Signup() {
   const buttons: Array<ButtonsProps> = [
     {
       name: 'signup',
-      children: 'Sign up',
+      children: t('signup'),
     },
   ]
   const handleSubmit = async (data: unknown) => {
@@ -83,7 +86,7 @@ function Signup() {
   return (
     <Form
       name={'signup'}
-      title={'Sign up'}
+      title={t('signup')}
       inputs={inputs}
       buttons={buttons}
       validationSchema={signUpSchema}
