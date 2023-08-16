@@ -7,6 +7,22 @@ import router from './routes'
 import './styles/index.pcss'
 import './i18n.js'
 
+// работает в production, в dev не работает и не должно работать из-за дополнительных модулей vite
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker
+      .register('./service-worker.ts' || './service-worker.js')
+      .then(
+        registration => {
+          console.log('SW registered: ', registration)
+        },
+        err => {
+          console.error('SW registration failed: ', err)
+        }
+      )
+  })
+}
+
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <Provider store={store}>

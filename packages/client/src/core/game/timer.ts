@@ -24,6 +24,7 @@ export default class Timer {
    */
   static resumeTimers(timers: IGameTimers) {
     if (timers.scaredTimer.isRunning) {
+      //@ts-ignore
       timers.scaredTimer.resume(timers.cycleTimer)
     } else {
       timers.cycleTimer.resume()
