@@ -111,7 +111,7 @@ function MainPage() {
               className="text-xs-font-light main-page__link"
               href="https://github.com/zapaza/teamwork_02"
               target="_blank">
-              Проект{' '}
+              Проект
             </a>
             разработа в рамках курса "Мидл фронтенд-разработчик", командой
             "GOLOVOLOMKA" ©

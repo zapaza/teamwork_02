@@ -14,12 +14,11 @@ import ErrorBoundary from '../utils/ErrorBoundary'
 
 const router = createBrowserRouter([
   {
-    path: '/',
     element: <App />,
     errorElement: <ErrorPage />,
     children: [
       {
-        index: true,
+        path: '/',
         element: <MainPage />,
       },
       {
