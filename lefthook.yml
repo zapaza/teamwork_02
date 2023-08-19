@@ -10,3 +10,17 @@ pre-commit:
     format:
       glob: '*.{ts,tsx,pcss,css}'
       run: yarn prettier --write {staged_files}
+
+commit-msg:
+  parallel: true
+  commands:
+    lint-commit-msg:
+      run: npx commitlint --edit
+
+pre-push:
+  parallel: true
+  commands:
+    test:
+      run: yarn test
+    packages-audit:
+      run: yarn audit

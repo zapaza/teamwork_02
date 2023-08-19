@@ -171,11 +171,7 @@ export default class GhostMovement {
 	 * @param ghost Объект призрака.
 	 * @param variables Объект с переменными и состояниями игры.
 	 */
-	static addCoordinates(
-		pathway: IPathway,
-		ghost: IGhost,
-		variables: IVariables,
-	) {
+	static addCoordinates(pathway: IPathway, ghost: IGhost, variables: IVariables) {
 		if (pathway.direction === 'up') {
 			pathway.position = {
 				x: ghost.position.x,
@@ -206,12 +202,7 @@ export default class GhostMovement {
 	 * @param assets Объект с ресурсами игры (звуки, изображения и т. д.).
 	 * @param variables Объект с переменными и состояниями игры.
 	 */
-	static chase(
-		ghost: IGhost,
-		pathway: IPathway,
-		assets: IGameAssets,
-		variables: IVariables,
-	) {
+	static chase(ghost: IGhost, pathway: IPathway, assets: IGameAssets, variables: IVariables) {
 		if (
 			ghost.color === 'red' ||
 			(ghost.color === 'orange' &&
@@ -235,11 +226,7 @@ export default class GhostMovement {
 	 * @returns `true`, если оранжевый призрак находится достаточно далеко от пакмана,
 	 * в противном случае `false`.
 	 */
-	static isOrangeFarFromPacman(
-		orangeGhost: IGhost,
-		pacman: IPacman,
-		variables: IVariables,
-	) {
+	static isOrangeFarFromPacman(orangeGhost: IGhost, pacman: IPacman, variables: IVariables) {
 		const x = pacman.position.x - orangeGhost.position.x;
 		const y = pacman.position.y - orangeGhost.position.y;
 		const distance = Math.hypot(x, y);
@@ -252,10 +239,7 @@ export default class GhostMovement {
 	 * @param pathway Объект пути движения призрака.
 	 * @returns Объект с вектором направления преследования к пакману.
 	 */
-	static findRedOrangeAimPath(
-		pacman: IPacman,
-		pathway: IPathway,
-	): ICoordinates {
+	static findRedOrangeAimPath(pacman: IPacman, pathway: IPathway): ICoordinates {
 		return {
 			x: pacman.position.x - pathway.position!.x,
 			y: pacman.position.y - pathway.position!.y,
