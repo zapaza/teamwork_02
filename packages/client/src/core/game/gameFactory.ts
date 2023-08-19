@@ -1,4 +1,12 @@
-import { IBoundary, IGameAssets, IGameTimer, IGhost, IPellet, IPowerUp, IVariables } from '@/core/game/types';
+import {
+	IBoundary,
+	IGameAssets,
+	IGameTimer,
+	IGhost,
+	IPellet,
+	IPowerUp,
+	IVariables,
+} from '@/core/game/types';
 import { Boundary } from '@/core/game/models/boundary';
 import { Pellet } from '@/core/game/models/pellet';
 import { PowerUp } from '@/core/game/models/powerUp';

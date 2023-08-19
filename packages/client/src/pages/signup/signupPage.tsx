@@ -94,4 +94,4 @@ export const SignupPage = () => {
 			type="json"
 		/>
 	);
-}
+};

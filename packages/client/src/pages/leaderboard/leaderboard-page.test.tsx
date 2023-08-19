@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
-import { LeaderboardPage }  from './leaderboardPage';
+import { LeaderboardPage } from './leaderboardPage';
 
 describe('Leaderboard component', () => {
 	test('component render', () => {

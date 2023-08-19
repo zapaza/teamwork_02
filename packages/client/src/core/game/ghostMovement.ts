@@ -1,4 +1,11 @@
-import { ICoordinates, IGameAssets, IGhost, IPacman, IPathway, IVariables } from '@/core/game/types';
+import {
+	ICoordinates,
+	IGameAssets,
+	IGhost,
+	IPacman,
+	IPathway,
+	IVariables,
+} from '@/core/game/types';
 
 /**
  * Класс `GhostMovement` предоставляет функции для управления движением призраков в игре.

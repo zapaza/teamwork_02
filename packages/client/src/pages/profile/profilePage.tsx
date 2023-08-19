@@ -10,12 +10,8 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { RESOURCES_URL } from '@/core/api/api-client';
 import { getProfileFieldsProps } from '@/utils/get-profile-fields-props';
-import {
-	UpdateProfileModal,
-} from '@/components/modal/update-profile-modal/updateProfileModal';
-import {
-	UpdatePasswordModal,
-} from '@/components/modal/update-password-modal/updatePasswordModal';
+import { UpdateProfileModal } from '@/components/modal/update-profile-modal/updateProfileModal';
+import { UpdatePasswordModal } from '@/components/modal/update-password-modal/updatePasswordModal';
 import { UpdateAvatarModal } from '@/components/modal/update-avatar-modal/updateAvatarModal';
 
 type ModalType = 'profile' | 'avatar' | 'password';
