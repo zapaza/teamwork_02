@@ -1,4 +1,4 @@
-import { Pellet } from '@/core/game/models//pellet';
+import { Pellet } from '@/core/game/models/pellet';
 import { IPellet } from '@/core/game/types';
 
 let pellet: IPellet;

@@ -9,6 +9,7 @@ export default {
 	moduleNameMapper: {
 		'\\.(css|less|scss|sss|styl|pcss)$': 'identity-obj-proxy',
 		'^[./a-zA-Z0-9$_-]+\\.svg$': '<rootDir>/src/utils/fileTransformer.js',
+		'^@/(.*)$': '<rootDir>/src/$1',
 	},
 	setupFiles: ['jest-canvas-mock'],
 	globals: {
