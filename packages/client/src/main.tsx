@@ -32,8 +32,10 @@ if ('serviceWorker' in navigator) {
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<RouterProvider router={router}/>
-		</Provider>
+		<React.Suspense fallback="Loading...">
+			<Provider store={store}>
+				<RouterProvider router={router}/>
+			</Provider>
+		</React.Suspense>
 	</React.StrictMode>,
 );

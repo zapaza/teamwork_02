@@ -8,13 +8,12 @@ i18n.use(Backend)
 	.use(LanguageDetector)
 	.use(initReactI18next)
 	.init({
-		debug: true,
+		debug: process.env.NODE_ENV === 'development',
 		fallbackLng: 'ru',
 		saveMissing: true,
 		lng: 'ru',
 		saveMissingTo: 'all',
 		updateMissing: true,
-	})
-	.then();
+	});
 
 export default i18n;
