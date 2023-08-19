@@ -1,11 +1,11 @@
-import Graphics from './graphics';
-import { IGameAssets, IPacman, IPellet, IVariables } from './types';
-import playGame from './game';
+import { Graphics } from '@/core/game/graphics';
+import { IGameAssets, IPacman, IPellet, IVariables } from '@/core/game/types';
+import { playGame } from '@/core/game/game';
 
 /**
  * Класс PelletManager отвечает за управление точками (пеллетами) в игре Pacman
  */
-export default class PelletManager {
+export class PelletManager {
 	/**
 	 * Проверяет, съел ли пакман пеллет. Если пакман съел пеллет, вызывается
 	 * соответствующий метод для изменения состояния пеллета и увеличения счета игрока.

@@ -8,7 +8,7 @@ export type CommentPropsType = {
 	date: Date;
 };
 
-function Comment(props: CommentPropsType) {
+export const Comment = (props: CommentPropsType) => {
 	return (
 		<div className="comment__container flex flex-column">
 			<div className="comment__header flex flex-jc-sb">
@@ -18,6 +18,4 @@ function Comment(props: CommentPropsType) {
 			<p className="comment__text text-base-font-regular">{props.commentText}</p>
 		</div>
 	);
-}
-
-export default Comment;
+};

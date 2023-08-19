@@ -1,4 +1,4 @@
-import AudioPlayer from './models/audioPlayer';
+import { AudioPlayer } from '@/core/game/models/audioPlayer';
 
 export interface IVariables {
 	tileLength: number;

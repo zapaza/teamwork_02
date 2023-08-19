@@ -1,7 +1,7 @@
-import { InputsProps } from '../components/ui/input/input';
-import { AuthState } from '../types/auth';
+import { InputsProps } from '@/components/ui/input/input';
+import { AuthState } from '@/types/auth';
 
-export default function getProfileFieldsProps(profileData: AuthState): InputsProps[] {
+export function getProfileFieldsProps(profileData: AuthState): InputsProps[] {
 	return [
 		{
 			name: 'email',

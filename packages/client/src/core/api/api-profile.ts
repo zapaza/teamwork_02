@@ -1,5 +1,5 @@
 import { AuthState } from '@/types/auth';
-import ApiClient, { API_ENDPOINT } from './api-client';
+import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
 
 export type UpdateProfileReq = {
 	first_name: string;
@@ -17,7 +17,7 @@ export type UpdatePasswordResp = UpdateProfileReq;
 
 const client = new ApiClient(API_ENDPOINT);
 
-const ApiProfile = {
+export const ApiProfile = {
 	async updatePassword(data: UpdatePasswordReq) {
 		const response = await client.put<UpdatePasswordReq, UpdatePasswordResp>(
 			'/user/password',
@@ -36,5 +36,3 @@ const ApiProfile = {
 		return response?.data;
 	},
 };
-
-export default ApiProfile;

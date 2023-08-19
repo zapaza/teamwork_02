@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Button } from '../ui/button/button';
+import { Button } from '@/components/ui/button/button';
 import './header.pcss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { fetchLogout } from '@/store/auth/auth-slice';
 import { useTranslation } from 'react-i18next';
 
-const Header: React.FC = () => {
+export const Header: React.FC = () => {
 	const { t } = useTranslation();
 
 	const links = [
@@ -63,5 +63,3 @@ const Header: React.FC = () => {
 		</header>
 	);
 };
-
-export default Header;

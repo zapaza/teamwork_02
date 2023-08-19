@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState, LoginData, SignupData } from '@/types/auth';
-import apiAuth from '../../core/api/api-auth';
-import ApiProfile, { UpdatePasswordReq, UpdateProfileReq } from '../../core/api/api-profile';
+import { ApiProfile, UpdatePasswordReq, UpdateProfileReq } from '@/core/api/api-profile';
+import { apiAuth } from '@/core/api/api-auth';
 
 const initialState: AuthState = {
 	id: null,

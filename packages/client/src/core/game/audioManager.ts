@@ -1,5 +1,5 @@
 import { IGameAssets } from './types';
-import AudioPlayer from './models/audioPlayer';
+import { AudioPlayer } from './models/audioPlayer';
 
 export class AudioManager {
 	static playGhostAudio(assets: IGameAssets) {

@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
-import { ButtonsProps } from '../../ui/button/button';
-import Modal, { ModalProps } from '../modal';
+import { ButtonsProps } from '@/components/ui/button/button';
+import { Modal, ModalProps } from '@/components/modal/modal';
 import { updateAvatarSchema } from '@/core/validator';
-import Form from '../../ui/form/form';
+import { Form } from '@/components/ui/form/form';
 import { updateAvatar } from '@/store/auth/auth-slice';
-import { InputsProps } from '../../ui/input/input';
+import { InputsProps } from '@/components/ui/input/input';
 
 const submitButton: ButtonsProps[] = [
 	{
@@ -25,7 +25,7 @@ const avatarInputs: InputsProps[] = [
 
 type UpdateAvatarModalProps = Omit<ModalProps, 'children'>;
 
-function UpdateAvatarModal(props: UpdateAvatarModalProps) {
+export const UpdateAvatarModal = (props: UpdateAvatarModalProps) => {
 	const dispatch: AppDispatch = useDispatch();
 
 	const onSubmit = async (data: unknown) => {
@@ -46,6 +46,4 @@ function UpdateAvatarModal(props: UpdateAvatarModalProps) {
 			/>
 		</Modal>
 	);
-}
-
-export default UpdateAvatarModal;
+};

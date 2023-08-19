@@ -1,8 +1,8 @@
-import Topic from '../../components/ui/topic/topic';
-import Comment from '../../components/ui/comment/comment';
-import './forum-topic-page.pcss';
-import { Button } from '../../components/ui/button/button';
+import { Topic } from '@/components/ui/topic/topic';
+import { Comment } from '@/components/ui/comment/comment';
+import { Button } from '@/components/ui/button/button';
 import { useState } from 'react';
+import './forum-topic-page.pcss';
 
 const topicMock = {
 	id: '1',
@@ -12,7 +12,7 @@ const topicMock = {
 		'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика',
 };
 
-function ForumTopicPage() {
+export const ForumTopicPage = () => {
 	const currentUserMock = 'Ты';
 	const [newCommentState, setNewCommentState] = useState('');
 	const [comments, setComments] = useState([
@@ -70,6 +70,4 @@ function ForumTopicPage() {
 			</form>
 		</div>
 	);
-}
-
-export default ForumTopicPage;
+};

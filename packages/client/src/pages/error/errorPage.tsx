@@ -1,8 +1,7 @@
 import { Link, useRouteError } from 'react-router-dom';
 import './error-page.pcss';
-import '../../styles/helpers.pcss';
 
-export default function ErrorPage() {
+export const ErrorPage = () => {
 	const error = useRouteError();
 	//console.error(error)
 	const is404 = (error as any)?.status === 404;
@@ -24,4 +23,4 @@ export default function ErrorPage() {
 			</Link>
 		</div>
 	);
-}
+};

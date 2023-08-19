@@ -1,12 +1,12 @@
-import Animator from './animations';
-import PelletManager from './pelletManager';
-import { ICoordinates, IGameAssets, IPacman, IVariables } from './types';
-import GameHooks from './gameHooks';
+import { Animator } from '@/core/game/animations';
+import { PelletManager } from '@/core/game/pelletManager';
+import { ICoordinates, IGameAssets, IPacman, IVariables } from '@/core/game/types';
+import { GameHooks } from '@/core/game/gameHooks';
 
 /**
  * Класс `Graphics` предоставляет функции для отрисовки графики и анимации в игре.
  */
-export default class Graphics {
+export class Graphics {
 	/**
 	 * Отображает текущий счет игрока.
 	 * @param ctx Контекст канваса для отрисовки счета.

@@ -1,16 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom';
-import ErrorPage from '../pages/error';
-import App from '../App';
-import ForumPage from '../pages/forum';
-import ForumTopicPage from '../pages/forum-topic';
-import GamePage from '../pages/game';
-import LeaderBoardPage from '../pages/leaderboard';
-import LoginPage from '../pages/login';
-import MainPage from '../pages/main';
-import ProfilePage from '../pages/profile';
-import SignupPage from '../pages/signup';
+import { App } from '../App';
+import { ForumPage } from '@/pages/forum/forumPage';
+import { ForumTopicPage } from '@/pages/forum-topic/forumTopicPage';
+import { GamePage } from '@/pages/game/gamePage';
+import { LeaderboardPage } from '@/pages/leaderboard/leaderboardPage';
+import { LoginPage } from '@/pages/login/loginPage';
+import { MainPage } from '@/pages/main/mainPage';
+import { ProfilePage } from '@/pages/profile/profilePage';
+import { SignupPage } from '@/pages/signup/signupPage';
 import ProtectedRoute from './protected-route';
-import ErrorBoundary from '../utils/ErrorBoundary';
+import { ErrorPage } from '@/pages/error/errorPage';
+import { ErrorBoundary } from '@/utils/ErrorBoundary';
 
 const router = createBrowserRouter([
 	{
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<LeaderBoardPage/>
+							<LeaderboardPage/>
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),

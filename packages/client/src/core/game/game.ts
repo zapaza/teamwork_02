@@ -1,6 +1,6 @@
-import { IVariables } from './types';
-import GameHooks from './gameHooks';
-import { GameFactory } from './gameFactory';
+import { IVariables } from '@/core/game/types';
+import { GameHooks } from '@/core/game/gameHooks';
+import { GameFactory } from '@/core/game/gameFactory';
 
 const map = [
 	'1------------21------------2',
@@ -56,7 +56,7 @@ export const variables: IVariables = {
 };
 
 export const assets = GameFactory.makeAssets(map, variables);
-export default function playGame(player: any) {
+export function playGame(player: any) {
 	variables.animationId = requestAnimationFrame(playGame);
 	const board = document.querySelector<HTMLCanvasElement>('#board');
 	if (board) {

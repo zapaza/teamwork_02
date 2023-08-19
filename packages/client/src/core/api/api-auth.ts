@@ -1,9 +1,9 @@
 import { AuthState, LoginData, SignupData } from '@/types/auth';
-import ApiClient, { API_ENDPOINT } from './api-client';
+import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
 
 const client = new ApiClient(API_ENDPOINT);
 
-const apiAuth = {
+export const apiAuth = {
 	login: async (data: LoginData): Promise<AuthState> => {
 		const response = await client.post<LoginData, AuthState>('/auth/signin', data);
 		return response?.data;
@@ -20,5 +20,3 @@ const apiAuth = {
 		return response?.data;
 	},
 };
-
-export default apiAuth;

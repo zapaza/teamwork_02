@@ -1,13 +1,13 @@
-import { IBoundary, IGameAssets, IGameTimer, IGhost, IPellet, IPowerUp, IVariables } from './types';
-import Boundary from './models/boundary';
-import Pellet from './models/pellet';
-import PowerUp from './models/powerUp';
-import Ghost from './models/ghost';
-import PacMan from './models/pacman';
-import CycleTimer from './models/cycleTymer';
-import ScaredTimer from './models/scaredTimer';
-import RetreatingTimer from './models/retreatingTimer';
-import AudioPlayer from './models/audioPlayer';
+import { IBoundary, IGameAssets, IGameTimer, IGhost, IPellet, IPowerUp, IVariables } from '@/core/game/types';
+import { Boundary } from '@/core/game/models/boundary';
+import { Pellet } from '@/core/game/models/pellet';
+import { PowerUp } from '@/core/game/models/powerUp';
+import { Ghost } from '@/core/game/models/ghost';
+import { PacMan } from '@/core/game/models/pacman';
+import { CycleTimer } from '@/core/game/models/cycleTymer';
+import { ScaredTimer } from '@/core/game/models/scaredTimer';
+import { RetreatingTimer } from '@/core/game/models/retreatingTimer';
+import { AudioPlayer } from '@/core/game/models/audioPlayer';
 
 /**
  * Фабрика для создания различных объектов игры, таких как границы, точки, привидения, PacMan и таймеры.

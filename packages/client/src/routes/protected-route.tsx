@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
+import { RootState } from '@/store';
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute<T extends React.ReactNode>({ children }: { children: T }) {

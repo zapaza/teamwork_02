@@ -1,6 +1,6 @@
-import { Button } from '../../ui/button/button';
+import { Button } from '@/components/ui/button/button';
 import React from 'react';
-import LoadingSpinner from '../../ui/loader-spinner/loading-spinner';
+import { LoadingSpinner } from '@/components/ui/loader-spinner/loadingSpinner';
 import './startGameState.pcss';
 import { useTranslation } from 'react-i18next';
 
@@ -8,7 +8,7 @@ export type EndGameStateProps = {
 	callback: () => void;
 	isLoading: boolean;
 };
-const StartGameState = (props: EndGameStateProps) => {
+export const StartGameState = (props: EndGameStateProps) => {
 	const { t } = useTranslation();
 
 	return (
@@ -25,4 +25,3 @@ const StartGameState = (props: EndGameStateProps) => {
 		</div>
 	);
 };
-export default StartGameState;

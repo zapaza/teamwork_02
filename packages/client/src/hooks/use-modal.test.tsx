@@ -1,5 +1,5 @@
 import '@testing-library/jest-dom/extend-expect';
-import useModal from './use-modal';
+import { useModal } from './use-modal';
 import { fireEvent, render, screen } from '@testing-library/react';
 
 function TestComponent() {

@@ -1,18 +1,22 @@
-import { InputsProps } from '../../components/ui/input/input';
-import Wrapper from '../../components/ui/wrapper/wrapper';
+import { InputsProps } from '@/components/ui/input/input';
+import { Wrapper } from '@/components/ui/wrapper/wrapper';
 import './profile-page.pcss';
-import profileLogo from '../../assets/profile_logo.svg';
+import profileLogo from '@/assets/profile_logo.svg';
 import { useEffect, useMemo, useState } from 'react';
-import ProfileField from '../../components/ui/profile-field/profile-field';
-import SubButton from '../../components/ui/sub-button/sub-button';
-import useModal from '../../hooks/use-modal';
+import { ProfileField } from '@/components/ui/profile-field/profileField';
+import { SubButton } from '@/components/ui/sub-button/subButton';
+import { useModal } from '@/hooks/use-modal';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { RESOURCES_URL } from '@/core/api/api-client';
-import getProfileFieldsProps from '../../utils/get-profile-fields-props';
-import UpdateProfileModal from '../../components/modal/update-profile-modal/update-profile-modal';
-import UpdatePasswordModal from '../../components/modal/update-password-modal/update-password-modal';
-import UpdateAvatarModal from '../../components/modal/update-avatar-modal/update-avatar-modal';
+import { getProfileFieldsProps } from '@/utils/get-profile-fields-props';
+import {
+	UpdateProfileModal,
+} from '@/components/modal/update-profile-modal/updateProfileModal';
+import {
+	UpdatePasswordModal,
+} from '@/components/modal/update-password-modal/updatePasswordModal';
+import { UpdateAvatarModal } from '@/components/modal/update-avatar-modal/updateAvatarModal';
 
 type ModalType = 'profile' | 'avatar' | 'password';
 
@@ -27,7 +31,7 @@ const otherFields: InputsProps[] = [
 	},
 ];
 
-function ProfilePage() {
+export const ProfilePage = () => {
 	const { isOpen, toggle } = useModal();
 	const [modalType, setModalType] = useState<ModalType>();
 	const profileData = useSelector((state: RootState) => state.auth);
@@ -96,6 +100,4 @@ function ProfilePage() {
 			) : null}
 		</main>
 	);
-}
-
-export default ProfilePage;
+};

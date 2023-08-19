@@ -1,12 +1,12 @@
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '@/store';
-import { ButtonsProps } from '../../ui/button/button';
-import Modal, { ModalProps } from '../modal';
+import { ButtonsProps } from '@/components/ui/button/button';
+import { Modal, ModalProps } from '@/components/modal/modal';
 import { updatePasswordSchema } from '@/core/validator';
-import Form from '../../ui/form/form';
+import { Form } from '@/components/ui/form/form';
 import { updatePassword } from '@/store/auth/auth-slice';
 import { UpdatePasswordReq } from '@/core/api/api-profile';
-import { InputsProps } from '../../ui/input/input';
+import { InputsProps } from '@/components/ui/input/input';
 
 const submitButton: ButtonsProps[] = [
 	{
@@ -38,7 +38,7 @@ const passwordsInputs: InputsProps[] = [
 
 type UpdatePasswordModalProps = Omit<ModalProps, 'children'>;
 
-function UpdatePasswordModal(props: UpdatePasswordModalProps) {
+export const UpdatePasswordModal = (props: UpdatePasswordModalProps) => {
 	const dispatch: AppDispatch = useDispatch();
 
 	const onSubmit = async (data: unknown) => {
@@ -59,6 +59,4 @@ function UpdatePasswordModal(props: UpdatePasswordModalProps) {
 			/>
 		</Modal>
 	);
-}
-
-export default UpdatePasswordModal;
+};

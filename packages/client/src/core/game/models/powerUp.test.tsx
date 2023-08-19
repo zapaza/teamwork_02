@@ -1,4 +1,4 @@
-import PowerUp from './powerUp';
+import { PowerUp } from '@/core/game/models/powerUp';
 
 let powerUp: PowerUp;
 const mockfn = jest.fn();

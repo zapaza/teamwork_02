@@ -1,21 +1,21 @@
 import React, { LegacyRef, useEffect, useRef } from 'react';
-import './gameState.pcss';
-import playCame from '../../../core/game/game';
+import { useTranslation } from 'react-i18next';
+import { playGame } from '@/core/game/game';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { toggleFullscreen } from '@/utils/Fullscreen';
-import { useTranslation } from 'react-i18next';
+import './gameState.pcss';
 
 export type GameCanvasProps = {
 	isLoading?: boolean;
 	isFullscreen?: boolean;
 };
 
-const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
+export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
 	const { id, login } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
-		playCame({ id: id, login: login });
+		playGame({ id: id, login: login });
 	}, []);
 
 	const handleDirection = (direction: string) => {
@@ -95,5 +95,3 @@ const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
 		</div>
 	);
 };
-
-export default GameCanvas;

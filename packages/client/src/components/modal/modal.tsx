@@ -7,7 +7,7 @@ export type ModalProps = {
 	children?: ReactNode;
 };
 
-function Modal(props: ModalProps) {
+export const Modal = (props: ModalProps) => {
 	return props.isOpen ? (
 		<div className="modal flex flex-ai-center flex-jc-center" onClick={props.toggle}>
 			<div className="modal__container" onClick={event => event.stopPropagation()}>
@@ -15,6 +15,4 @@ function Modal(props: ModalProps) {
 			</div>
 		</div>
 	) : null;
-}
-
-export default Modal;
+};

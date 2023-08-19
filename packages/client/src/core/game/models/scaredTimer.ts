@@ -1,7 +1,7 @@
-import { IGameTimer, IGhost } from '../types';
-import { BaseTimer } from './baseTimer';
+import { IGameTimer, IGhost } from '@/core/game/types';
+import { BaseTimer } from '@/core/game/models/baseTimer';
 
-export default class ScaredTimer extends BaseTimer {
+export class ScaredTimer extends BaseTimer {
 	ghosts: IGhost[];
 	duration: number;
 

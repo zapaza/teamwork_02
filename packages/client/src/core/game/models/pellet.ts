@@ -3,7 +3,7 @@ import { ICoordinates, IPellet } from '../types';
 /**
  * Класс `Pellet` представляет объект точки (пеллеты) на игровом поле.
  */
-export default class Pellet implements IPellet {
+export class Pellet implements IPellet {
 	position: ICoordinates;
 	radius: number;
 	hasBeenEaten: boolean;

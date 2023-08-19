@@ -1,5 +1,5 @@
-import Pellet from './pellet';
-import { IPellet } from '../types';
+import { Pellet } from '@/core/game/models//pellet';
+import { IPellet } from '@/core/game/types';
 
 let pellet: IPellet;
 

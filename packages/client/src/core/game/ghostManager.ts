@@ -1,12 +1,12 @@
-import GhostMovement from './ghostMovement';
-import BoundaryManager from './boundaryManager';
-import GhostCollision from './ghostCollisions';
-import { IBoundary, IGameAssets, IGhost, IVariables } from './types';
+import { GhostMovement } from '@/core/game/ghostMovement';
+import { BoundaryManager } from '@/core/game/boundaryManager';
+import { GhostCollision } from '@/core/game/ghostCollisions';
+import { IBoundary, IGameAssets, IGhost, IVariables } from '@/core/game/types';
 
 /**
  * Класс `GhostManager` управляет поведением призраков в игре.
  */
-export default class GhostManager {
+export class GhostManager {
 	/**
 	 * Проверяет текущее состояние призрака (испуган, отступает, обычное)
 	 * и соответствующим образом корректирует его скорость,

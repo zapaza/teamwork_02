@@ -1,4 +1,4 @@
-export default class AudioPlayer {
+export class AudioPlayer {
 	public ghostSiren: HTMLAudioElement;
 	public ghostScared: HTMLAudioElement;
 	public ghostRetreating: HTMLAudioElement;

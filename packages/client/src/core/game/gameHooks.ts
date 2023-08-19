@@ -1,10 +1,10 @@
-import EventListener from './eventListeners';
-import Physics from './physics';
-import Graphics from './graphics';
-import { IGameAssets, IPacman, IVariables } from './types';
-import playGame from './game';
-import Animator from './animations';
-import store from '../../store';
+import { EventListener } from '@/core/game/eventListeners';
+import { Physics } from '@/core/game/physics';
+import { Graphics } from '@/core/game/graphics';
+import { IGameAssets, IPacman, IVariables } from '@/core/game/types';
+import { playGame } from '@/core/game/game';
+import { Animator } from '@/core/game/animations';
+import store from '@/store';
 import { gameSlice } from '@/store/game/gameSlice';
 import { AudioManager } from './audioManager';
 import { GameStatus } from '@/store/game/gameStatus';
@@ -12,7 +12,7 @@ import { GameStatus } from '@/store/game/gameStatus';
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
  */
-export default class GameHooks {
+export class GameHooks {
 	/**
 	 * Завершает настройку игры после загрузки ресурсов.
 	 * @param variables Объект с переменными игры.

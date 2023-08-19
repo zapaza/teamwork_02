@@ -1,9 +1,9 @@
-import { IGameAssets, IPowerUp, IVariables } from './types';
+import { IGameAssets, IPowerUp, IVariables } from '@/core/game/types';
 
 /**
  * Класс PowerUpManager управляет силами (Power-Ups) в игре Pacman.
  */
-export default class PowerUpManager {
+export class PowerUpManager {
 	/**
 	 * Проверяет, съел ли игрок силу. Если сила была съедена,
 	 * вызываются соответствующие методы для изменения игровых параметров и состояний привидений.

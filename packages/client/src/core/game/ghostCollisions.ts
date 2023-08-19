@@ -1,11 +1,11 @@
-import Graphics from './graphics';
-import { IGameAssets, IGhost, IPacman, IVariables } from './types';
+import { Graphics } from '@/core/game/graphics';
+import { IGameAssets, IGhost, IPacman, IVariables } from '@/core/game/types';
 
 /**
  * Класс `GhostCollision` предоставляет функции для обработки столкновений
  * призраков с Pacman и управления игровым процессом после столкновений.
  */
-export default class GhostCollision {
+export class GhostCollision {
 	/**
 	 * Проверяет, происходит ли столкновение между призраком и Pacman.
 	 * @param ghost Объект призрака.

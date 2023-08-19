@@ -3,7 +3,7 @@ import { ICoordinates, IPowerUp } from '../types';
 /**
  * Класс `PowerUp` представляет объект силового бонуса (Power-Up) на игровом поле.
  */
-export default class PowerUp implements IPowerUp {
+export class PowerUp implements IPowerUp {
 	position: ICoordinates;
 	radius: number;
 	hasBeenEaten: boolean;

@@ -1,11 +1,11 @@
-import playGame from './game';
-import Graphics from './graphics';
-import { IBoundary, IGameAssets, IVariables } from './types';
+import { playGame } from '@/core/game/game';
+import { Graphics } from '@/core/game/graphics';
+import { IBoundary, IGameAssets, IVariables } from '@/core/game/types';
 
 /**
  * Класс `Animator` предоставляет функции для анимации игровых элементов и отрисовки графики.
  */
-export default class Animator {
+export class Animator {
 	/**
 	 * Отображает паузу в игре.
 	 * @param ctx Контекст канваса для отрисовки паузы.

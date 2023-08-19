@@ -1,14 +1,14 @@
 import React from 'react';
 import './create-topic-modal.pcss';
-import { Button } from '../button/button';
-import Input from '../input/input';
+import { Button } from '@/components/ui/button/button';
+import Input from '@/components/ui/input/input';
 
 type modalPropsType = {
 	active: boolean;
 	handleClose: () => void;
 };
 
-function CreateTopicModal(props: modalPropsType) {
+export const CreateTopicModal = (props: modalPropsType) => {
 	return (
 		<div className={`create-topic-modal ${props.active ? 'active' : 'hide'}`}>
 			<form className="form__container modal__form">
@@ -28,6 +28,4 @@ function CreateTopicModal(props: modalPropsType) {
 			</form>
 		</div>
 	);
-}
-
-export default CreateTopicModal;
+};

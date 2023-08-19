@@ -1,9 +1,9 @@
-import { ICoordinates, IGameTimer, IGhost, IGhostParams } from '../types';
+import { ICoordinates, IGameTimer, IGhost, IGhostParams } from '@/core/game/types';
 
 /**
  * Класс `Ghost` представляет объект привидения в игре.
  */
-export default class Ghost implements IGhost {
+export class Ghost implements IGhost {
 	position: ICoordinates;
 	originalPosition: ICoordinates;
 	velocity: ICoordinates;

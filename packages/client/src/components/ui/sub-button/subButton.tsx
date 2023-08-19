@@ -5,12 +5,10 @@ type SubButtonProps = {
 	onClick?: () => void;
 };
 
-function SubButton(props: SubButtonProps) {
+export const SubButton = (props: SubButtonProps) => {
 	return (
 		<button className="sub-button text-base-font-regular" onClick={props.onClick}>
 			{props.label}
 		</button>
 	);
-}
-
-export default SubButton;
+};

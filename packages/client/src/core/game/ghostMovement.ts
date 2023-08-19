@@ -1,9 +1,9 @@
-import { ICoordinates, IGameAssets, IGhost, IPacman, IPathway, IVariables } from './types';
+import { ICoordinates, IGameAssets, IGhost, IPacman, IPathway, IVariables } from '@/core/game/types';
 
 /**
  * Класс `GhostMovement` предоставляет функции для управления движением призраков в игре.
  */
-export default class GhostMovement {
+export class GhostMovement {
 	private static canvasWidth = 896;
 	private static canvasHeight = 992;
 

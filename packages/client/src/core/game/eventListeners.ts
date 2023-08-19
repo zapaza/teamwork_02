@@ -1,16 +1,16 @@
 // import AudioManager from "../audio/audioManager";
-import Timer from './timer';
-import Animator from './animations';
-import { IGameAssets, IVariables } from './types';
-import { AudioManager } from './audioManager';
+import { Timer } from '@/core/game/timer';
+import { Animator } from '@/core/game/animations';
+import { IGameAssets, IVariables } from '@/core/game/types';
+import { AudioManager } from '@/core/game/audioManager';
 import { gameSlice } from '@/store/game/gameSlice';
-import store from '../../store';
+import store from '@/store';
 import { GameStatus } from '@/store/game/gameStatus';
 
 /**
  * Класс `EventListener` предоставляет функции для добавления различных слушателей событий.
  */
-export default class EventListener {
+export class EventListener {
 	/**
 	 * Добавляет слушателя событий для определения направления движения.
 	 * @param variables Объект с переменными и состояниями игры.

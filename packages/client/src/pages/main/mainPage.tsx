@@ -1,7 +1,7 @@
-import Wrapper from '../../components/ui/wrapper/wrapper';
+import { Wrapper } from '@/components/ui/wrapper/wrapper';
 import './main-page.pcss';
 
-function MainPage() {
+export const MainPage = () => {
 	return (
 		<main className="main-page flex  flex-ai-center flex-column">
 			<h1 className="main-page__header text-2-xl-font-light">Добро пожаловать в Pacman</h1>
@@ -126,6 +126,4 @@ function MainPage() {
 			</div>
 		</main>
 	);
-}
-
-export default MainPage;
+};

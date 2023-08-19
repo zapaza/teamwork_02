@@ -1,15 +1,15 @@
-import './game-page.pcss';
-import store, { RootState } from '../../store';
 import React from 'react';
+import store, { RootState } from '@/store';
 import { useSelector } from 'react-redux';
-import { useIsFullscreen } from '../../utils/Fullscreen';
-import GameCanvas from '../../components/game/gameState/gameState';
-import { gameSlice } from '../../store/game/gameSlice';
-import EndGameState from '../../components/game/endGameState/endGameState';
-import StartGameState from '../../components/game/startGameState/startGameState';
-import { GameStatus } from '../../store/game/gameStatus';
+import { useIsFullscreen } from '@/utils/Fullscreen';
+import { GameCanvas } from '@/components/game/gameState/gameState';
+import { gameSlice } from '@/store/game/gameSlice';
+import { EndGameState } from '@/components/game/endGameState/endGameState';
+import { StartGameState } from '@/components/game/startGameState/startGameState';
+import { GameStatus } from '@/store/game/gameStatus';
+import './game-page.pcss';
 
-function GamePage() {
+export const GamePage = () => {
 	const isFullscreenA = useIsFullscreen();
 
 	const onClick = () => {
@@ -36,6 +36,4 @@ function GamePage() {
 			</div>
 		</main>
 	);
-}
-
-export default GamePage;
+};

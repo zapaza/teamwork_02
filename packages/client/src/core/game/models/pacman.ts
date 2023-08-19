@@ -1,7 +1,7 @@
-import { ICoordinates, IPacman, IPacmanParams } from '../types';
-import AudioPlayer from './audioPlayer';
+import { ICoordinates, IPacman, IPacmanParams } from '@/core/game/types';
+import { AudioPlayer } from '@/core/game/models/audioPlayer';
 
-export default class PacMan implements IPacman {
+export class PacMan implements IPacman {
 	originalPosition: ICoordinates;
 	position: ICoordinates;
 	originalVelocity: ICoordinates;

@@ -1,6 +1,6 @@
-import { Button } from '../../components/ui/button/button';
-import Topic from '../../components/ui/topic/topic';
-import CreateTopicModal from '../../components/ui/create-topic-modal/create-topic-modal';
+import { Button } from '@/components/ui/button/button';
+import { Topic } from '@/components/ui/topic/topic';
+import { CreateTopicModal } from '@/components/ui/create-topic-modal/createTopicModal';
 import './forum-page.pcss';
 import { useState } from 'react';
 
@@ -35,7 +35,7 @@ const forumMock = [
 	},
 ];
 
-function ForumPage() {
+export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
 
 	function changeActive() {
@@ -60,6 +60,4 @@ function ForumPage() {
 			<CreateTopicModal active={activeModal} handleClose={changeActive}/>
 		</>
 	);
-}
-
-export default ForumPage;
+};

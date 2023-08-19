@@ -1,10 +1,10 @@
-import { IBoundary, ICoordinates, IPacman, IVariables, IWithPosition } from './types';
+import { IBoundary, ICoordinates, IPacman, IVariables, IWithPosition } from '@/core/game/types';
 
 /**
  * Класс `BoundaryManager` предоставляет функции для управления границами
  * (перепрыгивание, остановка персонажа при столкновении и т. д.).
  */
-export default class BoundaryManager {
+export class BoundaryManager {
 	/**
 	 * Проверяет, сталкивается ли персонаж с границей на следующем шаге движения.
 	 * @param character Объект персонажа (например, Pacman или призрак).

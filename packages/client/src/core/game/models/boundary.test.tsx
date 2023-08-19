@@ -1,4 +1,4 @@
-import Boundary from './boundary';
+import { Boundary } from '@/core/game/models/boundary';
 
 let boundary: Boundary;
 let mockimage: HTMLImageElement;

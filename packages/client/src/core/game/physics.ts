@@ -1,11 +1,11 @@
-import BoundaryManager from './boundaryManager';
-import PelletManager from './pelletManager';
-import PowerUpManager from './powerUpManager';
-import GhostManager from './ghostManager';
-import PacmanManager from './pacmanManager';
-import { IGameAssets, IVariables } from './types';
+import { BoundaryManager } from '@/core/game/boundaryManager';
+import { PelletManager } from '@/core/game/pelletManager';
+import { PowerUpManager } from '@/core/game/powerUpManager';
+import { GhostManager } from '@/core/game/ghostManager';
+import { PacmanManager } from '@/core/game/pacmanManager';
+import { IGameAssets, IVariables } from '@/core/game/types';
 
-export default class Physics {
+export class Physics {
 	/**
 	 * Реализует границы игрового поля и обработку столкновений для персонажа Pacman.
 	 * @param assets - Игровые ресурсы, содержащие препятствия и персонажа Pacman.

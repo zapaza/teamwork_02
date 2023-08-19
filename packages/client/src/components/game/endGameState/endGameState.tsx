@@ -1,12 +1,13 @@
-import Button from '../../ui/button/button';
-import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+
+import { Button } from '@/components/ui/button/button';
 
 export type EndGameStateProps = {
 	retryCallback: () => void;
 };
-const EndGameState = (props: EndGameStateProps) => {
+export const EndGameState = (props: EndGameStateProps) => {
 	const navigate = useNavigate();
 
 	function goToLeaderBoard() {
@@ -30,4 +31,3 @@ const EndGameState = (props: EndGameStateProps) => {
 		</div>
 	);
 };
-export default EndGameState;

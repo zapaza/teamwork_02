@@ -1,10 +1,10 @@
-import Header from './components/header/header';
+import { Header } from './components/header/header';
 import { Outlet } from 'react-router-dom';
 import { RootState } from './store';
 import { useSelector } from 'react-redux';
-import useAuth from './hooks/use-auth';
+import { useAuth } from './hooks/use-auth';
 
-function App() {
+export const App = () => {
 	const isDataLoaded = useSelector((state: RootState) => state.auth.isDataLoaded);
 
 	useAuth();
@@ -15,6 +15,4 @@ function App() {
 			<Outlet/>
 		</>
 	) : null;
-}
-
-export default App;
+};

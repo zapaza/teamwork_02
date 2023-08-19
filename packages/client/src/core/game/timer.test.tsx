@@ -1,4 +1,4 @@
-import Timer from './timer';
+import Timer from '@/core/game/timer';
 
 const mockOtherfn = jest.fn();
 let mockfn: jest.Mock;

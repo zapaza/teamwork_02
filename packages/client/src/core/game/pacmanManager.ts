@@ -1,11 +1,11 @@
-import BoundaryManager from './boundaryManager';
-import { IBoundary, ICoordinates, IGameAssets, IPacman, IVariables } from './types';
+import { BoundaryManager } from '@/core/game/boundaryManager';
+import { IBoundary, ICoordinates, IGameAssets, IPacman, IVariables } from '@/core/game/types';
 
 /**
  * Класс PacmanManager управляет движением персонажа Pacman и взаимодействием
  * с элементами игрового мира.
  */
-export default class PacmanManager {
+export class PacmanManager {
 	/**
 	 * Изменяет направление движения персонажа Pacman на основе последней нажатой клавиши.
 	 *

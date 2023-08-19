@@ -1,6 +1,5 @@
 import './leaderboard-page.pcss';
-import '../../styles/helpers.pcss';
-import LeaderboardAndProfileField from '../../components/ui/leaderboard-and-profile-field';
+import { LeaderboardAndProfileField } from '@/components/ui/leaderboard-and-profile-field/leaderboardAndProfileField';
 import React from 'react';
 
 const leaderboardMock = [
@@ -22,7 +21,7 @@ const leaderboardMock = [
 	},
 ];
 
-function LeaderBoardPage() {
+export const LeaderboardPage = () => {
 	return (
 		<div className="leaderboard__container flex flex-column flex-ai-center">
 			<h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
@@ -35,6 +34,4 @@ function LeaderBoardPage() {
 			))}
 		</div>
 	);
-}
-
-export default LeaderBoardPage;
+};

@@ -2,7 +2,7 @@ import Input, { InputsProps } from '../input/input';
 import { Controller, useForm, UseFormProps } from 'react-hook-form';
 import React from 'react';
 import './form.pcss';
-import { Button, ButtonsProps } from '../button/button';
+import { Button, ButtonsProps } from '@/components/ui//button/button';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 export type FormProps = {
@@ -14,7 +14,7 @@ export type FormProps = {
 	type: 'json' | 'formData';
 	callback: (data: unknown) => Promise<void>;
 };
-const Form = (props: FormProps) => {
+export const Form = (props: FormProps) => {
 	const validatorSettings: UseFormProps = {
 		resolver: yupResolver(props.validationSchema),
 		mode: 'onBlur',
@@ -73,5 +73,3 @@ const Form = (props: FormProps) => {
 		</div>
 	);
 };
-
-export default Form;

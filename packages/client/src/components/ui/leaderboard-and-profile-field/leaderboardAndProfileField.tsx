@@ -8,12 +8,12 @@ export type FieldPropsType = {
 	isCurrentUser?: boolean;
 };
 
-function LeaderboardAndProfileField({
+export const LeaderboardAndProfileField = ({
 	positionNumber,
 	userName,
 	userScore,
 	isCurrentUser,
-}: FieldPropsType) {
+}: FieldPropsType) => {
 	return (
 		<div
 			className="leaderboard-input__container flex flex-ai-center flex-jc-center"
@@ -30,6 +30,4 @@ function LeaderboardAndProfileField({
 			<span className="user-score text-base-font-regular">{userScore}</span>
 		</div>
 	);
-}
-
-export default LeaderboardAndProfileField;
+};

@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '../store';
-import { authSlice, checkAuth } from '../store/auth/auth-slice';
+import { useAppDispatch } from '@/store';
+import { authSlice, checkAuth } from '@/store/auth/auth-slice';
 
-export default function useAuth() {
+export const useAuth = () => {
 	const dispatch = useAppDispatch();
 
 	useEffect(() => {
@@ -15,6 +15,6 @@ export default function useAuth() {
 				dispatch(authSlice.actions.loadData());
 			}
 		};
-		fetchAuth();
+		fetchAuth().catch(e => console.log(e));
 	}, [dispatch]);
-}
+};

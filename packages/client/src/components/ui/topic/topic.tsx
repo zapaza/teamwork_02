@@ -8,7 +8,7 @@ export type TopicType = {
 	topicText: string;
 };
 
-function Topic(props: TopicType) {
+export const Topic = (props: TopicType) => {
 	const navigate = useNavigate();
 	return (
 		<div className="topic__container flex flex-column" onClick={() => navigate('/forum-topic')}>
@@ -16,6 +16,4 @@ function Topic(props: TopicType) {
 			<p className="topic__text text-base-font-regular">{props.topicText}</p>
 		</div>
 	);
-}
-
-export default Topic;
+};

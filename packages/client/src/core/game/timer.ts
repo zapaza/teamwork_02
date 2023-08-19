@@ -1,6 +1,6 @@
-import { IGameTimers } from './types';
+import { IGameTimers } from '@/core/game/types';
 
-export default class Timer {
+export class Timer {
 	/**
 	 * Приостанавливает работу таймеров игры.
 	 * @param timers - Объект с игровыми таймерами.

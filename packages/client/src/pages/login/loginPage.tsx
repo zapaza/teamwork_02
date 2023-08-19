@@ -1,5 +1,5 @@
 import './login-page.css';
-import Form from '../../components/ui/form/form';
+import { Form } from '@/components/ui/form/form';
 import React, { useEffect } from 'react';
 import { InputsProps } from '@/components/ui/input/input';
 import { ButtonsProps } from '@/components/ui/button/button';
@@ -10,7 +10,7 @@ import { AppDispatch, RootState } from '@/store';
 import { LoginData } from '@/types/auth';
 import { useTranslation } from 'react-i18next';
 
-function LoginPage() {
+export const LoginPage = () => {
 	const auth = useSelector((state: RootState) => state.auth);
 	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
@@ -74,6 +74,4 @@ function LoginPage() {
 			type="json"
 		/>
 	);
-}
-
-export default LoginPage;
+};

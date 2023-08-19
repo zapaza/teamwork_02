@@ -1,9 +1,9 @@
-import { IBoundary, IBoundaryParams, ICoordinates } from '../types';
+import { IBoundary, IBoundaryParams, ICoordinates } from '@/core/game/types';
 
 /**
  * Класс `Boundary` представляет объект границы в игре.
  */
-export default class Boundary implements IBoundary {
+export class Boundary implements IBoundary {
 	position: ICoordinates;
 	width: number;
 	height: number;

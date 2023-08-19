@@ -5,13 +5,11 @@ type ProfileFieldProps = {
 	value?: string;
 };
 
-function ProfileField(props: ProfileFieldProps) {
+export const ProfileField = (props: ProfileFieldProps) => {
 	return (
 		<div className="profile-field flex flex-jc-sb flex-ai-center">
 			<label className="profile-field__label">{props.label}</label>
 			<p className="profile-fields__value">{props.value}</p>
 		</div>
 	);
-}
-
-export default ProfileField;
+};
