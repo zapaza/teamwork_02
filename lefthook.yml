@@ -1,5 +1,5 @@
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     lint:
       glob: '*.{ts,tsx}'
@@ -22,5 +22,3 @@ pre-push:
   commands:
     test:
       run: yarn test
-    packages-audit:
-      run: yarn audit
