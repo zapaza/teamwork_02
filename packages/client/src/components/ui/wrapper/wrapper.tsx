@@ -1,19 +1,17 @@
-import { FC, ReactNode } from 'react'
-import './wrapper.pcss'
+import { FC, ReactNode } from 'react';
+import './wrapper.pcss';
 
 type OwnProps = {
-  children?: ReactNode
-  className?: string
-}
+	children?: ReactNode;
+	className?: string;
+};
 
-type WrapperProps = FC<OwnProps>
+type WrapperProps = FC<OwnProps>;
 
-const Wrapper: WrapperProps = props => {
-  return (
-    <div className={`wrapper flex flex-column gap-16 ${props.className}`}>
-      {props.children}
-    </div>
-  )
-}
+const Wrapper: WrapperProps = (props: OwnProps) => {
+	return (
+		<div className={`wrapper flex flex-column gap-16 ${props.className}`}>{props.children}</div>
+	);
+};
 
-export default Wrapper
+export default Wrapper;

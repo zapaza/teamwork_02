@@ -1,5 +1,5 @@
-import './loading-spinner.pcss'
+import './loading-spinner.pcss';
 
 export default function LoadingSpinner() {
-  return <div className="loading-spinner"></div>
+	return <div className="loading-spinner"></div>;
 }

@@ -1,27 +1,25 @@
 {
-  "extends": "stylelint-config-standard",
-  "plugins": [
-    "stylelint-selector-bem-pattern"
-  ],
-  "rules": {
-    "color-hex-length": "long",
-    "import-notation": "string",
-    "declaration-property-value-no-unknown": true,
-    "at-rule-no-unknown": true,
-    "annotation-no-unknown": true,
-    "function-calc-no-unspaced-operator": true,
-    "color-no-invalid-hex": true,
-    "no-empty-source": null,
-    "custom-property-pattern": null,
-    "selector-no-vendor-prefix": null,
-    "selector-class-pattern": null,
-    "plugin/selector-bem-pattern": {
-      "componentName": "[A-Z]+",
-      "componentSelectors": {
-        "initial": "^\\.{componentName}(?:-[a-z]+)?$",
-        "combined": "^\\.combined-{componentName}-[a-z]+$"
-      },
-      "utilitySelectors": "^\\.util-[a-z]+$"
+    "extends": "stylelint-config-standard",
+    "plugins": ["stylelint-selector-bem-pattern"],
+    "rules": {
+        "color-hex-length": "long",
+        "import-notation": "string",
+        "declaration-property-value-no-unknown": true,
+        "at-rule-no-unknown": true,
+        "annotation-no-unknown": true,
+        "function-calc-no-unspaced-operator": true,
+        "color-no-invalid-hex": true,
+        "no-empty-source": null,
+        "custom-property-pattern": null,
+        "selector-no-vendor-prefix": null,
+        "selector-class-pattern": null,
+        "plugin/selector-bem-pattern": {
+            "componentName": "[A-Z]+",
+            "componentSelectors": {
+                "initial": "^\\.{componentName}(?:-[a-z]+)?$",
+                "combined": "^\\.combined-{componentName}-[a-z]+$"
+            },
+            "utilitySelectors": "^\\.util-[a-z]+$"
+        }
     }
-  }
 }

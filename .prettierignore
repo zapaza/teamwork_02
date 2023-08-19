@@ -1,0 +1,15 @@
+dist
+.github
+node_modules
+tmp
+jest.config.js
+**/tsconfig.json
+**/tsconfig.node.json
+**/tsconfig.prod.json
+packages/client/vercel.json
+.stylelintrc.json
+**/vite.config.ts
+db.ts
+.eslintrc.js
+**/package.json
+*.md

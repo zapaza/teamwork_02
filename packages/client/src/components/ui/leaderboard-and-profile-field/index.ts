@@ -1,3 +1,3 @@
-import LeaderboardAndProfileField from './leaderboard-and-profile-field'
+import LeaderboardAndProfileField from './leaderboard-and-profile-field';
 
-export default LeaderboardAndProfileField
+export default LeaderboardAndProfileField;
