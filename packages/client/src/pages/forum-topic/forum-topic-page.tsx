@@ -8,7 +8,7 @@ const topicMock = {
 	id: '1',
 	topicTitle: 'Заголовок топика1',
 	topicText:
-	// eslint-disable-next-line max-len
+		// eslint-disable-next-line max-len
 		'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика',
 };
 
@@ -64,8 +64,9 @@ function ForumTopicPage() {
 				<Button
 					name="addCommentBtn"
 					className="button add-comment-button"
-					onClick={addcommentHandler}
-				>Отправить</Button>
+					onClick={addcommentHandler}>
+					Отправить
+				</Button>
 			</form>
 		</div>
 	);

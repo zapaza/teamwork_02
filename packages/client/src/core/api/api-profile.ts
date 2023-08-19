@@ -21,7 +21,7 @@ const ApiProfile = {
 	async updatePassword(data: UpdatePasswordReq) {
 		const response = await client.put<UpdatePasswordReq, UpdatePasswordResp>(
 			'/user/password',
-			data
+			data,
 		);
 		return response?.data;
 	},

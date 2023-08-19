@@ -15,9 +15,11 @@ const StartGameState = (props: EndGameStateProps) => {
 		<div className={'wrapper'}>
 			<div className="start-game-state flex flex-jc-center flex-ai-center">
 				{props.isLoading ? (
-					<LoadingSpinner />
+					<LoadingSpinner/>
 				) : (
-					<Button name="play" onClick={props.callback} >{t('start_game')}</Button>
+					<Button name="play" onClick={props.callback}>
+						{t('start_game')}
+					</Button>
 				)}
 			</div>
 		</div>

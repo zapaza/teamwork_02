@@ -42,22 +42,21 @@ const Header: React.FC = () => {
 			<nav className="header__nav">
 				{auth.isLoggedIn ? (
 					<>
-						<Button
-							name="profile"
-							onClick={() => navigate('/profile')}
-						>{t('profile')}</Button>
-						<Button name="sign_out" onClick={handleLogout}>{t('sign_out')}</Button>
+						<Button name="profile" onClick={() => navigate('/profile')}>
+							{t('profile')}
+						</Button>
+						<Button name="sign_out" onClick={handleLogout}>
+							{t('sign_out')}
+						</Button>
 					</>
 				) : (
 					<>
-						<Button
-							name="sign_in"
-							onClick={() => navigate('/login')}
-						>{t('sign_in')}</Button>
-						<Button
-							name="signup"
-							onClick={() => navigate('/signup')}
-						>{t('signup')}</Button>
+						<Button name="sign_in" onClick={() => navigate('/login')}>
+							{t('sign_in')}
+						</Button>
+						<Button name="signup" onClick={() => navigate('/signup')}>
+							{t('signup')}
+						</Button>
 					</>
 				)}
 			</nav>

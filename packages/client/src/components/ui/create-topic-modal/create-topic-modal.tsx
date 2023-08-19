@@ -22,8 +22,9 @@ function CreateTopicModal(props: modalPropsType) {
 					className="button"
 					onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
 						e.preventDefault();
-					}}
-				>Создать топик</Button>
+					}}>
+					Создать топик
+				</Button>
 			</form>
 		</div>
 	);
