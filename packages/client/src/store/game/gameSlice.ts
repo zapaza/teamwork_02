@@ -1,22 +1,22 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { GameStatus } from './gameStatus'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { GameStatus } from './gameStatus';
 
 interface GameState {
-  status: GameStatus
+	status: GameStatus;
 }
 
 const initialState: GameState = {
-  status: GameStatus.START,
-}
+	status: GameStatus.START,
+};
 
 export const gameSlice = createSlice({
-  name: 'game',
-  initialState,
-  reducers: {
-    setStatus: (state, action: PayloadAction<GameStatus>) => {
-      state.status = action.payload
-    },
-  },
-})
+	name: 'game',
+	initialState,
+	reducers: {
+		setStatus: (state, action: PayloadAction<GameStatus>) => {
+			state.status = action.payload;
+		},
+	},
+});
 
-export default gameSlice.reducer
+export default gameSlice.reducer;
