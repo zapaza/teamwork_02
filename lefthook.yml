@@ -1,5 +1,5 @@
 pre-commit:
-  parallel: true
+  parallel: false
   commands:
     lint:
       glob: '*.{ts,tsx}'
@@ -10,7 +10,15 @@ pre-commit:
     format:
       glob: '*.{ts,tsx,pcss,css}'
       run: yarn prettier --write {staged_files}
-  commit-msg:
-    commands:
-      commitlint:
-        run: yarn commitlint --edit "{1}"
+
+commit-msg:
+  parallel: true
+  commands:
+    lint-commit-msg:
+      run: npx commitlint --edit
+
+pre-push:
+  parallel: true
+  commands:
+    test:
+      run: yarn test
