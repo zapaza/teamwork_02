@@ -4,14 +4,14 @@ import './leaderboard-and-profile-field.pcss';
 export type FieldPropsType = {
 	positionNumber: number | string;
 	userName: string;
-	userScore: number | string;
+	score: number | string;
 	isCurrentUser?: boolean;
 };
 
 export const LeaderboardAndProfileField = ({
 	positionNumber,
 	userName,
-	userScore,
+	score,
 	isCurrentUser,
 }: FieldPropsType) => {
 	return (
@@ -27,7 +27,7 @@ export const LeaderboardAndProfileField = ({
 				}>
 				{isCurrentUser ? 'Ты' : userName}
 			</span>
-			<span className="user-score text-base-font-regular">{userScore}</span>
+			<span className="user-score text-base-font-regular">{score}</span>
 		</div>
 	);
 };

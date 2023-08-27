@@ -7,7 +7,7 @@ export interface IVariables {
 	score: number;
 	lastKeyPressed: string;
 	level: number;
-	player: undefined;
+	player: IPlayer;
 	killCount: number;
 	start: boolean;
 	animationId: null | number;
@@ -134,4 +134,9 @@ export interface IPathway {
 	direction: string;
 	distance?: number;
 	position?: ICoordinates;
+}
+
+export interface IPlayer {
+	id: number,
+	login: string
 }
