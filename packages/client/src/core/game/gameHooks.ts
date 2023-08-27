@@ -10,7 +10,6 @@ import { AudioManager } from './audioManager';
 import { GameStatus } from '@/store/game/gameStatus';
 import { ApiLeaderboard, LeaderDataType } from '../api/api-leaderboard';
 
-
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
  */
@@ -115,8 +114,8 @@ export class GameHooks {
 		assets.audioPlayer.pauseAll();
 		assets.audioPlayer.ghostAudioWantsToPlay = false;
 		if (variables.player) {
-		await this.saveScore(variables)
-		//   // todo после запроса добавить переход на страницу лидборда
+			await this.saveScore(variables);
+			//   // todo после запроса добавить переход на страницу лидборда
 		}
 		store.dispatch(gameSlice.actions.setStatus(GameStatus.END));
 		this.resetAfterGameOver(assets, variables);
@@ -132,10 +131,9 @@ export class GameHooks {
 	 */
 	static async saveScore(variables: IVariables) {
 		const scoreData: LeaderDataType = {
-			data:
-			{ userName: variables.player.login, score: variables.score },
+			data: { userName: variables.player.login, score: variables.score },
 			ratingFieldName: 'score',
-			teamName: 'GOLOVOLOMKA'
+			teamName: 'GOLOVOLOMKA',
 		};
 		ApiLeaderboard.updateScore(scoreData);
 	}

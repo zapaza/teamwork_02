@@ -11,7 +11,7 @@ export const LeaderboardPage = () => {
 	const dispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchLeaders() as any)
+		dispatch(fetchLeaders() as any);
 	}, []);
 
 	if (leaders.isDataLoaded) {
@@ -30,6 +30,6 @@ export const LeaderboardPage = () => {
 			</div>
 		);
 	} else {
-		return <div>Загружаем данные...</div>
+		return <div>Загружаем данные...</div>;
 	}
 };

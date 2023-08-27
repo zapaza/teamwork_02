@@ -137,6 +137,6 @@ export interface IPathway {
 }
 
 export interface IPlayer {
-	id: number,
-	login: string
+	id: number;
+	login: string;
 }
