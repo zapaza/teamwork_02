@@ -1,6 +1,5 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { ApiLeaderboard, ScoreType } from '@/core/api/api-leaderboard';
-import { boolean, string } from 'yup';
 
 export type LeaderboardDataType = {
 	data: ScoreType;
@@ -37,7 +36,7 @@ export const leaderboardSlice = createSlice({
 					state.isDataLoaded = true;
 				},
 			)
-			.addCase(fetchLeaders.rejected, state => {
+			.addCase(fetchLeaders.rejected, () => {
 				console.error('fetch leaders failed');
 			});
 	},

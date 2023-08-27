@@ -1,4 +1,4 @@
-import { RootState } from '@/store';
+import { AppDispatch, RootState } from '@/store';
 import './leaderboard-page.pcss';
 import { LeaderboardAndProfileField } from '@/components/ui/leaderboard-and-profile-field/leaderboardAndProfileField';
 import { fetchLeaders } from '@/store/leaderboard/leaderboard-slice';
@@ -8,10 +8,10 @@ import { useDispatch, useSelector } from 'react-redux';
 export const LeaderboardPage = () => {
 	const leaders = useSelector((state: RootState) => state.leaderboard);
 	const user = useSelector((state: RootState) => state.auth);
-	const dispatch = useDispatch();
+	const dispatch: AppDispatch = useDispatch();
 
 	useEffect(() => {
-		dispatch(fetchLeaders() as any);
+		dispatch(fetchLeaders());
 	}, []);
 
 	if (leaders.isDataLoaded) {
