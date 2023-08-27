@@ -14,19 +14,19 @@ import { ErrorBoundary } from '@/utils/ErrorBoundary';
 
 const router = createBrowserRouter([
 	{
-		element: <App />,
-		errorElement: <ErrorPage />,
+		element: <App/>,
+		errorElement: <ErrorPage/>,
 		children: [
 			{
 				path: '/',
-				element: <MainPage />,
+				element: <MainPage/>,
 			},
 			{
 				path: '/forum',
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<ForumPage />
+							<ForumPage/>
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<ForumTopicPage />
+							<ForumTopicPage/>
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 				path: '/game',
 				element: (
 					<ProtectedRoute>
-						<GamePage />
+						<GamePage/>
 					</ProtectedRoute>
 				),
 			},
@@ -54,21 +54,21 @@ const router = createBrowserRouter([
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<LeaderboardPage />
+							<LeaderboardPage/>
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/login', element: <LoginPage /> },
+			{ path: '/login', element: <LoginPage/> },
 			{
 				path: '/profile',
 				element: (
 					<ProtectedRoute>
-						<ProfilePage />
+						<ProfilePage/>
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/signup', element: <SignupPage /> },
+			{ path: '/signup', element: <SignupPage/> },
 		],
 	},
 ]);

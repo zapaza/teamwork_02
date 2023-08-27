@@ -4,7 +4,7 @@ import { LeaderboardPage } from '@/pages/leaderboard/leaderboard-page';
 
 describe('Leaderboard component', () => {
 	test('component render', () => {
-		render(<LeaderboardPage />);
+		render(<LeaderboardPage/>);
 
 		expect(screen.getByRole('heading').textContent).toBe('Список Лидеров');
 		expect(screen.getByText('10.')).toBeInTheDocument();
