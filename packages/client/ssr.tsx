@@ -7,9 +7,8 @@ import { RouterProvider } from 'react-router-dom';
 import router from './src/routes';
 
 export const render = (url: string) => {
-
 	return renderToString(
-		<React.Suspense fallback='Loading...'>
+		<React.Suspense fallback="Loading...">
 			<StaticRouter location={url}>
 				<Provider store={store}>
 					<RouterProvider router={router}/>
