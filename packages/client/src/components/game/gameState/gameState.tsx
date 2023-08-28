@@ -77,7 +77,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 
 		return function cleanup() {
 			GameHooks.endGame();
-		}
+		};
 	}, []);
 
 	const handleDirection = (direction: string) => {

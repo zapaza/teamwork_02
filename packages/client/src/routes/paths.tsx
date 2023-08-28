@@ -26,7 +26,7 @@ export const routerPaths = [
 					<ProtectedRoute>
 						<ErrorBoundary>
 							<ForumPage/>
-					</ErrorBoundary>
+						</ErrorBoundary>
 					</ProtectedRoute>
 				),
 			},
@@ -36,7 +36,7 @@ export const routerPaths = [
 					<ProtectedRoute>
 						<ErrorBoundary>
 							<ForumTopicPage/>
-					</ErrorBoundary>
+						</ErrorBoundary>
 					</ProtectedRoute>
 				),
 			},
@@ -54,7 +54,7 @@ export const routerPaths = [
 					<ProtectedRoute>
 						<ErrorBoundary>
 							<LeaderboardPage/>
-					</ErrorBoundary>
+						</ErrorBoundary>
 					</ProtectedRoute>
 				),
 			},
