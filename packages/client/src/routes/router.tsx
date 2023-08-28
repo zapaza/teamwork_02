@@ -3,7 +3,7 @@ import { App } from '../App';
 import { ForumPage } from '@/pages/forum/forumPage';
 import { ForumTopicPage } from '@/pages/forum-topic/forumTopicPage';
 import { GamePage } from '@/pages/game/gamePage';
-import { LeaderboardPage } from '@/pages/leaderboard/leaderboard-page';
+import { LeaderboardPage } from '@/pages/leaderboard/leaderboardPage';
 import { LoginPage } from '@/pages/login/loginPage';
 import { MainPage } from '@/pages/main/mainPage';
 import { ProfilePage } from '@/pages/profile/profilePage';
@@ -14,19 +14,19 @@ import { ErrorBoundary } from '@/utils/ErrorBoundary';
 
 const router = createBrowserRouter([
 	{
-		element: <App/>,
-		errorElement: <ErrorPage/>,
+		element: <App />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: '/',
-				element: <MainPage/>,
+				element: <MainPage />,
 			},
 			{
 				path: '/forum',
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<ForumPage/>
+							<ForumPage />
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
@@ -36,7 +36,7 @@ const router = createBrowserRouter([
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<ForumTopicPage/>
+							<ForumTopicPage />
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
@@ -45,7 +45,7 @@ const router = createBrowserRouter([
 				path: '/game',
 				element: (
 					<ProtectedRoute>
-						<GamePage/>
+						<GamePage />
 					</ProtectedRoute>
 				),
 			},
@@ -54,21 +54,21 @@ const router = createBrowserRouter([
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
-							<LeaderboardPage/>
+							<LeaderboardPage />
 						</ErrorBoundary>
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/login', element: <LoginPage/> },
+			{ path: '/login', element: <LoginPage /> },
 			{
 				path: '/profile',
 				element: (
 					<ProtectedRoute>
-						<ProfilePage/>
+						<ProfilePage />
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/signup', element: <SignupPage/> },
+			{ path: '/signup', element: <SignupPage /> },
 		],
 	},
 ]);
