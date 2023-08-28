@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { toggleFullscreen } from '@/utils/Fullscreen';
 import './gameState.pcss';
+import { GameFactory } from '@/core/game/gameFactory';
+import { IVariables } from '@/core/game/types';
+import { GameHooks } from '@/core/game/gameHooks';
 
 export type GameCanvasProps = {
 	isLoading?: boolean;
@@ -14,8 +17,67 @@ export type GameCanvasProps = {
 export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
 	const { id, login } = useSelector((state: RootState) => state.auth);
 
+	const variables: IVariables = {
+		tileLength: 32,
+		isWindowVisible: true,
+		isGamePaused: false,
+		score: 0,
+		lastKeyPressed: '',
+		level: 1,
+		player: undefined, // todo:продумать что будем тут хранить всего юзера или только часть данных
+		killCount: 0,
+		start: true,
+		animationId: null,
+		directionEventListener: null,
+		visibilityEventListener: null,
+		pauseEventListener: null,
+		levelUpCount: 0,
+		frameLifetime: 10,
+		startTime: 0,
+	};
+
+	const map = [
+		'1------------21------------2',
+		'|............||............|',
+		'|.1--2.1---2.||.1---2.1--2.|',
+		'|o|  |.|   |.||.|   |.|  |o|',
+		'|.4--3.4---3.43.4---3.4--3.|',
+		'|..........................|',
+		'|.1--2.12.1------2.12.1--2.|',
+		'|.4--3.||.4--21--3.||.4--3.|',
+		'|......||....||....||......|',
+		'4----2.|4--2 || 1--3|.1----3',
+		'     |.|1--3 43 4--2|.|     ',
+		'     |.||          ||.|     ',
+		'     |.|| 1------2 ||.|     ',
+		'-----3.43 |      | 43.4-----',
+		'      .   |      |   .      ',
+		'-----2.12 |      | 12.1-----',
+		'     |.|| 4------3 ||.|     ',
+		'     |.||          ||.|     ',
+		'     |.|| 1------2 ||.|     ',
+		'1----3.43 4--21--3 43.4----2',
+		'|............||............|',
+		'|.1--2.1---2.||.1---2.1--2.|',
+		'|.4-2|.4---3.43.4---3.|1-3.|',
+		'|o..||.......  .......||..o|',
+		'4-2.||.12.1------2.12.||.1-3',
+		'1-3.43.||.4--21--3.||.43.4-2',
+		'|......||....||....||......|',
+		'|.1----34--2.||.1--34----2.|',
+		'|.4--------3.43.4--------3.|',
+		'|..........................|',
+		'4--------------------------3',
+	];
+
 	useEffect(() => {
-		playGame({ id: id, login: login });
+		const assets = GameFactory.makeAssets(map, variables);
+
+		playGame({ id: id, login: login }, variables, assets);
+
+		return function cleanup() {
+			GameHooks.endGame();
+		}
 	}, []);
 
 	const handleDirection = (direction: string) => {

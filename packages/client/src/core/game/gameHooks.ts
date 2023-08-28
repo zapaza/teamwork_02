@@ -179,7 +179,7 @@ export class GameHooks {
 		});
 		assets.timers.cycleTimer.start();
 		assets.audioPlayer.ghostAudioWantsToPlay = true;
-		playGame(variables.player);
+		playGame(variables.player, variables, assets);
 	}
 
 	static manageGhostAudio(assets: IGameAssets) {
