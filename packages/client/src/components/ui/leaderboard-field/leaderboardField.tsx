@@ -1,5 +1,5 @@
 import React from 'react';
-import './leaderboard-and-profile-field.pcss';
+import './leaderboard-field.pcss';
 
 export type FieldPropsType = {
 	positionNumber: number | string;
@@ -8,7 +8,7 @@ export type FieldPropsType = {
 	isCurrentUser?: boolean;
 };
 
-export const LeaderboardAndProfileField = ({
+export const LeaderboardField = ({
 	positionNumber,
 	userName,
 	score,

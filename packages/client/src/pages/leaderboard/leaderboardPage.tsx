@@ -1,9 +1,10 @@
 import { AppDispatch, RootState } from '@/store';
 import './leaderboard-page.pcss';
-import { LeaderboardAndProfileField } from '@/components/ui/leaderboard-and-profile-field/leaderboardAndProfileField';
+import { LeaderboardField } from '@/components/ui/leaderboard-field/leaderboardField';
 import { fetchLeaders } from '@/store/leaderboard/leaderboard-slice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { LoadingSpinner } from '@/components/ui/loader-spinner/loadingSpinner';
 
 export const LeaderboardPage = () => {
 	const leaders = useSelector((state: RootState) => state.leaderboard);
@@ -19,7 +20,7 @@ export const LeaderboardPage = () => {
 			<div className="leaderboard__container flex flex-column flex-ai-center">
 				<h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
 				{leaders.data.map((item, index) => (
-					<LeaderboardAndProfileField
+					<LeaderboardField
 						key={index}
 						isCurrentUser={item.data.userName === user.login || false}
 						positionNumber={index + 1}
@@ -30,6 +31,10 @@ export const LeaderboardPage = () => {
 			</div>
 		);
 	} else {
-		return <div>Загружаем данные...</div>;
+		return (
+			<div>
+				<LoadingSpinner/>
+			</div>
+		);
 	}
 };
