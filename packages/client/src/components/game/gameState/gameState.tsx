@@ -38,10 +38,9 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 	};
 
 	const togglePointerLock = (element: HTMLElement) => {
-		if(document.pointerLockElement !== element) {
+		if (document.pointerLockElement !== element) {
 			element.requestPointerLock();
-		}
-		else {
+		} else {
 			document.exitPointerLock();
 		}
 	};
@@ -56,16 +55,14 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 					className={modifyClassFS('game__info', props.isFullscreen)}
 					data-testid="info"
 					width="600"
-					height="30"
-				></canvas>
+					height="30"></canvas>
 				<canvas
 					id="board"
 					className={modifyClassFS('game__board', props.isFullscreen)}
 					data-testid="board"
 					width="896"
 					height="992"
-					onClick={handleClick}
-				></canvas>
+					onClick={handleClick}></canvas>
 			</div>
 			<br></br>
 			<div className="mobile-controls">
