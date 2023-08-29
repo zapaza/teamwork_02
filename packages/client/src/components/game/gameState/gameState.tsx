@@ -1,4 +1,4 @@
-import React, { LegacyRef, useEffect, useRef } from 'react';
+import React, { LegacyRef, MouseEvent, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { playGame } from '@/core/game/game';
 import { useSelector } from 'react-redux';
@@ -31,6 +31,21 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 	};
 	const { t } = useTranslation();
 
+	const handleClick = (e: MouseEvent) => {
+		if (e.target) {
+			togglePointerLock(e.target as HTMLElement);
+		}
+	};
+
+	const togglePointerLock = (element: HTMLElement) => {
+		if(document.pointerLockElement !== element) {
+			element.requestPointerLock();
+		}
+		else {
+			document.exitPointerLock();
+		}
+	};
+
 	return (
 		<div
 			ref={gameElement as LegacyRef<HTMLDivElement>}
@@ -41,13 +56,16 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 					className={modifyClassFS('game__info', props.isFullscreen)}
 					data-testid="info"
 					width="600"
-					height="30"></canvas>
+					height="30"
+				></canvas>
 				<canvas
 					id="board"
 					className={modifyClassFS('game__board', props.isFullscreen)}
 					data-testid="board"
 					width="896"
-					height="992"></canvas>
+					height="992"
+					onClick={handleClick}
+				></canvas>
 			</div>
 			<br></br>
 			<div className="mobile-controls">
