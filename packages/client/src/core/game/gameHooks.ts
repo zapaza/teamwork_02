@@ -129,13 +129,15 @@ export class GameHooks {
 	 * @param getBackendUrl Функция для получения URL бэкенда (по умолчанию `GhostCollision.getBackendUrl`).
 	 * @returns Промис с результатом сохранения результатов игры (успешно или с ошибкой).
 	 */
-	static async saveScore(variables: IVariables) {
-		const scoreData: LeaderDataType = {
-			data: { userName: variables.player.login, score: variables.score },
-			ratingFieldName: 'score',
-			teamName: 'GOLOVOLOMKA',
-		};
-		ApiLeaderboard.updateScore(scoreData);
+  static async saveScore(variables: IVariables) {
+    if (variables.player) {
+      const scoreData: LeaderDataType = {
+        data: { userName: variables.player.login, score: variables.score },
+        ratingFieldName: 'score',
+        teamName: 'GOLOVOLOMKA',
+      };
+      ApiLeaderboard.updateScore(scoreData);
+    }
 	}
 
 	/**

@@ -7,7 +7,7 @@ export interface IVariables {
 	score: number;
 	lastKeyPressed: string;
 	level: number;
-	player: IPlayer;
+	player: IPlayer | undefined;
 	killCount: number;
 	start: boolean;
 	animationId: null | number;
