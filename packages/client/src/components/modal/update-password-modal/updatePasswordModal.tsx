@@ -7,11 +7,12 @@ import { Form } from '@/components/ui/form/form';
 import { updatePassword } from '@/store/auth/auth-slice';
 import { UpdatePasswordReq } from '@/core/api/api-profile';
 import { InputsProps } from '@/components/ui/input/input';
+import { t } from 'i18next';
 
 const submitButton: ButtonsProps[] = [
 	{
 		name: 'change',
-		children: 'Change',
+		children: t('change'),
 	},
 ];
 
@@ -19,20 +20,20 @@ const passwordsInputs: InputsProps[] = [
 	{
 		name: 'oldPassword',
 		type: 'password',
-		label: 'Old password',
-		placeholder: 'Old password',
+		label: t('old_password'),
+		placeholder: t('old_password'),
 	},
 	{
 		name: 'newPassword',
 		type: 'password',
-		label: 'New password',
-		placeholder: 'New password',
+		label: t('new_password'),
+		placeholder: t('new_password'),
 	},
 	{
 		name: 'newPasswordRepeat',
 		type: 'password',
-		label: 'Repeat new password',
-		placeholder: 'Repeat new password',
+		label: t('repeat_new_password'),
+		placeholder: t('repeat_new_password'),
 	},
 ];
 
@@ -50,7 +51,7 @@ export const UpdatePasswordModal = (props: UpdatePasswordModalProps) => {
 		<Modal isOpen={props.isOpen} toggle={props.toggle}>
 			<Form
 				name={'updatePassword'}
-				title={'Update password'}
+				title={t('update_password')}
 				inputs={passwordsInputs}
 				validationSchema={updatePasswordSchema}
 				buttons={submitButton}

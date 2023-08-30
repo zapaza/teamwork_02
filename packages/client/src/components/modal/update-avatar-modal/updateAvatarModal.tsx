@@ -6,11 +6,12 @@ import { updateAvatarSchema } from '@/core/validator';
 import { Form } from '@/components/ui/form/form';
 import { updateAvatar } from '@/store/auth/auth-slice';
 import { InputsProps } from '@/components/ui/input/input';
+import { t } from 'i18next';
 
 const submitButton: ButtonsProps[] = [
 	{
 		name: 'update',
-		children: 'Update',
+		children: t('update'),
 	},
 ];
 
@@ -18,7 +19,7 @@ const avatarInputs: InputsProps[] = [
 	{
 		name: 'avatar',
 		type: 'file',
-		label: 'New Avatar',
+		label: t('new_avatar'),
 		placeholder: '',
 	},
 ];
@@ -36,8 +37,8 @@ export const UpdateAvatarModal = (props: UpdateAvatarModalProps) => {
 	return (
 		<Modal isOpen={props.isOpen} toggle={props.toggle}>
 			<Form
-				name={'updatePassword'}
-				title={'Update password'}
+				name={'updateAvatar'}
+				title={t('update_avatar')}
 				inputs={avatarInputs}
 				validationSchema={updateAvatarSchema}
 				buttons={submitButton}

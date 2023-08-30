@@ -19,5 +19,19 @@
     "first_name": "Имя",
     "second_name": "Фамилия",
     "email": "Почта",
-    "phone": "Телефон"
+    "phone": "Телефон",
+    "high_score": "Лучший счет",
+    "display_name": "Отображаемое имя",
+    "edit_profile": "Редактировать профиль",
+    "change": "Изменить",
+    "change_password": "Изменить пароль",
+    "change_avatar": "Изменить аватар",
+    "update": "Обновить",
+    "update_profile": "Обновить профиль",
+    "old_password": "Старый пароль",
+    "new_password": "Новый пароль",
+    "repeat_new_password": "Новый пароль ещё раз",
+    "update_password": "Обновить пароль",
+    "update_avatar": "Обновить аватар",
+    "new_avatar": "Новый аватар"
 }

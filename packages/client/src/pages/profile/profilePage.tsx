@@ -13,6 +13,7 @@ import { getProfileFieldsProps } from '@/utils/get-profile-fields-props';
 import { UpdateProfileModal } from '@/components/modal/update-profile-modal/updateProfileModal';
 import { UpdatePasswordModal } from '@/components/modal/update-password-modal/updatePasswordModal';
 import { UpdateAvatarModal } from '@/components/modal/update-avatar-modal/updateAvatarModal';
+import { t } from 'i18next';
 
 type ModalType = 'profile' | 'avatar' | 'password';
 
@@ -21,8 +22,8 @@ const otherFields: InputsProps[] = [
 	{
 		name: 'high_score',
 		type: 'text',
-		label: 'High score',
-		placeholder: 'High score',
+		label: t('high_score'),
+		placeholder: t('high_score'),
 		value: '56',
 	},
 ];
@@ -55,9 +56,9 @@ export const ProfilePage = () => {
 	const renderedViewSettings = useMemo(() => {
 		return (
 			<>
-				<SubButton label="Edit profile" onClick={() => onClick('profile')}/>
-				<SubButton label="Change password" onClick={() => onClick('password')}/>
-				<SubButton label="Change avatar" onClick={() => onClick('avatar')}/>
+				<SubButton label={t('edit_profile')} onClick={() => onClick('profile')}/>
+				<SubButton label={t('change_password')} onClick={() => onClick('password')}/>
+				<SubButton label={t('change_avatar')} onClick={() => onClick('avatar')}/>
 			</>
 		);
 	}, []);

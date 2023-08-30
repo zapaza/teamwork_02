@@ -19,5 +19,19 @@
     "first_name": "First name",
     "second_name": "Second name",
     "email": "E-mail",
-    "phone": "Phone"
+    "phone": "Phone",
+    "high_score": "High score",
+    "display_name": "Display name",
+    "edit_profile": "Edit profile",
+    "change": "Change",
+    "change_password": "Change password",
+    "change_avatar": "Change avatar",
+    "update": "Update",
+    "update_profile": "Update profile",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "repeat_new_password": "Repeat new password",
+    "update_password": "Update password",
+    "update_avatar": "Update avatar",
+    "new_avatar": "New avatar"
 }
