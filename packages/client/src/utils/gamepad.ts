@@ -10,11 +10,11 @@ export const keyboardEventsName = {
 	right: 'ArrowRight',
 };
 export const gamepadMap = [
-	{ index:12, event: keyboardEventsName.up },
-	{ index:14, event: keyboardEventsName.left },
-	{ index:15, event: keyboardEventsName.right },
-	{ index:13, event: keyboardEventsName.down },
-	{ index:9, event:'Escape' },
+	{ index: 12, event: keyboardEventsName.up },
+	{ index: 14, event: keyboardEventsName.left },
+	{ index: 15, event: keyboardEventsName.right },
+	{ index: 13, event: keyboardEventsName.down },
+	{ index: 9, event: 'Escape' },
 ];
 
 export class Gamepad {
@@ -42,7 +42,7 @@ export class Gamepad {
 			const buttons = gamepads[0].buttons;
 			const leftStick = gamepads[0].axes.slice(0, 2);
 			const rightStick = gamepads[0].axes.slice(-2);
-			const buttonPressedIndex = buttons.findIndex((button) => button.pressed);
+			const buttonPressedIndex = buttons.findIndex(button => button.pressed);
 
 			this.mapButtons(buttonPressedIndex);
 			this.mapStick(leftStick);
@@ -53,7 +53,7 @@ export class Gamepad {
 	};
 
 	private mapButtons = (button: number) => {
-		gamepadMap.forEach((item) => {
+		gamepadMap.forEach(item => {
 			if (item.index === button) {
 				this.dispatchKeyboardEvent(item.event);
 			}
@@ -62,7 +62,7 @@ export class Gamepad {
 	private mapStick = (stick: Array<number>) => {
 		let key;
 		const value = 0.4;
-		const normalizedStick = stick.map((axes) => {
+		const normalizedStick = stick.map(axes => {
 			if (Math.abs(axes) < value) {
 				return 0;
 			}
@@ -75,7 +75,7 @@ export class Gamepad {
 		if (normalizedStick[0] < 0) {
 			key = keyboardEventsName.left;
 		}
-		if (normalizedStick[1] > 0)	{
+		if (normalizedStick[1] > 0) {
 			key = keyboardEventsName.down;
 		}
 		if (normalizedStick[1] < 0) {
