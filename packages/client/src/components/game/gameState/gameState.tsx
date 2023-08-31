@@ -22,8 +22,8 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 		const arrow = new KeyboardEvent('keydown', { key: direction });
 		window.dispatchEvent(arrow);
 	};
-	const modifyClassFS = (className: string, isFS: boolean | undefined) =>
-		`${className}${isFS ? '_fullscreen' : ''}`;
+	const modifyClassFS = (className: string, isFS: boolean | undefined, saveOriginal = false) =>
+		`${className}${isFS ? '_fullscreen' : ''} ${saveOriginal ? className : ''}`;
 
 	const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef();
 	const handler = () => {
@@ -89,7 +89,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 						onClick={() => handleDirection('ArrowDown')}></area>
 				</map>
 			</div>
-			<button onClick={handler} className={'fullscreen-button'}>
+			<button onClick={handler} className={modifyClassFS('button', props.isFullscreen, true)}>
 				{props.isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
 			</button>
 		</div>
