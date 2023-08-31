@@ -11,8 +11,12 @@ export const LeaderboardPage = () => {
 	const user = useSelector((state: RootState) => state.auth);
 	const dispatch: AppDispatch = useDispatch();
 
+	async function fetchBoard() {
+		await dispatch(fetchLeaders());
+	}
+
 	useEffect(() => {
-		dispatch(fetchLeaders());
+		fetchBoard();
 	}, []);
 
 	if (leaders.isDataLoaded) {

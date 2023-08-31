@@ -136,7 +136,7 @@ export class GameHooks {
 				ratingFieldName: 'score',
 				teamName: 'GOLOVOLOMKA',
 			};
-			ApiLeaderboard.updateScore(scoreData);
+			await ApiLeaderboard.updateScore(scoreData);
 		}
 	}
 

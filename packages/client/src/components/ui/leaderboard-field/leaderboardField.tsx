@@ -25,7 +25,7 @@ export const LeaderboardField = ({
 						? 'user-name user-name_accent text-base-font-regular'
 						: 'user-name text-base-font-regular'
 				}>
-				{isCurrentUser ? 'Ты' : userName}
+				{userName}
 			</span>
 			<span className="user-score text-base-font-regular">{score}</span>
 		</div>
