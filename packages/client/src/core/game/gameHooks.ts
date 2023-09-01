@@ -107,7 +107,7 @@ export class GameHooks {
 	static async endGame(
 		variables: IVariables,
 		assets: IGameAssets,
-		ctx: CanvasRenderingContext2D,
+		ctx?: CanvasRenderingContext2D,
 	) {
 		cancelAnimationFrame(variables.animationId as number);
 		assets.audioPlayer.pauseAll();
@@ -115,7 +115,11 @@ export class GameHooks {
 		store.dispatch(gameSlice.actions.setStatus(GameStatus.END));
 		this.resetAfterGameOver(assets, variables);
 		EventListener.removeAllGameEventsListeners(variables);
-		Animator.displayGameOver(ctx);
+
+		if (ctx) {
+			Animator.displayGameOver(ctx);
+		}
+
 		// if (variables.player) {
 		//   await this.saveScore(variables, '')
 		//   // todo после запроса добавить переход на страницу лидборда
