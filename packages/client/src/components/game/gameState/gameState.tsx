@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { toggleFullscreen } from '@/utils/Fullscreen';
 import './gameState.pcss';
+import { Button } from '@/components/ui/button/button';
 
 export type GameCanvasProps = {
 	isLoading?: boolean;
@@ -23,7 +24,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 		window.dispatchEvent(arrow);
 	};
 	const modifyClassFS = (className: string, isFS: boolean | undefined, saveOriginal = false) =>
-		`${className}${isFS ? '_fullscreen' : ''} ${saveOriginal ? className : ''}`;
+		`${className}${isFS ? '_fullscreen' : ''} ${saveOriginal && isFS ? className : ''}`;
 
 	const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef();
 	const handler = () => {
@@ -89,9 +90,9 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 						onClick={() => handleDirection('ArrowDown')}></area>
 				</map>
 			</div>
-			<button onClick={handler} className={modifyClassFS('button', props.isFullscreen, true)}>
+			<Button onClick={handler} className={modifyClassFS('button', props.isFullscreen, true)} name={'fullscreen'}>
 				{props.isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
-			</button>
+			</Button>
 		</div>
 	);
 };
