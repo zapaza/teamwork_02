@@ -120,7 +120,7 @@ export class GameHooks {
 		store.dispatch(gameSlice.actions.setStatus(GameStatus.END));
 		this.resetAfterGameOver(assets, variables);
 		EventListener.removeAllGameEventsListeners(variables);
-    if (ctx) {
+		if (ctx) {
 			Animator.displayGameOver(ctx);
 		}
 	}
