@@ -3,18 +3,19 @@ import { GameStatus } from '@/store/game/gameStatus';
 import store from '@/store';
 import { Timer } from '@/core/game/timer';
 
-export const keyboardEventsName = {
-	up: 'ArrowUp',
-	down: 'ArrowDown',
-	left: 'ArrowLeft',
-	right: 'ArrowRight',
-};
+export enum keyboardEventsName {
+	'UP' = 'ArrowUp',
+	'DOWN' = 'ArrowDown',
+	'LEFT' = 'ArrowLeft',
+	'RIGHT' = 'ArrowRight',
+	'ESCAPE' = 'Escape',
+}
 export const gamepadMap = [
-	{ index: 12, event: keyboardEventsName.up },
-	{ index: 14, event: keyboardEventsName.left },
-	{ index: 15, event: keyboardEventsName.right },
-	{ index: 13, event: keyboardEventsName.down },
-	{ index: 9, event: 'Escape' },
+	{ index: 12, event: keyboardEventsName.UP },
+	{ index: 14, event: keyboardEventsName.LEFT },
+	{ index: 15, event: keyboardEventsName.RIGHT },
+	{ index: 13, event: keyboardEventsName.DOWN },
+	{ index: 9, event: keyboardEventsName.ESCAPE },
 ];
 
 export class Gamepad {
@@ -33,11 +34,14 @@ export class Gamepad {
 
 	private handleGamepadEvents = () => {
 		this.clearInterval();
-		this.interval = setInterval(this.pollGamepads, 100);
+		this.interval = window.setInterval(this.pollGamepads, 100);
 	};
 
 	private pollGamepads = () => {
 		const gamepads = navigator.getGamepads();
+		if (gamepads.length > 1) {
+			console.log('Use first activated gamepad for play');
+		}
 		if (gamepads[0]) {
 			const buttons = gamepads[0].buttons;
 			const leftStick = gamepads[0].axes.slice(0, 2);
@@ -61,25 +65,29 @@ export class Gamepad {
 	};
 	private mapStick = (stick: Array<number>) => {
 		let key;
-		const value = 0.4;
+		const sensitivity = 0.4;
 		const normalizedStick = stick.map(axes => {
-			if (Math.abs(axes) < value) {
+			if (Math.abs(axes) < sensitivity) {
 				return 0;
 			}
 
 			return axes;
 		});
-		if (normalizedStick[0] > 0) {
-			key = keyboardEventsName.right;
+
+		const x = normalizedStick[0];
+		const y = normalizedStick[1];
+
+		if (x > 0) {
+			key = keyboardEventsName.RIGHT;
 		}
-		if (normalizedStick[0] < 0) {
-			key = keyboardEventsName.left;
+		if (x < 0) {
+			key = keyboardEventsName.LEFT;
 		}
-		if (normalizedStick[1] > 0) {
-			key = keyboardEventsName.down;
+		if (y > 0) {
+			key = keyboardEventsName.DOWN;
 		}
-		if (normalizedStick[1] < 0) {
-			key = keyboardEventsName.up;
+		if (y < 0) {
+			key = keyboardEventsName.UP;
 		}
 
 		if (key) {
@@ -104,7 +112,7 @@ export class Gamepad {
 
 	private clearInterval = () => {
 		if (this.interval) {
-			clearInterval(this.interval as number);
+			window.clearInterval(this.interval as number);
 		}
 	};
 }
