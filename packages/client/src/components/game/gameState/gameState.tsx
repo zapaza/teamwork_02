@@ -90,7 +90,10 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 						onClick={() => handleDirection('ArrowDown')}></area>
 				</map>
 			</div>
-			<Button onClick={handler} className={modifyClassFS('button', props.isFullscreen, true)} name={'fullscreen'}>
+			<Button
+				onClick={handler}
+				className={modifyClassFS('button', props.isFullscreen, true)}
+				name={'fullscreen'}>
 				{props.isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
 			</Button>
 		</div>
