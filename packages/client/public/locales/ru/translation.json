@@ -33,5 +33,7 @@
     "repeat_new_password": "Новый пароль ещё раз",
     "update_password": "Обновить пароль",
     "update_avatar": "Обновить аватар",
-    "new_avatar": "Новый аватар"
+    "new_avatar": "Новый аватар",
+    "create_topic": "Создать топик",
+    "theme": "Тема"
 }

@@ -1,5 +1,6 @@
 import './leaderboard-page.pcss';
 import { LeaderboardAndProfileField } from '@/components/ui/leaderboard-and-profile-field/leaderboardAndProfileField';
+import { t } from 'i18next';
 import React from 'react';
 
 const leaderboardMock = [
@@ -24,7 +25,7 @@ const leaderboardMock = [
 export const LeaderboardPage = () => {
 	return (
 		<div className="leaderboard__container flex flex-column flex-ai-center">
-			<h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
+			<h5 className="leaderboard__header text-xl-font-bold">{t('leaderboard')}</h5>
 			{leaderboardMock.map(item => (
 				<LeaderboardAndProfileField
 					key={item.positionNumber}

@@ -33,5 +33,7 @@
     "repeat_new_password": "Repeat new password",
     "update_password": "Update password",
     "update_avatar": "Update avatar",
-    "new_avatar": "New avatar"
+    "new_avatar": "New avatar",
+    "create_topic": "Create topic",
+    "theme": "Theme"
 }
