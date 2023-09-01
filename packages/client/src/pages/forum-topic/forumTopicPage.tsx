@@ -3,6 +3,7 @@ import { Comment } from '@/components/ui/comment/comment';
 import { Button } from '@/components/ui/button/button';
 import { useState } from 'react';
 import './forum-topic-page.pcss';
+import { t } from 'i18next';
 
 const topicMock = {
 	id: '1',
@@ -51,12 +52,12 @@ export const ForumTopicPage = () => {
 	return (
 		<div className="forum-topic__container flex flex-column flex-ai-center">
 			<Topic key={topicMock.id} {...topicMock}/>
-			<h5 className="comments-header text-base-font-bold">Комментарии:</h5>
+			<h5 className="comments-header text-base-font-bold">{t('comments')}:</h5>
 			{comments.map(item => (
 				<Comment key={item.id} {...item}/>
 			))}
 			<form className="new-comment-form form__container flex flex-column">
-				<h5 className="text-xl-font-bold">Оставить комментарий</h5>
+				<h5 className="text-xl-font-bold">{t('leave_a_comment')}</h5>
 				<textarea
 					className="comments__textarea text-base-font-regular"
 					onChange={changeTextareaHandler}
@@ -65,7 +66,7 @@ export const ForumTopicPage = () => {
 					name="addCommentBtn"
 					className="button add-comment-button"
 					onClick={addcommentHandler}>
-					Отправить
+					{t('send')}
 				</Button>
 			</form>
 		</div>
