@@ -1,10 +1,10 @@
 import { AppDispatch, RootState } from '@/store';
 import './leaderboard-page.pcss';
 import { LeaderboardField } from '@/components/ui/leaderboard-field/leaderboardField';
-import { fetchLeaders } from '@/store/leaderboard/leaderboard-slice';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSpinner } from '@/components/ui/loader-spinner/loadingSpinner';
+import { fetchLeaders } from '@/store/leaderboard/leaderboardThunk';
 
 export const LeaderboardPage = () => {
 	const leaders = useSelector((state: RootState) => state.leaderboard);

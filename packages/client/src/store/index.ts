@@ -2,7 +2,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/auth-slice';
 import gameReducer from './game/gameSlice';
 import { useDispatch } from 'react-redux';
-import leaderboardSlice from './leaderboard/leaderboard-slice';
+import leaderboardSlice from './leaderboard/leaderboardSlice';
 
 const store = configureStore({
 	reducer: {

@@ -136,7 +136,11 @@ export class GameHooks {
 				ratingFieldName: 'score',
 				teamName: 'GOLOVOLOMKA',
 			};
-			await ApiLeaderboard.updateScore(scoreData);
+			try {
+				await ApiLeaderboard.updateScore(scoreData);
+			} catch (error) {
+				console.error('Failed to send score:', error);
+			}
 		}
 	}
 

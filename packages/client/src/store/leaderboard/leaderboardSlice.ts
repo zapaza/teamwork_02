@@ -1,5 +1,6 @@
-import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { ApiLeaderboard, ScoreType } from '@/core/api/api-leaderboard';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { ScoreType } from '@/core/api/api-leaderboard';
+import { fetchLeaders } from './leaderboardThunk';
 
 export type LeaderboardDataType = {
 	data: ScoreType;
@@ -9,16 +10,6 @@ type StateType = {
 	data: LeaderboardDataType[];
 	isDataLoaded: boolean;
 };
-
-export const fetchLeaders = createAsyncThunk('leaderboard', async (_, thunkAPI) => {
-	try {
-		return (await ApiLeaderboard.getLeaders()) as LeaderboardDataType[];
-	} catch (error) {
-		return thunkAPI.rejectWithValue({
-			error: (error as Error | null)?.message,
-		});
-	}
-});
 
 export const leaderboardSlice = createSlice({
 	name: 'leaderboard',
