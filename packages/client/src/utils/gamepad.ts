@@ -39,9 +39,7 @@ export class Gamepad {
 
 	private pollGamepads = () => {
 		const gamepads = navigator.getGamepads();
-		if (gamepads.length > 1) {
-			console.log('Use first activated gamepad for play');
-		}
+
 		if (gamepads[0]) {
 			const buttons = gamepads[0].buttons;
 			const leftStick = gamepads[0].axes.slice(0, 2);
