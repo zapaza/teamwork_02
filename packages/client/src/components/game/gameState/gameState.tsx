@@ -5,6 +5,10 @@ import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { toggleFullscreen } from '@/utils/Fullscreen';
 import './gameState.pcss';
+import { GameFactory } from '@/core/game/gameFactory';
+import { IVariables } from '@/core/game/types';
+import { GameHooks } from '@/core/game/gameHooks';
+import { map, variables } from '@/core/game/dictionary';
 
 export type GameCanvasProps = {
 	isLoading?: boolean;
@@ -15,7 +19,13 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 	const { id, login } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
-		playGame({ id: id, login: login });
+		const assets = GameFactory.makeAssets(map, variables);
+
+		playGame({ id: id, login: login }, variables, assets);
+
+		return function cleanup() {
+			GameHooks.endGame(variables, assets);
+		};
 	}, []);
 
 	const handleDirection = (direction: string) => {
