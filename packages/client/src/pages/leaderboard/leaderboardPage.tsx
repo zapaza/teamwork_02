@@ -38,7 +38,7 @@ export const LeaderboardPage = () => {
 	} else {
 		return (
 			<div>
-				<LoadingSpinner />
+				<LoadingSpinner/>
 			</div>
 		);
 	}
