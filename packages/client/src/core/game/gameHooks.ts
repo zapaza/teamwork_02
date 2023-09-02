@@ -8,6 +8,7 @@ import store from '@/store';
 import { gameSlice } from '@/store/game/gameSlice';
 import { AudioManager } from './audioManager';
 import { GameStatus } from '@/store/game/gameStatus';
+import { ApiLeaderboard, LeaderDataType } from '../api/api-leaderboard';
 
 /**
  * Класс `GameHooks` представляет игровую логику и управление игрой.
@@ -112,18 +113,16 @@ export class GameHooks {
 		cancelAnimationFrame(variables.animationId as number);
 		assets.audioPlayer.pauseAll();
 		assets.audioPlayer.ghostAudioWantsToPlay = false;
+		if (variables.player) {
+			await this.saveScore(variables);
+			//   // todo после запроса добавить переход на страницу лидборда
+		}
 		store.dispatch(gameSlice.actions.setStatus(GameStatus.END));
 		this.resetAfterGameOver(assets, variables);
 		EventListener.removeAllGameEventsListeners(variables);
-
 		if (ctx) {
 			Animator.displayGameOver(ctx);
 		}
-
-		// if (variables.player) {
-		//   await this.saveScore(variables, '')
-		//   // todo после запроса добавить переход на страницу лидборда
-		// }
 	}
 
 	/**
@@ -132,8 +131,19 @@ export class GameHooks {
 	 * @param getBackendUrl Функция для получения URL бэкенда (по умолчанию `GhostCollision.getBackendUrl`).
 	 * @returns Промис с результатом сохранения результатов игры (успешно или с ошибкой).
 	 */
-	static async saveScore(variables: IVariables, getBackendUrl: string) {
-		// TODO сделать роут для отправки инфы на бек? что бы выводить потом его в лидерборд
+	static async saveScore(variables: IVariables) {
+		if (variables.player) {
+			const scoreData: LeaderDataType = {
+				data: { userName: variables.player.login, score: variables.score },
+				ratingFieldName: 'score',
+				teamName: 'GOLOVOLOMKA',
+			};
+			try {
+				await ApiLeaderboard.updateScore(scoreData);
+			} catch (error) {
+				console.error('Failed to send score:', error);
+			}
+		}
 	}
 
 	/**
