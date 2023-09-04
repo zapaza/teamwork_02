@@ -9,13 +9,6 @@ import { UpdateProfileReq } from '@/core/api/api-profile';
 import { getProfileFieldsProps } from '@/utils/get-profile-fields-props';
 import { t } from 'i18next';
 
-const submitButton: ButtonsProps[] = [
-	{
-		name: 'update',
-		children: t('update'),
-	},
-];
-
 type UpdateProfileModalProps = Omit<ModalProps, 'children'>;
 
 export const UpdateProfileModal = (props: UpdateProfileModalProps) => {
@@ -27,6 +20,13 @@ export const UpdateProfileModal = (props: UpdateProfileModalProps) => {
 		props.toggle();
 		await dispatch(updateProfile(data as UpdateProfileReq)).unwrap();
 	};
+
+	const submitButton: ButtonsProps[] = [
+		{
+			name: 'update',
+			children: t('update'),
+		},
+	];
 
 	return (
 		<Modal isOpen={props.isOpen} toggle={props.toggle}>

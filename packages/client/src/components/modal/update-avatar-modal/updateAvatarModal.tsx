@@ -8,22 +8,6 @@ import { updateAvatar } from '@/store/auth/auth-slice';
 import { InputsProps } from '@/components/ui/input/input';
 import { t } from 'i18next';
 
-const submitButton: ButtonsProps[] = [
-	{
-		name: 'update',
-		children: t('update'),
-	},
-];
-
-const avatarInputs: InputsProps[] = [
-	{
-		name: 'avatar',
-		type: 'file',
-		label: t('new_avatar'),
-		placeholder: '',
-	},
-];
-
 type UpdateAvatarModalProps = Omit<ModalProps, 'children'>;
 
 export const UpdateAvatarModal = (props: UpdateAvatarModalProps) => {
@@ -33,6 +17,22 @@ export const UpdateAvatarModal = (props: UpdateAvatarModalProps) => {
 		props.toggle();
 		await dispatch(updateAvatar(data as FormData)).unwrap();
 	};
+
+	const submitButton: ButtonsProps[] = [
+		{
+			name: 'update',
+			children: t('update'),
+		},
+	];
+
+	const avatarInputs: InputsProps[] = [
+		{
+			name: 'avatar',
+			type: 'file',
+			label: t('new_avatar'),
+			placeholder: '',
+		},
+	];
 
 	return (
 		<Modal isOpen={props.isOpen} toggle={props.toggle}>

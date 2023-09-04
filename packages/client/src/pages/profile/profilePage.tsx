@@ -17,22 +17,22 @@ import { t } from 'i18next';
 
 type ModalType = 'profile' | 'avatar' | 'password';
 
-//TODO после добавление API на получения результата игры, будет убрано отсюда
-const otherFields: InputsProps[] = [
-	{
-		name: 'high_score',
-		type: 'text',
-		label: t('high_score'),
-		placeholder: t('high_score'),
-		value: '56',
-	},
-];
-
 export const ProfilePage = () => {
 	const { isOpen, toggle } = useModal();
 	const [modalType, setModalType] = useState<ModalType>();
 	const profileData = useSelector((state: RootState) => state.auth);
 	const [profileFields, setProfileFields] = useState(getProfileFieldsProps(profileData));
+
+	//TODO после добавление API на получения результата игры, будет убрано отсюда
+	const otherFields: InputsProps[] = [
+		{
+			name: 'high_score',
+			type: 'text',
+			label: t('high_score'),
+			placeholder: t('high_score'),
+			value: '56',
+		},
+	];
 
 	useEffect(() => {
 		setProfileFields(getProfileFieldsProps(profileData));
