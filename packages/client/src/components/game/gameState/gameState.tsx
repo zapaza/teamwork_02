@@ -19,8 +19,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 
 	useEffect(() => {
 		const assets = GameFactory.makeAssets(map, variables);
-		const vars = { ...variables };
-		playGame({ id: id, login: login }, vars, assets);
+		playGame({ id: id, login: login }, { ...variables }, assets);
 	}, []);
 
 	const handleDirection = (direction: string) => {
