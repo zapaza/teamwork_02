@@ -5,6 +5,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { LoadingSpinner } from '@/components/ui/loader-spinner/loadingSpinner';
 import { fetchLeaders } from '@/store/leaderboard/leaderboardThunk';
+import { t } from 'i18next';
 
 export const LeaderboardPage = () => {
 	const leaders = useSelector((state: RootState) => state.leaderboard);
@@ -22,7 +23,7 @@ export const LeaderboardPage = () => {
 	if (leaders.isDataLoaded) {
 		return (
 			<div className="leaderboard__container flex flex-column flex-ai-center">
-				<h5 className="leaderboard__header text-xl-font-bold">Список Лидеров</h5>
+				<h5 className="leaderboard__header text-xl-font-bold">{t('leaderboard')}</h5>
 				{leaders.data.map((item, index) => (
 					<LeaderboardField
 						key={index}
