@@ -28,10 +28,7 @@ export const GamePage = () => {
 
 	return (
 		<main className="game-page flex flex-jc-center flex-ai-center">
-			<div
-				className="game-page__container"
-				ref={gameElement as LegacyRef<HTMLDivElement>}
-			>
+			<div className="game-page__container" ref={gameElement as LegacyRef<HTMLDivElement>}>
 				{(state === GameStatus.START || state === GameStatus.LOADING) && (
 					<StartGameState callback={onClick} isLoading={state === GameStatus.LOADING}/>
 				)}

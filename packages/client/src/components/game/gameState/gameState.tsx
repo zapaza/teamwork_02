@@ -1,4 +1,4 @@
-import React, {  MouseEvent, useEffect } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { playGame } from '@/core/game/game';
 import { useSelector } from 'react-redux';
