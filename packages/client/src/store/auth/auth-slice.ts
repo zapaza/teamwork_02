@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState, LoginData, SignupData } from '@/types/auth';
 import { ApiProfile, UpdatePasswordReq, UpdateProfileReq } from '@/core/api/api-profile';
 import { apiAuth } from '@/core/api/api-auth';
+import apiOAuth from '@/core/api/api-oauth';
 
 const initialState: AuthState = {
 	id: null,
@@ -46,6 +47,15 @@ export const checkAuth = createAsyncThunk('auth/checkAuthStatus', async (_, thun
 		return thunkAPI.rejectWithValue({
 			error: (error as Error | null)?.message,
 		});
+	}
+});
+
+export const loginOAuth = createAsyncThunk('auth/loginOAuth', async (code: string, thunkAPI) => {
+	try {
+		await apiOAuth.loginOAuth(code);
+		return true;
+	} catch (e) {
+		return thunkAPI.rejectWithValue(`Произошла ошибка авторизации OAuth ${e}`);
 	}
 });
 
@@ -165,7 +175,7 @@ export const authSlice = createSlice({
 				state.phone = action.payload.phone;
 				state.avatar = action.payload.avatar;
 			})
-			.addCase(fetchLogout.rejected, state => {
+			.addCase(fetchLogout.rejected, () => {
 				console.error('Logout failed');
 			})
 			.addCase(fetchLogin.rejected, state => {
@@ -174,13 +184,13 @@ export const authSlice = createSlice({
 			.addCase(checkAuth.rejected, state => {
 				state.isLoggedIn = false;
 			})
-			.addCase(updateProfile.rejected, state => {
+			.addCase(updateProfile.rejected, () => {
 				console.error('Update profile failed');
 			})
-			.addCase(updatePassword.rejected, state => {
+			.addCase(updatePassword.rejected, () => {
 				console.error('Update password failed');
 			})
-			.addCase(updateAvatar.rejected, state => {
+			.addCase(updateAvatar.rejected, () => {
 				console.error('Update avatar failed');
 			});
 	},
