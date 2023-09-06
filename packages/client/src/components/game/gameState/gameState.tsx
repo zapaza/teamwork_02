@@ -21,9 +21,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 		const assets = GameFactory.makeAssets(map, variables);
 		const vars = { ...variables };
 		playGame({ id: id, login: login }, vars, assets);
-
-	},
-	[]);
+	}, []);
 
 	const handleDirection = (direction: string) => {
 		const arrow = new KeyboardEvent('keydown', { key: direction });
