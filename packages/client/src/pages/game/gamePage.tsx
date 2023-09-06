@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { LegacyRef, useEffect, useRef } from 'react';
 import store, { RootState } from '@/store';
 import { useSelector } from 'react-redux';
 import { useIsFullscreen } from '@/utils/Fullscreen';
@@ -24,9 +24,14 @@ export const GamePage = () => {
 
 		return () => gamepad.stop();
 	});
+	const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef();
+
 	return (
 		<main className="game-page flex flex-jc-center flex-ai-center">
-			<div className="game-page__container">
+			<div
+				className="game-page__container"
+				ref={gameElement as LegacyRef<HTMLDivElement>}
+			>
 				{(state === GameStatus.START || state === GameStatus.LOADING) && (
 					<StartGameState callback={onClick} isLoading={state === GameStatus.LOADING}/>
 				)}
@@ -36,6 +41,7 @@ export const GamePage = () => {
 					<GameCanvas
 						isFullscreen={isFullscreenA}
 						isLoading={state === GameStatus.LOADING}
+						fsElement={gameElement.current}
 					/>
 				)}
 				{state === 'end' && <EndGameState retryCallback={onClick}/>}
