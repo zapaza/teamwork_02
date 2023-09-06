@@ -7,8 +7,6 @@ import { toggleFullscreen } from '@/utils/Fullscreen';
 import './gameState.pcss';
 import { Button } from '@/components/ui/button/button';
 import { GameFactory } from '@/core/game/gameFactory';
-import { IVariables } from '@/core/game/types';
-import { GameHooks } from '@/core/game/gameHooks';
 import { map, variables } from '@/core/game/dictionary';
 
 export type GameCanvasProps = {
@@ -21,13 +19,11 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 
 	useEffect(() => {
 		const assets = GameFactory.makeAssets(map, variables);
+		const vars = { ...variables };
+		playGame({ id: id, login: login }, vars, assets);
 
-		playGame({ id: id, login: login }, variables, assets);
-
-		return function cleanup() {
-			GameHooks.endGame(variables, assets);
-		};
-	}, []);
+	},
+	[]);
 
 	const handleDirection = (direction: string) => {
 		const arrow = new KeyboardEvent('keydown', { key: direction });
