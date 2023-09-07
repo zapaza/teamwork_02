@@ -2,7 +2,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { AuthState, LoginData, SignupData } from '@/types/auth';
 import { ApiProfile, UpdatePasswordReq, UpdateProfileReq } from '@/core/api/api-profile';
 import { apiAuth } from '@/core/api/api-auth';
-import apiOAuth from '@/core/api/api-oauth';
+import { apiOAuth } from '@/core/api/api-oauth';
 
 const initialState: AuthState = {
 	id: null,

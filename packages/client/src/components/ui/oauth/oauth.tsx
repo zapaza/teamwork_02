@@ -1,13 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import './oauth.pcss';
 import yandexOauth from '@/assets/yandex-oauth.svg';
-import apiOAuth from '@/core/api/api-oauth';
+import { apiOAuth } from '@/core/api/api-oauth';
+import { getOrigin } from '@/utils/get-origin';
 
 const YANDEX_URI = 'https://oauth.yandex.ru/authorize';
-const REDIRECT_URI = window.location.origin;
 
-export default function OAuth() {
+export const OAuth = () => {
 	const [serviceId, setServiceId] = useState<string>();
+	const [redirectUri] = useState(getOrigin());
 
 	const getServiceId = useCallback(async () => {
 		const response = await apiOAuth.getServiceId();
@@ -18,13 +19,15 @@ export default function OAuth() {
 		getServiceId();
 	}, []);
 
-	return serviceId ? (
-		<div className="oauth">
-			<a
-				href={`${YANDEX_URI}?response_type=code&client_id=${serviceId}&redirect_uri=${REDIRECT_URI}`}
-				className="oauth__link">
+	const getYandexOauthButton = useCallback(() => {
+		const href = `${YANDEX_URI}?response_type=code&client_id=${serviceId}&redirect_uri=${redirectUri}`;
+		console.log(href);
+		return (
+			<a href={href} className="oauth__link">
 				<img src={yandexOauth} alt="yandex-oauth"/>
 			</a>
-		</div>
-	) : null;
-}
+		);
+	}, [serviceId]);
+
+	return <div className="oauth">{serviceId && getYandexOauthButton()}</div>;
+};

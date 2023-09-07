@@ -1,23 +1,19 @@
 import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
-
-const REDIRECT_URI = window.location.origin;
+import { getOrigin } from '@/utils/get-origin';
 
 const client = new ApiClient(API_ENDPOINT);
-
-type OAuthServiceIdReq = {
-	redirect_uri: string;
-};
 
 type OAuthServiceIdRes = {
 	service_id: string;
 };
 
-const apiOAuth = {
+export const apiOAuth = {
 	async getServiceId() {
+		const redirectionUri = getOrigin();
+		console.log(redirectionUri);
 		try {
-			const response = await client.get<OAuthServiceIdReq, OAuthServiceIdRes>(
-				'/oauth/yandex/service-id',
-				{ redirect_uri: REDIRECT_URI },
+			const response = await client.get<unknown, OAuthServiceIdRes>(
+				`/oauth/yandex/service-id?redirect_uri=${redirectionUri}`,
 			);
 			return response?.data.service_id;
 		} catch (error) {
@@ -25,10 +21,11 @@ const apiOAuth = {
 		}
 	},
 	async loginOAuth(code: string) {
+		const redirectionUri = getOrigin();
 		try {
 			const response = await client.post('/oauth/yandex', {
 				code,
-				redirect_uri: `${REDIRECT_URI}`,
+				redirect_uri: `${redirectionUri}`,
 			});
 			return response;
 		} catch (error) {
@@ -36,5 +33,3 @@ const apiOAuth = {
 		}
 	},
 };
-
-export default apiOAuth;
