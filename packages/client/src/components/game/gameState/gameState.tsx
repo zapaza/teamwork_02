@@ -1,40 +1,56 @@
-import React, { LegacyRef, useEffect, useRef } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { playGame } from '@/core/game/game';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { toggleFullscreen } from '@/utils/Fullscreen';
 import './gameState.pcss';
+import { Button } from '@/components/ui/button/button';
+import { GameFactory } from '@/core/game/gameFactory';
+import { map, variables } from '@/core/game/dictionary';
 
 export type GameCanvasProps = {
 	isLoading?: boolean;
 	isFullscreen?: boolean;
+	fsElement?: HTMLElement;
 };
 
 export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
 	const { id, login } = useSelector((state: RootState) => state.auth);
 
 	useEffect(() => {
-		playGame({ id: id, login: login });
+		const assets = GameFactory.makeAssets(map, variables);
+		playGame({ id: id, login: login }, { ...variables }, assets);
 	}, []);
 
 	const handleDirection = (direction: string) => {
 		const arrow = new KeyboardEvent('keydown', { key: direction });
 		window.dispatchEvent(arrow);
 	};
-	const modifyClassFS = (className: string, isFS: boolean | undefined) =>
-		`${className}${isFS ? '_fullscreen' : ''}`;
+	const modifyClassFS = (className: string, isFS: boolean | undefined, saveOriginal = false) =>
+		`${className}${isFS ? '_fullscreen' : ''} ${saveOriginal && isFS ? className : ''}`;
 
-	const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef();
 	const handler = () => {
-		toggleFullscreen(gameElement?.current);
+		toggleFullscreen(props.fsElement);
 	};
 	const { t } = useTranslation();
 
+	const handleClick = (e: MouseEvent) => {
+		if (e.target) {
+			togglePointerLock(e.target as HTMLElement);
+		}
+	};
+
+	const togglePointerLock = (element: HTMLElement) => {
+		if (document.pointerLockElement !== element) {
+			element.requestPointerLock();
+		} else {
+			document.exitPointerLock();
+		}
+	};
+
 	return (
-		<div
-			ref={gameElement as LegacyRef<HTMLDivElement>}
-			className={props.isLoading ? 'hide' : 'wrapper'}>
+		<div className={props.isLoading ? 'hide' : 'wrapper'}>
 			<div className={modifyClassFS('game', props.isFullscreen)}>
 				<canvas
 					id="info"
@@ -47,7 +63,8 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 					className={modifyClassFS('game__board', props.isFullscreen)}
 					data-testid="board"
 					width="896"
-					height="992"></canvas>
+					height="992"
+					onClick={handleClick}></canvas>
 			</div>
 			<br></br>
 			<div className="mobile-controls">
@@ -89,9 +106,12 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 						onClick={() => handleDirection('ArrowDown')}></area>
 				</map>
 			</div>
-			<button onClick={handler} className={'fullscreen-button'}>
+			<Button
+				onClick={handler}
+				className={modifyClassFS('button', props.isFullscreen, true)}
+				name={'fullscreen'}>
 				{props.isFullscreen ? t('exit_fullscreen') : t('fullscreen')}
-			</button>
+			</Button>
 		</div>
 	);
 };

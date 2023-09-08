@@ -76,6 +76,6 @@ export class PelletManager {
 		});
 		assets.audioPlayer.ghostAudioWantsToPlay = true;
 		assets.timers.cycleTimer.start();
-		playGame(variables.player);
+		playGame(variables.player, variables, assets);
 	}
 }

@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { checkAuth, fetchSignup } from '@/store/auth/auth-slice';
 import { SignupData } from '@/types/auth';
+import './signup-page.pcss';
 
 export const SignupPage = () => {
 	const dispatch: AppDispatch = useDispatch();
@@ -84,14 +85,16 @@ export const SignupPage = () => {
 	};
 
 	return (
-		<Form
-			name={'signup'}
-			title={t('signup')}
-			inputs={inputs}
-			buttons={buttons}
-			validationSchema={signUpSchema}
-			callback={handleSubmit}
-			type="json"
-		/>
+		<main className="signup-page">
+			<Form
+				name={'signup'}
+				title={t('signup')}
+				inputs={inputs}
+				buttons={buttons}
+				validationSchema={signUpSchema}
+				callback={handleSubmit}
+				type="json"
+			/>
+		</main>
 	);
 };

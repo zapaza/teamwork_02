@@ -5,17 +5,23 @@ import { InputsProps } from '@/components/ui/input/input';
 import { ButtonsProps } from '@/components/ui/button/button';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchLogin } from '@/store/auth/auth-slice';
+import { checkAuth, fetchLogin } from '@/store/auth/auth-slice';
 import { AppDispatch, RootState } from '@/store';
 import { LoginData } from '@/types/auth';
 import { useTranslation } from 'react-i18next';
+import { OAuth } from '@/components/ui/oauth/oauth';
 
 export const LoginPage = () => {
 	const auth = useSelector((state: RootState) => state.auth);
 	const dispatch: AppDispatch = useDispatch();
 	const navigate = useNavigate();
 
+	async function fetchUser() {
+		await dispatch(checkAuth());
+	}
+
 	useEffect(() => {
+		fetchUser();
 		if (auth.isLoggedIn) {
 			navigate('/');
 		}
@@ -65,13 +71,16 @@ export const LoginPage = () => {
 		},
 	];
 	return (
-		<Form
-			name={'login'}
-			title={t('sign_in')}
-			inputs={inputs}
-			buttons={buttons}
-			callback={handleSubmit}
-			type="json"
-		/>
+		<>
+			<Form
+				name={'login'}
+				title={t('sign_in')}
+				inputs={inputs}
+				buttons={buttons}
+				callback={handleSubmit}
+				type="json"
+			/>
+			<OAuth/>
+		</>
 	);
 };
