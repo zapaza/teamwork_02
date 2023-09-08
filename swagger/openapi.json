@@ -275,9 +275,6 @@
           "content": {
             "type": "string",
             "example": "Text message"
-          },
-          "comments": {
-            "$ref": "#/components/schemas/comments"
           }
         }
       },
@@ -297,7 +294,7 @@
           "topicId": {
             "type": "integer"
           },
-          "autor": {
+          "author": {
             "type": "string",
             "example": "Petr"
           },
