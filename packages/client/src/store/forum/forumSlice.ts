@@ -7,13 +7,10 @@ export const forumSlice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder
-			.addCase(
-				fetchAllTopics.fulfilled,
-				(state, action) => {
-					//state.data = action.payload;
-					//state.isDataLoaded = true;
-				},
-			)
+			.addCase(fetchAllTopics.fulfilled, (state, action) => {
+				//state.data = action.payload;
+				//state.isDataLoaded = true;
+			})
 			.addCase(fetchAllTopics.rejected, () => {
 				console.error('fetch topics failed');
 			});
