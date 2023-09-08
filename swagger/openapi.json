@@ -41,7 +41,17 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Successful operation"
+						"description": "Successful operation return array of all topics with new topic",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/topicResp"
+									}
+								}
+							}
+						}
 					},
 					"400": {
 						"description": "Invalid",
@@ -192,7 +202,17 @@
 				},
 				"responses": {
 					"200": {
-						"description": "Successful operation"
+						"description": "Successful operation return array of all comments with new comment for this topic",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/comments"
+									}
+								}
+							}
+						}
 					},
 					"400": {
 						"description": "Invalid",
