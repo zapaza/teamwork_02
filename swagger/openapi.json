@@ -295,6 +295,22 @@
 					}
 				}
 			},
+			"author": {
+				"required": [
+					"id",
+					"name"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string",
+						"example": "Ivan"
+					}
+				}
+			},
 			"topicResp": {
 				"required": [
 					"id",
@@ -333,8 +349,12 @@
 						"type": "integer"
 					},
 					"author": {
-						"type": "string",
-						"example": "Petr"
+						"type": "object",
+						"properties": {
+							"schema": {
+								"$ref": "#/components/schemas/author"
+							}
+						}
 					},
 					"content": {
 						"type": "string",
