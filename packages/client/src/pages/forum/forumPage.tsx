@@ -2,8 +2,11 @@ import { Button } from '@/components/ui/button/button';
 import { Topic } from '@/components/ui/topic/topic';
 import { CreateTopicModal } from '@/components/ui/create-topic-modal/createTopicModal';
 import './forum-page.pcss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { t } from 'i18next';
+import { fetchAllTopics } from '@/store/forum/forumThunk';
+import { AppDispatch, RootState } from '@/store';
+import { useDispatch, useSelector } from 'react-redux';
 
 const forumMock = [
 	{
@@ -38,10 +41,20 @@ const forumMock = [
 
 export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
+	const forum = useSelector((state: RootState) => state.forum);
+	const dispatch: AppDispatch = useDispatch();
 
 	function changeActive() {
 		setActiveModal(!activeModal);
 	}
+
+	useEffect(() => {
+		async function fetchTopics() {
+			await dispatch(fetchAllTopics());
+		}
+
+		fetchTopics();
+	}, []);
 
 	return (
 		<>
