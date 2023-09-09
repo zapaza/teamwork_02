@@ -15,9 +15,9 @@ async function startServer() {
 	app.use(cors());
 	const port = Number(process.env.SERVER_PORT) || 3001;
 	let vite: ViteDevServer | undefined;
-	const distPath = path.dirname(require.resolve('client/dist/index.html'));
-	const srcPath = path.dirname(require.resolve('client/package.json'));
-	const ssrClientPath = require.resolve('client/dist-ssr/client.cjs');
+	const distPath = path.dirname(require.resolve('client/dist'));
+	const srcPath = path.dirname(require.resolve('client'));
+	const ssrClientPath = path.dirname(require.resolve('client/dist-ssr/client.cjs'));
 
 	if (isDev) {
 		vite = await createViteServer({
