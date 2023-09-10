@@ -12,8 +12,18 @@ type StateType = {
 	isDataLoaded: boolean;
 };
 
+const forumMock = [
+	{
+		id: 1,
+		header: 'Заголовок топика1',
+		content:
+			// eslint-disable-next-line max-len
+			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
+	},
+];
+
 const initialValue = {
-	data: { topics: [{ id: 0, header: 'Initial Header', content: 'Topic content' }], comments: [] },
+	data: { topics: forumMock, comments: [] },
 	isDataLoaded: false,
 };
 
@@ -23,8 +33,8 @@ export const forumSlice = createSlice({
 	reducers: {},
 	extraReducers: builder => {
 		builder
-			.addCase(fetchAllTopics.fulfilled, (state, action: PayloadAction<ForumDataType>) => {
-				state.data = action.payload;
+			.addCase(fetchAllTopics.fulfilled, (state, action) => {
+				console.log(action.payload);
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchAllTopics.rejected, () => {
