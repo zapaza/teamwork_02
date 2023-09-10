@@ -7,41 +7,11 @@ import { t } from 'i18next';
 import { fetchAllTopics } from '@/store/forum/forumThunk';
 import { AppDispatch, RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
-
-const forumMock = [
-	{
-		id: '1',
-		topicTitle: 'Заголовок топика1',
-		topicText:
-			// eslint-disable-next-line max-len
-			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
-	},
-	{
-		id: '2',
-		topicTitle: 'Заголовок топика2',
-		topicText:
-			// eslint-disable-next-line max-len
-			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
-	},
-	{
-		id: '3',
-		topicTitle: 'Заголовок топика3',
-		topicText:
-			// eslint-disable-next-line max-len
-			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
-	},
-	{
-		id: '4',
-		topicTitle: 'Заголовок топика4',
-		topicText:
-			// eslint-disable-next-line max-len
-			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
-	},
-];
+import { apiForum } from '@/core/api/api-forum';
 
 export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
-	const forum = useSelector((state: RootState) => state.forum);
+	const topics = useSelector((state: RootState) => state.forum.data.topics);
 	const dispatch: AppDispatch = useDispatch();
 
 	function changeActive() {
@@ -56,11 +26,20 @@ export const ForumPage = () => {
 		fetchTopics();
 	}, []);
 
+	async function submitForm(data: unknown) {
+		const dataMock = { header: 'Mock header', content: 'Mock content' };
+		try {
+			await apiForum.addTopic(dataMock);
+		} catch (error) {
+			console.error('Failed to create topic:', error);
+		}
+	}
+
 	return (
 		<>
 			<div className="forum__container flex">
 				<div className="all-topic-container flex flex-column">
-					{forumMock.map(item => (
+					{topics.map(item => (
 						<Topic key={item.id} {...item}/>
 					))}
 				</div>
@@ -71,7 +50,11 @@ export const ForumPage = () => {
 					{t('create_topic')}
 				</Button>
 			</div>
-			<CreateTopicModal active={activeModal} handleClose={changeActive}/>
+			<CreateTopicModal
+				active={activeModal}
+				handleClose={changeActive}
+				handleSubmit={submitForm}
+			/>
 		</>
 	);
 };
