@@ -16,6 +16,7 @@ async function startServer() {
 	const port = Number(process.env.SERVER_PORT) || 3001;
 	let vite: ViteDevServer | undefined;
 	const distPath = path.dirname(require.resolve('client/dist/index.html'));
+	const pathFileStore = path.dirname(require.resolve('client/src/store/index.ts'));
 	const srcPath = path.dirname(require.resolve('client/package.json'));
 	const ssrClientPath = require.resolve('client/dist-ssr/client.cjs');
 
@@ -50,6 +51,8 @@ async function startServer() {
 			}
 
 			let render: () => Promise<string>;
+			let setupStore;
+			let initialState;
 
 			if (!isDev) {
 				render = (await import(ssrClientPath)).render;
@@ -57,9 +60,22 @@ async function startServer() {
 				render = (await vite!.ssrLoadModule(path.resolve(srcPath, 'ssr.tsx'))).render;
 			}
 
-			const appHtml = await render();
+			const [initialStateRender, appHtml] = await render();
 
-			const html = template.replace('<!--ssr-outlet-->', appHtml);
+			if (isDev) {
+				setupStore = (await vite!.ssrLoadModule(pathFileStore)).setupStore;
+				const store = setupStore();
+				initialState = store.getState();
+			} else {
+				initialState = initialStateRender;
+			}
+
+			const stringifyState = JSON.stringify(initialState).replace(/</g, '\\u003c');
+			const stateMarkup = `<script>window.__PRELOADED_STATE__ = ${stringifyState}</script>`;
+
+			const html = template
+				.replace('<!--ssr-outlet-->', appHtml)
+				.replace('<!--preloadedState-->', stateMarkup);
 
 			res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
 		} catch (e) {
