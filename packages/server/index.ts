@@ -51,7 +51,6 @@ async function startServer() {
 			}
 
 			let render: () => Promise<string>;
-			let setupStore;
 			let initialState;
 
 			if (!isDev) {
@@ -63,7 +62,7 @@ async function startServer() {
 			const [initialStateRender, appHtml] = await render();
 
 			if (isDev) {
-				setupStore = (await vite!.ssrLoadModule(pathFileStore)).setupStore;
+				const setupStore = (await vite!.ssrLoadModule(pathFileStore)).setupStore;
 				const store = setupStore();
 				initialState = store.getState();
 			} else {
