@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { fetchAllTopics } from '@/store/forum/forumThunk';
 import { AppDispatch, RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { apiForum } from '@/core/api/api-forum';
+import { NewTopicType, apiForum } from '@/core/api/api-forum';
 
 export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
@@ -26,10 +26,9 @@ export const ForumPage = () => {
 		fetchTopics();
 	}, []);
 
-	async function submitForm(data: unknown) {
-		const dataMock = { header: 'Mock header', content: 'Mock content' };
+	async function submitForm(data: NewTopicType) {
 		try {
-			await apiForum.addTopic(dataMock);
+			await apiForum.addTopic(data);
 		} catch (error) {
 			console.error('Failed to create topic:', error);
 		}

@@ -10,31 +10,40 @@ export type ForumDataType = {
 type StateType = {
 	data: ForumDataType;
 	isDataLoaded: boolean;
+	currentTopic: TopicType;
 };
 
-const forumMock = [
-	{
-		id: 1,
-		header: 'Заголовок топика1',
-		content:
-			// eslint-disable-next-line max-len
-			'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика!',
-	},
-];
-
 const initialValue = {
-	data: { topics: forumMock, comments: [] },
+	data: {
+		topics: [
+			{
+				id: 0,
+				header: '',
+				content: '',
+			},
+		],
+		comments: [],
+	},
 	isDataLoaded: false,
+	currentTopic: {
+		id: 0,
+		header: '',
+		content: '',
+	},
 };
 
 export const forumSlice = createSlice({
 	name: 'forum',
-	initialState: initialValue as StateType,
-	reducers: {},
+	initialState: initialValue,
+	reducers: {
+		setCurrentTopic: (state, action) => {
+			state.currentTopic = action.payload;
+		},
+	},
 	extraReducers: builder => {
 		builder
-			.addCase(fetchAllTopics.fulfilled, (state, action) => {
-				console.log(action.payload);
+			.addCase(fetchAllTopics.fulfilled, (state, action: PayloadAction<TopicType[]>) => {
+				state.data.topics = action.payload;
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchAllTopics.rejected, () => {
@@ -42,5 +51,7 @@ export const forumSlice = createSlice({
 			});
 	},
 });
+
+export const { setCurrentTopic } = forumSlice.actions;
 
 export default forumSlice.reducer;

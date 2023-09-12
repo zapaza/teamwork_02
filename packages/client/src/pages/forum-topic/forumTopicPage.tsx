@@ -4,17 +4,12 @@ import { Button } from '@/components/ui/button/button';
 import { useState } from 'react';
 import './forum-topic-page.pcss';
 import { t } from 'i18next';
-
-const topicMock = {
-	id: 1,
-	header: 'Заголовок топика1',
-	content:
-		// eslint-disable-next-line max-len
-		'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика',
-};
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
 
 export const ForumTopicPage = () => {
-	const currentUserMock = 'Ты';
+	const currentTopic = useSelector((state: RootState) => state.forum.currentTopic);
+	const user = useSelector((state: RootState) => state.auth);
 	const [newCommentState, setNewCommentState] = useState('');
 	const [comments, setComments] = useState([
 		{
@@ -37,7 +32,7 @@ export const ForumTopicPage = () => {
 			...comments,
 			{
 				id: (comments.length + 1).toString(),
-				userName: currentUserMock,
+				userName: user.login,
 				commentText: newCommentState,
 				date: new Date('08.06.2023'),
 			},
@@ -51,7 +46,7 @@ export const ForumTopicPage = () => {
 
 	return (
 		<div className="forum-topic__container flex flex-column flex-ai-center">
-			<Topic key={topicMock.id} {...topicMock}/>
+			<Topic key={currentTopic.id} {...currentTopic}/>
 			<h5 className="comments-header text-base-font-bold">{t('comments')}:</h5>
 			{comments.map(item => (
 				<Comment key={item.id} {...item}/>

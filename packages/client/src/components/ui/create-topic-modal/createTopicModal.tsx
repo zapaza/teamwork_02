@@ -2,11 +2,12 @@ import React from 'react';
 import './create-topic-modal.pcss';
 import Input from '@/components/ui/input/input';
 import { t } from 'i18next';
+import { NewTopicType } from '@/core/api/api-forum';
 
 type modalPropsType = {
 	active: boolean;
 	handleClose: () => void;
-	handleSubmit: (data: unknown) => Promise<void>;
+	handleSubmit: (data: NewTopicType) => Promise<void>;
 };
 
 export const CreateTopicModal = (props: modalPropsType) => {
@@ -17,7 +18,6 @@ export const CreateTopicModal = (props: modalPropsType) => {
 			header: formData.get('TopicTheme')!.toString(),
 			content: formData.get('TopicContent')!.toString(),
 		};
-		console.log(data);
 		props.handleSubmit(data);
 		event.currentTarget.reset();
 		props.handleClose();
@@ -37,7 +37,9 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					type="submit"
 					name="addTopicBtn"
 					className="button"
-					onClick={props.handleSubmit}>
+					onClick={() => {
+						props.handleSubmit;
+					}}>
 					{t('create_topic')}
 				</button>
 			</form>

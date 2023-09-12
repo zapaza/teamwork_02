@@ -6,10 +6,7 @@ export type TopicType = {
 	content: string;
 };
 
-export type NewTopicType = {
-	header: string;
-	content: string;
-};
+export type NewTopicType = Omit<TopicType, 'id'>;
 
 //TODO добавить ссылку
 const API_ENDPOINT_FORUM = '';
