@@ -1,0 +1,405 @@
+{
+	"openapi": "3.0.3",
+	"info": {
+		"title": "Swagger GOLOVOLOMKA forum  - OpenAPI 1.0",
+		"version": "1.0"
+	},
+	"servers": [
+		{
+			"url": "/api/v3"
+		}
+	],
+	"tags": [
+		{
+			"name": "topic",
+			"description": "Forum topics"
+		},
+		{
+			"name": "comments",
+			"description": "Comments"
+		}
+	],
+	"paths": {
+		"/topic": {
+			"post": {
+				"tags": [
+					"topic"
+				],
+				"summary": "Add new topic",
+				"description": "",
+				"operationId": "addTopic",
+				"requestBody": {
+					"description": "Create new topic",
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/topic"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Successful operation return array of all topics with new topic",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/topicResp"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApiResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"topic"
+				],
+				"parameters": [
+					{
+						"name": "offset",
+						"description": "The number of items to skip before starting to collect the result set",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"name": "limit",
+						"description": "The numbers of items to return",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"summary": "Get all topics",
+				"description": "",
+				"operationId": "getAllTopics",
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/topicResp"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApiResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/topic/{id}": {
+			"get": {
+				"tags": [
+					"topic"
+				],
+				"summary": "Get topic by ID",
+				"description": "",
+				"operationId": "getTopicByID",
+				"parameters": [
+					{
+						"name": "id",
+						"description": "Topic id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/topicResp"
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApiResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		},
+		"/topic/{id}/comments": {
+			"post": {
+				"tags": [
+					"comments"
+				],
+				"summary": "Add new comment",
+				"description": "",
+				"operationId": "addComment",
+				"parameters": [
+					{
+						"name": "id",
+						"description": "Topic id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"requestBody": {
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/comments"
+							}
+						}
+					},
+					"required": true
+				},
+				"responses": {
+					"200": {
+						"description": "Successful operation return array of all comments with new comment for this topic",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/comments"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApiResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			},
+			"get": {
+				"tags": [
+					"comments"
+				],
+				"summary": "Get all comments",
+				"description": "",
+				"operationId": "getAllComments",
+				"parameters": [
+					{
+						"name": "id",
+						"description": "Topic id",
+						"in": "path",
+						"required": true,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"name": "offset",
+						"description": "The number of items to skip before starting to collect the result set",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					},
+					{
+						"name": "limit",
+						"description": "The numbers of items to return",
+						"in": "query",
+						"required": false,
+						"schema": {
+							"type": "integer"
+						}
+					}
+				],
+				"responses": {
+					"200": {
+						"description": "Successful operation",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/comments"
+									}
+								}
+							}
+						}
+					},
+					"400": {
+						"description": "Invalid",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "array",
+									"items": {
+										"$ref": "#/components/schemas/ApiResponse"
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"components": {
+		"schemas": {
+			"topic": {
+				"required": [
+					"header",
+					"content"
+				],
+				"type": "object",
+				"properties": {
+					"header": {
+						"type": "string",
+						"example": "My new topic"
+					},
+					"content": {
+						"type": "string",
+						"example": "Text message"
+					}
+				}
+			},
+			"author": {
+				"required": [
+					"id",
+					"name"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"name": {
+						"type": "string",
+						"example": "Ivan"
+					}
+				}
+			},
+			"topicResp": {
+				"required": [
+					"id",
+					"header",
+					"content"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"header": {
+						"type": "string",
+						"example": "My new topic"
+					},
+					"content": {
+						"type": "string",
+						"example": "Text message"
+					}
+				}
+			},
+			"comments": {
+				"required": [
+					"id",
+					"topicId",
+					"autor",
+					"content",
+					"date"
+				],
+				"type": "object",
+				"properties": {
+					"id": {
+						"type": "integer"
+					},
+					"topicId": {
+						"type": "integer"
+					},
+					"author": {
+						"type": "object",
+						"properties": {
+							"schema": {
+								"$ref": "#/components/schemas/author"
+							}
+						}
+					},
+					"content": {
+						"type": "string",
+						"example": "Text comments"
+					},
+					"date": {
+						"type": "string"
+					}
+				}
+			},
+			"ApiResponse": {
+				"type": "object",
+				"properties": {
+					"code": {
+						"type": "integer",
+						"format": "int32"
+					},
+					"type": {
+						"type": "string"
+					},
+					"message": {
+						"type": "string"
+					}
+				}
+			}
+		}
+	}
+}
