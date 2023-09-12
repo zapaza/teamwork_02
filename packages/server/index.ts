@@ -17,7 +17,7 @@ async function startServer() {
 	let vite: ViteDevServer | undefined;
 	const distPath = path.dirname(require.resolve('client/dist/index.html'));
 	const srcPath = path.dirname(require.resolve('client/'));
-	const ssrClientPath = require.resolve('client/dist-ssr/client.cjs');
+	const ssrClientPath = require.resolve('client/dist-ssr/ssr.cjs');
 
 	if (isDev) {
 		vite = await createViteServer({
@@ -38,7 +38,6 @@ async function startServer() {
 		app.use('/favicon', express.static(path.resolve(distPath, 'favicon')));
 		app.use('/images', express.static(path.resolve(distPath, 'images')));
 		app.use('/assets', express.static(path.resolve(distPath, 'images')));
-		app.use('/locales', express.static(path.resolve(distPath, 'locales')));
 		app.use('/audio', express.static(path.resolve(distPath, 'audio')));
 	}
 
@@ -57,7 +56,7 @@ async function startServer() {
 			let render: () => Promise<string>;
 
 			if (!isDev) {
-				render = (await import(ssrClientPath)).render;
+				render = (await import(ssrClientPath)).render(req.url);
 			} else {
 				render = (await vite!.ssrLoadModule(path.resolve(srcPath, 'ssr.tsx'))).render;
 			}
