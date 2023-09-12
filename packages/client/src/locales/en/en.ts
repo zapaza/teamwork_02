@@ -42,14 +42,14 @@ const en = {
 	welcome: 'Welcome to Pacman',
 	// eslint-disable-next-line max-len
 	main_description_1:
-	// eslint-disable-next-line max-len
+		// eslint-disable-next-line max-len
 		'Immerse yourself in the fascinating world of Pacman, a modern arcade game that takes the spirit of the classics and brings new elements to the gameplay.',
 	main_target: 'The goal of the game',
 	main_description_2: 'is to collect all the dots on the field.',
 	main_description_3: 'Beware of four elusive ghosts that persistently pursue Pacman.',
 	// eslint-disable-next-line max-len
 	main_description_4:
-	// eslint-disable-next-line max-len
+		// eslint-disable-next-line max-len
 		'Energy bonuses scattered throughout the maze give Pacman temporary attack power and allow him to turn against ghosts for a short time. At this point, annoying pursuers are stunned into blue ghosts, and Pacman can eat them, earning extra points.',
 	rules: 'Rules of the game',
 	rule_1: '1. Control and movement: Use the arrow keys on your keyboard to move Pacman up, down, left and right.',

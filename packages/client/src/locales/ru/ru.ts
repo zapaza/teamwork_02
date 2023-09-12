@@ -42,7 +42,7 @@ const ru = {
 	welcome: 'Добро пожаловать в Pacman',
 	// eslint-disable-next-line max-len
 	main_description_1:
-	// eslint-disable-next-line max-len
+		// eslint-disable-next-line max-len
 		'Погрузитесь в увлекательный мир Пакмана - современной аркадной игры, которая вобрала дух классики и привнесла новые элементы в игровой процесс.',
 	main_target: 'Цель игры',
 	main_description_2: 'собирать все точки на поле.',
@@ -50,7 +50,7 @@ const ru = {
 		'Остерегайтесь четырех неуловимых призраков, которые настойчиво преследуют Пакмана.',
 	// eslint-disable-next-line max-len
 	main_description_4:
-	// eslint-disable-next-line max-len
+		// eslint-disable-next-line max-len
 		'Энергетические бонусы, разбросанные по лабиринту, придают Пакману временную силу атаки и позволяют ему обратиться против призраков на короткое время. В этот момент раздражающие преследователи оглушаются, превращаясь в синих призраков, и Пакман может съесть их, зарабатывая дополнительные очки.',
 	rules: 'Правила игры',
 	// eslint-disable-next-line max-len
