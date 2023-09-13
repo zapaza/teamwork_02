@@ -16,9 +16,7 @@ export const Topic = (props: TopicType) => {
 	const dispatch: AppDispatch = useDispatch();
 
 	function handleTopicClick() {
-		console.log(props);
 		dispatch(setCurrentTopic({ ...props }));
-		console.log(currentTopic);
 		navigate('/forum-topic');
 	}
 
