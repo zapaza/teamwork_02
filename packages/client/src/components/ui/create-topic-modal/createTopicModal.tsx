@@ -17,7 +17,6 @@ export const CreateTopicModal = (props: modalPropsType) => {
 			header: formData.get('TopicTheme')!.toString(),
 			content: formData.get('TopicContent')!.toString(),
 		};
-		console.log(data);
 		props.handleSubmit(data);
 		event.currentTarget.reset();
 		props.handleClose();

@@ -34,14 +34,12 @@ export const forumSlice = createSlice({
 	extraReducers: builder => {
 		builder
 			.addCase(fetchAllTopics.fulfilled, (state, action) => {
-				console.log(action.payload);
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchAllTopics.rejected, () => {
 				console.error('fetch topics failed');
 			})
 			.addCase(fetchAllComments.fulfilled, (state, action) => {
-				console.log(action.payload);
 				state.data.comments = action.payload;
 			})
 			.addCase(fetchAllComments.rejected, () => {
