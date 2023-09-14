@@ -23,7 +23,6 @@ export type CommentType = {
 
 export type AuthorType = {
 	schema: schemaType;
-
 };
 
 type schemaType = {
@@ -47,14 +46,20 @@ export const apiForum = {
 		return response?.data;
 	},
 	getAllComments: async (topicId: number, offset: number = 0, limit: number = 10) => {
-		const response = await client.get(`/topic/${topicId}/comments`, {
-			offset,
-			limit,
-		}, { withCredentials: false });
+		const response = await client.get(
+			`/topic/${topicId}/comments`,
+			{
+				offset,
+				limit,
+			},
+			{ withCredentials: false },
+		);
 		return response?.data;
 	},
 	addComment: async (data: CommentType) => {
-		const response = await client.post(`/topic/${data.topicId}/comments`, data, { withCredentials: false });
+		const response = await client.post(`/topic/${data.topicId}/comments`, data, {
+			withCredentials: false,
+		});
 		return response?.data;
 	},
 };
