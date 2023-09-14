@@ -32,6 +32,7 @@ export const routerPaths = [
 			},
 			{
 				path: '/forum-topic',
+				search: 'id=:id',
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>

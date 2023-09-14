@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchAllTopics } from './forumThunk';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllComments, fetchAllTopics } from './forumThunk';
 import { TopicType } from '@/core/api/api-forum';
 
 export type ForumDataType = {
@@ -39,6 +39,13 @@ export const forumSlice = createSlice({
 			})
 			.addCase(fetchAllTopics.rejected, () => {
 				console.error('fetch topics failed');
+			})
+			.addCase(fetchAllComments.fulfilled, (state, action) => {
+				console.log(action.payload);
+				state.data.comments = action.payload;
+			})
+			.addCase(fetchAllComments.rejected, () => {
+				console.error('fetch comments failed');
 			});
 	},
 });
