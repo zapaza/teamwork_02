@@ -1,16 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchAllTopics } from './forumThunk';
-import { TopicType } from '@/core/api/api-forum';
+import { fetchAllTopics, fetchTopicById } from './forumThunk';
+import { TopicType } from '@/components/ui/topic/topic';
 
 export type ForumDataType = {
 	topics: TopicType[];
 	comments: any;
-};
-
-type StateType = {
-	data: ForumDataType;
-	isDataLoaded: boolean;
-	currentTopic: TopicType;
 };
 
 const initialValue = {
@@ -48,6 +42,13 @@ export const forumSlice = createSlice({
 			})
 			.addCase(fetchAllTopics.rejected, () => {
 				console.error('fetch topics failed');
+			})
+			.addCase(fetchTopicById.fulfilled, (state, action: PayloadAction<TopicType>) => {
+				state.currentTopic = action.payload;
+				state.isDataLoaded = true;
+			})
+			.addCase(fetchTopicById.rejected, () => {
+				console.error('fetch topic failed');
 			});
 	},
 });

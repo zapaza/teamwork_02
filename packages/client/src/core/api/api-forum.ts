@@ -1,10 +1,5 @@
+import { TopicType } from '@/components/ui/topic/topic';
 import { ApiClient } from '@/core/api/api-client';
-
-export type TopicType = {
-	id: number;
-	header: string;
-	content: string;
-};
 
 export type NewTopicType = Omit<TopicType, 'id'>;
 
@@ -20,6 +15,10 @@ export const apiForum = {
 	},
 	addTopic: async (data: NewTopicType) => {
 		const response = await client.post('/topic', data);
+		return response?.data;
+	},
+	getTopicById: async (id: number) => {
+		const response = await client.get(`/topic/${id}`);
 		return response?.data;
 	},
 };

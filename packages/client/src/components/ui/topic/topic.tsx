@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './topic.pcss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
 import { setCurrentTopic } from '@/store/forum/forumSlice';
+import { fetchTopicById } from '@/store/forum/forumThunk';
 
 export type TopicType = {
 	id: number;
@@ -14,10 +15,21 @@ export type TopicType = {
 export const Topic = (props: TopicType) => {
 	const currentTopic = useSelector((state: RootState) => state.forum.currentTopic);
 	const dispatch: AppDispatch = useDispatch();
+	const { id } = useParams();
+
+	useEffect(() => {
+		async function topicById() {
+			if (!currentTopic.header && !currentTopic.content) {
+				await dispatch(fetchTopicById(Number(id)));
+			} else return;
+		}
+
+		topicById();
+	}, []);
 
 	function handleTopicClick() {
 		dispatch(setCurrentTopic({ ...props }));
-		navigate('/forum-topic');
+		navigate(`/forum-topic/${props.id}`);
 	}
 
 	const navigate = useNavigate();
