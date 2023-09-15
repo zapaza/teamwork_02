@@ -1,4 +1,12 @@
 {
-    "extends": "./tsconfig",
-    "exclude": ["**/*.test.ts", "**/*.mock.ts", "**/__test__"]
+	"compilerOptions": {
+		"skipLibCheck": true
+	},
+	"extends": "./tsconfig",
+	"exclude": [
+		"**/*.test.ts",
+		"**/*.mock.ts",
+		"**/__test__",
+		"node_modules"
+	]
 }

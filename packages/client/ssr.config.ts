@@ -9,7 +9,6 @@ export default defineConfig({
 		},
 	},
 	plugins: [react()],
-	ssr: true,
 	define: {
 		__SERVER_PORT__: process.env.SERVER_PORT || 3001,
 	},
@@ -24,5 +23,9 @@ export default defineConfig({
 				dir: 'dist-ssr',
 			},
 		},
+		ssr: true,
+	},
+	ssr: {
+		format: 'cjs',
 	},
 });
