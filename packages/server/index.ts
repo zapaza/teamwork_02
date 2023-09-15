@@ -57,9 +57,14 @@ async function startServer() {
 				render = (await vite!.ssrLoadModule(path.resolve(srcPath, 'ssr.tsx'))).render;
 			}
 
-			const appHtml = await render();
+			const [initialStateRender, appHtml] = await render();
 
-			const html = template.replace('<!--ssr-outlet-->', appHtml);
+			const stringifyState = JSON.stringify(initialStateRender).replace(/</g, '\\u003c');
+			const stateMarkup = `<script>window.__PRELOADED_STATE__ = ${stringifyState}</script>`;
+
+			const html = template
+				.replace('<!--ssr-outlet-->', appHtml)
+				.replace('<!--preloadedState-->', stateMarkup);
 
 			res.status(200).set({ 'Content-Type': 'text/html' }).end(html);
 		} catch (e) {
