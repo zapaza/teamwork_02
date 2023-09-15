@@ -9,6 +9,7 @@ import { checkAuth, fetchLogin } from '@/store/auth/auth-slice';
 import { AppDispatch, RootState } from '@/store';
 import { LoginData } from '@/types/auth';
 import { useTranslation } from 'react-i18next';
+import { OAuth } from '@/components/ui/oauth/oauth';
 
 export const LoginPage = () => {
 	const auth = useSelector((state: RootState) => state.auth);
@@ -70,13 +71,16 @@ export const LoginPage = () => {
 		},
 	];
 	return (
-		<Form
-			name={'login'}
-			title={t('sign_in')}
-			inputs={inputs}
-			buttons={buttons}
-			callback={handleSubmit}
-			type="json"
-		/>
+		<>
+			<Form
+				name={'login'}
+				title={t('sign_in')}
+				inputs={inputs}
+				buttons={buttons}
+				callback={handleSubmit}
+				type="json"
+			/>
+			<OAuth/>
+		</>
 	);
 };

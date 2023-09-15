@@ -1,4 +1,4 @@
-import React, { LegacyRef, MouseEvent, useEffect, useRef } from 'react';
+import React, { MouseEvent, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { playGame } from '@/core/game/game';
 import { useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { map, variables } from '@/core/game/dictionary';
 export type GameCanvasProps = {
 	isLoading?: boolean;
 	isFullscreen?: boolean;
+	fsElement?: HTMLElement;
 };
 
 export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) => {
@@ -29,9 +30,8 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 	const modifyClassFS = (className: string, isFS: boolean | undefined, saveOriginal = false) =>
 		`${className}${isFS ? '_fullscreen' : ''} ${saveOriginal && isFS ? className : ''}`;
 
-	const gameElement: React.MutableRefObject<HTMLElement | undefined> = useRef();
 	const handler = () => {
-		toggleFullscreen(gameElement?.current);
+		toggleFullscreen(props.fsElement);
 	};
 	const { t } = useTranslation();
 
@@ -50,9 +50,7 @@ export const GameCanvas: React.FC<GameCanvasProps> = (props: GameCanvasProps) =>
 	};
 
 	return (
-		<div
-			ref={gameElement as LegacyRef<HTMLDivElement>}
-			className={props.isLoading ? 'hide' : 'wrapper'}>
+		<div className={props.isLoading ? 'hide' : 'wrapper'}>
 			<div className={modifyClassFS('game', props.isFullscreen)}>
 				<canvas
 					id="info"
