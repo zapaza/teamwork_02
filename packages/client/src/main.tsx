@@ -33,10 +33,8 @@ if ('serviceWorker' in navigator) {
 ReactDOM.hydrateRoot(
 	document.getElementById('root') as HTMLElement,
 	<React.StrictMode>
-		<React.Suspense fallback="Loading...">
-			<Provider store={store}>
-				<RouterProvider router={router}/>
-			</Provider>
-		</React.Suspense>
+		<Provider store={store}>
+			<RouterProvider router={router}/>
+		</Provider>
 	</React.StrictMode>,
 );
