@@ -1,0 +1,72 @@
+### Auth
+# @name login
+POST https://ya-praktikum.tech/api/v2/auth/signin
+Content-Type: application/json
+
+{
+  "login": "Qwerty123",
+  "password": "Qwerty123"
+}
+
+###
+POST https://ya-praktikum.tech/api/v2/auth/logout
+
+#######################################
+
+### Get all topics
+GET http://localhost:3001/api/topic
+
+### Get topic
+GET http://localhost:3001/api/topic/2
+
+### Create topic
+POST http://localhost:3001/api/topic
+Content-Type: application/json
+
+{
+  "header":"weqr",
+  "content":"efgsrtd",
+  "userId":"user"
+}
+
+### Delete topic
+DELETE http://localhost:3001/api/topic/1
+
+#######################################
+
+### Get comment
+GET http://localhost:3001/api/comment/3
+
+###Create comment
+POST http://localhost:3001/api/comment
+Content-Type: application/json
+
+{
+  "topicId":1,
+  "content":"qweqefqef",
+  "userId":"user"
+}
+
+###Delete comment
+DELETE http://localhost:3001/api/comment/3
+
+
+#######################################
+
+### Get reply
+GET http://localhost:3001/api/reply/1
+
+###Create reply
+POST http://localhost:3001/api/reply
+Content-Type: application/json
+
+{
+  "commentId":3,
+  "content":"qweqefqef",
+  "userId":"user"
+}
+
+###Delete reply
+DELETE http://localhost:3001/api/reply/2
+
+

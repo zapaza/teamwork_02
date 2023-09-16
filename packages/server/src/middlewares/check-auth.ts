@@ -3,6 +3,7 @@ import { YANDEX_API } from '../const';
 import axios from 'axios';
 
 export const checkAuth: RequestHandler = async (req, res, next) => {
+	res.locals.user = { a: 1 };
 	if (req.headers.cookie) {
 		axios(`${YANDEX_API}/auth/user`, {
 			headers: {

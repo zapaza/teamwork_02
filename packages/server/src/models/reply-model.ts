@@ -3,9 +3,9 @@ import sequelize from '../config/database';
 
 class ReplyModel extends Model {
 	public id!: number;
-	public user_id!: string;
-	public reply_text!: string;
-	public comment_id!: number;
+	public userId!: string;
+	public content!: string;
+	public commentId!: number;
 	public created_at!: Date;
 	public updated_at!: Date;
 }
@@ -17,17 +17,19 @@ ReplyModel.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		user_id: {
+		userId: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			field: 'user_id',
+		},
+		content: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		reply_text: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		comment_id: {
+		commentId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			field: 'comment_id',
 		},
 		created_at: {
 			type: DataTypes.DATE,

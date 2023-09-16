@@ -9,18 +9,18 @@ class ReplyController {
 		}
 
 		try {
-			const { comment_id, reply_text, user_id } = req.body;
+			const { commentId, content, userId } = req.body;
 
-			if (!comment_id || !user_id || !reply_text) {
+			if (!commentId || !userId || !content) {
 				return res
 					.status(400)
 					.json({ message: 'Comment ID, Reply Text and  User ID are required' });
 			}
 
 			const reply = await ReplyModel.create({
-				comment_id,
-				reply_text: removeSpecChars(reply_text),
-				user_id,
+				commentId,
+				content: removeSpecChars(content),
+				userId,
 				created_at: new Date(),
 				updated_at: new Date(),
 			});

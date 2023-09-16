@@ -3,9 +3,9 @@ import sequelize from '../config/database';
 
 class CommentModel extends Model {
 	public id!: number;
-	public user_id!: string;
-	public comment_text!: string;
-	public topic_id!: number;
+	public userId!: string;
+	public content!: string;
+	public topicId!: number;
 	public created_at!: Date;
 	public updated_at!: Date;
 }
@@ -17,17 +17,19 @@ CommentModel.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		user_id: {
+		userId: {
+			type: DataTypes.STRING,
+			allowNull: false,
+			field: 'user_id',
+		},
+		content: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		comment_text: {
-			type: DataTypes.STRING,
-			allowNull: false,
-		},
-		topic_id: {
+		topicId: {
 			type: DataTypes.INTEGER,
 			allowNull: false,
+			field: 'topic_id',
 		},
 		created_at: {
 			type: DataTypes.DATE,

@@ -9,18 +9,18 @@ class CommentController {
 		}
 
 		try {
-			const { topic_id, comment_text, user_id } = req.body;
+			const { topicId, content, userId } = req.body;
 
-			if (!topic_id || !user_id || !comment_text) {
+			if (!topicId || !userId || !content) {
 				return res
 					.status(400)
 					.json({ message: 'Topic ID, Comment Text and  User ID are required' });
 			}
 
 			const comment = await CommentModel.create({
-				topic_id,
-				comment_text: removeSpecChars(comment_text),
-				user_id,
+				topicId,
+				content: removeSpecChars(content),
+				userId,
 				created_at: new Date(),
 				updated_at: new Date(),
 			});

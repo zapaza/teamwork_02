@@ -16,7 +16,7 @@ const replyController = new ReplyController();
 router.use(checkAuth);
 
 router.post(TOPIC_URL, topicController.addTopic);
-router.get(`${TOPIC_URL}/all`, topicController.getTopics);
+router.get(`${TOPIC_URL}`, topicController.getTopics);
 router.get(`${TOPIC_URL}/:id`, topicController.getTopic);
 router.delete(`${TOPIC_URL}/:id`, topicController.deleteTopic);
 

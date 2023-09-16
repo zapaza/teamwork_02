@@ -3,9 +3,9 @@ import sequelize from '../config/database';
 
 class TopicModel extends Model {
 	public id!: number;
-	public topic_title!: string;
-	public topic_text!: string;
-	public user_id!: string;
+	public header!: string;
+	public content!: string;
+	public userId!: string;
 	public created_at!: Date;
 	public updated_at!: Date;
 }
@@ -17,17 +17,18 @@ TopicModel.init(
 			autoIncrement: true,
 			primaryKey: true,
 		},
-		topic_title: {
+		header: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		topic_text: {
+		content: {
 			type: DataTypes.STRING,
 			allowNull: false,
 		},
-		user_id: {
+		userId: {
 			type: DataTypes.STRING,
 			allowNull: false,
+			field: 'user_id',
 		},
 		created_at: {
 			type: DataTypes.DATE,

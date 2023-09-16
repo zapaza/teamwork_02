@@ -1,6 +1,7 @@
 import type { Request, Response } from 'express';
 import { CommentModel, ReplyModel, TopicModel } from '../models';
 import { removeSpecChars } from '../utils/remove-spec-chars';
+import { stringToInt } from '../utils/string-to-int';
 
 class TopicController {
 	public async addTopic(req: Request, res: Response): Promise<Response> {
@@ -9,17 +10,17 @@ class TopicController {
 		}
 
 		try {
-			const { topic_title, topic_text, user_id } = req.body;
-			if (!topic_title || !user_id || !topic_text) {
+			const { header, content, userId } = req.body;
+			if (!header || !userId || !content) {
 				return res
 					.status(400)
-					.json({ message: 'Topic Title, Topic Text and  User ID are required' });
+					.json({ message: 'Header, Content and User ID are required' });
 			}
 
 			const topic = await TopicModel.create({
-				topic_title: removeSpecChars(topic_title),
-				topic_text: removeSpecChars(topic_text),
-				user_id,
+				header: removeSpecChars(header),
+				content: removeSpecChars(content),
+				userId,
 				created_at: new Date(),
 				updated_at: new Date(),
 			});
@@ -60,13 +61,17 @@ class TopicController {
 		}
 	}
 
-	public async getTopics(_req: Request, res: Response): Promise<Response> {
+	public async getTopics(req: Request, res: Response): Promise<Response> {
 		if (!res.locals.user) {
 			return res.status(401).json({ reason: 'Not auth' });
 		}
 
 		try {
-			const topics = await TopicModel.findAll();
+			const { offset, limit } = req.query;
+			const topics = await TopicModel.findAll({
+				offset: stringToInt(offset as string),
+				limit: stringToInt(limit as string),
+			});
 
 			return res.status(200).json({ data: topics });
 		} catch (error) {

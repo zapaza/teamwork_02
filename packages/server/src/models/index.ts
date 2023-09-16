@@ -3,7 +3,7 @@ import { CommentModel } from './comment-model';
 import { TopicModel } from './topic-model';
 
 ReplyModel.belongsTo(CommentModel, {
-	foreignKey: 'comment_id',
+	foreignKey: 'commentId',
 	as: 'comment',
 	onDelete: 'CASCADE',
 	hooks: true,
@@ -11,7 +11,7 @@ ReplyModel.belongsTo(CommentModel, {
 
 TopicModel.hasMany(CommentModel, {
 	foreignKey: {
-		name: 'topic_id',
+		name: 'topicId',
 	},
 	as: 'comments',
 	onUpdate: 'CASCADE',
@@ -20,7 +20,7 @@ TopicModel.hasMany(CommentModel, {
 });
 
 CommentModel.belongsTo(TopicModel, {
-	foreignKey: 'topic_id',
+	foreignKey: 'topicId',
 	as: 'topic',
 	onDelete: 'CASCADE',
 	hooks: true,
@@ -28,7 +28,7 @@ CommentModel.belongsTo(TopicModel, {
 
 CommentModel.hasMany(ReplyModel, {
 	foreignKey: {
-		name: 'comment_id',
+		name: 'commentId',
 	},
 	as: 'replies',
 	onUpdate: 'CASCADE',
