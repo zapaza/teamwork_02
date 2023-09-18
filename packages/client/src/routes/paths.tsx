@@ -10,6 +10,7 @@ import { LeaderboardPage } from '@/pages/leaderboard/leaderboardPage';
 import { LoginPage } from '@/pages/login/loginPage';
 import { ProfilePage } from '@/pages/profile/profilePage';
 import { SignupPage } from '@/pages/signup/signupPage';
+import { rootReducer } from '@/store';
 
 export const routerPaths = [
 	{

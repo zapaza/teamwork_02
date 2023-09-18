@@ -1,8 +1,2 @@
-export {};
-
-declare const __SERVER_PORT__: number;
-declare global {
-	interface Window {
-		__PRELOADED_STATE__?: Record<string, Record<string, unknown>>;
-	}
-}
+declare const __INTERNAL_SERVER_URL__: string;
+declare const __EXTERNAL_SERVER_URL__: string;

@@ -4,7 +4,13 @@ import gameReducer from './game/gameSlice';
 import { useDispatch } from 'react-redux';
 import leaderboardSlice from './leaderboard/leaderboardSlice';
 
-const rootReducer = combineReducers({
+declare global {
+	interface Window {
+		APP_INITIAL_STATE: RootState;
+	}
+}
+
+export const rootReducer = combineReducers({
 	auth: authReducer,
 	game: gameReducer,
 	leaderboard: leaderboardSlice,
@@ -28,6 +34,4 @@ export type RootState = ReturnType<typeof rootReducer>;
 export type AppDispatch = ReturnType<typeof setupStore>['dispatch'];
 export const useAppDispatch = () => useDispatch<AppDispatch>();
 
-const store = setupStore();
-
-export default store;
+export const store = setupStore();

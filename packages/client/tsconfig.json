@@ -30,8 +30,7 @@
 		"src"
 	],
 	"references": [
-		{
-			"path": "./tsconfig.node.json"
-		}
+		{ "path": "./tsconfig.node.json" },
+		{ "path": "./tsconfig.server.json" }
 	]
 }

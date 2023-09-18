@@ -1,6 +1,6 @@
 import { gameSlice } from '@/store/game/gameSlice';
 import { GameStatus } from '@/store/game/gameStatus';
-import store from '@/store';
+import { store } from '@/store';
 import { Timer } from '@/core/game/timer';
 
 export enum keyboardEventsName {

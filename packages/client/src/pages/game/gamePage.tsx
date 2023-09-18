@@ -1,5 +1,5 @@
 import React, { LegacyRef, useEffect, useRef } from 'react';
-import store, { RootState } from '@/store';
+import {store,  RootState } from '@/store';
 import { useSelector } from 'react-redux';
 import { useIsFullscreen } from '@/utils/Fullscreen';
 import { GameCanvas } from '@/components/game/gameState/gameState';
