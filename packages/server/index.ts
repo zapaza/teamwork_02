@@ -6,8 +6,6 @@ import { createServer as createViteServer } from 'vite';
 import * as path from 'path';
 import * as fs from 'fs';
 import routes from './src/routes/index';
-import { BASE_URL } from './src/const';
-import cookieParser from 'cookie-parser';
 
 dotenv.config();
 
@@ -17,7 +15,6 @@ const isDev = NODE_ENV === 'development';
 async function startServer() {
 	const app = express();
 	app.use(cors());
-	app.use(cookieParser());
 	const port = Number(SERVER_PORT) || 3001;
 	app.use(express.json());
 
@@ -30,24 +27,6 @@ async function startServer() {
 	// не работает этот SSR у меня в дев режиме из-за того, что папку client не находит.
 	// поэтому отключу для dev режма у себя
 	// хорошо бы перенести этот файл в src, но боюсь поломать докер
-	if (!NOT_SSR) {
-		let vite: ViteDevServer | undefined;
-		const distPath = path.dirname(require.resolve('client/dist/index.html'));
-		const srcPath = path.dirname(require.resolve('client/'));
-		const ssrClientPath = require.resolve('client/dist-ssr/ssr.cjs');
-
-		if (isDev) {
-			vite = await createViteServer({
-				server: { middlewareMode: true },
-				root: srcPath,
-				appType: 'custom',
-			});
-
-			app.use(vite.middlewares);
-		}
-
-	app.use(BASE_URL, routes);
-
 	if (!NOT_SSR) {
 		let vite: ViteDevServer | undefined;
 		const distPath = path.dirname(require.resolve('client/dist/index.html'));
