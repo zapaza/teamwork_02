@@ -25,6 +25,26 @@ async function startServer() {
 		console.log(`${new Date().toISOString()} - ${req.method} ${req.originalUrl}`);
 		next();
 	});
+	app.use('/api', routes);
+
+	// не работает этот SSR у меня в дев режиме из-за того, что папку client не находит.
+	// поэтому отключу для dev режма у себя
+	// хорошо бы перенести этот файл в src, но боюсь поломать докер
+	if (!NOT_SSR) {
+		let vite: ViteDevServer | undefined;
+		const distPath = path.dirname(require.resolve('client/dist/index.html'));
+		const srcPath = path.dirname(require.resolve('client/'));
+		const ssrClientPath = require.resolve('client/dist-ssr/ssr.cjs');
+
+		if (isDev) {
+			vite = await createViteServer({
+				server: { middlewareMode: true },
+				root: srcPath,
+				appType: 'custom',
+			});
+
+			app.use(vite.middlewares);
+		}
 
 	app.use(BASE_URL, routes);
 

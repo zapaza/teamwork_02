@@ -30,7 +30,7 @@ const sequelize = new Sequelize(POSTGRES_DB!, POSTGRES_USER!, POSTGRES_PASSWORD!
 });
 
 sequelize
-	.sync({ force: false })
+	.sync({ force: false }) // создаем таблицы, если они еще не созданы.
 	.then(() => console.log('Tables created successfully'))
 	.catch(error => console.error('Failed to create tables:', error));
 
