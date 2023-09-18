@@ -27,36 +27,26 @@ async function createServer() {
 
 		app.use(vite.middlewares);
 	} else {
-		app.use(
-			express.static(path.join(clientPath, 'dist/client'), { index: false }),
-		);
+		app.use(express.static(path.join(clientPath, 'dist/client'), { index: false }));
 	}
 
 	app.get('*', async (req, res, next) => {
 		const url = req.originalUrl;
 
 		try {
-			let render: (
-				req: Request
-			) => Promise<{ html: string; initialState: unknown }>;
+			let render: (req: Request) => Promise<{ html: string; initialState: unknown }>;
 			let template: string;
 
 			if (vite) {
 				// Получаем файл client/index.html который мы правили ранее
-				template = await fs.readFile(
-					path.resolve(clientPath, 'index.html'),
-					'utf-8',
-				);
+				template = await fs.readFile(path.resolve(clientPath, 'index.html'), 'utf-8');
 
 				// Применяем встроенные HTML-преобразования vite и плагинов
 				template = await vite.transformIndexHtml(url, template);
 
 				// Загружаем модуль, который будет рендерить нам HTML-код
-				render = (
-					await vite.ssrLoadModule(
-						path.join(clientPath, 'src/entry-server.tsx'),
-					)
-				).render;
+				render = (await vite.ssrLoadModule(path.join(clientPath, 'src/entry-server.tsx')))
+					.render;
 			} else {
 				template = await fs.readFile(
 					path.join(clientPath, 'dist/client/index.html'),
@@ -64,10 +54,7 @@ async function createServer() {
 				);
 
 				// Получаем путь до сбилдженого модуля клиента, чтобы не тащить средства сборки клиента на сервер
-				const pathToServer = path.join(
-					clientPath,
-					'dist/server/entry-server.js',
-				);
+				const pathToServer = path.join(clientPath, 'dist/server/entry-server.js');
 
 				// Импортируем этот модуль и вызываем с инишл стейтом
 				render = (await import(pathToServer)).render;

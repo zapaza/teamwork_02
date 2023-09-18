@@ -11,11 +11,7 @@ import { matchRoutes } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 
 import { setPageHasBeenInitializedOnServer } from './slices/ssrSlice';
-import {
-	createFetchRequest,
-	createContext,
-	createUrl,
-} from './entry-server.utils';
+import { createFetchRequest, createContext, createUrl } from './entry-server.utils';
 import { rootReducer } from '@/store';
 import { routerPaths } from '@/routes/paths';
 

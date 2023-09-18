@@ -31,10 +31,10 @@ export const createFetchRequest = (req: ExpressRequest) => {
 	}
 
 	const init: {
-		method: string,
-		headers: Headers,
-		signal: AbortSignal,
-		body?: any,
+		method: string;
+		headers: Headers;
+		signal: AbortSignal;
+		body?: any;
 	} = {
 		method: req.method,
 		headers,
