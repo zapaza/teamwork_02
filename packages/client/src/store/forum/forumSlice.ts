@@ -1,5 +1,5 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { fetchAllTopics, fetchTopicById } from './forumThunk';
+import { createSlice } from '@reduxjs/toolkit';
+import { fetchAllTopics, fetchTopicById, fetchUserById } from './forumThunk';
 import { TopicType } from '@/components/ui/topic/topic';
 
 export type ForumDataType = {
@@ -16,13 +16,35 @@ const initialValue = {
 				content: '',
 			},
 		],
-		comments: [],
+		comments: [
+			{
+				id: 0,
+				topicId: 0,
+				content: '',
+				userId: 0,
+				created_at: '',
+				updated_at: '',
+				replies: [],
+			},
+		],
 	},
 	isDataLoaded: false,
 	currentTopic: {
-		id: 0,
-		header: '',
 		content: '',
+		created_at: '',
+		header: '',
+		id: 0,
+		updated_at: '',
+		userId: 0,
+		comments: [],
+	},
+	user: {
+		id: 0,
+		first_name: '',
+		second_name: '',
+		display_name: '',
+		login: '',
+		avatar: '',
 	},
 };
 
@@ -49,6 +71,13 @@ export const forumSlice = createSlice({
 			})
 			.addCase(fetchTopicById.rejected, () => {
 				console.error('fetch topic failed');
+			})
+			.addCase(fetchUserById.fulfilled, (state, action: any) => {
+				state.user = action.payload;
+				state.isDataLoaded = true;
+			})
+			.addCase(fetchUserById.rejected, () => {
+				console.error('fetch user failed');
 			});
 	},
 });

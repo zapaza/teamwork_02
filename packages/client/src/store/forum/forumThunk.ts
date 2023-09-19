@@ -23,3 +23,14 @@ export const fetchTopicById = createAsyncThunk('forum/topicById', async (id: num
 		});
 	}
 });
+
+export const fetchUserById = createAsyncThunk('forum/userById', async (id: number, thunkAPI) => {
+	try {
+		const response = (await apiForum.getUserById(id)) as TopicType;
+		return response;
+	} catch (error) {
+		return thunkAPI.rejectWithValue({
+			error: (error as Error | null)?.message,
+		});
+	}
+});
