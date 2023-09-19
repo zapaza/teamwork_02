@@ -15,12 +15,13 @@ export const ForumTopicPage = () => {
 	const forum = useSelector((state: RootState) => state.forum);
 	const [newCommentState, setNewCommentState] = useState('');
 	const dispatch: AppDispatch = useDispatch();
-	const topicId = Number(useLocation()?.search.match(/\d+/)?.[0]);
+	const searchParam = useLocation().search;
+	const topicId = Number(new URLSearchParams(searchParam).get('id'));
 	const currentTopic = forum.data.topics.find(item => item.id === topicId);
 
 	useEffect(() => {
-		const fetchComments = async () => {
-			await dispatch(fetchAllComments({ id: topicId }));
+		const fetchComments = () => {
+			dispatch(fetchAllComments({ id: topicId }));
 		};
 
 		fetchComments();
@@ -29,7 +30,6 @@ export const ForumTopicPage = () => {
 	async function addcommentHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
 		const newComment: CommentType = {
-			id: forum.data.comments.length + 1,
 			author: {
 				schema: {
 					id: user.id!,

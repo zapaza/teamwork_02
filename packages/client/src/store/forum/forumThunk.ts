@@ -12,7 +12,7 @@ export const fetchAllTopics = createAsyncThunk('forum/allTopics', async (_, thun
 });
 export const fetchAllComments = createAsyncThunk(
 	'forum/allComments',
-	async (data: Record<string, any>, thunkAPI) => {
+	async (data: Record<string, number>, thunkAPI) => {
 		try {
 			return await apiForum.getAllComments(data.id, data.offset, data.limit);
 		} catch (error) {

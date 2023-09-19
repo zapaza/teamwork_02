@@ -36,13 +36,15 @@ export const forumSlice = createSlice({
 			.addCase(fetchAllTopics.fulfilled, (state, action) => {
 				state.isDataLoaded = true;
 			})
-			.addCase(fetchAllTopics.rejected, () => {
+			.addCase(fetchAllTopics.rejected, (state) => {
+				state.isDataLoaded = false;
 				console.error('fetch topics failed');
 			})
 			.addCase(fetchAllComments.fulfilled, (state, action) => {
 				state.data.comments = action.payload;
 			})
-			.addCase(fetchAllComments.rejected, () => {
+			.addCase(fetchAllComments.rejected, (state) => {
+				state.data.comments = [];
 				console.error('fetch comments failed');
 			});
 	},
