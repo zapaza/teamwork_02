@@ -31,7 +31,7 @@ export const routerPaths = [
 				),
 			},
 			{
-				path: '/forum-topic',
+				path: '/forum-topic/:id',
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>

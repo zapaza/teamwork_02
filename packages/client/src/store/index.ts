@@ -2,12 +2,14 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import authReducer from './auth/auth-slice';
 import gameReducer from './game/gameSlice';
 import { useDispatch } from 'react-redux';
-import leaderboardSlice from './leaderboard/leaderboardSlice';
+import leaderboardReducer from './leaderboard/leaderboardSlice';
+import forumReducer from './forum/forumSlice';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
 	game: gameReducer,
-	leaderboard: leaderboardSlice,
+	leaderboard: leaderboardReducer,
+	forum: forumReducer,
 });
 
 export const setupStore = () => {
