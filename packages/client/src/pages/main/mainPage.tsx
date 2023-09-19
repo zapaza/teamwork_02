@@ -4,7 +4,6 @@ import { t } from 'i18next';
 import { usePage } from '@/hooks/usePage';
 
 export const MainPage = () => {
-
 	usePage({ initPage: initMainPage });
 
 	return (

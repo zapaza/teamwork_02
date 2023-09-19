@@ -64,8 +64,7 @@ export const reducer = combineReducers({
 
 export const store = configureStore({
 	reducer,
-	preloadedState:
-		typeof window === 'undefined' ? undefined : window.APP_INITIAL_STATE,
+	preloadedState: typeof window === 'undefined' ? undefined : window.APP_INITIAL_STATE,
 });
 
 export type RootState = ReturnType<typeof reducer>;

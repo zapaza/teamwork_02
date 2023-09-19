@@ -15,9 +15,9 @@ const getCookie = (name: string) => {
 	const matches = document.cookie.match(
 		new RegExp(
 			'(?:^|; )' +
-			// eslint-disable-next-line
-			name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
-			'=([^;]*)',
+				// eslint-disable-next-line
+				name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') +
+				'=([^;]*)',
 		),
 	);
 	return matches ? decodeURIComponent(matches[1]) : undefined;
@@ -29,9 +29,7 @@ const createContext = (): PageInitContext => ({
 
 export const usePage = ({ initPage }: PageProps) => {
 	const dispatch = useDispatch();
-	const pageHasBeenInitializedOnServer = useSelector(
-		selectPageHasBeenInitializedOnServer,
-	);
+	const pageHasBeenInitializedOnServer = useSelector(selectPageHasBeenInitializedOnServer);
 	const store = useStore();
 
 	useEffect(() => {

@@ -78,7 +78,7 @@ export const routerPaths = [
 			{
 				path: '/login',
 				fetchData: () => Promise.resolve(),
-				element: <LoginPage/>
+				element: <LoginPage/>,
 			},
 			{
 				path: '/profile',
@@ -92,7 +92,8 @@ export const routerPaths = [
 			{
 				path: '/signup',
 				fetchData: () => Promise.resolve(),
-				element: <SignupPage/> },
+				element: <SignupPage/>,
+			},
 		],
 	},
 ];
