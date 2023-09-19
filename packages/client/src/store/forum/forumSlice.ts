@@ -38,14 +38,16 @@ const initialValue = {
 		userId: 0,
 		comments: [],
 	},
-	user: {
-		id: 0,
-		first_name: '',
-		second_name: '',
-		display_name: '',
-		login: '',
-		avatar: '',
-	},
+	user: [
+		{
+			id: 0,
+			first_name: '',
+			second_name: '',
+			display_name: '',
+			login: '',
+			avatar: '',
+		},
+	],
 };
 
 export const forumSlice = createSlice({
@@ -73,7 +75,10 @@ export const forumSlice = createSlice({
 				console.error('fetch topic failed');
 			})
 			.addCase(fetchUserById.fulfilled, (state, action: any) => {
-				state.user = action.payload;
+				const unique = state.user.filter(
+					(item, index) => state.user.findIndex(elem => elem.id === item.id) === index,
+				);
+				state.user = [...unique, action.payload];
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchUserById.rejected, () => {

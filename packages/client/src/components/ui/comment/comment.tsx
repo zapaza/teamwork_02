@@ -17,11 +17,13 @@ export const Comment = (props: CommentType) => {
 		fetchUser();
 	}, []);
 
+	const userName = user.find(el => el.id == props.userId);
+
 	return (
 		<div className="comment__container flex flex-column">
 			<div className="comment__header flex flex-jc-sb">
 				<h3 className="comment__username text-xl-font-bold">
-					{user.display_name ? user.display_name : user.login}
+					{userName?.display_name || userName?.login}
 				</h3>
 				<span className="comment__date">
 					{new Date(props.created_at).toLocaleDateString()}
