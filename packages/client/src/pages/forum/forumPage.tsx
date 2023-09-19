@@ -1,5 +1,5 @@
 import { Button } from '@/components/ui/button/button';
-import { Topic } from '@/components/ui/topic/topic';
+import { DBNewTopicType, Topic } from '@/components/ui/topic/topic';
 import { CreateTopicModal } from '@/components/ui/create-topic-modal/createTopicModal';
 import './forum-page.pcss';
 import { useEffect, useState } from 'react';
@@ -18,17 +18,18 @@ export const ForumPage = () => {
 		setActiveModal(!activeModal);
 	}
 
-	useEffect(() => {
-		async function fetchTopics() {
-			await dispatch(fetchAllTopics());
-		}
+	async function fetchTopics() {
+		await dispatch(fetchAllTopics());
+	}
 
+	useEffect(() => {
 		fetchTopics();
 	}, []);
 
-	async function submitForm(data: NewTopicType) {
+	async function submitForm(data: DBNewTopicType) {
 		try {
 			await apiForum.addTopic(data);
+			await fetchTopics();
 		} catch (error) {
 			console.error('Failed to create topic:', error);
 		}

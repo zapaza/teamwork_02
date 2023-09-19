@@ -36,15 +36,15 @@ export const forumSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
-			.addCase(fetchAllTopics.fulfilled, (state, action: PayloadAction<TopicType[]>) => {
-				state.data.topics = action.payload;
+			.addCase(fetchAllTopics.fulfilled, (state, action: any) => {
+				state.data.topics = action.payload.data;
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchAllTopics.rejected, () => {
 				console.error('fetch topics failed');
 			})
-			.addCase(fetchTopicById.fulfilled, (state, action: PayloadAction<TopicType>) => {
-				state.currentTopic = action.payload;
+			.addCase(fetchTopicById.fulfilled, (state, action: any) => {
+				state.currentTopic = action.payload.data;
 				state.isDataLoaded = true;
 			})
 			.addCase(fetchTopicById.rejected, () => {

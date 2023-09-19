@@ -12,6 +12,21 @@ export type TopicType = {
 	content: string;
 };
 
+export type DBTopicType = {
+	id: number;
+	userId: number;
+	content: string;
+	header: string;
+	created_at: string;
+	updated_at: string;
+};
+
+export type DBNewTopicType = {
+	userId: number;
+	content: string;
+	header: string;
+};
+
 export const Topic = (props: TopicType) => {
 	const currentTopic = useSelector((state: RootState) => state.forum.currentTopic);
 	const dispatch: AppDispatch = useDispatch();
@@ -19,7 +34,7 @@ export const Topic = (props: TopicType) => {
 
 	useEffect(() => {
 		async function topicById() {
-			if (!currentTopic.header && !currentTopic.content) {
+			if (!currentTopic.header && !currentTopic.content && Boolean(id)) {
 				await dispatch(fetchTopicById(Number(id)));
 			} else return;
 		}
