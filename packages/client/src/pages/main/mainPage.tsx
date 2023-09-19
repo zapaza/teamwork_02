@@ -1,8 +1,12 @@
 import { Wrapper } from '@/components/ui/wrapper/wrapper';
 import './main-page.pcss';
 import { t } from 'i18next';
+import { usePage } from '@/hooks/usePage';
 
 export const MainPage = () => {
+
+	usePage({ initPage: initMainPage });
+
 	return (
 		<main className="main-page flex  flex-ai-center flex-column">
 			<h1 className="main-page__header text-2-xl-font-light">{t('welcome')}</h1>
@@ -112,3 +116,5 @@ export const MainPage = () => {
 		</main>
 	);
 };
+
+export const initMainPage = () => Promise.resolve();

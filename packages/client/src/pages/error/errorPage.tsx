@@ -1,10 +1,13 @@
 import { Link, useRouteError } from 'react-router-dom';
 import './error-page.pcss';
+import { usePage } from '@/hooks/usePage';
 
 export const ErrorPage = () => {
 	const error = useRouteError();
 	//console.error(error)
 	const is404 = (error as any)?.status === 404;
+
+	usePage({ initPage: initErrorPage });
 
 	return (
 		<div
@@ -24,3 +27,4 @@ export const ErrorPage = () => {
 		</div>
 	);
 };
+export const initErrorPage = () => Promise.resolve();

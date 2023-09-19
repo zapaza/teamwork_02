@@ -27,6 +27,11 @@ async function createServer() {
 
 		app.use(vite.middlewares);
 	} else {
+		app.use('/assets', express.static(path.resolve(clientPath, 'dist/client/assets')));
+		app.use('/favicon', express.static(path.resolve(clientPath, 'dist/client/favicon')));
+		app.use('/images', express.static(path.resolve(clientPath, 'dist/client/images')));
+		app.use('/assets', express.static(path.resolve(clientPath, 'dist/client/images')));
+		app.use('/audio', express.static(path.resolve(clientPath, 'dist/client/audio')));
 		app.use(express.static(path.join(clientPath, 'dist/client'), { index: false }));
 	}
 

@@ -11,9 +11,14 @@ import { matchRoutes } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
 
 import { setPageHasBeenInitializedOnServer } from './slices/ssrSlice';
-import { createFetchRequest, createContext, createUrl } from './entry-server.utils';
-import { rootReducer } from '@/store';
+import {
+	createFetchRequest,
+	createContext,
+	createUrl,
+} from '@/entry-server.utils';
+import { reducer } from '@/store';
 import { routerPaths } from '@/routes/paths';
+import './styles/index.pcss';
 
 export const render = async (req: ExpressRequest) => {
 	const { query, dataRoutes } = createStaticHandler(routerPaths);
@@ -25,8 +30,7 @@ export const render = async (req: ExpressRequest) => {
 	}
 
 	const store = configureStore({
-		// @ts-ignore
-		rootReducer,
+		reducer,
 	});
 
 	const url = createUrl(req);
