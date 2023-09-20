@@ -29,7 +29,7 @@ export const Form = (props: FormProps) => {
 		getValues,
 		control,
 		formState: { errors },
-	} = props.validationSchema ? useForm(validatorSettings) : useForm({});
+	} = useForm(props.validationSchema ? validatorSettings : {});
 	const getCallbackProps = (event: Event) => {
 		return props.type == 'json'
 			? (getValues() as unknown)

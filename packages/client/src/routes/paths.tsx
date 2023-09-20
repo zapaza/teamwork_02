@@ -1,6 +1,6 @@
-import { App } from '@/App';
+import { App, initAppPage } from '@/App';
 import { ErrorPage } from '@/pages/error/errorPage';
-import { MainPage } from '@/pages/main/mainPage';
+import { initMainPage, MainPage } from '@/pages/main/mainPage';
 import ProtectedRoute from '@/routes/protected-route';
 import { ErrorBoundary } from '@/utils/ErrorBoundary';
 import { ForumPage } from '@/pages/forum/forumPage';
@@ -10,6 +10,17 @@ import { LeaderboardPage } from '@/pages/leaderboard/leaderboardPage';
 import { LoginPage } from '@/pages/login/loginPage';
 import { ProfilePage } from '@/pages/profile/profilePage';
 import { SignupPage } from '@/pages/signup/signupPage';
+import { AppDispatch, RootState } from '@/store';
+
+export type PageInitContext = {
+	clientToken?: string;
+};
+
+export type PageInitArgs = {
+	dispatch: AppDispatch;
+	state: RootState;
+	ctx: PageInitContext;
+};
 
 export const routerPaths = [
 	{
@@ -58,7 +69,10 @@ export const routerPaths = [
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/login', element: <LoginPage/> },
+			{
+				path: '/login',
+				element: <LoginPage/>,
+			},
 			{
 				path: '/profile',
 				element: (
@@ -67,7 +81,10 @@ export const routerPaths = [
 					</ProtectedRoute>
 				),
 			},
-			{ path: '/signup', element: <SignupPage/> },
+			{
+				path: '/signup',
+				element: <SignupPage/>,
+			},
 		],
 	},
 ];

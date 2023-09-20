@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { useAppDispatch } from '@/store';
+import { useDispatch } from '@/store';
 import { authSlice, checkAuth, loginOAuth } from '@/store/auth/auth-slice';
 import { useSearchParams } from 'react-router-dom';
 
 export const useAuth = () => {
-	const dispatch = useAppDispatch();
+	const dispatch = useDispatch();
 	const [searchParams] = useSearchParams();
 
 	useEffect(() => {

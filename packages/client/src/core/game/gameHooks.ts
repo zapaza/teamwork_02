@@ -4,7 +4,7 @@ import { Graphics } from '@/core/game/graphics';
 import { IGameAssets, IPacman, IVariables } from '@/core/game/types';
 import { playGame } from '@/core/game/game';
 import { Animator } from '@/core/game/animations';
-import store from '@/store';
+import { store } from '@/store';
 import { gameSlice } from '@/store/game/gameSlice';
 import { AudioManager } from './audioManager';
 import { GameStatus } from '@/store/game/gameStatus';

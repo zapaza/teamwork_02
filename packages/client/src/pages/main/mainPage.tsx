@@ -1,6 +1,7 @@
 import { Wrapper } from '@/components/ui/wrapper/wrapper';
 import './main-page.pcss';
 import { t } from 'i18next';
+import { usePage } from '@/hooks/usePage';
 
 export const MainPage = () => {
 	return (
