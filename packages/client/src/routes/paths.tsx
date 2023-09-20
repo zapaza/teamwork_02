@@ -26,16 +26,13 @@ export const routerPaths = [
 	{
 		element: <App/>,
 		errorElement: <ErrorPage/>,
-		fetchData: initAppPage,
 		children: [
 			{
 				path: '/',
 				element: <MainPage/>,
-				fetchData: initMainPage,
 			},
 			{
 				path: '/forum',
-				fetchData: () => Promise.resolve(),
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
@@ -46,7 +43,6 @@ export const routerPaths = [
 			},
 			{
 				path: '/forum-topic',
-				fetchData: () => Promise.resolve(),
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
@@ -57,7 +53,6 @@ export const routerPaths = [
 			},
 			{
 				path: '/game',
-				fetchData: () => Promise.resolve(),
 				element: (
 					<ProtectedRoute>
 						<GamePage/>
@@ -66,7 +61,6 @@ export const routerPaths = [
 			},
 			{
 				path: '/leaderboard',
-				fetchData: () => Promise.resolve(),
 				element: (
 					<ProtectedRoute>
 						<ErrorBoundary>
@@ -77,12 +71,10 @@ export const routerPaths = [
 			},
 			{
 				path: '/login',
-				fetchData: () => Promise.resolve(),
 				element: <LoginPage/>,
 			},
 			{
 				path: '/profile',
-				fetchData: () => Promise.resolve(),
 				element: (
 					<ProtectedRoute>
 						<ProfilePage/>
@@ -91,7 +83,6 @@ export const routerPaths = [
 			},
 			{
 				path: '/signup',
-				fetchData: () => Promise.resolve(),
 				element: <SignupPage/>,
 			},
 		],

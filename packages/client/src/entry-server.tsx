@@ -9,8 +9,6 @@ import {
 } from 'react-router-dom/server';
 import { matchRoutes } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
-
-import { setPageHasBeenInitializedOnServer } from './slices/ssrSlice';
 import { createFetchRequest, createContext, createUrl } from '@/entry-server.utils';
 import { reducer } from '@/store';
 import { routerPaths } from '@/routes/paths';
@@ -36,30 +34,13 @@ export const render = async (req: ExpressRequest) => {
 		throw new Error('Страница не найдена!');
 	}
 
-	const [
-		{
-			route: { fetchData },
-		},
-	] = foundRoutes;
-
-	store.dispatch(setPageHasBeenInitializedOnServer(true));
-
-	try {
-		await fetchData({
-			dispatch: store.dispatch,
-			state: store.getState(),
-			ctx: createContext(req),
-		});
-	} catch (e) {
-		console.log('Инициализация страницы произошла с ошибкой', e);
-	}
-
-	const router = createStaticRouter(dataRoutes, context);
-
 	return {
 		html: ReactDOM.renderToString(
 			<Provider store={store}>
-				<StaticRouterProvider router={router} context={context}/>
+				<StaticRouterProvider
+					router={createStaticRouter(dataRoutes, context)}
+					context={context}
+				/>
 			</Provider>,
 		),
 		initialState: store.getState(),

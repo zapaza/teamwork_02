@@ -27,7 +27,7 @@ const createContext = (): PageInitContext => ({
 	clientToken: getCookie('token'),
 });
 
-export const usePage = ({ initPage }: PageProps) => {
+export const usePage = async ({ initPage }: PageProps) => {
 	const dispatch = useDispatch();
 	const pageHasBeenInitializedOnServer = useSelector(selectPageHasBeenInitializedOnServer);
 	const store = useStore();

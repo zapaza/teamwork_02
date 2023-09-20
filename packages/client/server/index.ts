@@ -17,7 +17,9 @@ async function createServer() {
 	const app = express();
 
 	app.use(cookieParser());
+
 	let vite: ViteDevServer | undefined;
+
 	if (isDev) {
 		vite = await createViteServer({
 			server: { middlewareMode: true },

@@ -7,8 +7,6 @@ export const ErrorPage = () => {
 	//console.error(error)
 	const is404 = (error as any)?.status === 404;
 
-	usePage({ initPage: initErrorPage });
-
 	return (
 		<div
 			id="error-page"
@@ -27,4 +25,3 @@ export const ErrorPage = () => {
 		</div>
 	);
 };
-export const initErrorPage = () => Promise.resolve();
