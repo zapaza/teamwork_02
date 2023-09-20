@@ -14,5 +14,7 @@ export default {
 	setupFiles: ['jest-canvas-mock'],
 	globals: {
 		__SERVER_PORT__: process.env.SERVER_PORT,
+		__INTERNAL_SERVER_URL__: process.env.INTERNAL_SERVER_URL,
+		__EXTERNAL_SERVER_URL__: process.env.EXTERNAL_SERVER_URL,
 	},
 };

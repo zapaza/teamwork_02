@@ -4,7 +4,7 @@ import { Animator } from '@/core/game/animations';
 import { IGameAssets, IVariables } from '@/core/game/types';
 import { AudioManager } from '@/core/game/audioManager';
 import { gameSlice } from '@/store/game/gameSlice';
-import store from '@/store';
+import { store } from '@/store';
 import { GameStatus } from '@/store/game/gameStatus';
 
 /**

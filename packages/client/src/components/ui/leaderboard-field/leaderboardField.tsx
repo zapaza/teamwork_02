@@ -1,17 +1,17 @@
 import React from 'react';
-import './leaderboard-and-profile-field.pcss';
+import './leaderboard-field.pcss';
 
 export type FieldPropsType = {
 	positionNumber: number | string;
 	userName: string;
-	userScore: number | string;
+	score: number | string;
 	isCurrentUser?: boolean;
 };
 
-export const LeaderboardAndProfileField = ({
+export const LeaderboardField = ({
 	positionNumber,
 	userName,
-	userScore,
+	score,
 	isCurrentUser,
 }: FieldPropsType) => {
 	return (
@@ -25,9 +25,9 @@ export const LeaderboardAndProfileField = ({
 						? 'user-name user-name_accent text-base-font-regular'
 						: 'user-name text-base-font-regular'
 				}>
-				{isCurrentUser ? 'Ты' : userName}
+				{userName}
 			</span>
-			<span className="user-score text-base-font-regular">{userScore}</span>
+			<span className="user-score text-base-font-regular">{score}</span>
 		</div>
 	);
 };

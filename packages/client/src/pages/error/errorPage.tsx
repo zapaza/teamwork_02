@@ -1,5 +1,6 @@
 import { Link, useRouteError } from 'react-router-dom';
 import './error-page.pcss';
+import { usePage } from '@/hooks/usePage';
 
 export const ErrorPage = () => {
 	const error = useRouteError();

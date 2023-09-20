@@ -7,13 +7,7 @@ import { Form } from '@/components/ui/form/form';
 import { updateProfile } from '@/store/auth/auth-slice';
 import { UpdateProfileReq } from '@/core/api/api-profile';
 import { getProfileFieldsProps } from '@/utils/get-profile-fields-props';
-
-const submitButton: ButtonsProps[] = [
-	{
-		name: 'update',
-		children: 'Update',
-	},
-];
+import { t } from 'i18next';
 
 type UpdateProfileModalProps = Omit<ModalProps, 'children'>;
 
@@ -27,11 +21,18 @@ export const UpdateProfileModal = (props: UpdateProfileModalProps) => {
 		await dispatch(updateProfile(data as UpdateProfileReq)).unwrap();
 	};
 
+	const submitButton: ButtonsProps[] = [
+		{
+			name: 'update',
+			children: t('update'),
+		},
+	];
+
 	return (
 		<Modal isOpen={props.isOpen} toggle={props.toggle}>
 			<Form
 				name={'updateProfile'}
-				title={'Update profile'}
+				title={t('update_profile')}
 				inputs={inputs}
 				validationSchema={updateProfileSchema}
 				buttons={submitButton}

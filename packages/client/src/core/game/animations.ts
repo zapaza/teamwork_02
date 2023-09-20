@@ -52,7 +52,7 @@ export class Animator {
 		} else if (assets.characters.pacman.isLevellingUp) {
 			Graphics.runLevelUpAnimation(variables, assets, ctx);
 		} else {
-			playGame(variables.player);
+			playGame(variables.player, variables, assets);
 		}
 	}
 

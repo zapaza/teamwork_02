@@ -1,48 +1,49 @@
 import { InputsProps } from '@/components/ui/input/input';
 import { AuthState } from '@/types/auth';
+import { t } from 'i18next';
 
 export function getProfileFieldsProps(profileData: AuthState): InputsProps[] {
 	return [
 		{
 			name: 'email',
 			type: 'text',
-			label: 'Email',
-			placeholder: 'Email',
+			label: t('email'),
+			placeholder: t('email'),
 			value: profileData.email,
 		},
 		{
 			name: 'login',
 			type: 'text',
-			label: 'Login',
-			placeholder: 'Login',
+			label: t('login'),
+			placeholder: t('login'),
 			value: profileData.login,
 		},
 		{
 			name: 'first_name',
 			type: 'text',
-			label: 'First Name',
-			placeholder: 'First Name',
+			label: t('first_name'),
+			placeholder: t('first_name'),
 			value: profileData.first_name,
 		},
 		{
 			name: 'second_name',
 			type: 'text',
-			label: 'Second Name',
-			placeholder: 'Second name',
+			label: t('second_name'),
+			placeholder: t('second_name'),
 			value: profileData.second_name,
 		},
 		{
 			name: 'display_name',
 			type: 'text',
-			label: 'Display Name',
-			placeholder: 'Display Name',
+			label: t('display_name'),
+			placeholder: t('display_name'),
 			value: profileData.display_name,
 		},
 		{
 			name: 'phone',
 			type: 'tel',
-			label: 'Phone',
-			placeholder: 'Phone',
+			label: t('phone'),
+			placeholder: t('phone'),
 			value: profileData.phone,
 		},
 	];

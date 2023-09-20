@@ -3,6 +3,7 @@ import { Topic } from '@/components/ui/topic/topic';
 import { CreateTopicModal } from '@/components/ui/create-topic-modal/createTopicModal';
 import './forum-page.pcss';
 import { useState } from 'react';
+import { t } from 'i18next';
 
 const forumMock = [
 	{
@@ -54,7 +55,7 @@ export const ForumPage = () => {
 					name="createTopicBtn"
 					className="button text-base-font-regular create-topic-btn"
 					onClick={changeActive}>
-					Создать топик
+					{t('create_topic')}
 				</Button>
 			</div>
 			<CreateTopicModal active={activeModal} handleClose={changeActive}/>

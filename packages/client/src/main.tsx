@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
-import store from './store';
+import { store } from './store';
 import router from './routes';
 import './styles/index.pcss';
 import './i18n';
@@ -30,12 +30,11 @@ if ('serviceWorker' in navigator) {
 	});
 }
 
-ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
+ReactDOM.hydrateRoot(
+	document.getElementById('root') as HTMLElement,
 	<React.StrictMode>
-		<React.Suspense fallback="Loading...">
-			<Provider store={store}>
-				<RouterProvider router={router}/>
-			</Provider>
-		</React.Suspense>
+		<Provider store={store}>
+			<RouterProvider router={router}/>
+		</Provider>
 	</React.StrictMode>,
 );

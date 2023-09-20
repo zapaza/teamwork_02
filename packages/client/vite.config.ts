@@ -11,7 +11,8 @@ export default defineConfig({
 		port: Number(process.env.CLIENT_PORT) || 3000,
 	},
 	define: {
-		__SERVER_PORT__: process.env.SERVER_PORT,
+		__EXTERNAL_SERVER_URL__: JSON.stringify(process.env.EXTERNAL_SERVER_URL),
+		__INTERNAL_SERVER_URL__: JSON.stringify(process.env.INTERNAL_SERVER_URL),
 	},
 	plugins: [react()],
 	resolve: {
@@ -19,18 +20,22 @@ export default defineConfig({
 			'@': path.resolve(__dirname, 'src'),
 		},
 	},
+	ssr: {
+		format: 'cjs',
+	},
 	build: {
-		rollupOptions: {
-			input: {
-				app: './index.html',
-				serviceWorker: './src/service-worker.ts',
-			},
-			output: {
-				entryFileNames: chunkInfo =>
-					chunkInfo.name === 'serviceWorker'
-						? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
-						: 'assets/js/[name]-[hash].js', // остальные файлы по-умолчанию
-			},
-		},
+		outDir: path.join(__dirname, '/dist/client'),
+		// rollupOptions: {
+		// 	input: {
+		// 		app: './index.html',
+		// 		serviceWorker: './src/service-worker.ts',
+		// 	},
+		// 	output: {
+		// 		entryFileNames: chunkInfo =>
+		// 			chunkInfo.name === 'serviceWorker'
+		// 				? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
+		// 				: 'assets/js/[name]-[hash].js', // остальные файлы по-умолчанию
+		// 	},
+		// },
 	},
 });

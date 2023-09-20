@@ -1,28 +1,25 @@
 import { Wrapper } from '@/components/ui/wrapper/wrapper';
 import './main-page.pcss';
+import { t } from 'i18next';
+import { usePage } from '@/hooks/usePage';
 
 export const MainPage = () => {
 	return (
 		<main className="main-page flex  flex-ai-center flex-column">
-			<h1 className="main-page__header text-2-xl-font-light">Добро пожаловать в Pacman</h1>
+			<h1 className="main-page__header text-2-xl-font-light">{t('welcome')}</h1>
 			<div className="main-page__container flex flex-10a ">
 				<Wrapper>
 					<p className="main-page__content-block text-lg-font-regular">
-						Погрузитесь в увлекательный мир Пакмана - современной аркадной игры, которая
-						вобрала дух классики и привнесла новые элементы в игровой процесс.
+						{t('main_description_1')}
 					</p>
 					<p className="main-page__content-block text-lg-font-regular">
-						<b>Цель игры</b> - собирать все точки на поле.
+						<b>{t('main_target')}</b> - {t('main_description_2')}
 					</p>
 					<p className="main-page__content-block text-lg-font-regular">
-						Остерегайтесь четырех неуловимых призраков, которые настойчиво преследуют
-						Пакмана.
+						{t('main_description_3')}
 					</p>
 					<p className="main-page__content-block text-lg-font-regular">
-						Энергетические бонусы, разбросанные по лабиринту, придают Пакману временную
-						силу атаки и позволяют ему обратиться против призраков на короткое время. В
-						этот момент раздражающие преследователи оглушаются, превращаясь в синих
-						призраков, и Пакман может съесть их, зарабатывая дополнительные очки.
+						{t('main_description_4')}
 					</p>
 				</Wrapper>
 				<img
@@ -43,26 +40,16 @@ export const MainPage = () => {
 				/>
 				<Wrapper>
 					<div className="main-page__content-block text-lg-font-regular">
-						<h2 className="text-lg-font-regular">Правила игры:</h2>
-						1. Управление и движение: Используйте клавиши со стрелками на клавиатуре для
-						перемещения Пакмана вверх, вниз, влево и вправо. <br/>
-						2. Цель игры: Ваша цель - собрать все точки на игровом поле, избегая
-						столкновений с призраками. Собранное количество точек отображается в верхней
-						части экрана. <br/>
-						3. Призраки: В игре присутствуют четыре призрака, которые будут преследовать
-						Пакмана в лабиринте. Если Пакман заденет призрака, игра закончится.
-						Избегайте призраков и будьте настороже. <br/>
-						4. Энерджайзеры: Размещены в различных местах лабиринта, энерджайзеры дают
-						Пакману временную способность атаковать призраков. В этот момент вы можете
-						съесть призраков, чтобы получить дополнительные очки. <br/>
-						5. Очки и рекорды: Количество очков, набранных в игре, отображается на
-						экране. Старайтесь набрать как можно больше очков, уклоняясь от призраков и
-						собирая все точки на поле. Вы можете установить новый рекорд и соревноваться
-						с друзьями. <br/>
+						<h2 className="text-lg-font-regular">{t('rules')}:</h2>
+						{t('rule_1')} <br/>
+						{t('rule_2')} <br/>
+						{t('rule_3')} <br/>
+						{t('rule_4')} <br/>
+						{t('rule_5')} <br/>
 					</div>
 				</Wrapper>
 				<Wrapper className="flex-11a">
-					<h3 className="text-lg-font-regular">Создатели игры:</h3>
+					<h3 className="text-lg-font-regular">{t('creators')}:</h3>
 					<ul className="main-page__list text-sm-font-regular">
 						<li className="main-page__list-item">
 							<a
@@ -70,7 +57,7 @@ export const MainPage = () => {
 								href="https://github.com/TolkachevPeter"
 								target="_blank"
 								rel="noreferrer">
-								Толкачев Петр
+								{t('team_member_1')}
 							</a>
 						</li>
 						<li className="main-page__list-item">
@@ -79,7 +66,7 @@ export const MainPage = () => {
 								href="https://github.com/SatanLittleHelper"
 								target="_blank"
 								rel="noreferrer">
-								Фенин Александр
+								{t('team_member_2')}
 							</a>
 						</li>
 						<li className="main-page__list-item">
@@ -88,7 +75,7 @@ export const MainPage = () => {
 								href="https://github.com/Sammily"
 								target="_blank"
 								rel="noreferrer">
-								Усова Даша
+								{t('team_member_3')}
 							</a>
 						</li>
 						<li className="main-page__list-item">
@@ -97,7 +84,7 @@ export const MainPage = () => {
 								href="https://github.com/Kustov-Ilya"
 								target="_blank"
 								rel="noreferrer">
-								Кустов Илья
+								{t('team_member_4')}
 							</a>
 						</li>
 						<li className="main-page__list-item">
@@ -106,7 +93,7 @@ export const MainPage = () => {
 								href="https://github.com/zapaza"
 								target="_blank"
 								rel="noreferrer">
-								Чумаков Станислав
+								{t('team_member_5')}
 							</a>
 						</li>
 					</ul>
@@ -117,10 +104,9 @@ export const MainPage = () => {
 							href="https://github.com/zapaza/teamwork_02"
 							target="_blank"
 							rel="noreferrer">
-							Проект
+							{t('project_1')}
 						</a>
-						разработа в рамках курса &quot;Мидл фронтенд-разработчик &quot;, командой
-						&quot;GOLOVOLOMKA &quot; ©
+						{t('project_2')}
 					</p>
 				</Wrapper>
 			</div>
