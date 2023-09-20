@@ -1,4 +1,3 @@
-
 import {
 	useDispatch as useDispatchBase,
 	useSelector as useSelectorBase,
@@ -24,7 +23,7 @@ export const reducer = combineReducers({
 	game: gameSlice.reducer,
 	leaderboard: leaderboardSlice.reducer,
 	ssr: ssrReducer,
-	forum: forumReducer.reducer,
+	forum: forumReducer,
 });
 
 export const store = configureStore({
