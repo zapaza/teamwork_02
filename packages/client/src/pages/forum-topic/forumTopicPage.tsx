@@ -1,48 +1,49 @@
 import { Topic } from '@/components/ui/topic/topic';
 import { Comment } from '@/components/ui/comment/comment';
 import { Button } from '@/components/ui/button/button';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import './forum-topic-page.pcss';
 import { t } from 'i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '@/store';
+import { fetchTopicById } from '@/store/forum/forumThunk';
+import { DBNewComment, apiForum } from '@/core/api/api-forum';
+import { useParams } from 'react-router-dom';
 
-const topicMock = {
-	id: '1',
-	topicTitle: 'Заголовок топика1',
-	topicText:
-		// eslint-disable-next-line max-len
-		'Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика Полный текст топика',
+export type CommentPropsType = {
+	userName: string;
+	date: string;
+	content: string;
 };
 
 export const ForumTopicPage = () => {
-	const currentUserMock = 'Ты';
+	const currentTopic = useSelector((state: RootState) => state.forum.currentTopic);
+	const user = useSelector((state: RootState) => state.auth);
+	const { id } = useParams();
 	const [newCommentState, setNewCommentState] = useState('');
-	const [comments, setComments] = useState([
-		{
-			id: '1',
-			userName: 'Иван',
-			commentText: 'Игра топ',
-			date: new Date('08.06.2023'),
-		},
-		{
-			id: '2',
-			userName: 'Коля',
-			commentText: 'Команда красавцы',
-			date: new Date('08.06.2023'),
-		},
-	]);
+	const dispatch: AppDispatch = useDispatch();
 
-	function addcommentHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+	async function topicById() {
+		await dispatch(fetchTopicById(Number(id)));
+	}
+
+	useEffect(() => {
+		topicById();
+	}, []);
+
+	async function addcommentHandler(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
 		e.preventDefault();
-		setComments([
-			...comments,
-			{
-				id: (comments.length + 1).toString(),
-				userName: currentUserMock,
-				commentText: newCommentState,
-				date: new Date('08.06.2023'),
-			},
-		]);
+
+		if (user.id) {
+			const newComment: DBNewComment = {
+				topicId: currentTopic.id,
+				content: newCommentState,
+				userId: user.id,
+			};
+			await apiForum.addComment(newComment);
+		}
 		setNewCommentState('');
+		topicById();
 	}
 
 	function changeTextareaHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
@@ -51,11 +52,10 @@ export const ForumTopicPage = () => {
 
 	return (
 		<div className="forum-topic__container flex flex-column flex-ai-center">
-			<Topic key={topicMock.id} {...topicMock}/>
+			<Topic key={currentTopic.id} {...currentTopic}/>
 			<h5 className="comments-header text-base-font-bold">{t('comments')}:</h5>
-			{comments.map(item => (
-				<Comment key={item.id} {...item}/>
-			))}
+			{currentTopic.comments &&
+				currentTopic.comments.map((item: any) => <Comment key={item.id} {...item}/>)}
 			<form className="new-comment-form form__container flex flex-column">
 				<h5 className="text-xl-font-bold">{t('leave_a_comment')}</h5>
 				<textarea
