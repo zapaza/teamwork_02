@@ -1,4 +1,4 @@
-import React, { LegacyRef } from 'react';
+import React, { ChangeEvent, LegacyRef } from 'react';
 import './input.pcss';
 
 export type InputsProps = {
@@ -9,6 +9,7 @@ export type InputsProps = {
 	value?: string;
 	error?: string;
 	key?: string;
+	onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 const Input = React.forwardRef((props: InputsProps, ref) => {
 	return (

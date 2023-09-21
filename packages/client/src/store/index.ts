@@ -1,41 +1,3 @@
-// import { combineReducers, configureStore } from '@reduxjs/toolkit';
-// import authReducer from './auth/auth-slice';
-// import gameReducer from './game/gameSlice';
-// import { useDispatch } from 'react-redux';
-// import leaderboardSlice from './leaderboard/leaderboardSlice';
-//
-// declare global {
-// 	interface Window {
-// 		APP_INITIAL_STATE: RootState;
-// 	}
-// }
-//
-// export const rootReducer = combineReducers({
-// 	auth: authReducer,
-// 	game: gameReducer,
-// 	leaderboard: leaderboardSlice,
-// });
-//
-// export const setupStore = () => {
-// 	let preloadedState;
-//
-// 	if (typeof window !== 'undefined') {
-// 		preloadedState = window.__PRELOADED_STATE__;
-// 	}
-//
-// 	return configureStore({
-// 		reducer: rootReducer,
-// 		preloadedState,
-// 		devTools: process.env.NODE_ENV !== 'production',
-// 	});
-// };
-//
-// export type RootState = ReturnType<typeof rootReducer>;
-// export type AppDispatch = ReturnType<typeof setupStore>['dispatch'];
-// export const useAppDispatch = () => useDispatch<AppDispatch>();
-//
-// export const store = setupStore();
-
 import {
 	useDispatch as useDispatchBase,
 	useSelector as useSelectorBase,
@@ -48,6 +10,7 @@ import ssrReducer from '@/store/ssrSlice';
 import { authSlice } from '@/store/auth/auth-slice';
 import { gameSlice } from '@/store/game/gameSlice';
 import { leaderboardSlice } from '@/store/leaderboard/leaderboardSlice';
+import forumReducer from './forum/forumSlice';
 
 declare global {
 	interface Window {
@@ -60,6 +23,7 @@ export const reducer = combineReducers({
 	game: gameSlice.reducer,
 	leaderboard: leaderboardSlice.reducer,
 	ssr: ssrReducer,
+	forum: forumReducer,
 });
 
 export const store = configureStore({
