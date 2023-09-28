@@ -1,5 +1,5 @@
 import { AuthState } from '@/types/auth';
-import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
+import { ApiClient } from '@/core/api/api-client';
 
 export type UpdateProfileReq = {
 	first_name: string;
@@ -15,6 +15,7 @@ export type UpdatePasswordReq = {
 };
 export type UpdatePasswordResp = UpdateProfileReq;
 
+const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
 const client = new ApiClient(API_ENDPOINT);
 
 export const ApiProfile = {

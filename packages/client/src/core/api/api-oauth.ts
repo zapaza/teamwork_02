@@ -1,6 +1,7 @@
-import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
+import { ApiClient } from '@/core/api/api-client';
 import { getOrigin } from '@/utils/get-origin';
 
+const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
 const client = new ApiClient(API_ENDPOINT);
 
 type OAuthServiceIdRes = {
@@ -10,7 +11,6 @@ type OAuthServiceIdRes = {
 export const apiOAuth = {
 	async getServiceId() {
 		const redirectionUri = getOrigin();
-		console.log(redirectionUri);
 		try {
 			const response = await client.get<unknown, OAuthServiceIdRes>(
 				`/oauth/yandex/service-id?redirect_uri=${redirectionUri}`,
