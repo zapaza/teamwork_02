@@ -19,7 +19,7 @@ export type DBNewComment = {
 	userId: number;
 };
 
-const API_ENDPOINT_FORUM = 'http://prackicum-server:3001/api';
+const API_ENDPOINT_FORUM = 'http://localhost:3001/api';
 const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
 
 const client = new ApiClient(API_ENDPOINT_FORUM);

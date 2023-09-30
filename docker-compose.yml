@@ -10,6 +10,8 @@ services:
             args:
               CLIENT_PORT: ${CLIENT_PORT}
         restart: always
+        networks:
+            - awesome
         ports:
             - "80:${CLIENT_PORT}"
         environment:
