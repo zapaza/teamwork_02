@@ -1,1 +1,7 @@
-export const getOrigin = () => window.location.origin;
+export const getOrigin = () => {
+	if (typeof window === undefined) {
+		return '';
+	}
+
+	return window.location.origin
+};
