@@ -7,6 +7,8 @@ export type ForumDataType = {
 	comments: any;
 };
 
+const initialReactionValue = {};
+
 const initialValue = {
 	data: {
 		topics: [
