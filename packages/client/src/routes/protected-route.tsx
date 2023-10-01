@@ -1,11 +1,22 @@
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function ProtectedRoute<T extends React.ReactNode>({ children }: { children: T }) {
 	const isAuthenticated = useSelector((state: RootState) => state.auth.isLoggedIn);
 
-	return isAuthenticated ? children || null : <Navigate to="/login"/>;
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!isAuthenticated) {
+			// Если пользователь не аутентифицирован, перенаправляем на страницу /login
+			navigate('/login');
+		}
+	}, [isAuthenticated, navigate]);
+
+	// Если пользователь аутентифицирован, отрисовываем дочерние компоненты
+	return <>{children}</>;
 }
 
 export default ProtectedRoute;

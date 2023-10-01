@@ -1,6 +1,6 @@
-import { App, initAppPage } from '@/App';
+import { App } from '@/App';
 import { ErrorPage } from '@/pages/error/errorPage';
-import { initMainPage, MainPage } from '@/pages/main/mainPage';
+import { MainPage } from '@/pages/main/mainPage';
 import ProtectedRoute from '@/routes/protected-route';
 import { ErrorBoundary } from '@/utils/ErrorBoundary';
 import { ForumPage } from '@/pages/forum/forumPage';

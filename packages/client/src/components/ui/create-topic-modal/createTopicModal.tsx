@@ -55,7 +55,6 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					name="TopicContent"
 					onChange={changeTextareaHandler}
 					value={newtopicContent}>
-					{' '}
 				</textarea>
 				<button
 					type="submit"

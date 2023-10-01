@@ -29,7 +29,6 @@ if ('serviceWorker' in navigator) {
 		//   )
 	});
 }
-
 ReactDOM.hydrateRoot(
 	document.getElementById('root') as HTMLElement,
 	<React.StrictMode>
