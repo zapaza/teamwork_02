@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { fetchAllTopics } from '@/store/forum/forumThunk';
 import { AppDispatch, RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { NewTopicType, apiForum } from '@/core/api/api-forum';
+import { apiForum } from '@/core/api/api-forum';
 
 export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
@@ -40,7 +40,7 @@ export const ForumPage = () => {
 			<div className="forum__container flex">
 				<div className="all-topic-container flex flex-column">
 					{topics.map(item => (
-						<Topic key={item.id} {...item}/>
+						<Topic key={item.id} {...item} />
 					))}
 				</div>
 				<Button

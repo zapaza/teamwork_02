@@ -10,7 +10,7 @@ import { fetchTopicById } from '@/store/forum/forumThunk';
 import { DBNewComment, apiForum } from '@/core/api/api-forum';
 import { useParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { forumSchema } from '@/core/validator';
+import { createCommentSchema } from '@/core/validator';
 import { useForm } from 'react-hook-form';
 
 export type CommentPropsType = {
@@ -57,15 +57,15 @@ export const ForumTopicPage = () => {
 		formState: { errors },
 		reset,
 	} = useForm({
-		resolver: yupResolver(forumSchema),
+		resolver: yupResolver(createCommentSchema),
 	});
 
 	return (
 		<div className="forum-topic__container flex flex-column flex-ai-center">
-			<Topic key={currentTopic.id} {...currentTopic}/>
+			<Topic key={currentTopic.id} {...currentTopic} />
 			<h5 className="comments-header text-base-font-bold">{t('comments')}:</h5>
 			{currentTopic.comments &&
-				currentTopic.comments.map((item: any) => <Comment key={item.id} {...item}/>)}
+				currentTopic.comments.map((item: any) => <Comment key={item.id} {...item} />)}
 			<form
 				className="new-comment-form form__container flex flex-column"
 				onSubmit={handleSubmit(addcommentHandler)}>

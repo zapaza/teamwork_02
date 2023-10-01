@@ -5,7 +5,7 @@ import { t } from 'i18next';
 import { DBNewTopicType } from '../topic/topic';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
-import { forumSchema } from '@/core/validator';
+import { createTopicSchema } from '@/core/validator';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 
@@ -28,6 +28,16 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		setNewTopicHeader(e.target.value);
 	}
 
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({
+		resolver: yupResolver(createTopicSchema),
+	});
+
+
 	const onSubmit = () => {
 		const data = {
 			userId: user.id!,
@@ -40,15 +50,6 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		setNewTopicHeader('');
 		setNewTopicContent('');
 	};
-
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		reset,
-	} = useForm({
-		resolver: yupResolver(forumSchema),
-	});
 
 	return (
 		<div className={`create-topic-modal ${props.active ? 'active' : 'hide'}`}>
@@ -79,10 +80,7 @@ export const CreateTopicModal = (props: modalPropsType) => {
 				<button
 					type="submit"
 					name="addTopicBtn"
-					className="button addTopicButton"
-					onClick={() => {
-						props.handleSubmit;
-					}}>
+					className="button addTopicButton">
 					{t('create_topic')}
 				</button>
 			</form>
