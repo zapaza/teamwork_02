@@ -11,7 +11,7 @@ services:
               CLIENT_PORT: ${CLIENT_PORT}
         restart: always
         ports:
-            - "80:${CLIENT_PORT}"
+            - "${CLIENT_PORT}:${CLIENT_PORT}"
         environment:
             - CLIENT_PORT=${CLIENT_PORT}
             - EXTERNAL_SERVER_URL=${EXTERNAL_SERVER_URL}
@@ -66,8 +66,6 @@ services:
             POSTGRES_DB: ${POSTGRES_DB}
             POSTGRES_PORT: ${POSTGRES_PORT}
             POSTGRES_HOST: ${POSTGRES_HOST}
-        networks:
-            - awesome
     nginx:
         container_name: nginx
         image: practicum-nginx
@@ -75,7 +73,7 @@ services:
             context: .
             dockerfile: Dockerfile
         ports:
-            - "8080:8080"
+            - "80:80"
         restart: always
         depends_on:
             - postgres
