@@ -3,16 +3,17 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT } = process.env;
+const { POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB, POSTGRES_PORT, POSTGRES_HOST } = process.env;
 
 console.log(`Connecting to database with the following details:
   User: ${POSTGRES_USER}
   Database: ${POSTGRES_DB}
   Port: ${POSTGRES_PORT}
+  Host: ${POSTGRES_HOST}
 `);
 
 const sequelize = new Sequelize(POSTGRES_DB!, POSTGRES_USER!, POSTGRES_PASSWORD!, {
-	host: 'localhost',
+	host: POSTGRES_HOST,
 	dialect: 'postgres',
 	port: Number(POSTGRES_PORT),
 	logging: true,
