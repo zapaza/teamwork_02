@@ -28,8 +28,6 @@ services:
         volumes:
             - pgdata:/var/lib/postgresql/data
         restart: always
-        networks:
-            - awesome
         healthcheck:
             test: [ 'CMD-SHELL', 'pg_isready -U postgres' ]
             interval: 1s
@@ -50,11 +48,9 @@ services:
             - pgadmin-data:/var/lib/pgadmin
         depends_on:
             - postgres
-        networks:
-            - awesome
     server:
         container_name: prakticum-server
-        image: prackicum-server
+        image: prakticum-server
         build:
             context: .
             dockerfile: Dockerfile.server
@@ -72,12 +68,24 @@ services:
             POSTGRES_HOST: ${POSTGRES_HOST}
         networks:
             - awesome
-
+    nginx:
+        container_name: nginx
+        image: practicum-nginx
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "8080:8080"
+        restart: always
+        depends_on:
+            - postgres
+            - server
+            - client
 volumes:
     pgdata:
     pgadmin-data:
 
 networks:
-    awesome:
+    default:
         driver: bridge
 
