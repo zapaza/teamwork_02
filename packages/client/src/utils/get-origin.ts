@@ -3,5 +3,5 @@ export const getOrigin = () => {
 		return '';
 	}
 
-	return window.location.origin
+	return window.location.origin;
 };

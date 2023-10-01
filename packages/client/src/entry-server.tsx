@@ -9,7 +9,7 @@ import {
 } from 'react-router-dom/server';
 import { matchRoutes } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
-import { createFetchRequest, createContext, createUrl } from '@/entry-server.utils';
+import { createFetchRequest, createUrl } from '@/entry-server.utils';
 import { reducer } from '@/store';
 import { routerPaths } from '@/routes/paths';
 import i18n from '@/i18n';
@@ -44,8 +44,9 @@ export const render = async (req: ExpressRequest) => {
 						router={createStaticRouter(dataRoutes, context)}
 						context={context}
 					/>
-				</Provider>,
-			</I18nextProvider>
+				</Provider>
+				,
+			</I18nextProvider>,
 		),
 		initialState: store.getState(),
 	};

@@ -12,10 +12,10 @@ i18n.use(initReactI18next)
 	.init({
 		resources: {
 			en: {
-				translation: {...en},
+				translation: { ...en },
 			},
 			ru: {
-				translation: {...ru},
+				translation: { ...ru },
 			},
 		},
 		debug: process.env.NODE_ENV === 'development',
