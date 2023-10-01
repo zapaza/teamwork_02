@@ -55,7 +55,7 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		<div className={`create-topic-modal ${props.active ? 'active' : 'hide'}`}>
 			<form className="form__container modal__form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="close text-xl-font-bold" onClick={props.handleClose}>
-					<img src={closeIcon} alt="close button" />
+					<img src={closeIcon} alt="close button"/>
 				</div>
 				<Input
 					{...register('TopicTheme')}
