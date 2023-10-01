@@ -8,6 +8,7 @@ import { RootState } from '@/store';
 import { createTopicSchema } from '@/core/validator';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
+import closeIcon from '../../../assets/cross.svg';
 
 type modalPropsType = {
 	active: boolean;
@@ -37,7 +38,6 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		resolver: yupResolver(createTopicSchema),
 	});
 
-
 	const onSubmit = () => {
 		const data = {
 			userId: user.id!,
@@ -55,7 +55,7 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		<div className={`create-topic-modal ${props.active ? 'active' : 'hide'}`}>
 			<form className="form__container modal__form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="close text-xl-font-bold" onClick={props.handleClose}>
-					X
+					<img src={closeIcon} alt="close button" />
 				</div>
 				<Input
 					{...register('TopicTheme')}
@@ -77,10 +77,7 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					{' '}
 				</textarea>
 				<p className="input__error">{errors.TopicContent?.message}</p>
-				<button
-					type="submit"
-					name="addTopicBtn"
-					className="button addTopicButton">
+				<button type="submit" name="addTopicBtn" className="button addTopicButton">
 					{t('create_topic')}
 				</button>
 			</form>

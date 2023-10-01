@@ -151,7 +151,7 @@ export const updateAvatarSchema = yup.object({
 
 export const createTopicSchema = yup.object({
 	TopicTheme: yup.string().required().min(10).max(20),
-	TopicContent: yup.string().required().min(10).max(100)
+	TopicContent: yup.string().required().min(10).max(100),
 });
 
 export const createCommentSchema = yup.object({

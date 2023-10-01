@@ -40,7 +40,7 @@ export const ForumPage = () => {
 			<div className="forum__container flex">
 				<div className="all-topic-container flex flex-column">
 					{topics.map(item => (
-						<Topic key={item.id} {...item} />
+						<Topic key={item.id} {...item}/>
 					))}
 				</div>
 				<Button
