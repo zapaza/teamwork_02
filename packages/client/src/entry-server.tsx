@@ -35,7 +35,7 @@ export const render = async (req: ExpressRequest) => {
 	if (!foundRoutes) {
 		throw new Error('Страница не найдена!');
 	}
-	console.log(dataRoutes);
+	
 	return {
 		html: ReactDOM.renderToString(
 			<I18nextProvider i18n={i18n}>
