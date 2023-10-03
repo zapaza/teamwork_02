@@ -1,10 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { fetchAllTopics, fetchTopicById, fetchUserById } from './forumThunk';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { fetchAllTopics, fetchReactions, fetchTopicById, fetchUserById } from './forumThunk';
 import { TopicType } from '@/components/ui/topic/topic';
 
 export type ForumDataType = {
 	topics: TopicType[];
 	comments: any;
+};
+
+export type ReactionType = {
+	id: number;
+	topic_id: string;
+	emoji: string;
+	user_id: string;
+	created_at: Date;
+	updated_at: Date;
 };
 
 const initialReactionValue = {};
@@ -50,6 +59,16 @@ const initialValue = {
 			avatar: '',
 		},
 	],
+	reactions: [
+		{
+			id: 0,
+			topic_id: '0',
+			emoji: '',
+			user_id: '0',
+			created_at: new Date(),
+			updated_at: new Date(),
+		},
+	],
 };
 
 export const forumSlice = createSlice({
@@ -85,6 +104,13 @@ export const forumSlice = createSlice({
 			})
 			.addCase(fetchUserById.rejected, () => {
 				console.error('fetch user failed');
+			})
+			.addCase(fetchReactions.fulfilled, (state, action: PayloadAction<any>) => {
+				state.reactions = action.payload.data;
+				state.isDataLoaded = true;
+			})
+			.addCase(fetchReactions.rejected, () => {
+				console.error('fetch reactions failed');
 			});
 	},
 });

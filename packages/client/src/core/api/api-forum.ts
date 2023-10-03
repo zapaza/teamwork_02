@@ -47,9 +47,20 @@ export const apiForum = {
 		return response?.data;
 	},
 	addReaction: async (topic_id: number, emoji: string, user_id: number) => {
+		console.log('addReaction:');
 		const response = await client.post(
 			`/topic/${topic_id}/reactions`,
-			{ topic_id, emoji, user_id },
+			{ topic_id, emoji: '0x' + emoji, user_id },
+			{ withCredentials: false },
+		);
+		console.log(response);
+		return response?.data;
+	},
+	getReactionsByTopicId: async (topic_id: number) => {
+		console.log('getReactionsByTopicId:');
+		const response = await client.get(
+			`/topic/${topic_id}/reactions`,
+			{},
 			{ withCredentials: false },
 		);
 		return response?.data;
