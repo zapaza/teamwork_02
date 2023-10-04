@@ -58,8 +58,8 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					<img src={closeIcon} alt="close button"/>
 				</div>
 				<Input
-					{...register('TopicTheme')}
-					name="TopicTheme"
+					{...register('Theme')}
+					name="Theme"
 					placeholder=""
 					label={t('theme')}
 					error=""
@@ -67,13 +67,14 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					onChange={changeInputHandler}
 					value={newTopicHeader}
 				/>
-				<p className="input__error">{errors.TopicTheme?.message}</p>
+				<p className="input__error">{errors.Theme?.message}</p>
 				<textarea
-					{...register('TopicContent')}
+					{...register('Content')}
 					className="modal__textarea text-base-font-regular"
-					name="TopicContent"
+					name="Content"
 					onChange={changeTextareaHandler}
 					value={newtopicContent}></textarea>
+				<p className="input__error">{errors.Content?.message}</p>
 				<button
 					type="submit"
 					name="addTopicBtn"

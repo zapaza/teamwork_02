@@ -45,7 +45,6 @@ export const render = async (req: ExpressRequest) => {
 						context={context}
 					/>
 				</Provider>
-				,
 			</I18nextProvider>,
 		),
 		initialState: store.getState(),

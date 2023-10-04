@@ -55,7 +55,6 @@ export const ForumTopicPage = () => {
 		register,
 		handleSubmit,
 		formState: { errors },
-		reset,
 	} = useForm({
 		resolver: yupResolver(createCommentSchema),
 	});
@@ -73,12 +72,12 @@ export const ForumTopicPage = () => {
 					{t('leave_a_comment')}
 				</h5>
 				<textarea
-					{...register('comment')}
-					name="comment"
+					{...register('Comment')}
+					name="Comment"
 					className="comments__textarea text-base-font-regular"
 					onChange={changeTextareaHandler}
 					value={newCommentState}></textarea>
-				<p className="input__error">{errors.comment?.message}</p>
+				<p className="input__error">{errors.Comment?.message}</p>
 				<Button name="addCommentBtn" className="button add-comment-button">
 					{t('send')}
 				</Button>
