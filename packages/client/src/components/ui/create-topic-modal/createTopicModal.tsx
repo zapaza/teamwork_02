@@ -74,10 +74,14 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					name="TopicContent"
 					onChange={changeTextareaHandler}
 					value={newtopicContent}>
-					{' '}
 				</textarea>
-				<p className="input__error">{errors.TopicContent?.message}</p>
-				<button type="submit" name="addTopicBtn" className="button addTopicButton">
+				<button
+					type="submit"
+					name="addTopicBtn"
+					className="button"
+					onClick={() => {
+						props.handleSubmit;
+					}}>
 					{t('create_topic')}
 				</button>
 			</form>
