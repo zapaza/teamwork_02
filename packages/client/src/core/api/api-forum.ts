@@ -19,7 +19,6 @@ export type DBNewComment = {
 	userId: number;
 };
 
-//TODO добавить ссылку
 const API_ENDPOINT_FORUM = 'http://localhost/api';
 
 const client = new ApiClient(API_ENDPOINT_FORUM);

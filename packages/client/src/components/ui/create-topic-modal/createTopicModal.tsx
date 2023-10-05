@@ -3,6 +3,12 @@ import './create-topic-modal.pcss';
 import Input from '@/components/ui/input/input';
 import { t } from 'i18next';
 import { DBNewTopicType } from '../topic/topic';
+import { useSelector } from 'react-redux';
+import { RootState } from '@/store';
+import { createTopicSchema } from '@/core/validator';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import closeIcon from '../../../assets/cross.svg';
 
 type modalPropsType = {
 	active: boolean;
@@ -13,6 +19,7 @@ type modalPropsType = {
 export const CreateTopicModal = (props: modalPropsType) => {
 	const [newTopicHeader, setNewTopicHeader] = useState('');
 	const [newtopicContent, setNewTopicContent] = useState('');
+	const user = useSelector((state: RootState) => state.auth);
 
 	function changeTextareaHandler(e: React.ChangeEvent<HTMLTextAreaElement>) {
 		setNewTopicContent(e.target.value);
@@ -22,27 +29,37 @@ export const CreateTopicModal = (props: modalPropsType) => {
 		setNewTopicHeader(e.target.value);
 	}
 
-	const onSubmit: React.FormEventHandler<HTMLFormElement> = async event => {
-		event.preventDefault();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+		reset,
+	} = useForm({
+		resolver: yupResolver(createTopicSchema),
+	});
+
+	const onSubmit = () => {
 		const data = {
-			//TODO добавить userID
-			userId: 1234,
+			userId: user.id!,
 			content: newtopicContent,
 			header: newTopicHeader,
 		};
 		props.handleSubmit(data);
-		event.currentTarget.reset();
 		props.handleClose();
+		reset();
+		setNewTopicHeader('');
+		setNewTopicContent('');
 	};
 
 	return (
 		<div className={`create-topic-modal ${props.active ? 'active' : 'hide'}`}>
-			<form className="form__container modal__form" onSubmit={onSubmit}>
+			<form className="form__container modal__form" onSubmit={handleSubmit(onSubmit)}>
 				<div className="close text-xl-font-bold" onClick={props.handleClose}>
-					X
+					<img src={closeIcon} alt="close button"/>
 				</div>
 				<Input
-					name="TopicTheme"
+					{...register('Theme')}
+					name="Theme"
 					placeholder=""
 					label={t('theme')}
 					error=""
@@ -50,11 +67,14 @@ export const CreateTopicModal = (props: modalPropsType) => {
 					onChange={changeInputHandler}
 					value={newTopicHeader}
 				/>
+				<p className="input__error">{errors.Theme?.message}</p>
 				<textarea
+					{...register('Content')}
 					className="modal__textarea text-base-font-regular"
-					name="TopicContent"
+					name="Content"
 					onChange={changeTextareaHandler}
 					value={newtopicContent}></textarea>
+				<p className="input__error">{errors.Content?.message}</p>
 				<button
 					type="submit"
 					name="addTopicBtn"

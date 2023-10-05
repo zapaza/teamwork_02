@@ -10,7 +10,6 @@ type OAuthServiceIdRes = {
 export const apiOAuth = {
 	async getServiceId() {
 		const redirectionUri = getOrigin();
-		console.log(redirectionUri);
 		try {
 			const response = await client.get<unknown, OAuthServiceIdRes>(
 				`/oauth/yandex/service-id?redirect_uri=${redirectionUri}`,
