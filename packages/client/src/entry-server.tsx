@@ -9,9 +9,11 @@ import {
 } from 'react-router-dom/server';
 import { matchRoutes } from 'react-router-dom';
 import { configureStore } from '@reduxjs/toolkit';
-import { createFetchRequest, createContext, createUrl } from '@/entry-server.utils';
+import { createFetchRequest, createUrl } from '@/entry-server.utils';
 import { reducer } from '@/store';
 import { routerPaths } from '@/routes/paths';
+import i18n from '@/i18n';
+import { I18nextProvider } from 'react-i18next';
 import './styles/index.pcss';
 
 export const render = async (req: ExpressRequest) => {
@@ -36,12 +38,14 @@ export const render = async (req: ExpressRequest) => {
 
 	return {
 		html: ReactDOM.renderToString(
-			<Provider store={store}>
-				<StaticRouterProvider
-					router={createStaticRouter(dataRoutes, context)}
-					context={context}
-				/>
-			</Provider>,
+			<I18nextProvider i18n={i18n}>
+				<Provider store={store}>
+					<StaticRouterProvider
+						router={createStaticRouter(dataRoutes, context)}
+						context={context}
+					/>
+				</Provider>
+			</I18nextProvider>,
 		),
 		initialState: store.getState(),
 	};

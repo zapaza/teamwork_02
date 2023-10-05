@@ -7,7 +7,7 @@ import { t } from 'i18next';
 import { fetchAllTopics } from '@/store/forum/forumThunk';
 import { AppDispatch, RootState } from '@/store';
 import { useDispatch, useSelector } from 'react-redux';
-import { NewTopicType, apiForum } from '@/core/api/api-forum';
+import { apiForum } from '@/core/api/api-forum';
 
 export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
