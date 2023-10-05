@@ -1,5 +1,5 @@
 import { DBNewTopicType, TopicType } from '@/components/ui/topic/topic';
-import { ApiClient } from '@/core/api/api-client';
+import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
 
 export type NewTopicType = Omit<TopicType, 'id'>;
 
@@ -19,8 +19,7 @@ export type DBNewComment = {
 	userId: number;
 };
 
-const API_ENDPOINT_FORUM = 'http://localhost:3001/api';
-const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
+const API_ENDPOINT_FORUM = 'http://localhost/api';
 
 const client = new ApiClient(API_ENDPOINT_FORUM);
 const client_user = new ApiClient(API_ENDPOINT);

@@ -1,4 +1,4 @@
-import { ApiClient } from '@/core/api/api-client';
+import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
 
 export type ScoreType = {
 	userName: string;
@@ -11,7 +11,6 @@ export type LeaderDataType = {
 	teamName: string;
 };
 
-const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
 const client = new ApiClient(API_ENDPOINT);
 
 export const ApiLeaderboard = {

@@ -1,7 +1,6 @@
-import { ApiClient } from '@/core/api/api-client';
+import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
 import { getOrigin } from '@/utils/get-origin';
 
-const API_ENDPOINT = 'https://ya-praktikum.tech/api/v2';
 const client = new ApiClient(API_ENDPOINT);
 
 type OAuthServiceIdRes = {
