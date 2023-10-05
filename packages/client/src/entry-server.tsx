@@ -35,7 +35,7 @@ export const render = async (req: ExpressRequest) => {
 	if (!foundRoutes) {
 		throw new Error('Страница не найдена!');
 	}
-	
+
 	return {
 		html: ReactDOM.renderToString(
 			<I18nextProvider i18n={i18n}>
@@ -45,7 +45,6 @@ export const render = async (req: ExpressRequest) => {
 						context={context}
 					/>
 				</Provider>
-				,
 			</I18nextProvider>,
 		),
 		initialState: store.getState(),

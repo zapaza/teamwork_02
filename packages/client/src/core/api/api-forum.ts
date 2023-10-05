@@ -18,9 +18,7 @@ export type DBNewComment = {
 	content: string;
 	userId: number;
 };
-
-//TODO добавить ссылку
-const API_ENDPOINT_FORUM = 'http://localhost/api';
+const API_ENDPOINT_FORUM = process.env.NODE_ENV === 'development' ? 'http://localhost/api' : '/api';
 
 const client = new ApiClient(API_ENDPOINT_FORUM);
 const client_user = new ApiClient(API_ENDPOINT);
