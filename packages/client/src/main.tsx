@@ -16,17 +16,16 @@ if ('serviceWorker' in navigator) {
 			}
 		});
 
-		//скрыли до лучших времен пока не починим
-		// navigator.serviceWorker
-		//   .register('serviceWorker.js' || 'service-worker.ts')
-		//   .then(
-		//     registration => {
-		//       console.log('SW registered: ', registration)
-		//     },
-		//     err => {
-		//       console.error('SW registration failed: ', err)
-		//     }
-		//   )
+		navigator.serviceWorker
+		  .register('serviceWorker.js' || 'service-worker.ts')
+		  .then(
+		    registration => {
+		      console.log('SW registered: ', registration)
+		    },
+		    err => {
+		      console.error('SW registration failed: ', err)
+		    }
+		  )
 	});
 }
 ReactDOM.hydrateRoot(
