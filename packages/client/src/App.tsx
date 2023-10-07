@@ -8,10 +8,10 @@ export const App = () => {
 	const isDataLoaded = useSelector((state: RootState) => state.auth.isDataLoaded);
 
 	useAuth();
-	return (
+	return isDataLoaded ? (
 		<>
 			<Header/>
 			<Outlet/>
 		</>
-	);
+	) : null;
 };
