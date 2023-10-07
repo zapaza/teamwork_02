@@ -18,8 +18,8 @@ export type DBNewComment = {
 	content: string;
 	userId: number;
 };
-
-const API_ENDPOINT_FORUM = 'http://localhost/api';
+const API_ENDPOINT_FORUM =
+	process.env.NODE_ENV === 'development' ? 'http://localhost:3001/api' : '/api';
 
 const client = new ApiClient(API_ENDPOINT_FORUM);
 const client_user = new ApiClient(API_ENDPOINT);

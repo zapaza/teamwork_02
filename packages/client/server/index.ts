@@ -34,6 +34,7 @@ async function createServer() {
 		app.use('/images', express.static(path.resolve(clientPath, 'dist/client/images')));
 		app.use('/assets', express.static(path.resolve(clientPath, 'dist/client/images')));
 		app.use('/audio', express.static(path.resolve(clientPath, 'dist/client/audio')));
+		app.use('/serviceWorker.js', express.static(path.resolve(clientPath, 'dist/client/serviceWorker.js')));
 		app.use(express.static(path.join(clientPath, 'dist/client'), { index: false }));
 	}
 
