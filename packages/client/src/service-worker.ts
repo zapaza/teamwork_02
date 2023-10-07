@@ -1,63 +1,129 @@
 // prettier-ignore
 
 const CACHE_NAME = 'version-1';
-const routesToCache = [
+export {}; // Обходим ошибку TS (--isolatedModules)
+
+declare const self: ServiceWorkerGlobalScope;
+
+// Получаем конфиг из get-параметров
+const config = Object.fromEntries(new URLSearchParams(location.search));
+
+const DEBUG = Boolean(Number(config.debug)) || false;
+
+// Список URL для предварительного кеширования
+const CACHE_URLS = [
 	'/',
-	'/forum',
-	'/forum-topic',
-	'/game',
-	'/leaderboard',
-	'/login',
-	'/profile',
-	'/signup',
-];
+	'/index.html'];
 
-self.addEventListener('install', event => {
-	(event as InstallEvent).waitUntil(cacheRoutes());
-});
+// Список типов данных для кеширования
+const CACHE_CONTENT_TYPES = ['document', 'script', 'style', 'font', 'image', 'audio', 'object'];
 
-self.addEventListener('fetch', event => {
-	(event as FetchEvent).respondWith(fetchOrFallback(event as FetchEvent));
-});
+const FALLBACK = `
+	<div style='padding-top: 2rem; text-align: center;'>
+		<h1>Pacman не в сети</h1>
+		<p>Кажется у вас проблемы с интернетом</p>
+		<button onclick='location.href="/"'>Вернуться главную</button>
+	</div>
+`;
 
-self.addEventListener('activate', event => {
-	(event as ExtendableEvent).waitUntil(cleanOldCaches());
-});
-
-async function cacheRoutes() {
-	try {
-		const cache = await caches.open(CACHE_NAME);
-		return cache.addAll(routesToCache);
-	} catch (error) {
-		console.error('Error caching routes:', error);
+// При установке SW кешируем часть данных (статику)
+self.addEventListener('install', (event: ExtendableEvent) => {
+	if (DEBUG) {
+		console.debug('[sw] установка', event);
 	}
-}
-
-async function fetchOrFallback(event: FetchEvent): Promise<Response> {
-	try {
-		const cachedResponse = await caches.match(event.request);
-		if (cachedResponse) {
-			return cachedResponse;
-		}
-
-		const response = await fetch(event.request);
-		const cache = await caches.open(CACHE_NAME);
-		await cache.put(event.request, response.clone());
-		return response;
-	} catch (error) {
-		console.error('Error fetching or falling back:', error);
-		return new Response('Service Worker Fetch Error', { status: 500 });
-	}
-}
-
-async function cleanOldCaches() {
-	const cacheNames = await caches.keys();
-	const cacheWhitelist = [CACHE_NAME];
-	return Promise.all(
-		cacheNames.map(async cacheName => {
-			if (!cacheWhitelist.includes(cacheName)) {
-				return caches.delete(cacheName);
-			}
-		}),
+	event.waitUntil(
+		caches
+			.open(CACHE_NAME)
+			// `addAll()` собирает и кеширует статику из массива ссылок
+			.then(cache => cache.addAll(CACHE_URLS))
+			.then(() => {
+				// `skipWaiting()` для активации SW сразу (не ждём перезагрузку страницы)
+				self.skipWaiting();
+				if (DEBUG) {
+					console.debug('[sw] кэш добавлен', event);
+				}
+			}),
 	);
-}
+});
+
+// Активация
+self.addEventListener('activate', (event) => {
+	if (DEBUG) {
+		console.debug('[sw] активация', event);
+	}
+	// `self.clients.claim()` позволяет SW начать перехватывать запросы с самого начала
+	// работает вместе с `skipWaiting()`, позволяя использовать `fallback` с самых первых запросов
+	event.waitUntil(self.clients.claim());
+});
+
+// Обработка сетевых запросов
+self.addEventListener('fetch', async (event: FetchEvent) => {
+	const {request} = event;
+
+	if (DEBUG) {
+		console.debug('[sw] fetch', request.destination, event);
+	}
+
+	// Кешируем только выбранные типы данных
+	if (!CACHE_CONTENT_TYPES.includes(request.destination)) {
+		return;
+	}
+
+	// Не кешируем расширения Chrome
+	if (request.url.startsWith('chrome-extension://')) {
+		return;
+	}
+
+	event.respondWith(
+		caches
+			.open(CACHE_NAME)
+			.then(cache => {
+				return cache.match(request).then(cachedResponse => {
+
+					// Делаем запрос для обновления кеша
+					const fetchedResponse = fetch(request)
+						.then(networkResponse => {
+							if (networkResponse.status === 200) {
+								cache.put(request, networkResponse.clone());
+							}
+							return networkResponse;
+						})
+						.catch(fetchError => {
+							if (DEBUG) {
+								console.warn('[sw] проблема с сетью', fetchError);
+							}
+							return cachedResponse ?? useFallback();
+						});
+
+					// Если есть кеш, возвращаем его
+					if (cachedResponse) {
+						if (DEBUG) {
+							console.debug('[sw] получаем данные из кеша', request.url);
+						}
+						return cachedResponse;
+					}
+
+					// Если кеша нет, возвращаем ответ из сети
+					if (DEBUG) {
+						console.debug('[sw] получаем данные из сети', request.url);
+					}
+					return fetchedResponse;
+				});
+			})
+			.catch(cacheError => {
+				if (DEBUG) {
+					console.warn('[sw] ошибка кеша', cacheError);
+				}
+				return useFallback();
+			}),
+	);
+});
+
+/**
+ * Возвращаем блок-заглушку при отсутствии интернета
+ */
+const useFallback = () => {
+	return Promise.resolve(new Response(FALLBACK, {headers: {
+			'Content-Type': 'text/html; charset=utf-8',
+		}}));
+};
