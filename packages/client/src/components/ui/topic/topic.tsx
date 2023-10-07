@@ -1,78 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import './topic.pcss';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
-import { setCurrentTopic } from '@/store/forum/forumSlice';
-import { fetchTopicById } from '@/store/forum/forumThunk';
+import { fetchReactions, fetchTopicById } from '@/store/forum/forumThunk';
 import Picker from '@emoji-mart/react';
 import data from '@emoji-mart/data';
 import smile from '../../../assets/smiley-happy-plus.svg';
+import { apiForum } from '@/core/api/api-forum';
 
-export type TopicType = {
-	id: number;
-	header: string;
-	content: string;
-};
-
-export type DBTopicType = {
-	id: number;
-	userId: number;
-	content: string;
-	header: string;
-	created_at: string;
-	updated_at: string;
-};
-
-export type DBNewTopicType = {
-	userId: number;
-	content: string;
-	header: string;
-};
-
-export const Topic = (props: TopicType) => {
-	const currentTopic = useSelector((state: RootState) => state.forum.currentTopic);
+export const Topic = (props: any) => {
 	const dispatch: AppDispatch = useDispatch();
 	const { id } = useParams();
 	const [showEmojiPicker, setShowEmojiPicker] = useState(false);
+	const user = useSelector((state: RootState) => state.auth);
+	const location = useLocation();
+	const navigate = useNavigate();
 
-	useEffect(() => {
-		async function topicById() {
-			if (!currentTopic.header && !currentTopic.content && Boolean(id)) {
-				await dispatch(fetchTopicById(Number(id)));
-			} else return;
-		}
+	async function refreshTopicById() {
+		await dispatch(fetchTopicById(Number(id)));
+		await dispatch(fetchReactions(Number(id)));
+	}
 
-		topicById();
-	}, []);
-
-	function handleTopicClick() {
-		dispatch(setCurrentTopic({ ...props }));
+	async function handleTopicClick() {
 		navigate(`/forum-topic/${props.id}`);
 	}
 
-	function handleSelectEmoji(data: any) {
-		console.log(data.unified);
+	async function handleSelectEmoji(data: any) {
 		setShowEmojiPicker(!showEmojiPicker);
+		await apiForum.addReaction(Number(id), data.unified, user.id!);
+		refreshTopicById();
 	}
 
-	const navigate = useNavigate();
 	return (
 		<div className="topic__container flex flex-column" onClick={() => handleTopicClick()}>
 			<h3 className="topic__header">{props.header}</h3>
 			<p className="topic__text text-base-font-regular">{props.content}</p>
-			<div className="picker__container">
-				<img
-					src={smile}
-					alt="smile icon"
-					className="smile-icon"
-					onClick={() => setShowEmojiPicker(!showEmojiPicker)}
-				/>
-				<div className="emoji-picker">
-					{showEmojiPicker && <Picker data={data} onEmojiSelect={handleSelectEmoji}/>}
-				</div>
+			<div className="reactions__container flex">
+				{props.reactions &&
+					props.content !== '' &&
+					props.reactions.map((item: any, index: any) => (
+						<span className="emoji-span" key={index}>
+							{String.fromCodePoint(parseInt(item.emoji, 16))}
+						</span>
+					))}
 			</div>
-			<span>{String.fromCodePoint(0x1f60d)}</span>
+			{location.pathname !== '/forum' && (
+				<div className="picker__container">
+					<img
+						src={smile}
+						alt="smile icon"
+						className="smile-icon"
+						onClick={() => setShowEmojiPicker(!showEmojiPicker)}
+					/>
+					<div className="emoji-picker">
+						{showEmojiPicker && (
+							<Picker data={data} onEmojiSelect={handleSelectEmoji}/>
+						)}
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };

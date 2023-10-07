@@ -1,7 +1,6 @@
-import { TopicType } from '@/components/ui/topic/topic';
 import { apiForum } from '@/core/api/api-forum';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ReactionType } from './forumSlice';
+import { ReactionType, TopicType } from './forumSlice';
 
 export const fetchAllTopics = createAsyncThunk('forum/allTopics', async (_, thunkAPI) => {
 	try {
