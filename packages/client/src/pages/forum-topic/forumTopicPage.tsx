@@ -6,7 +6,7 @@ import './forum-topic-page.pcss';
 import { t } from 'i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '@/store';
-import { fetchTopicById } from '@/store/forum/forumThunk';
+import { fetchReactions, fetchTopicById } from '@/store/forum/forumThunk';
 import { DBNewComment, apiForum } from '@/core/api/api-forum';
 import { useParams } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -28,6 +28,7 @@ export const ForumTopicPage = () => {
 
 	async function topicById() {
 		await dispatch(fetchTopicById(Number(id)));
+		await dispatch(fetchReactions(Number(id)));
 	}
 
 	useEffect(() => {

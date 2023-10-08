@@ -30,7 +30,7 @@ router.post(REPLY_URL, replyController.addReply);
 router.get(`${REPLY_URL}/:id`, replyController.getReply);
 router.delete(`${REPLY_URL}/:id`, replyController.deleteReply);
 
-router.post('/topics/:topic_id/reactions', reactionController.addReaction);
-router.get('/topics/:topic_id/reactions', reactionController.getReactions);
+router.post(`${TOPIC_URL}/:topic_id/reactions`, reactionController.addReaction);
+router.get(`${TOPIC_URL}/:topic_id/reactions`, reactionController.getReactions);
 
 export default router;
