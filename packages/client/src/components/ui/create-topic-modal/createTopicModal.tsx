@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import './create-topic-modal.pcss';
 import Input from '@/components/ui/input/input';
 import { t } from 'i18next';
-import { DBNewTopicType } from '../topic/topic';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/store';
 import { createTopicSchema } from '@/core/validator';
@@ -13,7 +12,8 @@ import closeIcon from '../../../assets/cross.svg';
 type modalPropsType = {
 	active: boolean;
 	handleClose: () => void;
-	handleSubmit: (data: DBNewTopicType) => Promise<void>;
+	// @ts-ignore
+	handleSubmit: (data) => Promise<void>;
 };
 
 export const CreateTopicModal = (props: modalPropsType) => {
