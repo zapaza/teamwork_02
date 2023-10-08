@@ -148,3 +148,12 @@ export const updateAvatarSchema = yup.object({
 		.mixed()
 		.test('file-present', 'File is required', value => (value as string)?.length > 0),
 });
+
+export const createTopicSchema = yup.object({
+	Theme: yup.string().required().min(10).max(20),
+	Content: yup.string().required().min(10).max(100),
+});
+
+export const createCommentSchema = yup.object({
+	Comment: yup.string().required().min(10).max(100),
+});

@@ -74,11 +74,16 @@ services:
             dockerfile: Dockerfile
         ports:
             - "80:80"
+            - "443:443"
         restart: always
         depends_on:
             - postgres
             - server
             - client
+        environment:
+            - DOMAIN=pacmen-golovolomka-team-28.ya-praktikum.tech
+        volumes:
+            - /etc/letsencrypt/:/etc/letsencrypt/
 volumes:
     pgdata:
     pgadmin-data:

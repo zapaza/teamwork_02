@@ -25,17 +25,17 @@ export default defineConfig({
 	},
 	build: {
 		outDir: path.join(__dirname, '/dist/client'),
-		// rollupOptions: {
-		// 	input: {
-		// 		app: './index.html',
-		// 		serviceWorker: './src/service-worker.ts',
-		// 	},
-		// 	output: {
-		// 		entryFileNames: chunkInfo =>
-		// 			chunkInfo.name === 'serviceWorker'
-		// 				? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
-		// 				: 'assets/js/[name]-[hash].js', // остальные файлы по-умолчанию
-		// 	},
-		// },
+		rollupOptions: {
+			input: {
+				app: './index.html',
+				serviceWorker: './src/service-worker.ts',
+			},
+			output: {
+				entryFileNames: chunkInfo =>
+					chunkInfo.name === 'serviceWorker' || 'entry-server'
+						? '[name].js' // оставляем оригинальное имя файла (для serviceWorker.ts)
+						: '[name]-[hash].js', // остальные файлы по-умолчанию
+			},
+		},
 	},
 });

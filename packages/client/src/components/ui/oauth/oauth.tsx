@@ -21,7 +21,6 @@ export const OAuth = () => {
 
 	const getYandexOauthButton = useCallback(() => {
 		const href = `${YANDEX_URI}?response_type=code&client_id=${serviceId}&redirect_uri=${redirectUri}`;
-		console.log(href);
 		return (
 			<a href={href} className="oauth__link">
 				<img src={yandexOauth} alt="yandex-oauth"/>
