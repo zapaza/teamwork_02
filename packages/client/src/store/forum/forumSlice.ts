@@ -37,8 +37,8 @@ const initialReactionValue = [
 			topic_id: '0',
 			emoji: '',
 			user_id: '0',
-			created_at: '2023-09-30T18:55:14.944Z',
-			updated_at: '2023-09-30T18:55:14.944Z',
+			created_at: (new Date).toISOString,
+			updated_at: (new Date).toISOString,
 		},
 	],
 ];
