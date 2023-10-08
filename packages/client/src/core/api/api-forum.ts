@@ -1,5 +1,5 @@
-import { DBNewTopicType, TopicType } from '@/components/ui/topic/topic';
 import { API_ENDPOINT, ApiClient } from '@/core/api/api-client';
+import { TopicType } from '@/store/forum/forumSlice';
 
 export type NewTopicType = Omit<TopicType, 'id'>;
 
@@ -29,7 +29,7 @@ export const apiForum = {
 		const response = await client.get('/topic', { offset, limit }, { withCredentials: false });
 		return response?.data;
 	},
-	addTopic: async (data: DBNewTopicType) => {
+	addTopic: async (data: NewTopicType) => {
 		const response = await client.post('/topic', data, { withCredentials: false });
 		return response?.data;
 	},
@@ -43,6 +43,22 @@ export const apiForum = {
 	},
 	getUserById: async (id: number) => {
 		const response = await client_user.get(`/user/${id}`);
+		return response?.data;
+	},
+	addReaction: async (topic_id: number, emoji: string, user_id: number) => {
+		const response = await client.post(
+			`/topic/${topic_id}/reactions`,
+			{ topic_id, emoji: '0x' + emoji, user_id },
+			{ withCredentials: false },
+		);
+		return response?.data;
+	},
+	getReactionsByTopicId: async (topic_id: number) => {
+		const response = await client.get(
+			`/topic/${topic_id}/reactions`,
+			{},
+			{ withCredentials: false },
+		);
 		return response?.data;
 	},
 };
