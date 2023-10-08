@@ -37,19 +37,22 @@ export const ForumPage = () => {
 
 	return (
 		<>
-			<div className="forum__container flex">
-				<div className="all-topic-container flex flex-column">
-					{topics.map(item => (
-						<Topic key={item.id} {...item}/>
-					))}
+			<div className="forum">
+				<div className="forum__container flex">
+					<div className="all-topic-container flex flex-column">
+						{topics.map(item => (
+							<Topic key={item.id} {...item}/>
+						))}
+					</div>
+					<Button
+						name="createTopicBtn"
+						className="button text-base-font-regular create-topic-btn"
+						onClick={changeActive}>
+						{t('create_topic')}
+					</Button>
 				</div>
-				<Button
-					name="createTopicBtn"
-					className="button text-base-font-regular create-topic-btn"
-					onClick={changeActive}>
-					{t('create_topic')}
-				</Button>
 			</div>
+
 			<CreateTopicModal
 				active={activeModal}
 				handleClose={changeActive}

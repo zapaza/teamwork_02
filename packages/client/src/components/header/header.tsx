@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button/button';
 import './header.pcss';
@@ -9,6 +9,12 @@ import { useTranslation } from 'react-i18next';
 
 export const Header: React.FC = () => {
 	const { t } = useTranslation();
+
+	const [isOpen, setIsOpen] = useState(false);
+
+	const toggleMenu = () => {
+		setIsOpen(!isOpen);
+	};
 
 	const links = [
 		{ path: '/', label: t('main') },
@@ -32,14 +38,22 @@ export const Header: React.FC = () => {
 
 	return (
 		<header className="header">
-			<nav className="header__nav">
+			<button className={`burger ${isOpen ? 'burger--open' : ''}`} onClick={toggleMenu}>
+				<span className={'burger__line'}></span>
+			</button>
+			<nav className={`header__nav  ${isOpen ? 'header__nav--open' : ''}`}>
 				{links.map(({ path, label }) => (
-					<Link key={path} className="header__nav-button" to={path}>
+					<Link
+						key={path}
+						className="header__nav-button"
+						to={path}
+						onClick={() => setIsOpen(false)}
+					>
 						{label}
 					</Link>
 				))}
 			</nav>
-			<nav className="header__nav">
+			<nav className="header__nav-controls flex flex-jc-end gap-16">
 				{auth.isLoggedIn ? (
 					<>
 						<Button name="profile" onClick={() => navigate('/profile')}>

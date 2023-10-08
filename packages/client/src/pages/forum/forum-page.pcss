@@ -1,9 +1,23 @@
 .forum {
+  width: 100%;
+  max-width: 1020px;
+  flex: 1 1 100%;
+  margin-top: 104px;
+
   &__container {
+    justify-content: center;
     gap: 24px;
     flex-wrap: wrap;
-    margin-top: 104px;
     text-overflow: ellipsis;
+
+    .topic__container {
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .all-topic-container {
+      flex: 1 1 auto;
+    }
 
     .topic {
       &__text {
@@ -24,10 +38,18 @@
   margin-bottom: 24px;
 }
 
-@media (width <= 640px) {
+@media (max-width: 1040px) {
   .forum {
-    &__container {
-      margin-top: 86px;
-    }
+    padding: 0 16px 16px;
+  }
+}
+
+@media (max-width: 846px) {
+  .forum__container {
+    flex-direction: column-reverse;
+  }
+
+  .create-topic-btn {
+    margin-bottom: 0;
   }
 }
