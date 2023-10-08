@@ -51,9 +51,22 @@
   text-align: center;
 }
 
-@media only screen and (device-width <= 1024px) {
+@media only screen and (device-width <= 1040px) {
   .mobile-controls {
-    display: inline;
+    display: block;
+    margin: auto;
+    width: 200px;
+    height: 200px;
+
+    img {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  .game__board {
+    width: 90%;
   }
 
   .up,
