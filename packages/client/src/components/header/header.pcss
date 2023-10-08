@@ -15,8 +15,8 @@
     border: none;
     background-color: transparent;
 
-    &:before,
-    &:after,
+    &::before,
+    &::after,
     &__line {
       background: var(--blue-500);
       content: "";
@@ -27,12 +27,14 @@
       transition: 0.5s;
     }
 
-    &--open:before {
+    &--open::before {
       transform: translateY(12px) rotate(135deg);
     }
-    &--open:after {
+
+    &--open::after {
       transform: translateY(-12px) rotate(-135deg);
     }
+
     &--open .burger__line {
       transform: scale(0);
     }
@@ -50,7 +52,7 @@
     color: inherit;
   }
 
-  @media (max-width: 960px) {
+  @media (width <= 960px) {
     .burger {
       display: block;
       position: relative;
@@ -80,10 +82,7 @@
         &--open {
           position: fixed;
           z-index: 99;
-          left: 0;
-          top: 0;
-          bottom: 0;
-          right: 0;
+          inset: 0;
           display: flex;
           align-content: center;
           justify-content: center;

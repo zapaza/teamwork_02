@@ -47,8 +47,7 @@ export const Header: React.FC = () => {
 						key={path}
 						className="header__nav-button"
 						to={path}
-						onClick={() => setIsOpen(false)}
-					>
+						onClick={() => setIsOpen(false)}>
 						{label}
 					</Link>
 				))}

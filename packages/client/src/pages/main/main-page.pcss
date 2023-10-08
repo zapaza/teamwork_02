@@ -56,15 +56,13 @@
   }
 
 
-  @media (max-width: 1040px) {
+  @media (width <= 1040px) {
     padding: 80px 16px 0;
 
     .main-page {
-
       &__row {
-        flex-wrap: wrap;
+        flex-flow: column wrap;
         max-width: 100%;
-        flex-direction: column;
 
         &--reverse {
           flex-direction: column-reverse;

@@ -63,10 +63,12 @@ export const ForumTopicPage = () => {
 		<div className="forum-topic">
 			<div className="forum-topic__container flex flex-column flex-ai-center">
 				<Topic key={currentTopic.id} {...currentTopic}/>
-				<div className='forum-topic__comments'>
+				<div className="forum-topic__comments">
 					<h5 className="comments-header text-base-font-bold">{t('comments')}:</h5>
 					{currentTopic.comments &&
-						currentTopic.comments.map((item: any) => <Comment key={item.id} {...item}/>)}
+						currentTopic.comments.map((item: any) => (
+							<Comment key={item.id} {...item}/>
+						))}
 					<form
 						className="new-comment-form form__container flex flex-column"
 						onSubmit={handleSubmit(addcommentHandler)}>
