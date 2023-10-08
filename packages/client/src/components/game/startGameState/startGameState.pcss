@@ -1,4 +1,11 @@
 .start-game-state {
   width: 60vw;
   height: 70vh;
+  max-width: 100%;
+
+  @media (width <= 1040px) {
+    flex: 1 1 100%;
+    width: 100%;
+    height: 100%;
+  }
 }

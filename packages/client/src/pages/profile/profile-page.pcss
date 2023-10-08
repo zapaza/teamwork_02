@@ -1,7 +1,7 @@
 .profile {
   width: 100%;
   flex-grow: 1;
-  padding-top: 104px;
+  padding-top: 96px;
 
   &__sub-button {
     color: var(--blue-600);
@@ -21,5 +21,44 @@
     height: 100px;
     overflow: hidden;
     border-radius: 50%;
+  }
+
+  @media (width <= 1040px) {
+    padding: 90px 16px 16px;
+
+    .profile__container {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .profile__logo-container {
+      flex: 0 0 auto;
+    }
+
+    .profile-field {
+      width: 100% ;
+      font-size: 12px;
+      line-height: 16px;
+    }
+
+    .profile__form-container {
+      flex: 1 1 100%;
+    }
+
+    .wrapper {
+      width: 100%;
+    }
+
+    .profile__settings {
+      width: 100%;
+    }
+  }
+
+  @media (width <= 560px) {
+    .profile__info {
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
   }
 }
