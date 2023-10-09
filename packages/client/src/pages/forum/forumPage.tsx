@@ -13,6 +13,7 @@ export const ForumPage = () => {
 	const [activeModal, setActiveModal] = useState(false);
 	const topics = useSelector((state: RootState) => state.forum.data.topics);
 	const dispatch: AppDispatch = useDispatch();
+	const isDataLoaded = useSelector((state: RootState) => state.forum.isDataLoaded);
 
 	function changeActive() {
 		setActiveModal(!activeModal);
@@ -25,7 +26,7 @@ export const ForumPage = () => {
 
 	useEffect(() => {
 		fetchTopics();
-	}, []);
+	}, [isDataLoaded]);
 
 	async function submitForm(data: any) {
 		try {
