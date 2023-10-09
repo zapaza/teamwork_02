@@ -1,45 +1,170 @@
 import { themes } from 'mdx-deck'
 
 export const theme = {
-	...themes.swiss,
+	...themes.comic,
+	fonts: {
+		body: "'Caveat', cursive",
+	},
 }
 
 <Head>
-	<title>Финальное демо</title>
+	<title>Сказка о Мальчике-философе Пете и его друзьях</title>
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap" rel="stylesheet" />
 </Head>
 
-# Финальным демо
+# Сказка о Мальчике-философе Пете и его друзьях
 от команды GOLOVOLOMKA
 
 ---
-# Через 5 минут вы узнаете:
 
-<Steps>
+## Глава 1: Начало пути
 
-	- Что мы за команда
-	- Что и на чем мы делали
-	- Наш тернистый путь к этому демо
-	- Цель нашего путешествия
+<div>Однажды в большом мире грустил Мальчик-философ Петя.</div>
+<div>Он решил стать лучшим фронтенд-разработчиком и отправился в путешествие в мир</div>
 
-</Steps>
+__Яндекс-практикум__.
 
 ---
 
-# Кто мы?
+## Глава 2: Встреча с друзьями
 
-<Image width="800px"
-	   height="300px"
-	   size="contain"
-	   src={'https://p7.hiclipart.com/preview/407/805/224/red-ranger-mighty-morphin-power-rangers-the-movie-kimberly-hart-mighty-morphin-power-rangers-season-1-others.jpg'}></Image>
+По пути в новый мир он познакомился с четырьмя друзьями:
+
+- __Дашей__, матерью всех машин, владеющей всеми заклинаниями из энциклопедии профессора Фортрана.
+- __Александром__, мастером поиска багов и владеющим Jest'ом судьбы.
+- __Стасом__, Хокаге деревни, скрытой в HTML, который знал множество тайных техник.
+- И __Ильей__, тайным рыцарем, который скрывал свое лицо под шлемом и всегда был готов защищать друзей.
 
 ---
 
-import { Flex, Card, Text, Box } from 'rebass';
+## Глава 3: Путь к профессионализму
 
-# Cтек
+Вместе они преодолели тернистый путь к знаниям
+и победили десяток врагов, таких как:
+
+---
+import i from './presentationImage/mainPage.png'
+
+# Главный Пейдж
+
+<Image width="700px" size="contain" height="700px" src={i}></Image>
+
+<Notes>
+	Самый первый и простой противник, после победы над которым друзья овладели набором оружия React
+	Redux React-router и i18n
+</Notes>
+
+---
+import { Flex, Box } from 'rebass'
+import r from './presentationImage/registretion.png'
+import a from './presentationImage/authorization.png'
+
+# Братья Авторизатий и Регистратий
 
 <Flex>
-	<Box mr={32}>
+	<Box p={3}
+		 width={1/2}
+	>
+		<Image width="500px" size="contain" height="500px" src={r}></Image>
+	</Box>
+	<Box p={3}
+		 width={1/2}
+	>
+		<Image width="500px" size="contain" height="500px" src={a}></Image>
+	</Box>
+</Flex>
+
+<Notes>
+	их победили при помощи основного оружия React и Yup для валидации
+	и укротили дракона OAuth который без проблем телепортировал их дальше
+</Notes>
+
+---
+import g from './presentationImage/gamegif.gif'
+
+
+# Пакманисий злейший
+
+<Image width="700px" size="contain" height="700px" src={g}></Image>
+
+
+<Notes>
+	Самый сложный враг из всех с кем встречались друзья
+
+	Этот зверь был повержен всеми тайными техниками Хокаге, такие как
+	- Патерн фабрика
+	- Таймеры для контроля призраками
+	- web Api audio
+	- requestAnimations
+	- canvas
+	- fullscreen api
+	- Алгоритмы для построения пути и обработки столкновений
+
+</Notes>
+
+---
+import t from './presentationImage/topic.png'
+import f from './presentationImage/forum.png'
+
+# Форуманий и его сын Топиканий
+
+<Flex>
+	<Box p={3}
+		 width={1/2}>
+		<Image width="500px" size="contain" height="500px" src={f}></Image>
+	</Box>
+	<Box p={3}
+		 width={1/2}>
+		<Image width="500px" size="contain" height="500px" src={t}></Image>
+	</Box>
+</Flex>
+
+<Notes>
+
+	Этих злодеев Друзья победили при помощи
+	- express
+	- postgres
+	- Serialize
+	- emoji-mart
+
+</Notes>
+
+---
+import l from './presentationImage/liderbord.png'
+
+# Лидерорбер
+
+<Image width="500px" size="contain" height="500px" src={l}></Image>
+
+<Notes>
+
+	О нем ходило много слухов, и он представлялся могущественным, из за связей с Пакманисием
+	но он оказался простым и был повержен Axiosom
+
+</Notes>
+
+---
+
+import p from './presentationImage/profile.png'
+
+# Профилиус
+
+<Image width="800px" size="contain" height="500px" src={p}></Image>
+
+
+<Notes>
+
+	Показал нам наши тайны, и научил с их изменять
+
+</Notes>
+
+---
+
+## Глава 4: Полученные артефакты
+<Flex width='100%'>
+	<Box width="20%" p={3}>
 		<Text>- Typescript</Text>
 		<Text>- React</Text>
 		<Text>- Redux Toolkit</Text>
@@ -59,7 +184,7 @@ import { Flex, Card, Text, Box } from 'rebass';
 		<Text>- yup</Text>
 		<Text>- emoji-mart</Text>
 	</Box>
-	<Flex flexWrap={'wrap'} width={[1]}>
+	<Flex flexWrap={'wrap'} width="80%">
 		<Box width={[1/5]} p={2}>
 			<Image size="contain"
 				   src='data:image/png;base64,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'></Image>
@@ -105,62 +230,33 @@ import { Flex, Card, Text, Box } from 'rebass';
 
 ---
 
-# Что мы наделали
+## Глава 5: Счастливый конец
 
-
----
-
-# Проблемы?
-
-<Steps>
-
-	- Что делать? Как Делать?
-	- Взаимозаменяемость? - не не слышали
-	- Мотивацию нужно поднять!!
-
-</Steps>
-
-<Image width='400px' height="400px" size='contain' src='https://pacmen-golovolomka-team-28.ya-praktikum.tech/images/presaStudents.jpg'></Image>
-
-<Notes>
-	Перенесли фокус с “хотелок” на желаемый результат - в конкретный срок иметь работающую игру;
-
-	Самую большую и важную задачу спринта назначили на одного человека. И когда он временно “выбыл из строя” - оказалось что другие члены команды уже не успевают разобраться в большом объеме кода и доделать задачу. Повезло, что ответственный сокомандник успел закончить задачу в срок. Команда получила опыт и сделала вывод, что не стоит забывать про взаимозаменяемость;
-
-	Продолжали созваниваться по видео каждую неделю и открыто проговаривали кто на каком этапе выполнения задач находится. Если кто-то понимал что не справляется с нагрузкой, то договаривались и переназначали задачи;
-</Notes>
+В итоге, благодаря своим усилиям друзья, стали:
+- Командой
+- Научились распределять задачи
+- Лучшими фронтенд-разработчиками.
+Они успешно завершили свой проект и достигли своей цели.
 
 ---
 
-# У ронина нет цели, но мы и не ронины
+## Конец
 
-<Image size='contain' src="https://avatars.mds.yandex.net/get-lpc/1527204/5cca1151-c2bc-4824-ac62-543a8c02bdf1/orig"></Image>
-
----
-
-# А теперь важно о важном
-
-<Steps>
-
-	- Сила командной работы
-	- Наставники
-	- Обучение в коллективе
-	- Коммуникации
-	- Совместные проекты
-	- Кофе заканчиватся(
-
-</Steps>
+<div>И так закончилась сказка о Мальчике-философе Пете и его друзьях,</div>
+<div>которые смогли достичь выдающихся результатов в мире фронтенд-разработки благодаря своему труду, умениям и дружбе.</div>
 
 ---
 
-# Мы закончили
+## P.S
 
-### Спасибо тем кто с нами, и нам кто с ними
+Спасибо __команде Практикума__, которая нас сопровождала
 
-<Image size='contain' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0CSjK0pGU8rUKQ2aP8z7azDPjq3pLkqwGiA&usqp=CAU"></Image>
+А в особенности __Диме__ и __Александре__
 
+---
 
+## P.S.S
 
+[Репозиторий проекта](https://github.com/zapaza/teamwork_02)
 
-
-
+[Проект](https://pacmen-golovolomka-team-28.ya-praktikum.tech/)
