@@ -11,7 +11,8 @@
 		"format:prettier": "prettier --write .",
 		"format:eslint": "eslint --fix --ext .ts,.tsx",
 		"format:stylelint": "stylelint --fix \"src/**/*.{css,pcss}\"",
-		"test": "jest ./"
+		"test": "jest ./",
+		"start:doc": "mdx-deck presentation.mdx"
 	},
 	"dependencies": {
 		"@emoji-mart/data": "^1.1.2",
@@ -25,11 +26,13 @@
 		"eslint-plugin-react": "^7.33.2",
 		"express": "^4.18.2",
 		"jest-canvas-mock": "^2.5.2",
+		"mdx-deck": "^4.1.1",
 		"prettier": "^2.7.1",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-redux": "^8.1.1",
 		"react-router-dom": "^6.14.2",
+		"rebass": "^4.0.7",
 		"serialize": "^0.1.3",
 		"serialize-javascript": "^6.0.1",
 		"vite": "^3.0.7"
